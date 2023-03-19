@@ -1,0 +1,36 @@
+:root {
+  --primary-color1: hsl(213, 96%, 18%);
+  --secondary-color1: hsl(231, 11%, 63%);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+img,
+picture,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+textarea,
+button,
+select {
+  font: inherit;
+}
+
+.whole-screen {
+  height: 100vh;
+  width: 100vw;
+}
