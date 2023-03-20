@@ -1,0 +1,33 @@
+.windows-loging-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5vh;
+  width: 100%;
+  height: 100%;
+  background-image: url("../images/rainbowVortex.svg");
+  background-size: cover;
+}
+
+.windows-loging-screen > img {
+  border-radius: 50%;
+  width: 15vw;
+}
+
+.windows-loging-screen > div {
+  font-size: 4vh;
+  font-weight: bold;
+  color: var(--dark-theme-font);
+  text-transform: capitalize;
+}
+
+.windows-loging-screen > form > input {
+  padding: 0.2rem;
+  width: 20vw;
+  border: 3px solid grey;
+}
+
+.windows-loging-screen > p {
+  color: var(--dark-theme-font);
+}
