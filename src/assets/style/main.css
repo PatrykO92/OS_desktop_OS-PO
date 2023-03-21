@@ -32,9 +32,22 @@ select {
   font: inherit;
 }
 
+body {
+  background-color: black;
+  color: var(--dark-theme-font);
+}
+
 .whole-screen {
   height: 100vh;
   width: 100vw;
+}
+
+.enter-appear {
+  opacity: 0;
+}
+.enter-appear-active {
+  opacity: 1;
+  transition: opacity 1000ms;
 }
 
 .light-theme {

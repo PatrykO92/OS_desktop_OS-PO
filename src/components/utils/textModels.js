@@ -5,12 +5,12 @@ const textModel = {
       "Welcome to my app! Please use fullscreen mode for this app (press F11). This is starting form, you can choose all settings by yourself, or just use the default settings. Have fun!",
     startScreenText2:
       "This form doesn't have validation, so please be careful!",
-
     name: "name",
     surname: "surname",
     pin: "PIN",
     pinPlaceholder: "PIN number",
     pinForgetMsg: "I don't remember my PIN number",
+    yourPin: "Your pin",
   },
   pl: {
     language: "język",
@@ -23,6 +23,7 @@ const textModel = {
     pin: "PIN",
     pinPlaceholder: "Numer PIN",
     pinForgetMsg: "Nie pamiętam mojego numeru PIN",
+    yourPin: "Twój pin",
   },
 };
 

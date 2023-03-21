@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { WindowsLogin, textModel, StartScreen } from "./components";
+import { LoginScreen, textModel, StartScreen, WorkScreen } from "./components";
 import "./assets/style/main.css";
 
 function App() {
@@ -18,19 +18,21 @@ function App() {
   };
 
   // useStateHook to inform, at what stage is app currently
-  const [windowsStage, setWindowsStage] = useState({
+  const [systemStage, setSystemStage] = useState({
     startScreen: true,
     loginScreen: false,
     workScreen: false,
     closeScreen: false,
   });
 
-  const changeStage = () => {
-    setWindowsStage({
-      startScreen: false,
-      loginScreen: true,
+  // function to change stage
+  const changeStage = (nextStage) => {
+    setSystemStage({
+      startScreen: false, // set all properties to false except nextStage
+      loginScreen: false,
       workScreen: false,
       closeScreen: false,
+      [nextStage]: true, // set nextStage to its corresponding value
     });
   };
 
@@ -41,7 +43,7 @@ function App() {
 
   return (
     <div className="whole-screen">
-      {windowsStage.startScreen && (
+      {systemStage.startScreen && (
         <StartScreen
           lang={windowsLanguage}
           changeLang={changeLang}
@@ -49,9 +51,14 @@ function App() {
           changeStage={changeStage}
         />
       )}
-      {windowsStage.loginScreen && (
-        <WindowsLogin lang={windowsLanguage} user={user} />
+      {systemStage.loginScreen && (
+        <LoginScreen
+          lang={windowsLanguage}
+          user={user}
+          changeStage={changeStage}
+        />
       )}
+      {systemStage.workScreen && <WorkScreen />}
     </div>
   );
 }

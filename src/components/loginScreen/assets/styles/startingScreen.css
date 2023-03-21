@@ -5,7 +5,7 @@
   --wss-font-color: hsl(0, 0%, 100%);
 }
 
-.windows-starting-screen {
+.starting-screen {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -16,13 +16,13 @@
   background-color: var(--wss-main-color1);
 }
 
-.wss-logo {
+.ss-logo {
   height: 20vh;
   filter: invert(21%) sepia(42%) saturate(5139%) hue-rotate(205deg)
     brightness(170%) contrast(84%);
 }
 
-.wss-spinner {
+.ss-spinner {
   width: 3rem;
   height: 3rem;
   border-radius: 50%;

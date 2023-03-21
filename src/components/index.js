@@ -1,5 +1,6 @@
-import WindowsLogin from "./windowsLogin/WindowsLogin.jsx";
+import LoginScreen from "./loginScreen/LoginScreen.jsx";
 import textModel from "./utils/textModels.js";
 import StartScreen from "./startScreen/StartScreen.jsx";
+import WorkScreen from "./workScreen/WorkScreen.jsx";
 
-export { WindowsLogin, StartScreen, textModel };
+export { LoginScreen, StartScreen, WorkScreen, textModel };

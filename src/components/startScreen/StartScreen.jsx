@@ -2,7 +2,7 @@ import "./starterScreen.css";
 import { useState } from "react";
 
 const StartFormComponent = ({ lang, changeLang, changeUser, changeStage }) => {
-  const [user, setUser] = useState({
+  const [userForm, setUserForm] = useState({
     name: "nicolaus",
     surname: "copernicus",
     pin: "1234",
@@ -18,7 +18,7 @@ const StartFormComponent = ({ lang, changeLang, changeUser, changeStage }) => {
           name="language"
           id="language-select"
           defaultValue={"en"}
-          onChange={(event) => changeLang(event.target.value)}
+          onChange={(e) => changeLang(e.target.value)}
         >
           <option value="en">English</option>
           <option value="pl">Polski</option>
@@ -29,19 +29,44 @@ const StartFormComponent = ({ lang, changeLang, changeUser, changeStage }) => {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          changeUser(user);
-          changeStage();
+          changeUser(userForm);
+          changeStage("loginScreen");
         }}
       >
         <div>{lang.startScreenText2}</div>
         <label>
-          {lang.name}: <input type="text" value={user.name} />
+          {lang.name}:{" "}
+          <input
+            type="text"
+            minLength={3}
+            maxLength={12}
+            value={userForm.name}
+            onChange={(e) =>
+              setUserForm((oldVal) => ({ ...oldVal, name: e.target.value }))
+            }
+          />
         </label>
         <label>
-          {lang.surname}: <input type="text" value={user.surname} />
+          {lang.surname}:
+          <input
+            minLength={3}
+            maxLength={20}
+            type="text"
+            value={userForm.surname}
+            onChange={(e) =>
+              setUserForm((oldVal) => ({ ...oldVal, surname: e.target.value }))
+            }
+          />
         </label>
         <label>
-          {lang.pin}: <input type="text" value={user.password} />
+          {lang.pin}:{" "}
+          <input
+            type="number"
+            value={userForm.pin}
+            onChange={(e) =>
+              setUserForm((oldVal) => ({ ...oldVal, pin: e.target.value }))
+            }
+          />
         </label>
         <button type="submit">Ok</button>
       </form>
