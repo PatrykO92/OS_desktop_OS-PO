@@ -1,7 +1,13 @@
-import React from "react";
+import { TaskBar, Desktop } from "./src/components";
 
 const WorkScreen = () => {
-  return <div>WorkScreen</div>;
+  return (
+    <div>
+      WorkScreen
+      <Desktop />
+      <TaskBar />
+    </div>
+  );
 };
 
 export default WorkScreen;
