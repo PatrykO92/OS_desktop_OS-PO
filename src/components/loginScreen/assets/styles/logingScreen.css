@@ -28,13 +28,7 @@
   border: 3px solid grey;
 }
 
-.loging-screen div > p {
-  font-weight: 400;
-  font-size: 1rem;
-  transition: all 1s;
-}
-
-.loging-screen > div > p:hover {
+.loging-screen > p:hover {
   cursor: pointer;
   text-decoration: underline;
 }
@@ -43,5 +37,5 @@
   font-size: 1rem;
   display: block;
   position: absolute;
-  padding: 5px;
+  padding-top: 12px;
 }

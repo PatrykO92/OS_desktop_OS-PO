@@ -1,0 +1,40 @@
+.task-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 3.5rem;
+  width: 100vw;
+  border-top: 0.5px solid grey;
+  padding: 0 1rem;
+}
+
+.task-bar button {
+  min-width: 2.5rem;
+  background-color: transparent;
+  border: 0;
+  padding: 0.3rem;
+  transition: all 1s;
+}
+
+.task-bar button:hover {
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.menu-start > img {
+  filter: invert(21%) sepia(42%) saturate(5139%) hue-rotate(205deg)
+    brightness(170%) contrast(84%);
+}
+
+.programs,
+.additionals {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.callendar-button {
+  font-size: 0.8rem;
+  color: white;
+  text-align: right;
+}

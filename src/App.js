@@ -19,9 +19,9 @@ function App() {
 
   // useStateHook to inform, at what stage is app currently
   const [systemStage, setSystemStage] = useState({
-    startScreen: true,
+    startScreen: false,
     loginScreen: false,
-    workScreen: false,
+    workScreen: true,
     closeScreen: false,
   });
 

@@ -49,31 +49,30 @@ const WindowsLogin = ({ lang, user, changeStage }) => {
               {user.name} {user.surname}
             </div>
             <form
-              onSubmit={() => {
+              onSubmit={(e) => {
+                e.preventDefault();
                 changeStage("workScreen");
               }}
             >
               <input type="password" placeholder={lang.pinPlaceholder} />
             </form>
-            <div>
-              <p
-                onMouseOver={() => {
-                  setShowPin(!showPin);
-                }}
-                onMouseOut={() => {
-                  setShowPin(!showPin);
-                }}
-              >
-                {lang.pinForgetMsg}
-              </p>
-              {showPin ? (
-                <span className="tooltip">
-                  {lang.yourPin}: {user.pin}
-                </span>
-              ) : (
-                <></>
-              )}
-            </div>
+            <p
+              onMouseOver={() => {
+                setShowPin(!showPin);
+              }}
+              onMouseOut={() => {
+                setShowPin(!showPin);
+              }}
+            >
+              {lang.pinForgetMsg}
+            </p>
+            {showPin ? (
+              <span className="tooltip">
+                {lang.yourPin}: {user.pin}
+              </span>
+            ) : (
+              <></>
+            )}
           </div>
         </CSSTransition>
       )}

@@ -1,9 +1,9 @@
 import { TaskBar, Desktop } from "./src/components";
+import "./src/assets/styles/workScreen.css";
 
 const WorkScreen = () => {
   return (
-    <div>
-      WorkScreen
+    <div className="work-screen">
       <Desktop />
       <TaskBar />
     </div>
