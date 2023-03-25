@@ -19,9 +19,9 @@ function App() {
 
   // useStateHook to inform, at what stage is app currently
   const [systemStage, setSystemStage] = useState({
-    startScreen: false,
+    startScreen: true,
     loginScreen: false,
-    workScreen: true,
+    workScreen: false,
     closeScreen: false,
   });
 
@@ -58,7 +58,13 @@ function App() {
           changeStage={changeStage}
         />
       )}
-      {systemStage.workScreen && <WorkScreen />}
+      {systemStage.workScreen && (
+        <WorkScreen
+          lang={windowsLanguage}
+          user={user}
+          changeStage={changeStage}
+        />
+      )}
     </div>
   );
 }

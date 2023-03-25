@@ -21,7 +21,7 @@ function CalendarButton() {
     .padStart(2, "0")}`;
 
   return (
-    <button className="callendar-button">
+    <button className="calendar-button">
       <p>{formattedTime}</p>
       <p>{formattedDate}</p>
     </button>

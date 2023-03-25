@@ -1,5 +1,6 @@
 const textModel = {
   en: {
+    lng: "en-us",
     language: "language",
     startScreenText1:
       "Welcome to my app! Please use fullscreen mode for this app (press F11). This is starting form, you can choose all settings by yourself, or just use the default settings. Have fun!",
@@ -13,6 +14,7 @@ const textModel = {
     yourPin: "Your pin",
   },
   pl: {
+    lng: "pl",
     language: "język",
     startScreenText1:
       "Zapraszam do mojej aplikacji! Proszę używaj trybu pełnoekranowego do tej aplikacji (wciśnij F11). To jest formularz początkowy, możesz wybrać wszystkie ustawienia samodzielnie, lub po prostu użyć domyślnych ustawień. Baw się dobrze!",

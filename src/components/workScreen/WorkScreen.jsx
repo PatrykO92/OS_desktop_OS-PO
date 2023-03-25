@@ -1,11 +1,11 @@
 import { TaskBar, Desktop } from "./src/components";
 import "./src/assets/styles/workScreen.css";
 
-const WorkScreen = () => {
+const WorkScreen = ({ lang }) => {
   return (
     <div className="work-screen">
       <Desktop />
-      <TaskBar />
+      <TaskBar lang={lang} />
     </div>
   );
 };
