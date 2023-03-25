@@ -13,25 +13,29 @@ const TaskBar = ({ lang }) => {
   const [value, onChange] = useState(new Date());
 
   return (
-    <div className="task-bar" style={{ backgroundColor: "hsl(200, 60%, 8%)" }}>
+    <div className="task-bar">
       <div className="programs">
         <button className="menu-start">
           <img src={windowIcon} alt="Menu Start" />
         </button>
-        <button></button>
-        <button></button>
+        {/* ##TODO - LIST OF OPENED APPS, DEPENDS ON STATE/PROPS */}
       </div>
 
       <div className="additionals">
+        {/* ##TODO - SOME SORT OF LOCALIZATION / WIFI CONNECTION ETC. */}
         <div>
           <button>WiFi</button>
         </div>
-        <div onClick={() => calendarRef.current.classList.toggle("hidden")}>
+        <div
+          onClick={() =>
+            calendarRef.current.classList.toggle("hidden-calendar")
+          }
+        >
           <CalendarButton />
         </div>
       </div>
 
-      <div className="calendar-div hidden" ref={calendarRef}>
+      <div className="calendar-div hidden-calendar" ref={calendarRef}>
         <Calendar onChange={onChange} value={value} locale={lang.lng} />
       </div>
     </div>

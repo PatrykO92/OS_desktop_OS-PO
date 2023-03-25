@@ -1,10 +1,10 @@
 .react-calendar {
   width: 20rem;
-  min-height: 17rem;
-  padding: 2rem 0;
-  border: 0.5px solid #a0a096;
+  min-height: 14rem;
+  padding: 1rem 0;
+  border: 0.5px solid var(--border-main);
   border-radius: 10px;
-  background-color: rgba(30, 30, 30, 1);
+  background-color: var(--theme-bg);
   font-size: smaller;
 }
 
@@ -25,7 +25,7 @@
   margin-bottom: 0.5rem;
 }
 .react-calendar__navigation button {
-  color: white;
+  color: var(--theme-font);
 }
 
 .react-calendar__year-view__months {
@@ -44,10 +44,11 @@
   text-transform: lowercase;
   font-weight: bold;
   font-size: 0.75em;
+  color: var(--theme-font);
 }
 
 div .react-calendar__month-view__days__day {
-  color: white;
+  color: var(--theme-font);
 }
 
 .react-calendar__month-view__days__day--neighboringMonth {
@@ -58,7 +59,7 @@ div .react-calendar__month-view__days__day {
 .react-calendar__decade-view .react-calendar__tile,
 .react-calendar__century-view .react-calendar__tile {
   border-radius: 10px;
-  color: white;
+  color: var(--theme-font);
 }
 
 .react-calendar__tile + .react-calendar__tile--now {

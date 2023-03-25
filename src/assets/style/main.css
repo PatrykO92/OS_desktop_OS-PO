@@ -1,8 +1,8 @@
 :root {
-  --dark-theme-bg: hsl(213, 96%, 18%);
-  --dark-theme-font: hsl(0, 0%, 100%);
-  --light-theme-bg: hsl(0, 0%, 100%);
-  --light-theme-font: hsl(213, 96%, 18%);
+  --theme-bg: hsla(198, 16%, 13%, 0.795);
+  --theme-font: hsl(0, 0%, 100%);
+  --hover-main: rgba(255, 255, 255, 0.1);
+  --border-main: #a0a096;
 }
 
 *,

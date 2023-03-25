@@ -1,12 +1,12 @@
 .desktop {
-  flex: 1;
-  max-height: calc(100vh - 3.5rem);
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   flex-wrap: wrap;
   gap: 1rem;
-  padding: 0.2rem;
+  padding: 0.5rem;
+  padding-bottom: 4rem;
 }
 
 .desktop .icon {
@@ -16,10 +16,10 @@
   border: 0;
   padding: 0.3rem;
   transition: all 0.4s ease-in;
-  color: white;
+  color: var(--theme-font);
 }
 
 .desktop .icon:hover {
   border-radius: 5px;
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: var(--hover-main);
 }

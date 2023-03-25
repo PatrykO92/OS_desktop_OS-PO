@@ -11,10 +11,10 @@ function App() {
     console.log(user);
   };
 
-  // useStateHook and function to set actually used language
+  // useStateHook and function to set actually used language, default set to "en".
   const [windowsLanguage, setWindowsLanguage] = useState("en");
   const changeLang = (language) => {
-    setWindowsLanguage(textModel[language]);
+    setWindowsLanguage(language);
   };
 
   // useStateHook to inform, at what stage is app currently
@@ -38,14 +38,14 @@ function App() {
 
   // Set default language at app start
   useEffect(() => {
-    setWindowsLanguage(textModel[windowsLanguage]);
+    changeLang("en");
   }, []);
 
   return (
     <div className="whole-screen">
       {systemStage.startScreen && (
         <StartScreen
-          lang={windowsLanguage}
+          lang={textModel[windowsLanguage]}
           changeLang={changeLang}
           changeUser={changeUser}
           changeStage={changeStage}
@@ -53,14 +53,14 @@ function App() {
       )}
       {systemStage.loginScreen && (
         <LoginScreen
-          lang={windowsLanguage}
+          lang={textModel[windowsLanguage]}
           user={user}
           changeStage={changeStage}
         />
       )}
       {systemStage.workScreen && (
         <WorkScreen
-          lang={windowsLanguage}
+          lang={textModel[windowsLanguage]}
           user={user}
           changeStage={changeStage}
         />
