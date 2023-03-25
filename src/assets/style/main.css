@@ -35,6 +35,7 @@ select {
 body {
   background-color: black;
   color: var(--dark-theme-font);
+  overflow: hidden;
 }
 
 .whole-screen {

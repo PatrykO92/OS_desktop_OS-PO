@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 import Calendar from "react-calendar";
 import "../assets/styles/myCalendar.css";
@@ -9,6 +9,7 @@ import "../assets/styles/taskBar.css";
 import { CalendarButton } from "./";
 
 const TaskBar = ({ lang }) => {
+  const calendarRef = useRef(null);
   const [value, onChange] = useState(new Date());
 
   return (
@@ -20,11 +21,17 @@ const TaskBar = ({ lang }) => {
         <button></button>
         <button></button>
       </div>
+
       <div className="additionals">
-        <button onClick={() => console.log(lang.lng)}>WiFi</button>
-        <CalendarButton />
+        <div>
+          <button>WiFi</button>
+        </div>
+        <div onClick={() => calendarRef.current.classList.toggle("hidden")}>
+          <CalendarButton />
+        </div>
       </div>
-      <div className="calendar-div">
+
+      <div className="calendar-div hidden" ref={calendarRef}>
         <Calendar onChange={onChange} value={value} locale={lang.lng} />
       </div>
     </div>
