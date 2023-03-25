@@ -5,7 +5,7 @@
   flex-direction: column;
   gap: 2rem;
   padding: 4rem;
-  background-color: var(--dark-theme-bg);
+  background-color: var(--theme-bg);
 }
 
 .starter-screen > div > label {

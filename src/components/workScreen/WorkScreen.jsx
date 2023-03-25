@@ -4,6 +4,8 @@ import { useState } from "react";
 
 import { DesktopContextMenu } from "./src/components";
 
+import { CSSTransition } from "react-transition-group";
+
 const WorkScreen = ({ lang }) => {
   // useState hook for setting where to display DesktopContextMenu
   const [desktopContextMenuPosition, setDesktopContextMenuPosition] =
@@ -23,22 +25,24 @@ const WorkScreen = ({ lang }) => {
   };
 
   return (
-    <div
-      className="work-screen"
-      onContextMenu={(e) =>
-        handleDesktopContextMenu(e, setDesktopContextMenuPosition)
-      }
-      onClick={closeDesktopContextMenu}
-    >
-      <Desktop />
-      <TaskBar lang={lang} />
-      {desktopContextMenuPosition && (
-        <DesktopContextMenu
-          position={desktopContextMenuPosition}
-          onClick={closeDesktopContextMenu}
-        />
-      )}
-    </div>
+    <CSSTransition in={true} appear={true} timeout={5000} classNames="enter">
+      <div
+        className="work-screen"
+        onContextMenu={(e) =>
+          handleDesktopContextMenu(e, setDesktopContextMenuPosition)
+        }
+        onClick={closeDesktopContextMenu}
+      >
+        <Desktop />
+        <TaskBar lang={lang} />
+        {desktopContextMenuPosition && (
+          <DesktopContextMenu
+            position={desktopContextMenuPosition}
+            onClick={closeDesktopContextMenu}
+          />
+        )}
+      </div>
+    </CSSTransition>
   );
 };
 

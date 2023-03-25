@@ -26,6 +26,7 @@ const TaskBar = ({ lang }) => {
         <div>
           <button>WiFi</button>
         </div>
+
         <div
           onClick={() =>
             calendarRef.current.classList.toggle("hidden-calendar")
@@ -34,7 +35,7 @@ const TaskBar = ({ lang }) => {
           <CalendarButton />
         </div>
       </div>
-
+      {/* TODO - REFRACTOR - MOVE CALENDAR TO MAIN WORK SCREEN */}
       <div className="calendar-div hidden-calendar" ref={calendarRef}>
         <Calendar onChange={onChange} value={value} locale={lang.lng} />
       </div>

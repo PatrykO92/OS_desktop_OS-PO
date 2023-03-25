@@ -18,14 +18,14 @@
 .loging-screen > div {
   font-size: 4vh;
   font-weight: bold;
-  color: var(--dark-theme-font);
+  color: var(--theme-font);
   text-transform: capitalize;
 }
 
 .loging-screen > form > input {
   padding: 0.2rem;
   width: 20vw;
-  border: 3px solid grey;
+  border: 3px solid var(--border-main);
 }
 
 .loging-screen > p:hover {

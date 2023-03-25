@@ -34,7 +34,7 @@ select {
 
 body {
   background-color: black;
-  color: var(--dark-theme-font);
+  color: var(--theme-font);
   overflow: hidden;
 }
 
@@ -49,14 +49,4 @@ body {
 .enter-appear-active {
   opacity: 1;
   transition: opacity 1000ms;
-}
-
-.light-theme {
-  color: var(--light-theme-font);
-  background-color: var(--light-theme-bg);
-}
-
-.dark-theme {
-  color: var(--dark-theme-font);
-  background-color: var(--dark-theme-bg);
 }
