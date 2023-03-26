@@ -1,3 +1,4 @@
 import textModel from "./textModels";
+import fetchNewsData from "./fetchNewsData";
 
-export { textModel };
+export { textModel, fetchNewsData };

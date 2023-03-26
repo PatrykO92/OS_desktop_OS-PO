@@ -5,7 +5,7 @@ import {
   textModel,
   StartScreen,
   WorkScreen,
-  CustomAlertPrompt,
+  CloseScreen,
 } from "./components";
 import "./assets/style/main.css";
 import { nicolausCopernicusAvatar } from "./assets/images/avatar-images";
@@ -33,9 +33,9 @@ function App() {
   const [systemStage, setSystemStage] = useState({
     startScreen: false,
     loginScreen: false,
-    workScreen: true,
+    workScreen: false,
     resetScreen: false,
-    closeScreen: false,
+    closeScreen: true,
   });
 
   // function to change stage
@@ -73,6 +73,7 @@ function App() {
           changeStage={changeStage}
         />
       )}
+      {systemStage.closeScreen && <CloseScreen />}
     </div>
   );
 }

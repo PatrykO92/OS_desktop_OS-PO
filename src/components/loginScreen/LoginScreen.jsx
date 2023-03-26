@@ -1,4 +1,3 @@
-import "./assets/styles/startingScreen.css";
 import "./assets/styles/logingScreen.css";
 import { nicolausCopernicusAvatar } from "../../assets/images/avatar-images";
 import { windowsIcon } from "./assets/images";
