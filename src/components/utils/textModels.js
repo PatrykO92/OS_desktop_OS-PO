@@ -1,5 +1,8 @@
 const textModel = {
   en: {
+    accept: "Accept",
+    areYouSure: "Are you sure?",
+    dismiss: "Dismiss",
     lng: "en-us",
     language: "language",
     startScreenText1:
@@ -16,6 +19,9 @@ const textModel = {
     yourPin: "Your pin",
   },
   pl: {
+    accept: "Akceptuj",
+    areYouSure: "Jesteś pewny?",
+    dismiss: "Anuluj",
     lng: "pl",
     language: "język",
     startScreenText1:

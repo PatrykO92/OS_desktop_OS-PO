@@ -40,7 +40,6 @@ function App() {
 
   // function to change stage
   const changeStage = (nextStage) => {
-    console.log("lol");
     setSystemStage({
       startScreen: false, // set all properties to false except nextStage
       loginScreen: false,
@@ -74,8 +73,6 @@ function App() {
           changeStage={changeStage}
         />
       )}
-
-      <CustomAlertPrompt />
     </div>
   );
 }

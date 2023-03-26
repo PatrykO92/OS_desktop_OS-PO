@@ -3,8 +3,6 @@
   position: fixed;
   top: 0;
   left: 0;
-  height: 0;
-  width: 0;
   opacity: 0;
   background-color: var(--theme-bg);
   transition: all 1s;
@@ -24,7 +22,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 10rem;
+  min-height: 6rem;
   min-width: 10rem;
   border-radius: 10px;
   border: 1px solid var(--border-main);
@@ -36,6 +34,7 @@
   max-width: 20rem;
   margin-bottom: 1rem;
   text-align: center;
+  font-size: 0.9rem;
 }
 
 .custom-alert-prompt-show > div > div {
