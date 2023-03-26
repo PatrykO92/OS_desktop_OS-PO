@@ -4,7 +4,8 @@
   --theme-font: hsl(0, 0%, 100%);
   --hover-main: rgba(255, 255, 255, 0.1);
   --border-main: #a0a096;
-  -red: #b90808;
+  --red: #b90808;
+  --green: #1e7209;
 }
 
 *,

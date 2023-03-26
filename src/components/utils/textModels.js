@@ -11,7 +11,8 @@ const textModel = {
     pin: "PIN",
     pinPlaceholder: "PIN number",
     pinForgetMsg: "I don't remember my PIN number",
-    power: "power",
+    power: "Turn off computer",
+    reset: "Restart computer",
     yourPin: "Your pin",
   },
   pl: {
@@ -26,7 +27,8 @@ const textModel = {
     pin: "PIN",
     pinPlaceholder: "Numer PIN",
     pinForgetMsg: "Nie pamiętam mojego numeru PIN",
-    power: "zasilanie",
+    power: "wyłącz komputer",
+    reset: "Restartuj komputer",
     yourPin: "Twój pin",
   },
 };

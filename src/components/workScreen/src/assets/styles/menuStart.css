@@ -3,7 +3,7 @@
   bottom: 4rem;
   left: 0.5rem;
   width: 25rem;
-  height: 25rem;
+  height: 35rem;
   border-radius: 10px;
   border: 1px solid var(--border-main);
   transition: all 0.5s ease-in-out;
@@ -55,9 +55,15 @@
   border-radius: 0 0 10px 10px;
 }
 
-.menu-start-power-off {
-  filter: invert(10%) sepia(92%) saturate(4919%) hue-rotate(14deg)
-    brightness(102%) contrast(117%);
+.menu-start-utils > div {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.menu-start-button-img {
+  filter: invert(88%) sepia(65%) saturate(2%) hue-rotate(252deg)
+    brightness(114%) contrast(101%);
 }
 
 .menu-start-avatar {

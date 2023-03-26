@@ -1,5 +1,5 @@
 import "../assets/styles/menuStart.css";
-import { powerOffIcon } from "../assets/icons";
+import { powerOffIcon, restartIcon } from "../assets/icons";
 
 const MenuStart = ({ showMenuStart, lang, user, changeStage }) => {
   return (
@@ -8,7 +8,7 @@ const MenuStart = ({ showMenuStart, lang, user, changeStage }) => {
       <div className="menu-start-utils">
         <button
           onClick={() => {
-            console.log(user, lang, showMenuStart, changeStage);
+            console.log(changeStage);
           }}
         >
           <img
@@ -20,13 +20,30 @@ const MenuStart = ({ showMenuStart, lang, user, changeStage }) => {
             {user.name} {user.surname}
           </p>
         </button>
-        <button>
-          <img
-            src={powerOffIcon}
-            alt={lang.power}
-            className="menu-start-power-off"
-          />
-        </button>
+        <div>
+          <button
+            onClick={() => {
+              changeStage("resetScreen");
+            }}
+          >
+            <img
+              src={restartIcon}
+              alt={lang.restart}
+              className="menu-start-button-img "
+            />
+          </button>
+          <button
+            onClick={() => {
+              changeStage("closeScreen");
+            }}
+          >
+            <img
+              src={powerOffIcon}
+              alt={lang.power}
+              className="menu-start-button-img"
+            />
+          </button>
+        </div>
       </div>
     </div>
   );

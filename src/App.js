@@ -1,6 +1,12 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
-import { LoginScreen, textModel, StartScreen, WorkScreen } from "./components";
+import {
+  LoginScreen,
+  textModel,
+  StartScreen,
+  WorkScreen,
+  CustomAlertPrompt,
+} from "./components";
 import "./assets/style/main.css";
 import { nicolausCopernicusAvatar } from "./assets/images/avatar-images";
 
@@ -28,11 +34,13 @@ function App() {
     startScreen: false,
     loginScreen: false,
     workScreen: true,
+    resetScreen: false,
     closeScreen: false,
   });
 
   // function to change stage
   const changeStage = (nextStage) => {
+    console.log("lol");
     setSystemStage({
       startScreen: false, // set all properties to false except nextStage
       loginScreen: false,
@@ -66,6 +74,8 @@ function App() {
           changeStage={changeStage}
         />
       )}
+
+      <CustomAlertPrompt />
     </div>
   );
 }
