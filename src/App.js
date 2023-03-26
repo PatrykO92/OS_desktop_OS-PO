@@ -2,10 +2,16 @@ import { useEffect, useState } from "react";
 
 import { LoginScreen, textModel, StartScreen, WorkScreen } from "./components";
 import "./assets/style/main.css";
+import { nicolausCopernicusAvatar } from "./assets/images/avatar-images";
 
 function App() {
   // useStateHook and function to set actually used user
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState({
+    name: "Nicolaus",
+    surname: "Copernicus",
+    pin: "1234",
+    avatar: nicolausCopernicusAvatar,
+  });
   const changeUser = (user) => {
     setUser(user);
     console.log(user);
@@ -19,9 +25,9 @@ function App() {
 
   // useStateHook to inform, at what stage is app currently
   const [systemStage, setSystemStage] = useState({
-    startScreen: true,
+    startScreen: false,
     loginScreen: false,
-    workScreen: false,
+    workScreen: true,
     closeScreen: false,
   });
 
@@ -35,11 +41,6 @@ function App() {
       [nextStage]: true, // set nextStage to its corresponding value
     });
   };
-
-  // Set default language at app start
-  useEffect(() => {
-    changeLang("en");
-  }, []);
 
   return (
     <div className="whole-screen">

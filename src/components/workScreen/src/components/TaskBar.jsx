@@ -3,20 +3,24 @@ import { useState, useRef } from "react";
 import Calendar from "react-calendar";
 import "../assets/styles/myCalendar.css";
 
-import windowIcon from "../assets/icons/windows.svg";
+import { windowsIcon } from "../assets/icons";
 import "../assets/styles/taskBar.css";
 
 import { CalendarButton } from "./";
 
-const TaskBar = ({ lang }) => {
+const TaskBar = ({ lang, handleShowMenuStart }) => {
   const calendarRef = useRef(null);
   const [value, onChange] = useState(new Date());
 
   return (
     <div className="task-bar">
       <div className="programs">
-        <button className="menu-start">
-          <img src={windowIcon} alt="Menu Start" />
+        <button className="menu-start-btn">
+          <img
+            src={windowsIcon}
+            alt="Menu Start"
+            onClick={handleShowMenuStart}
+          />
         </button>
         {/* ##TODO - LIST OF OPENED APPS, DEPENDS ON STATE/PROPS */}
       </div>

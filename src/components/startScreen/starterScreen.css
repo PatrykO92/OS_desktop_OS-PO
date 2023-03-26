@@ -8,10 +8,6 @@
   background-color: var(--theme-bg);
 }
 
-.starter-screen > div > label {
-  text-transform: capitalize;
-}
-
 .starter-screen > form {
   display: flex;
   flex-direction: column;

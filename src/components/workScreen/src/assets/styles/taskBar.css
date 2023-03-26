@@ -26,7 +26,7 @@
   background-color: var(--hover-main);
 }
 
-.menu-start > img {
+.menu-start-btn > img {
   filter: invert(21%) sepia(42%) saturate(5139%) hue-rotate(205deg)
     brightness(170%) contrast(84%);
 }

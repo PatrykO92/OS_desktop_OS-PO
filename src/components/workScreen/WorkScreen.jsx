@@ -2,11 +2,17 @@ import { TaskBar, Desktop } from "./src/components";
 import "./src/assets/styles/workScreen.css";
 import { useState } from "react";
 
-import { DesktopContextMenu } from "./src/components";
+import { DesktopContextMenu, MenuStart } from "./src/components";
 
 import { CSSTransition } from "react-transition-group";
 
-const WorkScreen = ({ lang }) => {
+const WorkScreen = ({ lang, user, changeStage }) => {
+  // useState hook for showing and hidding MenuStart
+  const [showMenuStart, setShowMenuStart] = useState(true);
+  const handleShowMenuStart = () => {
+    setShowMenuStart((oldVal) => !oldVal);
+  };
+
   // useState hook for setting where to display DesktopContextMenu
   const [desktopContextMenuPosition, setDesktopContextMenuPosition] =
     useState(null);
@@ -31,16 +37,25 @@ const WorkScreen = ({ lang }) => {
         onContextMenu={(e) =>
           handleDesktopContextMenu(e, setDesktopContextMenuPosition)
         }
-        onClick={closeDesktopContextMenu}
+        onClick={() => {
+          closeDesktopContextMenu();
+        }}
       >
         <Desktop />
-        <TaskBar lang={lang} />
+        <TaskBar lang={lang} handleShowMenuStart={handleShowMenuStart} />
         {desktopContextMenuPosition && (
           <DesktopContextMenu
             position={desktopContextMenuPosition}
             onClick={closeDesktopContextMenu}
           />
         )}
+        {/* I used here other approach to show and hide component, beacuse of curiosity */}
+        <MenuStart
+          showMenuStart={showMenuStart}
+          lang={lang}
+          user={user}
+          changeStage={changeStage}
+        />
       </div>
     </CSSTransition>
   );

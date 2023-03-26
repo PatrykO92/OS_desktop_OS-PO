@@ -1,11 +1,13 @@
 import "./starterScreen.css";
 import { useState } from "react";
+import { nicolausCopernicusAvatar } from "../../assets/images/avatar-images";
 
 const StartFormComponent = ({ lang, changeLang, changeUser, changeStage }) => {
   const [userForm, setUserForm] = useState({
-    name: "nicolaus",
-    surname: "copernicus",
+    name: "Nicolaus",
+    surname: "Copernicus",
     pin: "1234",
+    avatar: nicolausCopernicusAvatar,
   });
 
   return (
