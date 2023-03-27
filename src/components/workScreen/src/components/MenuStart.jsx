@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../assets/styles/customAlertPrompt.css";
 import "../assets/styles/menuStart.css";
 import { powerOffIcon, restartIcon } from "../assets/icons";
+import { NewsBox } from ".";
 
 const MenuStart = ({ showMenuStart, lang, user, changeStage }) => {
   const [showAlert, setShowAlert] = useState(false);
@@ -51,7 +52,9 @@ const MenuStart = ({ showMenuStart, lang, user, changeStage }) => {
         </div>
       </div>
       <div className={`menu-start ${showMenuStart ? "hidden-menu-start" : ""}`}>
-        <div className="menu-start-programs"></div>
+        <div className="menu-start-widget">
+          <NewsBox lang={lang} />
+        </div>
         <div className="menu-start-utils">
           <button>
             <img

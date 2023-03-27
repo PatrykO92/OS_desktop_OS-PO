@@ -63,18 +63,3 @@
   filter: invert(21%) sepia(42%) saturate(5139%) hue-rotate(205deg)
     brightness(170%) contrast(84%);
 }
-
-.ss-spinner {
-  width: 3rem;
-  height: 3rem;
-  border-radius: 50%;
-  border: 5px solid var(--wss-main-color3);
-  border-top-color: var(--wss-main-color1);
-  animation: spin 1s infinite linear;
-}
-
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-}

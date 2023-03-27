@@ -1,13 +1,5 @@
-import React from "react";
-import NewsBox from "./workScreen/src/components/NewsBox";
-
 const CloseScreen = () => {
-  return (
-    <div>
-      CloseScreen
-      <NewsBox />
-    </div>
-  );
+  return <div>CloseScreen</div>;
 };
 
 export default CloseScreen;

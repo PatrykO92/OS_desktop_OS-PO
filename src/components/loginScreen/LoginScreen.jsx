@@ -1,6 +1,7 @@
 import "./assets/styles/logingScreen.css";
 import { nicolausCopernicusAvatar } from "../../assets/images/avatar-images";
 import { windowsIcon } from "./assets/images";
+import { LoadingSpinner } from "../.";
 
 import { useState, useEffect } from "react";
 
@@ -30,7 +31,7 @@ const WindowsLogin = ({ lang, user, changeStage }) => {
         >
           <div className="starting-screen">
             <img src={windowsIcon} alt="Windows Logo" className="ss-logo" />
-            <div className="ss-spinner"></div>
+            <LoadingSpinner />
           </div>
         </CSSTransition>
       )}

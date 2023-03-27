@@ -3,7 +3,6 @@
   bottom: 4rem;
   left: 0.5rem;
   width: 25rem;
-  height: 35rem;
   border-radius: 10px;
   border: 1px solid var(--border-main);
   transition: all 0.5s ease-in-out;
@@ -38,8 +37,7 @@
   background-color: var(--hover-main);
 }
 
-.menu-start-programs {
-  flex: 1;
+.menu-start-widget {
   background-color: var(--theme-bg-light);
   border-radius: 10px 10px 0 0;
 }
