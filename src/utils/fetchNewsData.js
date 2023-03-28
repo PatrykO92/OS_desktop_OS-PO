@@ -6,7 +6,7 @@ const fetchNewsData = (lang, topHead, topic) => {
   const data = axios
     .get(
       // Remove ___ to make the URL functional again, blocked because of using a free account
-      `ht___tps://newsapi.org/v2/${
+      `htt___ps://newsapi.org/v2/${
         !topHead ? "top-headlines" : "everything"
       }?` +
         `language=${lang}&` +

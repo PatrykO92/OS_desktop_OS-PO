@@ -10,6 +10,8 @@ const NewsBox = ({ lang }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [newsData, setNewsData] = useState(null);
   const [fetchError, setFetchError] = useState(null);
+  const [actualNews, setActualNews] = useState(null);
+  const [showActualNews, setShowActualNews] = useState(false);
 
   // fetch data at component start and change topic
   useEffect(() => {
@@ -30,12 +32,18 @@ const NewsBox = ({ lang }) => {
       : `url(${newsPlaceholderImage})`;
 
     return (
-      <a href={data?.url} target="_blank" rel="noreferrer" key={data.url}>
+      <button
+        key={data?.url}
+        onClick={() => {
+          setActualNews(data);
+          setShowActualNews(true);
+        }}
+      >
         <div className="news-box-article" style={{ backgroundImage }}>
           <p>{data?.author}</p>
           <p>{data?.title}</p>
         </div>
-      </a>
+      </button>
     );
   };
 
@@ -43,7 +51,6 @@ const NewsBox = ({ lang }) => {
     <div className="news-box-wrapper">
       <div className="news-box">
         <div className="news-box-buttons">
-          {" "}
           <button
             onClick={() => {
               setNewsTopic(lang.sport);
@@ -80,6 +87,22 @@ const NewsBox = ({ lang }) => {
           <div className="news-box-error">{lang.fetchError}</div>
         ) : (
           <>{newsData?.data?.articles.map((item) => oneArticle(item))}</>
+        )}
+        {showActualNews && (
+          <div className="news-box_actual-news">
+            <p>{actualNews?.description}</p>
+            <button
+              onClick={(event) => {
+                event.preventDefault();
+                window.open(actualNews?.url, "_blank");
+              }}
+            >
+              {lang.link}
+            </button>
+            <button onClick={() => setShowActualNews(false)}>
+              {lang.close}
+            </button>
+          </div>
         )}
       </div>
     </div>

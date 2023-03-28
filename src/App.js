@@ -12,12 +12,14 @@ import { useState } from "react";
 
 function App() {
   // useStateHook and function to set actually used user
+  // remove to PROD
   const [user, setUser] = useState({
     name: "Nicolaus",
     surname: "Copernicus",
     pin: "1234",
     avatar: avatarOne,
   });
+
   const changeUser = (user) => {
     setUser(user);
   };
@@ -33,7 +35,6 @@ function App() {
     startScreen: true,
     loginScreen: false,
     workScreen: false,
-    resetScreen: false,
     closeScreen: false,
   });
 

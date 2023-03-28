@@ -72,7 +72,7 @@ const MenuStart = ({ showMenuStart, lang, user, changeStage }) => {
                 className="menu-start-button-img"
               />
             </button>
-            <button onClick={() => handleButtonClick("loginScreen")}>
+            <button onClick={() => handleButtonClick("closeScreen")}>
               <img
                 src={powerOffIcon}
                 alt={lang.power}

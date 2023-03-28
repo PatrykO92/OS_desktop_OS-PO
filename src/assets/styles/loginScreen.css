@@ -34,10 +34,15 @@
 }
 
 .tooltip {
-  font-size: 1rem;
   display: block;
-  position: absolute;
-  padding-top: 12px;
+  position: fixed;
+  left: 1rem;
+  bottom: 1rem;
+  font-size: 1rem;
+  background-color: var(--theme-bg);
+  padding: 2rem;
+  border-radius: 10px;
+  border: 1px solid var(--border-main);
 }
 
 :root {

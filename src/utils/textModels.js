@@ -1,5 +1,7 @@
 const textModel = {
   en: {
+    close: "Close",
+    link: "Link",
     fetchError: "Servers are overloaded, please try again later!",
     sport: "sport",
     programming: "programming",
@@ -25,6 +27,8 @@ const textModel = {
     yourPin: "Your pin",
   },
   pl: {
+    close: "Zamknij",
+    link: "Link",
     fetchError: "Serwery są przeciążone, spróbuj ponownie później!",
     sport: "sport",
     programming: "programowanie",

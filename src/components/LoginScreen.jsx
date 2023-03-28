@@ -27,7 +27,7 @@ const LoginScreen = ({ lang, user, changeStage }) => {
         <CSSTransition
           in={true}
           appear={true}
-          timeout={5000}
+          timeout={1500}
           classNames="enter"
         >
           <div className="starting-screen">
@@ -65,10 +65,7 @@ const LoginScreen = ({ lang, user, changeStage }) => {
               <input type="password" placeholder={lang.pinPlaceholder} />
             </form>
             <p
-              onMouseOver={() => {
-                setShowPin(!showPin);
-              }}
-              onMouseOut={() => {
+              onClick={() => {
                 setShowPin(!showPin);
               }}
             >
