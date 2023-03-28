@@ -1,3 +1,3 @@
-import nicolausCopernicusAvatar from "./nicolaus_copernicus.jpg";
+import avatarOne from "./avatar1.jpg";
 
-export { nicolausCopernicusAvatar };
+export { avatarOne };

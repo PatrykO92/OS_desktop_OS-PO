@@ -1,15 +1,25 @@
-import LoginScreen from "./loginScreen/LoginScreen.jsx";
-import textModel from "./utils/textModels.js";
-import StartScreen from "./startScreen/StartScreen.jsx";
-import WorkScreen from "./workScreen/WorkScreen.jsx";
-import CloseScreen from "./CloseScreen.jsx";
-import LoadingSpinner from "./LoadingSpinner.jsx";
+import CalendarButton from "./CalendarButton";
+import CloseScreen from "./CloseScreen";
+import Desktop from "./Desktop";
+import DesktopContextMenu from "./DesktopContextMenu";
+import LoadingSpinner from "./LoadingSpinner";
+import LoginScreen from "./LoginScreen";
+import MenuStart from "./MenuStart";
+import NewsBox from "./NewsBox";
+import StartScreen from "./StartScreen";
+import TaskBar from "./TaskBar";
+import WorkScreen from "./WorkScreen";
 
 export {
-  LoginScreen,
-  StartScreen,
-  WorkScreen,
+  CalendarButton,
   CloseScreen,
+  Desktop,
+  DesktopContextMenu,
   LoadingSpinner,
-  textModel,
+  LoginScreen,
+  MenuStart,
+  NewsBox,
+  StartScreen,
+  TaskBar,
+  WorkScreen,
 };

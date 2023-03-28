@@ -1,15 +1,14 @@
-import { useState } from "react";
-
+import "./assets/styles/main.css";
 import {
   LoginScreen,
-  textModel,
   StartScreen,
   WorkScreen,
   CloseScreen,
 } from "./components";
+import { textModel } from "./utils";
+import { avatarOne } from "./assets/images/avatar-images";
 
-import "./assets/style/main.css";
-import { nicolausCopernicusAvatar } from "./assets/images/avatar-images";
+import { useState } from "react";
 
 function App() {
   // useStateHook and function to set actually used user
@@ -17,11 +16,10 @@ function App() {
     name: "Nicolaus",
     surname: "Copernicus",
     pin: "1234",
-    avatar: nicolausCopernicusAvatar,
+    avatar: avatarOne,
   });
   const changeUser = (user) => {
     setUser(user);
-    console.log(user);
   };
 
   // useStateHook and function to set actually used language, default set to "en".
@@ -32,9 +30,9 @@ function App() {
 
   // useStateHook to inform, at what stage is app currently
   const [systemStage, setSystemStage] = useState({
-    startScreen: false,
+    startScreen: true,
     loginScreen: false,
-    workScreen: true,
+    workScreen: false,
     resetScreen: false,
     closeScreen: false,
   });

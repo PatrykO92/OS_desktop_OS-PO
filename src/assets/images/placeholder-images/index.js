@@ -1,3 +1,3 @@
-import placeholderNewsImage from "./news-placeholder.jpg";
+import newsPlaceholderImage from "./news-placeholder-image.jpg";
 
-export { placeholderNewsImage };
+export { newsPlaceholderImage };
