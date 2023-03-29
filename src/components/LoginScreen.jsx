@@ -1,5 +1,4 @@
 import "../assets/styles/loginScreen.css";
-import { avatarOne } from "../assets/images/avatar-images";
 import { osStartIcon } from "../assets/icons";
 import { wallpaperOne } from "../assets/images/wallpapers";
 import { LoadingSpinner } from "./";
@@ -52,7 +51,7 @@ const LoginScreen = ({ lang, user, changeStage }) => {
             className="login-screen"
             style={{ backgroundImage: `url(${wallpaperOne})` }}
           >
-            <img src={avatarOne} alt="avatar" />
+            <img src={user.avatar} alt="avatar" />
             <div>
               {user.name} {user.surname}
             </div>

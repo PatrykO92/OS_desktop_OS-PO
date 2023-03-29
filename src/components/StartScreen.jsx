@@ -17,6 +17,13 @@ const StartScreen = ({ lang, changeLang, changeUser, changeStage }) => {
     avatar: avatarOne,
   });
 
+  const handleAvatarChange = (e) => {
+    setUserForm((oldVal) => ({
+      ...oldVal,
+      avatar: e.target.value,
+    }));
+  };
+
   return (
     <div className="starter-screen">
       {formStep === 1 && (
@@ -130,11 +137,23 @@ const StartScreen = ({ lang, changeLang, changeUser, changeStage }) => {
         >
           <p>{lang.chooseAvatar}</p>
           <div className="starter-screen_step-three_avatar-list">
-            <input type="radio" id="avatar1" name="avatar" value={avatarOne} />
+            <input
+              type="radio"
+              id="avatar1"
+              name="avatar"
+              value={avatarOne}
+              onChange={(e) => handleAvatarChange(e)}
+            />
             <label htmlFor="avatar1">
               <img src={avatarOne} alt={lang.chooseAvatar} />
             </label>
-            <input type="radio" id="avatar2" name="avatar" value={avatarTwo} />
+            <input
+              type="radio"
+              id="avatar2"
+              name="avatar"
+              value={avatarTwo}
+              onChange={(e) => handleAvatarChange(e)}
+            />
             <label htmlFor="avatar2">
               <img src={avatarTwo} alt={lang.chooseAvatar} />
             </label>
@@ -143,19 +162,38 @@ const StartScreen = ({ lang, changeLang, changeUser, changeStage }) => {
               id="avatar3"
               name="avatar"
               value={avatarThree}
+              onChange={(e) => handleAvatarChange(e)}
             />
             <label htmlFor="avatar3">
               <img src={avatarThree} alt={lang.chooseAvatar} />
             </label>
-            <input type="radio" id="avatar4" name="avatar" value={avatarFour} />
+            <input
+              type="radio"
+              id="avatar4"
+              name="avatar"
+              value={avatarFour}
+              onChange={(e) => handleAvatarChange(e)}
+            />
             <label htmlFor="avatar4">
               <img src={avatarFour} alt={lang.chooseAvatar} />
             </label>
-            <input type="radio" id="avatar5" name="avatar" value={avatarFive} />
+            <input
+              type="radio"
+              id="avatar5"
+              name="avatar"
+              value={avatarFive}
+              onChange={(e) => handleAvatarChange(e)}
+            />
             <label htmlFor="avatar5">
               <img src={avatarFive} alt={lang.chooseAvatar} />
             </label>
-            <input type="radio" id="avatar6" name="avatar" value={avatarSix} />
+            <input
+              type="radio"
+              id="avatar6"
+              name="avatar"
+              value={avatarSix}
+              onChange={(e) => handleAvatarChange(e)}
+            />
             <label htmlFor="avatar6">
               <img src={avatarSix} alt={lang.chooseAvatar} />
             </label>
@@ -164,6 +202,7 @@ const StartScreen = ({ lang, changeLang, changeUser, changeStage }) => {
               id="avatar7"
               name="avatar"
               value={avatarSeven}
+              onChange={(e) => handleAvatarChange(e)}
             />
             <label htmlFor="avatar7">
               <img src={avatarSeven} alt={lang.chooseAvatar} />
@@ -173,15 +212,28 @@ const StartScreen = ({ lang, changeLang, changeUser, changeStage }) => {
               id="avatar8"
               name="avatar"
               value={avatarEight}
+              onChange={(e) => handleAvatarChange(e)}
             />
             <label htmlFor="avatar8">
               <img src={avatarEight} alt={lang.chooseAvatar} />
             </label>
-            <input type="radio" id="avatar9" name="avatar" value={avatarNine} />
+            <input
+              type="radio"
+              id="avatar9"
+              name="avatar"
+              value={avatarNine}
+              onChange={(e) => handleAvatarChange(e)}
+            />
             <label htmlFor="avatar9">
               <img src={avatarNine} alt={lang.chooseAvatar} />
             </label>
-            <input type="radio" id="avatar10" name="avatar" value={avatarTen} />
+            <input
+              type="radio"
+              id="avatar10"
+              name="avatar"
+              value={avatarTen}
+              onChange={(e) => handleAvatarChange(e)}
+            />
             <label htmlFor="avatar10">
               <img src={avatarTen} alt={lang.chooseAvatar} />
             </label>
@@ -190,6 +242,7 @@ const StartScreen = ({ lang, changeLang, changeUser, changeStage }) => {
               id="avatar11"
               name="avatar"
               value={avatarEleven}
+              onChange={(e) => handleAvatarChange(e)}
             />
             <label htmlFor="avatar11">
               <img src={avatarEleven} alt={lang.chooseAvatar} />
@@ -199,6 +252,7 @@ const StartScreen = ({ lang, changeLang, changeUser, changeStage }) => {
               id="avatar12"
               name="avatar"
               value={avatarTwelve}
+              onChange={(e) => handleAvatarChange(e)}
             />
             <label htmlFor="avatar12">
               <img src={avatarTwelve} alt={lang.chooseAvatar} />
@@ -208,6 +262,7 @@ const StartScreen = ({ lang, changeLang, changeUser, changeStage }) => {
               id="avatar13"
               name="avatar"
               value={avatarThirteen}
+              onChange={(e) => handleAvatarChange(e)}
             />
             <label htmlFor="avatar13">
               <img src={avatarThirteen} alt={lang.chooseAvatar} />
@@ -217,6 +272,7 @@ const StartScreen = ({ lang, changeLang, changeUser, changeStage }) => {
               id="avatar14"
               name="avatar"
               value={avatarFourteen}
+              onChange={(e) => handleAvatarChange(e)}
             />
             <label htmlFor="avatar14">
               <img src={avatarFourteen} alt={lang.chooseAvatar} />
@@ -240,6 +296,46 @@ const StartScreen = ({ lang, changeLang, changeUser, changeStage }) => {
             </button>
           </div>
         </form>
+      )}
+      {formStep === 4 && (
+        <div className="starter-screen_step-four">
+          <div className="starter-screen_step-four_description">
+            <p>{lang.finalSummary}</p>
+            <p>{lang.finalSummaryDes}</p>
+
+            <p>
+              {userForm.name} {userForm.surname}
+            </p>
+            <p>
+              <span>PIN:</span>
+              <span className="starter-screen_step-four_description_pin">
+                {userForm.pin}
+              </span>
+            </p>
+          </div>
+          <div className="starter-screen_step-four_avatar">
+            <img src={userForm.avatar} alt="user avatar" />
+          </div>
+          <div className="starter-screen_step-four_buttons">
+            <button
+              style={{ margin: "0 1rem" }}
+              onClick={() => {
+                setFormStep(3);
+              }}
+            >
+              {lang.back}
+            </button>
+            <button
+              style={{ margin: "0 1rem" }}
+              onClick={() => {
+                changeUser(userForm);
+                changeStage("loginScreen");
+              }}
+            >
+              {lang.accept}
+            </button>
+          </div>
+        </div>
       )}
     </div>
   );

@@ -1,7 +1,9 @@
 const textModel = {
   en: {
-    yourAvater: "Your avatar",
-    chooseAvatar: "Choose your avatar",
+    finalSummary: "Summary",
+    finalSummaryDes: "Double-check everything looks fine, before accept",
+    yourAvatar: "Your avatar",
+    chooseAvatar: "Avatar list",
     back: "Back",
     userSetup: "Create user",
     defaultUser: "Choose default user",
@@ -19,7 +21,7 @@ const textModel = {
     lngFetch: "en",
     chooseLanguage: "Choose language:",
     startScreenText1:
-      "Welcome to my app! I recommend using fullscreen mode for the best experience (press F11). This is starting form to set up your user (avatar, name, password etc.). You can choose all settings by yourself, or use the default user. Have fun!",
+      "Welcome to my app! I recommend using fullscreen mode for the best experience (press F11). This is starting form to set up your user. You can choose all settings by yourself, or use the default user. Have fun!",
     startScreenText2: "Personal info",
     startScreenText3:
       "Please provide your name and surname, as well as your PIN. Your data is secure, as it is not being saved anywhere.",
@@ -34,8 +36,10 @@ const textModel = {
     yourPin: "Your pin",
   },
   pl: {
-    yourAvater: "Twój avatar",
-    chooseAvatar: "Wybierz swój avatar",
+    finalSummary: "Podsumowanie",
+    finalSummaryDes: "Sprawdź czy wszystko pasuje, przed akceptacją",
+    yourAvatar: "Twój avatar",
+    chooseAvatar: "Lista avatarów",
     back: "Wstecz",
     userSetup: "Stwórz użytkownika",
     defaultUser: "Wybierz użytkownika domyślnego",
@@ -53,7 +57,7 @@ const textModel = {
     lngFetch: "pl",
     chooseLanguage: "Wybierz język",
     startScreenText1:
-      "Witam w mojej apce. Polecam używać trybu pełnoekranowego do tej aplikacji (wciśnij F11). To jest formularz startowy do ustawienia swojego użytkownika (avatar, imię, hasło itp.). Możesz ustawić wszystko samodzielnie, lub użyć użytkownika domyślnego. Miłej zabawy!",
+      "Witam w mojej apce. Polecam używać trybu pełnoekranowego do tej aplikacji (wciśnij F11). To jest formularz startowy do ustawienia swojego użytkownika. Możesz ustawić wszystko samodzielnie, lub użyć użytkownika domyślnego. Miłej zabawy!",
     startScreenText2: "Dane osobiste",
     startScreenText3:
       "Proszę podać imię, nazwisko oraz PIN. Twoje dane są bezpieczne, ponieważ nie są nigdzie zapisywane.",
