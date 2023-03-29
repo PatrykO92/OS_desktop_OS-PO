@@ -71,12 +71,10 @@ const LoginScreen = ({ lang, user, changeStage }) => {
             >
               {lang.pinForgetMsg}
             </p>
-            {showPin ? (
+            {showPin && (
               <span className="tooltip">
                 {lang.yourPin}: {user.pin}
               </span>
-            ) : (
-              <></>
             )}
           </div>
         </CSSTransition>

@@ -1,0 +1,17 @@
+.fade-enter {
+  transform: translateX(-40rem);
+}
+
+.fade-enter-active {
+  transform: translateX(0);
+  transition: all 0.3s;
+}
+
+.fade-exit {
+  transform: translateX(0);
+}
+
+.fade-exit-active {
+  transform: translateX(-40rem);
+  transition: all 0.3s;
+}

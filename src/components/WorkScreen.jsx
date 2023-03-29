@@ -7,7 +7,7 @@ import { CSSTransition } from "react-transition-group";
 
 const WorkScreen = ({ lang, user, changeStage }) => {
   // useState hook for showing and hidding MenuStart
-  const [showMenuStart, setShowMenuStart] = useState(true);
+  const [showMenuStart, setShowMenuStart] = useState(false);
   const handleShowMenuStart = () => {
     setShowMenuStart((oldVal) => !oldVal);
   };
@@ -48,7 +48,6 @@ const WorkScreen = ({ lang, user, changeStage }) => {
             onClick={closeDesktopContextMenu}
           />
         )}
-        {/* I used here other approach to show and hide component, beacuse of curiosity */}
         <MenuStart
           showMenuStart={showMenuStart}
           lang={lang}

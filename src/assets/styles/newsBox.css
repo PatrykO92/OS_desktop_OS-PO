@@ -38,7 +38,6 @@
   align-items: center;
   text-align: center;
   color: var(--red);
-  text-transform: uppercase;
 }
 
 .news-box-buttons {

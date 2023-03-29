@@ -6,24 +6,12 @@ import {
   CloseScreen,
 } from "./components";
 import { textModel } from "./utils";
-import { avatarOne } from "./assets/images/avatar-images";
+//For testing purpouse
+// import { avatarOne } from "./assets/images/avatar-images";
 
 import { useState } from "react";
 
 function App() {
-  // useStateHook and function to set actually used user
-  // remove to PROD
-  const [user, setUser] = useState({
-    name: "Nicolaus",
-    surname: "Copernicus",
-    pin: "1234",
-    avatar: avatarOne,
-  });
-
-  const changeUser = (user) => {
-    setUser(user);
-  };
-
   // useStateHook and function to set actually used language, default set to "en".
   const [windowsLanguage, setWindowsLanguage] = useState("en");
   const changeLang = (language) => {
@@ -47,6 +35,19 @@ function App() {
       closeScreen: false,
       [nextStage]: true, // set nextStage to its corresponding value
     });
+  };
+
+  // useStateHook and function to set actually used user
+  // remove to PROD
+  //For testing purpouse
+  const [user, setUser] = useState({});
+  // name: "Nicolaus",
+  // surname: "Copernicus",
+  // pin: "1234",
+  // avatar: avatarOne,
+
+  const changeUser = (user) => {
+    setUser(user);
   };
 
   return (

@@ -1,8 +1,11 @@
-import { useState, useEffect } from "react";
 import "../assets/styles/customAlertPrompt.css";
 import "../assets/styles/menuStart.css";
 import { powerOffIcon, restartIcon } from "../assets/icons";
 import { NewsBox } from "./";
+
+import { useState, useEffect } from "react";
+
+import { CSSTransition } from "react-transition-group";
 
 const MenuStart = ({ showMenuStart, lang, user, changeStage }) => {
   const [showAlert, setShowAlert] = useState(false);
@@ -51,37 +54,44 @@ const MenuStart = ({ showMenuStart, lang, user, changeStage }) => {
           </div>
         </div>
       </div>
-      <div className={`menu-start ${showMenuStart ? "hidden-menu-start" : ""}`}>
-        <div className="menu-start-widget">
-          <NewsBox lang={lang} />
-        </div>
-        <div className="menu-start-utils">
-          <button>
-            <img
-              src={user.avatar}
-              alt={`${lang.name} ${lang.surname}`}
-              className="menu-start-avatar"
-            />
-            <p>{`${user.name} ${user.surname}`}</p>
-          </button>
-          <div>
-            <button onClick={() => handleButtonClick("loginScreen")}>
+      <CSSTransition
+        in={showMenuStart}
+        timeout={300}
+        classNames="menu-start"
+        unmountOnExit
+      >
+        <div className={`menu-start`}>
+          <div className="menu-start-widget">
+            <NewsBox lang={lang} />
+          </div>
+          <div className="menu-start-utils">
+            <button>
               <img
-                src={restartIcon}
-                alt={lang.restart}
-                className="menu-start-button-img"
+                src={user.avatar}
+                alt={`${lang.name} ${lang.surname}`}
+                className="menu-start-avatar"
               />
+              <p>{`${user.name} ${user.surname}`}</p>
             </button>
-            <button onClick={() => handleButtonClick("closeScreen")}>
-              <img
-                src={powerOffIcon}
-                alt={lang.power}
-                className="menu-start-button-img"
-              />
-            </button>
+            <div>
+              <button onClick={() => handleButtonClick("loginScreen")}>
+                <img
+                  src={restartIcon}
+                  alt={lang.restart}
+                  className="menu-start-button-img"
+                />
+              </button>
+              <button onClick={() => handleButtonClick("closeScreen")}>
+                <img
+                  src={powerOffIcon}
+                  alt={lang.power}
+                  className="menu-start-button-img"
+                />
+              </button>
+            </div>
           </div>
         </div>
-      </div>
+      </CSSTransition>
     </>
   );
 };

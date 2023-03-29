@@ -2,19 +2,124 @@
   height: 100%;
   width: 100%;
   display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  padding: 4rem;
+  justify-content: center;
   background-color: var(--theme-bg);
 }
 
-.starter-screen > form {
-  display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
+.starter-screen button {
+  background-color: transparent;
+  color: var(--theme-font);
+  font-weight: 500;
+  border-radius: 5px;
+  padding: 0.3rem;
+  border: 1px solid var(--border-main);
 }
 
-.starter-screen > form > div {
-  color: red;
-  font-weight: bold;
+.starter-screen button:hover {
+  background-color: var(--hover-main);
+}
+
+.starter-screen_step-one,
+.starter-screen_step-two {
+  padding: 2rem;
+  min-height: 40rem;
+  max-width: 50rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.starter-screen_step-two div {
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+.starter-screen_step-two p {
+  max-width: 20rem;
+}
+
+.starter-screen_step-two label {
+  min-width: 20rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.starter-screen_step-two input {
+  padding: 0.2rem;
+  background-color: var(--theme-bg-light);
+  font-weight: 600;
+  color: var(--theme-font);
+}
+
+.starter-screen_step-two input:valid {
+  outline: 2px solid var(--green);
+}
+
+.starter-screen_step-two input:invalid {
+  outline: 2px solid var(--red);
+}
+
+.starter-screen_step-three {
+  padding: 2rem;
+  min-height: 40rem;
+  max-width: 50rem;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.starter-screen_step-three p {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.starter-screen_step-three input {
+  display: none;
+}
+
+.starter-screen_step-three_avatar-list {
+  max-height: 40rem;
+  max-width: 50rem;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-evenly;
+  gap: 1rem;
+}
+
+.starter-screen_step-three label {
+  max-width: 7rem;
+  transition: all 0.3s;
+}
+
+.starter-screen_step-three label > img {
+  height: 5rem;
+  width: 5rem;
+  border-radius: 50%;
+}
+
+.starter-screen_step-three label:hover {
+  transform: scale(1.1);
+}
+
+.starter-screen_step-three_choosed-avatar {
+  margin-top: 1rem;
+  border-top: 1px solid var(--border-main);
+  text-align: center;
+}
+
+.starter-screen_step-three_choosed-avatar > p {
+  font-size: 2rem;
+}
+
+.starter-screen_step-three_choosed-avatar > img {
+  width: 9rem;
+  height: 9rem;
+  border-radius: 50%;
 }

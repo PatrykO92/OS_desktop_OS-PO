@@ -3,10 +3,10 @@ import axios from "axios";
 const apiKey = process.env.REACT_APP_API_KEY;
 
 const fetchNewsData = (lang, topHead, topic) => {
-  const data = axios
+  return axios
     .get(
       // Remove ___ to make the URL functional again, blocked because of using a free account
-      `htt___ps://newsapi.org/v2/${
+      `ht___tps://newsapi.org/v2/${
         !topHead ? "top-headlines" : "everything"
       }?` +
         `language=${lang}&` +
@@ -21,6 +21,5 @@ const fetchNewsData = (lang, topHead, topic) => {
     .catch(function (err) {
       throw new Error(err);
     });
-  return data;
 };
 export default fetchNewsData;
