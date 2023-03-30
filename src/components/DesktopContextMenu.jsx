@@ -1,26 +1,41 @@
 import "../assets/styles/desktopContextMenu.css";
 
-const DesktopContextMenu = ({ position, onClick }) => (
+import {
+  brushIcon,
+  desktopIcon,
+  refreshIcon,
+  xmarkIcon,
+} from "../assets/icons";
+
+const DesktopContextMenu = ({ lang, position, onClick }) => (
   <div
     id="desktop-context-menu"
     style={{ top: position.y, left: position.x }}
     onClick={onClick}
   >
     <button>
-      <p>®</p>
-      <p>Option 1</p>
+      <p>
+        <img src={desktopIcon} alt={lang.view} />
+      </p>
+      <p>{lang.view}</p>
     </button>
     <button>
-      <p>®</p>
-      <p>Option 2</p>
+      <p>
+        <img src={brushIcon} alt={lang.personalize} />
+      </p>
+      <p>{lang.personalize}</p>
     </button>
     <button>
-      <p>®</p>
-      <p>Option 3</p>
+      <p>
+        <img src={refreshIcon} alt={lang.refresh} />
+      </p>
+      <p>{lang.refresh}</p>
     </button>
     <button>
-      <p>®</p>
-      <p>Option 4</p>
+      <p>
+        <img src={xmarkIcon} alt={lang.closeAll} />
+      </p>
+      <p>{lang.closeAll}</p>
     </button>
   </div>
 );

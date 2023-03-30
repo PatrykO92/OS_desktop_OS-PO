@@ -46,6 +46,7 @@ const WorkScreen = ({ lang, user, changeStage }) => {
           <DesktopContextMenu
             position={desktopContextMenuPosition}
             onClick={closeDesktopContextMenu}
+            lang={lang}
           />
         )}
         <MenuStart
@@ -54,6 +55,7 @@ const WorkScreen = ({ lang, user, changeStage }) => {
           user={user}
           changeStage={changeStage}
         />
+        {}
       </div>
     </CSSTransition>
   );

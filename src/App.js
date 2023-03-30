@@ -38,14 +38,7 @@ function App() {
   };
 
   // useStateHook and function to set actually used user
-  // remove to PROD
-  //For testing purpouse
   const [user, setUser] = useState({});
-  // name: "Nicolaus",
-  // surname: "Copernicus",
-  // pin: "1234",
-  // avatar: avatarOne,
-
   const changeUser = (user) => {
     setUser(user);
   };

@@ -1,5 +1,9 @@
 const textModel = {
   en: {
+    closeAll: "Close all",
+    view: "View",
+    refresh: "Refresh",
+    personalize: "Personalize",
     finalSummary: "Summary",
     finalSummaryDes: "Double-check everything looks fine, before accept",
     yourAvatar: "Your avatar",
@@ -36,6 +40,10 @@ const textModel = {
     yourPin: "Your pin",
   },
   pl: {
+    closeAll: "Zamknij wszystko",
+    view: "Widok",
+    refresh: "Odśwież",
+    personalize: "Personalizuj",
     finalSummary: "Podsumowanie",
     finalSummaryDes: "Sprawdź czy wszystko pasuje, przed akceptacją",
     yourAvatar: "Twój avatar",

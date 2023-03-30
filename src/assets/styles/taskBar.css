@@ -14,18 +14,18 @@
 }
 
 .task-bar button {
-  min-width: 2.5rem;
   background-color: transparent;
-  padding: 0.4rem;
+  padding: 0.2rem;
+  border-radius: 5px;
   transition: all 0.4s ease-in;
 }
 
 .task-bar button:hover {
-  border-radius: 5px;
   background-color: var(--hover-main);
 }
 
 .menu-start-btn > img {
+  width: 1.8rem;
   filter: invert(21%) sepia(42%) saturate(5139%) hue-rotate(205deg)
     brightness(170%) contrast(84%);
 }
