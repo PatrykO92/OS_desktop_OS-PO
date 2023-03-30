@@ -2,23 +2,29 @@ import "../assets/styles/loginScreen.css";
 import { osStartIcon } from "../assets/icons";
 import { wallpaperOne } from "../assets/images/wallpapers";
 import { LoadingSpinner } from "./";
+import { powerOffIcon, restartIcon } from "../assets/icons";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 import { CSSTransition } from "react-transition-group";
 
 const LoginScreen = ({ lang, user, changeStage }) => {
-  // There are 2 stages, "start" and "login"
+  const pinInput = useRef(null);
+  const [pin, setPin] = useState("");
+
   const [showPin, setShowPin] = useState(false);
 
+  // There are 2 stages, "start" and "login"
   const [loginStage, setLoginStage] = useState("start");
 
   // Aplication start, pretended loading of screen
   useEffect(() => {
-    setTimeout(() => {
-      setLoginStage("login");
-    }, 2500);
-  }, []);
+    if (loginStage === "start") {
+      setTimeout(() => {
+        setLoginStage("login");
+      }, 2500);
+    }
+  }, [loginStage]);
 
   return (
     <>
@@ -58,10 +64,23 @@ const LoginScreen = ({ lang, user, changeStage }) => {
             <form
               onSubmit={(e) => {
                 e.preventDefault();
-                changeStage("workScreen");
+                if (pin !== user.pin) {
+                  pinInput.current.classList.add("login-screen_wrong-input");
+                }
+                if (pin === user.pin) changeStage("workScreen");
               }}
             >
-              <input type="password" placeholder={lang.pinPlaceholder} />
+              <input
+                type="password"
+                placeholder={lang.pinPlaceholder}
+                ref={pinInput}
+                value={pin}
+                minLength={6}
+                maxLength={6}
+                onChange={(e) => {
+                  setPin(e.target.value);
+                }}
+              />
             </form>
             <p
               onClick={() => {
@@ -75,6 +94,22 @@ const LoginScreen = ({ lang, user, changeStage }) => {
                 {lang.yourPin}: {user.pin}
               </span>
             )}
+            <div className="login-screen_buttons">
+              <button onClick={() => setLoginStage("start")}>
+                <img
+                  src={restartIcon}
+                  alt={lang.restart}
+                  className="login-screen_button-img"
+                />
+              </button>
+              <button onClick={() => changeStage("closeScreen")}>
+                <img
+                  src={powerOffIcon}
+                  alt={lang.power}
+                  className="login-screen_button-img"
+                />
+              </button>
+            </div>
           </div>
         </CSSTransition>
       )}

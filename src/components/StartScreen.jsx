@@ -52,7 +52,7 @@ const StartScreen = ({ lang, changeLang, changeUser, changeStage }) => {
               changeUser({
                 name: "Nicolaus",
                 surname: "Copernicus",
-                pin: "1234",
+                pin: "123456",
                 avatar: avatarOne,
               });
               changeStage("loginScreen");
@@ -114,7 +114,7 @@ const StartScreen = ({ lang, changeLang, changeUser, changeStage }) => {
             {lang.pin}:
             <input
               type="password"
-              minLength={4}
+              minLength={6}
               maxLength={6}
               pattern="[0-9]+"
               required
