@@ -9,6 +9,7 @@ import NewsBox from "./NewsBox";
 import StartScreen from "./StartScreen";
 import TaskBar from "./TaskBar";
 import WorkScreen from "./WorkScreen";
+import ProgramContainer from "./ProgramContainer";
 
 export {
   CalendarButton,
@@ -22,4 +23,5 @@ export {
   StartScreen,
   TaskBar,
   WorkScreen,
+  ProgramContainer,
 };

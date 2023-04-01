@@ -1,5 +1,8 @@
 const textModel = {
   en: {
+    closeProgram: "Close program",
+    maximize: "Maximize program window",
+    minimize: "Minimize program windo",
     closeAll: "Close all",
     view: "View",
     refresh: "Refresh",
@@ -40,6 +43,9 @@ const textModel = {
     yourPin: "Your pin",
   },
   pl: {
+    closeProgram: "Zamknij program",
+    maximize: "Zmaksymalizuj okno programu",
+    minimize: "Zminimalizuj okno programu",
     closeAll: "Zamknij wszystko",
     view: "Widok",
     refresh: "Odśwież",

@@ -1,0 +1,71 @@
+.program-container {
+  z-index: 20;
+  position: fixed;
+  bottom: 3rem;
+  left: 0;
+  min-height: calc(100vh - 3rem);
+  min-width: 100vw;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--border-main);
+  transition: all 0.5s;
+}
+
+.program-container_hidden {
+  transform: scale(0);
+}
+
+.program-container_title-bar {
+  min-height: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 0.5rem;
+  background-color: var(--theme-bg);
+  border-bottom: 1px solid var(--border-main);
+}
+
+.program-container_title-bar_program-name {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.program-container_title-bar_program-name p {
+  font-size: 0.9rem;
+  min-width: 40rem;
+}
+
+.program-container_title-bar_program-name img {
+  max-width: 1rem;
+  filter: invert(100%);
+}
+
+.program-container_title-bar_buttons {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.program-container_title-bar_buttons button {
+  width: 1.3rem;
+  background-color: transparent;
+  transition: all 0.3s;
+  padding: 0.2rem;
+  border-radius: 5px;
+}
+
+.program-container_title-bar_buttons button > img {
+  filter: invert(100%);
+}
+
+.program-container_title-bar_buttons button:hover {
+  background-color: var(--hover-main);
+}
+
+.program-container_main-window {
+  flex: 1;
+  background-color: var(--program-container-background);
+}

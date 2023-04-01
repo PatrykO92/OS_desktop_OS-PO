@@ -1,13 +1,16 @@
 import "./assets/styles/main.css";
+
+// import Icons for specific programs
+import { toDoAppIcon } from "./assets/icons";
+
 import {
   LoginScreen,
   StartScreen,
   WorkScreen,
   CloseScreen,
+  ProgramContainer,
 } from "./components";
 import { textModel } from "./utils";
-//For testing purpouse
-// import { avatarOne } from "./assets/images/avatar-images";
 
 import { useState } from "react";
 
@@ -43,8 +46,29 @@ function App() {
     setUser(user);
   };
 
+  //TO-DO-APP useState and handler
+  const [toDoApp, setToDoApp] = useState({
+    programOn: false,
+    hidden: false,
+    name: "To-Do-App",
+    icon: toDoAppIcon,
+  });
+
+  const handleStateToDoApp = (name, value) => {
+    setToDoApp((oldVal) => ({ ...oldVal, [name]: value }));
+  };
+
   return (
     <div className="whole-screen">
+      {toDoApp.programOn && (
+        <ProgramContainer
+          lang={textModel[windowsLanguage]}
+          programName={toDoApp.name}
+          programIcon={toDoApp.icon}
+          programHidden={toDoApp.hidden}
+          handleProgramState={handleStateToDoApp}
+        />
+      )}
       {systemStage.startScreen && (
         <StartScreen
           lang={textModel[windowsLanguage]}
@@ -65,6 +89,7 @@ function App() {
           lang={textModel[windowsLanguage]}
           user={user}
           changeStage={changeStage}
+          handleStateToDoApp={handleStateToDoApp}
         />
       )}
       {systemStage.closeScreen && <CloseScreen />}

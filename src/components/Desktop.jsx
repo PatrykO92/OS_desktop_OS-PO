@@ -1,15 +1,21 @@
 import "../assets/styles/desktop.css";
 import { wallpaperOne } from "../assets/images/wallpapers";
 
-const Desktop = () => {
+const Desktop = ({ handleStateToDoApp }) => {
   return (
     <div
       className="desktop"
       style={{ backgroundImage: `url(${wallpaperOne})` }}
     >
-      <button className="icon">
+      <button
+        onClick={() => {
+          handleStateToDoApp("hidden", false);
+          handleStateToDoApp("programOn", true);
+        }}
+        className="icon"
+      >
         <i>®</i>
-        <p>Icon</p>
+        <p>To-Do-App</p>
       </button>
       <button className="icon">
         <i>®</i>
