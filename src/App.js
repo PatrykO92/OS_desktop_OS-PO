@@ -1,7 +1,7 @@
 import "./assets/styles/main.css";
 
 // import Icons for specific programs
-import { toDoAppIcon } from "./assets/icons";
+import { toDoAppIcon, webBrowserIcon } from "./assets/icons";
 
 import {
   LoginScreen,
@@ -9,10 +9,11 @@ import {
   WorkScreen,
   CloseScreen,
   ProgramContainer,
+  WebBrowser,
 } from "./components";
 import { textModel } from "./utils";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function App() {
   // useStateHook and function to set actually used language, default set to "en".
@@ -46,9 +47,15 @@ function App() {
     setUser(user);
   };
 
+  // useState to save all enabled programs and useEffect to follow which program is enabled
+  const [listOfEnabledPrograms, setListOfEnabledPrograms] = useState([]);
+  useEffect(() => {
+    //TODO
+  }, []);
+
   //TO-DO-APP useState and handler
   const [toDoApp, setToDoApp] = useState({
-    programOn: false,
+    programEnabled: false,
     hidden: false,
     name: "To-Do-App",
     icon: toDoAppIcon,
@@ -58,17 +65,44 @@ function App() {
     setToDoApp((oldVal) => ({ ...oldVal, [name]: value }));
   };
 
+  //Web Browser useState and handler
+  const [webBrowser, setWebBrowser] = useState({
+    programEnabled: false,
+    hidden: false,
+    name: "Web Browser",
+    icon: webBrowserIcon,
+  });
+
+  const handleStateWebBrowser = (name, value) => {
+    setWebBrowser((oldVal) => ({ ...oldVal, [name]: value }));
+  };
+
   return (
     <div className="whole-screen">
-      {toDoApp.programOn && (
+      {toDoApp.programEnabled && (
         <ProgramContainer
           lang={textModel[windowsLanguage]}
           programName={toDoApp.name}
           programIcon={toDoApp.icon}
           programHidden={toDoApp.hidden}
           handleProgramState={handleStateToDoApp}
-        />
+        >
+          <h1>Hello World</h1>
+        </ProgramContainer>
       )}
+
+      {webBrowser.programEnabled && (
+        <ProgramContainer
+          lang={textModel[windowsLanguage]}
+          programName={webBrowser.name}
+          programIcon={webBrowser.icon}
+          programHidden={webBrowser.hidden}
+          handleProgramState={handleStateWebBrowser}
+        >
+          <WebBrowser />
+        </ProgramContainer>
+      )}
+
       {systemStage.startScreen && (
         <StartScreen
           lang={textModel[windowsLanguage]}
@@ -90,6 +124,7 @@ function App() {
           user={user}
           changeStage={changeStage}
           handleStateToDoApp={handleStateToDoApp}
+          handleStateWebBrowser={handleStateWebBrowser}
         />
       )}
       {systemStage.closeScreen && <CloseScreen />}

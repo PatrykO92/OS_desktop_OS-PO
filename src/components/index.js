@@ -10,6 +10,7 @@ import StartScreen from "./StartScreen";
 import TaskBar from "./TaskBar";
 import WorkScreen from "./WorkScreen";
 import ProgramContainer from "./ProgramContainer";
+import WebBrowser from "./WebBrowser";
 
 export {
   CalendarButton,
@@ -23,5 +24,6 @@ export {
   StartScreen,
   TaskBar,
   WorkScreen,
+  WebBrowser,
   ProgramContainer,
 };

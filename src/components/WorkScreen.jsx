@@ -5,7 +5,13 @@ import { useState } from "react";
 
 import { CSSTransition } from "react-transition-group";
 
-const WorkScreen = ({ lang, user, changeStage, handleStateToDoApp }) => {
+const WorkScreen = ({
+  lang,
+  user,
+  changeStage,
+  handleStateToDoApp,
+  handleStateWebBrowser,
+}) => {
   // useState hook for showing and hidding MenuStart
   const [showMenuStart, setShowMenuStart] = useState(false);
   const handleShowMenuStart = () => {
@@ -40,7 +46,10 @@ const WorkScreen = ({ lang, user, changeStage, handleStateToDoApp }) => {
           closeDesktopContextMenu();
         }}
       >
-        <Desktop handleStateToDoApp={handleStateToDoApp} />
+        <Desktop
+          handleStateToDoApp={handleStateToDoApp}
+          handleStateWebBrowser={handleStateWebBrowser}
+        />
 
         <TaskBar lang={lang} handleShowMenuStart={handleShowMenuStart} />
         {desktopContextMenuPosition && (

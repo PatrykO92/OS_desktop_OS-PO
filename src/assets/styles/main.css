@@ -1,5 +1,5 @@
 :root {
-  --theme-bg: hsla(198, 16%, 13%, 0.95);
+  --theme-bg: hsla(198, 16%, 13%);
   --theme-bg-light: hsla(197, 13%, 22%, 0.795);
   --theme-font: hsl(0, 0%, 100%);
   --hover-main: rgba(255, 255, 255, 0.1);

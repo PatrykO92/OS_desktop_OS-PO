@@ -8,6 +8,7 @@ import desktopIcon from "./desktop-icon.svg";
 import xmarkIcon from "./xmark-icon.svg";
 import windowMinimizeIcon from "./window-minimize-icon.svg";
 import toDoAppIcon from "./to-do-app-icon.svg";
+import webBrowserIcon from "./webbrowser-icon.svg";
 
 export {
   powerOffIcon,
@@ -20,4 +21,5 @@ export {
   xmarkIcon,
   windowMinimizeIcon,
   toDoAppIcon,
+  webBrowserIcon,
 };

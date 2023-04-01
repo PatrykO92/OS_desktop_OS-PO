@@ -1,0 +1,42 @@
+.web-browser {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.web-browser div {
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  background-color: brown;
+  border: 4px solid coral;
+  border-bottom: 0;
+}
+
+.web-browser form {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.web-browser button,
+.web-browser input {
+  border-radius: 5px;
+  padding: 4px;
+  font-size: 0.8rem;
+}
+
+.web-browser input {
+  flex: 0.8;
+}
+
+.web-browser div > input {
+  height: 1.5rem;
+  flex: 0.9;
+}
+
+.web-browser iframe {
+  height: 100%;
+  border: 4px solid coral;
+}
