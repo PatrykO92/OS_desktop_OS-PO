@@ -8,6 +8,7 @@ const ProgramContainer = ({
   programIcon,
   programHidden,
   handleProgramState,
+  handleDefaultProgramState,
   children,
 }) => {
   return (
@@ -33,7 +34,7 @@ const ProgramContainer = ({
           </button>
           <button
             onClick={() => {
-              handleProgramState("programEnabled", false);
+              handleDefaultProgramState();
             }}
           >
             <img src={xmarkIcon} alt={lang.closeProgram} />

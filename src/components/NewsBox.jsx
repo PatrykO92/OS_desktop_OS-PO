@@ -5,7 +5,7 @@ import { newsPlaceholderImage } from "../assets/images/placeholder-images";
 
 import { useState, useEffect } from "react";
 
-const NewsBox = ({ lang }) => {
+const NewsBox = ({ lang, handleStateWebBrowser }) => {
   const [newsTopic, setNewsTopic] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [newsData, setNewsData] = useState(null);
@@ -94,7 +94,8 @@ const NewsBox = ({ lang }) => {
             <button
               onClick={(event) => {
                 event.preventDefault();
-                window.open(actualNews?.url, "_blank");
+                handleStateWebBrowser("programEnabled", true);
+                handleStateWebBrowser("defaultUrl", actualNews?.url);
               }}
             >
               {lang.link}

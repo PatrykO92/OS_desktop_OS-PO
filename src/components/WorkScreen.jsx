@@ -64,6 +64,7 @@ const WorkScreen = ({
           lang={lang}
           user={user}
           changeStage={changeStage}
+          handleStateWebBrowser={handleStateWebBrowser}
         />
       </div>
     </CSSTransition>

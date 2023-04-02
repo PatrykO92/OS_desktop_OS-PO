@@ -7,7 +7,13 @@ import { useState, useEffect } from "react";
 
 import { CSSTransition } from "react-transition-group";
 
-const MenuStart = ({ showMenuStart, lang, user, changeStage }) => {
+const MenuStart = ({
+  showMenuStart,
+  lang,
+  user,
+  changeStage,
+  handleStateWebBrowser,
+}) => {
   const [showAlert, setShowAlert] = useState(false);
   const [nextStage, setNextStage] = useState(null);
 
@@ -62,7 +68,10 @@ const MenuStart = ({ showMenuStart, lang, user, changeStage }) => {
       >
         <div className={`menu-start`}>
           <div className="menu-start-widget">
-            <NewsBox lang={lang} />
+            <NewsBox
+              lang={lang}
+              handleStateWebBrowser={handleStateWebBrowser}
+            />
           </div>
           <div className="menu-start-utils">
             <button>

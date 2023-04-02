@@ -1,5 +1,10 @@
 const textModel = {
   en: {
+    webBrowserInfoShort: "Iframe web browser",
+    webBrowserInfo:
+      "Please note that this is a web browser simulation based on iframe, which may result in a significant number of errors. Additionally, most websites not allow iframe at all. Please keep this in mind.",
+    news: "News",
+    home: "Home-page",
     closeProgram: "Close program",
     maximize: "Maximize program window",
     minimize: "Minimize program windo",
@@ -43,6 +48,11 @@ const textModel = {
     yourPin: "Your pin",
   },
   pl: {
+    webBrowserInfoShort: "Iframe przeglądarka internetowa",
+    webBrowserInfo:
+      "Proszę zwrócić uwagę, że ta symulacja przeglądarki internetowej oparta jest na elementach iframe, co może prowadzić do dużej liczby błędów. Dodatkowo większość stron internetowych w ogóle nie pozwalają na wykorzystanie iframe. Proszę o zachowanie tego w pamięci.",
+    news: "Nowości",
+    home: "Strona startowa",
     closeProgram: "Zamknij program",
     maximize: "Zmaksymalizuj okno programu",
     minimize: "Zminimalizuj okno programu",

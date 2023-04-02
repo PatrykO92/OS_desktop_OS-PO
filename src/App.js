@@ -60,9 +60,17 @@ function App() {
     name: "To-Do-App",
     icon: toDoAppIcon,
   });
-
   const handleStateToDoApp = (name, value) => {
     setToDoApp((oldVal) => ({ ...oldVal, [name]: value }));
+  };
+
+  const handleDefaultStateToDoApp = () => {
+    setToDoApp({
+      programEnabled: false,
+      hidden: false,
+      name: "To-Do-App",
+      icon: toDoAppIcon,
+    });
   };
 
   //Web Browser useState and handler
@@ -71,10 +79,19 @@ function App() {
     hidden: false,
     name: "Web Browser",
     icon: webBrowserIcon,
+    defaultUrl: false,
   });
-
   const handleStateWebBrowser = (name, value) => {
     setWebBrowser((oldVal) => ({ ...oldVal, [name]: value }));
+  };
+  const handleDefaultStateWebBrowser = () => {
+    setWebBrowser({
+      programEnabled: false,
+      hidden: false,
+      name: "Web Browser",
+      icon: webBrowserIcon,
+      defaultUrl: false,
+    });
   };
 
   return (
@@ -86,6 +103,7 @@ function App() {
           programIcon={toDoApp.icon}
           programHidden={toDoApp.hidden}
           handleProgramState={handleStateToDoApp}
+          handleDefaultProgramState={handleDefaultStateToDoApp}
         >
           <h1>Hello World</h1>
         </ProgramContainer>
@@ -98,8 +116,12 @@ function App() {
           programIcon={webBrowser.icon}
           programHidden={webBrowser.hidden}
           handleProgramState={handleStateWebBrowser}
+          handleDefaultProgramState={handleDefaultStateWebBrowser}
         >
-          <WebBrowser />
+          <WebBrowser
+            lang={textModel[windowsLanguage]}
+            passUrl={webBrowser.defaultUrl}
+          />
         </ProgramContainer>
       )}
 
