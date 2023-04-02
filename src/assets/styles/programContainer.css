@@ -1,4 +1,5 @@
 .program-container {
+  z-index: 5;
   position: fixed;
   bottom: 3rem;
   left: 0;

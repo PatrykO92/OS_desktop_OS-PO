@@ -9,6 +9,8 @@ const WorkScreen = ({
   lang,
   user,
   changeStage,
+  toDoApp,
+  webBrowser,
   handleStateToDoApp,
   handleStateWebBrowser,
 }) => {
@@ -49,6 +51,8 @@ const WorkScreen = ({
         <Desktop
           handleStateToDoApp={handleStateToDoApp}
           handleStateWebBrowser={handleStateWebBrowser}
+          toDoApp={toDoApp}
+          webBrowser={webBrowser}
         />
 
         <TaskBar lang={lang} handleShowMenuStart={handleShowMenuStart} />

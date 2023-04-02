@@ -57,7 +57,7 @@ function App() {
   const [toDoApp, setToDoApp] = useState({
     programEnabled: false,
     hidden: false,
-    name: "To-Do-App",
+    name: "ToDo",
     icon: toDoAppIcon,
   });
   const handleStateToDoApp = (name, value) => {
@@ -68,7 +68,7 @@ function App() {
     setToDoApp({
       programEnabled: false,
       hidden: false,
-      name: "To-Do-App",
+      name: "ToDo",
       icon: toDoAppIcon,
     });
   };
@@ -77,7 +77,7 @@ function App() {
   const [webBrowser, setWebBrowser] = useState({
     programEnabled: false,
     hidden: false,
-    name: "Web Browser",
+    name: "Chrome Fox",
     icon: webBrowserIcon,
     defaultUrl: false,
   });
@@ -88,7 +88,7 @@ function App() {
     setWebBrowser({
       programEnabled: false,
       hidden: false,
-      name: "Web Browser",
+      name: "ChromeFox",
       icon: webBrowserIcon,
       defaultUrl: false,
     });
@@ -142,6 +142,8 @@ function App() {
       )}
       {systemStage.workScreen && (
         <WorkScreen
+          toDoApp={toDoApp}
+          webBrowser={webBrowser}
           lang={textModel[windowsLanguage]}
           user={user}
           changeStage={changeStage}

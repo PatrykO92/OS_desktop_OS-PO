@@ -1,7 +1,12 @@
 import "../assets/styles/desktop.css";
 import { wallpaperOne } from "../assets/images/wallpapers";
 
-const Desktop = ({ handleStateToDoApp, handleStateWebBrowser }) => {
+const Desktop = ({
+  handleStateToDoApp,
+  handleStateWebBrowser,
+  toDoApp,
+  webBrowser,
+}) => {
   return (
     <div
       className="desktop"
@@ -12,20 +17,20 @@ const Desktop = ({ handleStateToDoApp, handleStateWebBrowser }) => {
           handleStateToDoApp("hidden", false);
           handleStateToDoApp("programEnabled", true);
         }}
-        className="icon"
+        className="desktop_icon"
       >
-        <i>®</i>
-        <p>To-Do-App</p>
+        <img src={toDoApp.icon} alt={toDoApp.name} />
+        <p>{toDoApp.name}</p>
       </button>
       <button
         onClick={() => {
           handleStateWebBrowser("hidden", false);
           handleStateWebBrowser("programEnabled", true);
         }}
-        className="icon"
+        className="desktop_icon"
       >
-        <i>®</i>
-        <p>Web Browser</p>
+        <img src={webBrowser.icon} alt={webBrowser.name} />
+        <p>{webBrowser.name}</p>
       </button>
     </div>
   );
