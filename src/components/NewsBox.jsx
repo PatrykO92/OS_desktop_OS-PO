@@ -95,6 +95,7 @@ const NewsBox = ({ lang, handleStateWebBrowser }) => {
               onClick={(event) => {
                 event.preventDefault();
                 handleStateWebBrowser("programEnabled", true);
+                handleStateWebBrowser("hidden", false);
                 handleStateWebBrowser("defaultUrl", actualNews?.url);
               }}
             >

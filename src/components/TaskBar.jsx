@@ -33,6 +33,7 @@ const TaskBar = ({
             <button
               onClick={() => {
                 handleStateToDoApp("hidden", !toDoApp.hidden);
+                handleStateWebBrowser("hidden", true);
               }}
               className="task-bar_program-button"
               style={{
@@ -50,6 +51,7 @@ const TaskBar = ({
             <button
               onClick={() => {
                 handleStateWebBrowser("hidden", !webBrowser.hidden);
+                handleStateToDoApp("hidden", true);
               }}
               className="task-bar_program-button"
               style={{
