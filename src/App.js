@@ -13,7 +13,7 @@ import {
 } from "./components";
 import { textModel } from "./utils";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 function App() {
   // useStateHook and function to set actually used language, default set to "en".
@@ -47,13 +47,7 @@ function App() {
     setUser(user);
   };
 
-  // useState to save all enabled programs and useEffect to follow which program is enabled
-  const [listOfEnabledPrograms, setListOfEnabledPrograms] = useState([]);
-  useEffect(() => {
-    //TODO
-  }, []);
-
-  //TO-DO-APP useState and handler
+  //App:1 TO-DO-APP useState and handlers
   const [toDoApp, setToDoApp] = useState({
     programEnabled: false,
     hidden: false,
@@ -73,7 +67,7 @@ function App() {
     });
   };
 
-  //Web Browser useState and handler
+  //App:2 Web Browser useState and handlers
   const [webBrowser, setWebBrowser] = useState({
     programEnabled: false,
     hidden: false,
@@ -88,7 +82,7 @@ function App() {
     setWebBrowser({
       programEnabled: false,
       hidden: false,
-      name: "ChromeFox",
+      name: "Chrome Fox",
       icon: webBrowserIcon,
       defaultUrl: false,
     });
@@ -142,12 +136,13 @@ function App() {
       )}
       {systemStage.workScreen && (
         <WorkScreen
-          toDoApp={toDoApp}
-          webBrowser={webBrowser}
           lang={textModel[windowsLanguage]}
           user={user}
           changeStage={changeStage}
+          // Programs states and handlers
+          toDoApp={toDoApp}
           handleStateToDoApp={handleStateToDoApp}
+          webBrowser={webBrowser}
           handleStateWebBrowser={handleStateWebBrowser}
         />
       )}

@@ -4,12 +4,15 @@
   --theme-font: hsl(0, 0%, 100%);
   --hover-main: rgba(255, 255, 255, 0.1);
   --border-main: #a0a096;
-  --icon-bg: rgba(28, 35, 38, 0.644);
+  --icon-bg: rgba(28, 35, 38, 0.548);
   --red: #d40909;
   --green: #27960b;
+  --blue: #5b53d6;
   --frame: rgb(41, 39, 43);
   --shadow: rgba(0, 0, 0, 0.3);
   --program-container-background: rgba(0, 0, 0, 0.85);
+  --hidden: rgba(76, 73, 80, 0.658);
+  --showed: rgba(167, 162, 179, 0.644);
 }
 
 *,

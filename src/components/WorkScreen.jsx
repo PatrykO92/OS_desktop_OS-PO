@@ -10,8 +10,8 @@ const WorkScreen = ({
   user,
   changeStage,
   toDoApp,
-  webBrowser,
   handleStateToDoApp,
+  webBrowser,
   handleStateWebBrowser,
 }) => {
   // useState hook for showing and hidding MenuStart
@@ -54,8 +54,6 @@ const WorkScreen = ({
           toDoApp={toDoApp}
           webBrowser={webBrowser}
         />
-
-        <TaskBar lang={lang} handleShowMenuStart={handleShowMenuStart} />
         {desktopContextMenuPosition && (
           <DesktopContextMenu
             position={desktopContextMenuPosition}
@@ -63,6 +61,15 @@ const WorkScreen = ({
             lang={lang}
           />
         )}
+
+        <TaskBar
+          lang={lang}
+          handleShowMenuStart={handleShowMenuStart}
+          toDoApp={toDoApp}
+          handleStateToDoApp={handleStateToDoApp}
+          webBrowser={webBrowser}
+          handleStateWebBrowser={handleStateWebBrowser}
+        />
         <MenuStart
           showMenuStart={showMenuStart}
           lang={lang}

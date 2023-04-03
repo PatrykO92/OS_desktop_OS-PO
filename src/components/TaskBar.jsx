@@ -7,7 +7,14 @@ import { useState, useRef } from "react";
 import Calendar from "react-calendar";
 import "../assets/styles/myCalendar.css";
 
-const TaskBar = ({ lang, handleShowMenuStart }) => {
+const TaskBar = ({
+  lang,
+  handleShowMenuStart,
+  toDoApp,
+  handleStateToDoApp,
+  webBrowser,
+  handleStateWebBrowser,
+}) => {
   const calendarRef = useRef(null);
   const [value, onChange] = useState(new Date());
 
@@ -21,7 +28,41 @@ const TaskBar = ({ lang, handleShowMenuStart }) => {
             onClick={handleShowMenuStart}
           />
         </button>
-        {/* ##TODO - LIST OF OPENED APPS, DEPENDS ON STATE/PROPS */}
+        <div className="task-bar_program-buttons">
+          {toDoApp.programEnabled && (
+            <button
+              onClick={() => {
+                handleStateToDoApp("hidden", !toDoApp.hidden);
+              }}
+              className="task-bar_program-button"
+              style={{
+                backgroundColor: `${
+                  toDoApp.hidden ? "var(--hidden)" : "var(--showed)"
+                }`,
+              }}
+            >
+              <img src={toDoApp.icon} alt={toDoApp.name} />
+              <p>{toDoApp.name}</p>
+            </button>
+          )}
+
+          {webBrowser.programEnabled && (
+            <button
+              onClick={() => {
+                handleStateWebBrowser("hidden", !webBrowser.hidden);
+              }}
+              className="task-bar_program-button"
+              style={{
+                backgroundColor: `${
+                  webBrowser.hidden ? "var(--hidden)" : "var(--showed)"
+                }`,
+              }}
+            >
+              <img src={webBrowser.icon} alt={webBrowser.name} />
+              <p>{webBrowser.name}</p>
+            </button>
+          )}
+        </div>
       </div>
 
       <div className="additionals">
