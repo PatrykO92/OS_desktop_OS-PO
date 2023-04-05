@@ -1,5 +1,12 @@
+// ##TODO - sort alphabetically
+
 const textModel = {
   en: {
+    remove: "Remove",
+    check: "Check!",
+    uncheck: "Uncheck",
+    toDoAppInputPlaceholder: "eg. buy eggs",
+    add: "Add",
     webBrowserInfoShort: "Iframe web browser",
     webBrowserInfo:
       "Please note that this is a web browser simulation based on iframe, which may result in a significant number of errors. Additionally, most websites not allow iframe at all. Please keep this in mind.",
@@ -48,6 +55,11 @@ const textModel = {
     yourPin: "Your pin",
   },
   pl: {
+    remove: "Usuń",
+    check: "Zaznaczone",
+    uncheck: "Odznaczone",
+    toDoAppInputPlaceholder: "np. kup jajka",
+    add: "Dodaj",
     webBrowserInfoShort: "Iframe przeglądarka internetowa",
     webBrowserInfo:
       "Proszę zwrócić uwagę, że ta symulacja przeglądarki internetowej oparta jest na elementach iframe, co może prowadzić do dużej liczby błędów. Dodatkowo większość stron internetowych w ogóle nie pozwalają na wykorzystanie iframe. Proszę o zachowanie tego w pamięci.",

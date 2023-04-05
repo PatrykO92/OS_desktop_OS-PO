@@ -11,6 +11,7 @@ import TaskBar from "./TaskBar";
 import WorkScreen from "./WorkScreen";
 import ProgramContainer from "./ProgramContainer";
 import WebBrowser from "./WebBrowser";
+import ToDoApp from "./ToDoApp";
 
 export {
   CalendarButton,
@@ -26,4 +27,5 @@ export {
   WorkScreen,
   WebBrowser,
   ProgramContainer,
+  ToDoApp,
 };

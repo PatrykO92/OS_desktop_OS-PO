@@ -9,6 +9,10 @@ import xmarkIcon from "./xmark-icon.svg";
 import windowMinimizeIcon from "./window-minimize-icon.svg";
 import toDoAppIcon from "./to-do-app-icon.svg";
 import webBrowserIcon from "./webbrowser-icon.svg";
+import checkIcon from "./check-icon.svg";
+import uncheckIcon from "./uncheck-icon.svg";
+import trashCanIcon from "./trash-can-icon.svg";
+import plusCircleIcon from "./plus-circle-icon.svg";
 
 export {
   powerOffIcon,
@@ -22,4 +26,8 @@ export {
   windowMinimizeIcon,
   toDoAppIcon,
   webBrowserIcon,
+  checkIcon,
+  uncheckIcon,
+  trashCanIcon,
+  plusCircleIcon,
 };

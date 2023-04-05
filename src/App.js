@@ -10,6 +10,7 @@ import {
   CloseScreen,
   ProgramContainer,
   WebBrowser,
+  ToDoApp,
 } from "./components";
 import { textModel } from "./utils";
 
@@ -99,7 +100,7 @@ function App() {
           handleProgramState={handleStateToDoApp}
           handleDefaultProgramState={handleDefaultStateToDoApp}
         >
-          <h1>Hello World</h1>
+          <ToDoApp lang={textModel[windowsLanguage]} />
         </ProgramContainer>
       )}
 
