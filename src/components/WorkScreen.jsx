@@ -38,7 +38,7 @@ const WorkScreen = ({
   };
 
   return (
-    <CSSTransition in={true} appear={true} timeout={5000} classNames="enter">
+    <CSSTransition in={true} appear={true} timeout={500} classNames="fade">
       <div
         className="work-screen"
         onContextMenu={(e) =>

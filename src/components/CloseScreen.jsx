@@ -17,15 +17,6 @@ const CloseScreen = () => {
       >
         Button
       </button>
-
-      <CSSTransition
-        in={showButton}
-        timeout={300}
-        classNames="fade"
-        unmountOnExit
-      >
-        <div>Hello world!</div>
-      </CSSTransition>
     </div>
   );
 };

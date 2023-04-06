@@ -49,7 +49,7 @@ const ToDoApp = ({ lang }) => {
 
     setTimeout(() => {
       setShowMsg(false);
-    }, [2500]);
+    }, [700]);
   };
 
   // REMOVE item from toDoList

@@ -29,12 +29,7 @@ const LoginScreen = ({ lang, user, changeStage }) => {
   return (
     <>
       {loginStage === "start" && (
-        <CSSTransition
-          in={true}
-          appear={true}
-          timeout={1500}
-          classNames="enter"
-        >
+        <CSSTransition in={true} appear={true} timeout={1000} classNames="fade">
           <div className="starting-screen">
             <img
               src={osStartIcon}
@@ -47,12 +42,7 @@ const LoginScreen = ({ lang, user, changeStage }) => {
       )}
 
       {loginStage === "login" && (
-        <CSSTransition
-          in={true}
-          appear={true}
-          timeout={5000}
-          classNames="enter"
-        >
+        <CSSTransition in={true} appear={true} timeout={1000} classNames="fade">
           <div
             className="login-screen"
             style={{ backgroundImage: `url(${wallpaperOne})` }}

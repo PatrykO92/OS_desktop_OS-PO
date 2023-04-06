@@ -16,6 +16,9 @@ import { textModel } from "./utils";
 
 import { useState } from "react";
 
+import { CSSTransition } from "react-transition-group";
+import { v4 as uuidv4 } from "uuid";
+
 function App() {
   // useStateHook and function to set actually used language, default set to "en".
   const [windowsLanguage, setWindowsLanguage] = useState("en");
@@ -91,7 +94,12 @@ function App() {
 
   return (
     <div className="whole-screen">
-      {toDoApp.programEnabled && (
+      <CSSTransition
+        in={toDoApp.programEnabled}
+        timeout={300}
+        classNames="fade"
+        unmountOnExit
+      >
         <ProgramContainer
           lang={textModel[windowsLanguage]}
           programName={toDoApp.name}
@@ -102,9 +110,13 @@ function App() {
         >
           <ToDoApp lang={textModel[windowsLanguage]} />
         </ProgramContainer>
-      )}
-
-      {webBrowser.programEnabled && (
+      </CSSTransition>
+      <CSSTransition
+        in={webBrowser.programEnabled}
+        timeout={300}
+        classNames="fade"
+        unmountOnExit
+      >
         <ProgramContainer
           lang={textModel[windowsLanguage]}
           programName={webBrowser.name}
@@ -118,7 +130,7 @@ function App() {
             passUrl={webBrowser.defaultUrl}
           />
         </ProgramContainer>
-      )}
+      </CSSTransition>
 
       {systemStage.startScreen && (
         <StartScreen
