@@ -3,6 +3,8 @@
   --todo-theme-font: hsl(0, 0%, 100%);
   --todo-theme-list-bg: #8c85e7;
   --todo-theme-hover: rgba(255, 255, 255, 0.301);
+  --todo-scroll: #36308f;
+  --todo-red: rgb(223, 13, 13);
 }
 
 .todo-app {
@@ -11,7 +13,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 1rem;
   height: 100%;
   font-weight: 500;
@@ -46,21 +48,50 @@
   border-radius: 5px;
 }
 
+.todo-app__item-added {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 0.3rem;
+  border-radius: 5px;
+  background-color: #36308f;
+}
+
 .todo-app__list-container {
   border-radius: 5px;
   background-color: var(--todo-theme-list-bg);
   padding: 1rem;
   overflow: hidden;
+  max-height: 40rem;
 }
 
 .todo-app__list {
-  min-height: 10rem;
+  min-height: 5rem;
   max-height: 100%;
   overflow-y: scroll;
   min-width: 25rem;
   display: flex;
   flex-direction: column;
   gap: 0.7rem;
+}
+
+.todo-app__list::-webkit-scrollbar {
+  width: 5px;
+}
+
+.todo-app__list::-webkit-scrollbar-track {
+  background: var(--todo-theme-bg);
+  border-radius: 5px;
+}
+
+.todo-app__list::-webkit-scrollbar-thumb {
+  background: var(--todo-scroll);
+  border-radius: 5px;
+}
+
+.todo-app__list::-webkit-scrollbar-thumb:hover {
+  background: var(--hover-main);
 }
 
 .todo-app__one-todo {

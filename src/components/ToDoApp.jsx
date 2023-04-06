@@ -7,24 +7,29 @@ import {
 } from "../assets/icons";
 
 import { useState, useEffect } from "react";
-
 import { v4 as uuidv4 } from "uuid";
 
 const ToDoApp = ({ lang }) => {
   // input value
   const [inputValue, setInputValue] = useState("");
 
+  // show/hide item added
+  const [showMsg, setShowMsg] = useState(false);
+
   //list of things "to do"
   const [toDoList, setToDoList] = useState([]);
 
-  // TODO - import toDoList from local storage if available
+  // import toDoList from local storage, if available, at start of the component
   useEffect(() => {
-    console.log(toDoList);
+    const savedToDoList = localStorage.getItem("toDoList");
+    if (savedToDoList) {
+      setToDoList(JSON.parse(savedToDoList));
+    }
   }, []);
 
-  // TODO - save toDoList to local storage
+  // save toDoList to local storage, each time new item is added to toDoList
   useEffect(() => {
-    console.log(toDoList);
+    localStorage.setItem("toDoList", JSON.stringify(toDoList));
   }, [toDoList]);
 
   // add things to toDoList, using uuid library to generate a random ID for each toDo task
@@ -36,18 +41,63 @@ const ToDoApp = ({ lang }) => {
       {
         toDoID: uuidv4(),
         toDoDescription: text,
-        toDoStatus: true,
+        toDoStatus: false,
       },
     ]);
-    // TODO - add display message, todo is added
+    setShowMsg(true);
     setInputValue("");
+
+    setTimeout(() => {
+      setShowMsg(false);
+    }, [2500]);
   };
 
-  // TODO remove
-  const removeFromToDoList = (id) => {};
+  // REMOVE item from toDoList
+  const removeFromToDoList = (id) => {
+    const updatedToDoList = toDoList.filter((item) => item.toDoID !== id);
+    setToDoList(updatedToDoList);
+  };
 
-  // TODO extract
-  const renderOneToDo = (item) => {};
+  const changeItemToDoStatus = (id) => {
+    const updatedToDoList = toDoList.map((item) => {
+      if (item.toDoID === id) {
+        return {
+          ...item,
+          toDoStatus: !item.toDoStatus,
+        };
+      }
+      return item;
+    });
+    setToDoList(updatedToDoList);
+  };
+
+  // function to render one item from toDoList
+  const renderOneToDo = (item) => {
+    return (
+      <div className="todo-app__one-todo" key={item.toDoID} id={item.toDoID}>
+        <p
+          style={{
+            textDecoration: `${item.toDoStatus ? "line-through" : ""}`,
+            color: `${item.toDoStatus ? "var(--todo-red)" : ""}`,
+          }}
+        >
+          {item.toDoDescription}
+        </p>
+        <div>
+          <button onClick={() => changeItemToDoStatus(item.toDoID)}>
+            {item.toDoStatus ? (
+              <img src={checkIcon} alt={lang.check} />
+            ) : (
+              <img src={uncheckIcon} alt={lang.uncheck} />
+            )}
+          </button>
+          <button onClick={() => removeFromToDoList(item.toDoID)}>
+            <img src={trashCanIcon} alt={lang.remove} />
+          </button>
+        </div>
+      </div>
+    );
+  };
 
   return (
     <div className="todo-app">
@@ -75,31 +125,10 @@ const ToDoApp = ({ lang }) => {
       </div>
       <div className="todo-app__list-container">
         <div className="todo-app__list">
-          {toDoList.map((item) => {
-            return (
-              <div
-                className="todo-app__one-todo"
-                key={item.toDoID}
-                id={item.toDoID}
-              >
-                <p>{item.toDoDescription}</p>
-                <div>
-                  <button>
-                    {item.toDoStatus ? (
-                      <img src={checkIcon} alt={lang.check} />
-                    ) : (
-                      <img src={uncheckIcon} alt={lang.uncheck} />
-                    )}
-                  </button>
-                  <button>
-                    <img src={trashCanIcon} alt={lang.remove} />
-                  </button>
-                </div>
-              </div>
-            );
-          })}
+          {toDoList.map((item) => renderOneToDo(item))}
         </div>
       </div>
+      {showMsg && <div className="todo-app__item-added">Item added</div>}
     </div>
   );
 };
