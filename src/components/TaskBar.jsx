@@ -2,22 +2,14 @@ import "../assets/styles/taskBar.css";
 import { menuStartIcon } from "../assets/icons";
 import { CalendarButton } from "./";
 
-import { useState, useRef } from "react";
-
-import Calendar from "react-calendar";
-import "../assets/styles/myCalendar.css";
-
 const TaskBar = ({
-  lang,
   handleShowMenuStart,
+  handleShowCalendar,
   toDoApp,
   handleStateToDoApp,
   webBrowser,
   handleStateWebBrowser,
 }) => {
-  const calendarRef = useRef(null);
-  const [value, onChange] = useState(new Date());
-
   return (
     <div className="task-bar">
       <div className="programs">
@@ -69,21 +61,8 @@ const TaskBar = ({
 
       <div className="additionals">
         {/* ##TODO - SOME SORT OF LOCALIZATION / WIFI CONNECTION ETC. */}
-        <div>
-          <button>WiFi</button>
-        </div>
-
-        <div
-          onClick={() =>
-            calendarRef.current.classList.toggle("hidden-calendar")
-          }
-        >
-          <CalendarButton />
-        </div>
-      </div>
-      {/* TODO - REFRACTOR - MOVE CALENDAR TO MAIN WORK SCREEN */}
-      <div className="calendar-div hidden-calendar" ref={calendarRef}>
-        <Calendar onChange={onChange} value={value} locale={lang.lng} />
+        <button>WiFi</button>
+        <CalendarButton handleShowCalendar={handleShowCalendar} />
       </div>
     </div>
   );

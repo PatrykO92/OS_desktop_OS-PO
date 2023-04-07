@@ -3,17 +3,9 @@ import "../assets/styles/menuStart.css";
 import { powerOffIcon, restartIcon } from "../assets/icons";
 import { NewsBox } from "./";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
-import { CSSTransition } from "react-transition-group";
-
-const MenuStart = ({
-  showMenuStart,
-  lang,
-  user,
-  changeStage,
-  handleStateWebBrowser,
-}) => {
+const MenuStart = ({ lang, user, changeStage, handleStateWebBrowser }) => {
   const [showAlert, setShowAlert] = useState(false);
   const [nextStage, setNextStage] = useState(null);
 
@@ -31,12 +23,44 @@ const MenuStart = ({
     setShowAlert(false);
   };
 
-  useEffect(() => {
-    setShowAlert(false);
-  }, [showMenuStart]);
-
   return (
     <>
+      <div className={`menu-start`}>
+        <div className="menu-start-widget">
+          <NewsBox lang={lang} handleStateWebBrowser={handleStateWebBrowser} />
+        </div>
+        <div className="menu-start-utils">
+          <button>
+            <img
+              src={user.avatar}
+              alt={`${lang.name} ${lang.surname}`}
+              className="menu-start-avatar"
+            />
+            <p>{`${user.name} ${user.surname}`}</p>
+          </button>
+          <div>
+            <button onClick={() => handleButtonClick("loginScreen")}>
+              <img
+                src={restartIcon}
+                alt={lang.restart}
+                className="menu-start-button-img"
+              />
+            </button>
+            <button onClick={() => handleButtonClick("closeScreen")}>
+              <img
+                src={powerOffIcon}
+                alt={lang.power}
+                className="menu-start-button-img"
+              />
+            </button>
+          </div>
+        </div>
+      </div>
+      <div
+        className={`custom-alert-prompt__background ${
+          showAlert && "custom-alert-prompt__background-show"
+        }`}
+      ></div>
       <div
         className={`custom-alert-prompt ${
           showAlert && "custom-alert-prompt-show"
@@ -60,47 +84,6 @@ const MenuStart = ({
           </div>
         </div>
       </div>
-      <CSSTransition
-        in={showMenuStart}
-        timeout={300}
-        classNames="menu-start"
-        unmountOnExit
-      >
-        <div className={`menu-start`}>
-          <div className="menu-start-widget">
-            <NewsBox
-              lang={lang}
-              handleStateWebBrowser={handleStateWebBrowser}
-            />
-          </div>
-          <div className="menu-start-utils">
-            <button>
-              <img
-                src={user.avatar}
-                alt={`${lang.name} ${lang.surname}`}
-                className="menu-start-avatar"
-              />
-              <p>{`${user.name} ${user.surname}`}</p>
-            </button>
-            <div>
-              <button onClick={() => handleButtonClick("loginScreen")}>
-                <img
-                  src={restartIcon}
-                  alt={lang.restart}
-                  className="menu-start-button-img"
-                />
-              </button>
-              <button onClick={() => handleButtonClick("closeScreen")}>
-                <img
-                  src={powerOffIcon}
-                  alt={lang.power}
-                  className="menu-start-button-img"
-                />
-              </button>
-            </div>
-          </div>
-        </div>
-      </CSSTransition>
     </>
   );
 };

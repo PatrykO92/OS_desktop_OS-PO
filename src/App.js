@@ -17,7 +17,6 @@ import { textModel } from "./utils";
 import { useState } from "react";
 
 import { CSSTransition } from "react-transition-group";
-import { v4 as uuidv4 } from "uuid";
 
 function App() {
   // useStateHook and function to set actually used language, default set to "en".
@@ -92,6 +91,11 @@ function App() {
     });
   };
 
+  const closeAllPrograms = () => {
+    handleDefaultStateToDoApp();
+    handleDefaultStateWebBrowser();
+  };
+
   return (
     <div className="whole-screen">
       <CSSTransition
@@ -157,6 +161,7 @@ function App() {
           handleStateToDoApp={handleStateToDoApp}
           webBrowser={webBrowser}
           handleStateWebBrowser={handleStateWebBrowser}
+          closeAllPrograms={closeAllPrograms}
         />
       )}
       {systemStage.closeScreen && <CloseScreen />}

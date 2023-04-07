@@ -1,3 +1,39 @@
 .work-screen {
   min-height: 100vh;
 }
+
+.calendar-start-enter {
+  transform: translateX(30rem);
+}
+
+.calendar-start-enter-active {
+  transform: translateX(0);
+  transition: all 0.3s;
+}
+
+.calendar-start-exit {
+  transform: translateX(0);
+}
+
+.calendar-start-exit-active {
+  transform: translateX(30rem);
+  transition: all 0.3s;
+}
+
+.menu-start-enter {
+  transform: translateX(-30rem);
+}
+
+.menu-start-enter-active {
+  transform: translateX(0);
+  transition: all 0.3s;
+}
+
+.menu-start-exit {
+  transform: translateX(0);
+}
+
+.menu-start-exit-active {
+  transform: translateX(-30rem);
+  transition: all 0.3s;
+}

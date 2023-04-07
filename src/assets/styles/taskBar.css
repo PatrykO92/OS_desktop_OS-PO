@@ -66,22 +66,3 @@
 .task-bar_program-buttons > button:hover {
   box-shadow: 0 0 2px 1px var(--blue);
 }
-
-.calendar-button {
-  font-size: 0.8rem;
-  color: var(--theme-font);
-  text-align: right;
-}
-
-.calendar-div {
-  z-index: 15;
-  position: absolute;
-  bottom: 3.5rem;
-  right: 0.5rem;
-  transition: all 0.3s ease-in-out;
-  transform: translateX(0);
-}
-
-.hidden-calendar {
-  transform: translateX(25rem);
-}

@@ -8,7 +8,6 @@
 }
 
 .todo-app {
-  overflow-y: scroll;
   padding: 1rem;
   display: flex;
   flex-direction: column;

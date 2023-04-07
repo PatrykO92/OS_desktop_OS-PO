@@ -1,20 +1,37 @@
-.custom-alert-prompt {
-  z-index: 15;
+.custom-alert-prompt,
+.custom-alert-prompt__background {
   position: fixed;
   top: 0;
   left: 0;
   opacity: 0;
+}
+
+.custom-alert-prompt {
+  z-index: 15;
   width: 0;
   height: 0;
-  transition: all 1s;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: all 1s;
 }
 
 .custom-alert-prompt-show {
   height: 100vh;
   width: 100vw;
+  opacity: 1;
+}
+
+.custom-alert-prompt__background {
+  height: 100vh;
+  width: 100vw;
+  z-index: -5;
+  background-color: var(--theme-bg-light);
+  transition: opacity 1s, z-index 0s;
+}
+
+.custom-alert-prompt__background-show {
+  z-index: 14;
   opacity: 1;
 }
 

@@ -1,6 +1,8 @@
+import "../assets/styles/calendarButton.css";
+
 import { useState, useEffect } from "react";
 
-function CalendarButton() {
+function CalendarButton({ handleShowCalendar }) {
   const [now, setNow] = useState(new Date());
 
   useEffect(() => {
@@ -21,7 +23,7 @@ function CalendarButton() {
     .padStart(2, "0")}`;
 
   return (
-    <button className="calendar-button">
+    <button className="calendar-button" onClick={handleShowCalendar}>
       <p>{formattedTime}</p>
       <p>{formattedDate}</p>
     </button>

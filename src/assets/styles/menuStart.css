@@ -1,5 +1,5 @@
 .menu-start {
-  z-index: 15;
+  z-index: 13;
   position: absolute;
   bottom: 3.5rem;
   left: 0.5rem;
@@ -11,24 +11,6 @@
   justify-content: space-between;
 }
 
-.menu-start-enter {
-  transform: translateX(-30rem);
-}
-
-.menu-start-enter-active {
-  transform: translateX(0);
-  transition: all 0.3s;
-}
-
-.menu-start-exit {
-  transform: translateX(0);
-}
-
-.menu-start-exit-active {
-  transform: translateX(-30rem);
-  transition: all 0.3s;
-}
-
 .menu-start button {
   display: flex;
   align-items: center;
@@ -38,11 +20,11 @@
   background-color: transparent;
   transition: all 0.5s;
   border-radius: 5px;
-  color: var(--them-font);
+  color: var(--theme-font);
 }
 
 .menu-start button p {
-  color: var(--them-font);
+  color: var(--theme-font);
   font-size: smaller;
 }
 

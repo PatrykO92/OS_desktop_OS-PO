@@ -1,0 +1,5 @@
+.calendar-button {
+  font-size: 0.8rem;
+  color: var(--theme-font);
+  text-align: right;
+}

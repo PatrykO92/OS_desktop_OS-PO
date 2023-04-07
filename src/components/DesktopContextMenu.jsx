@@ -7,7 +7,14 @@ import {
   xmarkIcon,
 } from "../assets/icons";
 
-const DesktopContextMenu = ({ lang, position, onClick }) => (
+const DesktopContextMenu = ({
+  lang,
+  position,
+  onClick,
+  closeAllPrograms,
+  handleCloseCalendar,
+  handleCloseMenuStart,
+}) => (
   <div
     id="desktop-context-menu"
     style={{ top: position.y, left: position.x }}
@@ -31,7 +38,13 @@ const DesktopContextMenu = ({ lang, position, onClick }) => (
       </p>
       <p>{lang.refresh}</p>
     </button>
-    <button>
+    <button
+      onClick={() => {
+        closeAllPrograms();
+        handleCloseCalendar();
+        handleCloseMenuStart();
+      }}
+    >
       <p>
         <img src={xmarkIcon} alt={lang.closeAll} />
       </p>

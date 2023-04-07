@@ -1,4 +1,8 @@
 .react-calendar {
+  z-index: 13;
+  position: absolute;
+  bottom: 3.5rem;
+  right: 0.5rem;
   width: 20rem;
   min-height: 14rem;
   padding: 1rem 0;
@@ -9,29 +13,47 @@
 }
 
 .react-calendar button {
+  color: var(--theme-font);
   outline: none;
+  background-color: transparent;
+  cursor: pointer;
+  border-radius: 5px;
 }
 
-.react-calendar button:enabled:hover {
-  cursor: pointer;
+.react-calendar button:hover {
+  background-color: var(--hover-main);
 }
 
 .react-calendar__navigation {
   display: flex;
   justify-content: center;
-  align-items: center;
   gap: 0.5rem;
+  padding: 0 2rem;
   min-height: 2.75rem;
   margin-bottom: 0.5rem;
 }
-.react-calendar__navigation button {
-  color: var(--theme-font);
+
+.react-calendar__navigation__arrow {
+  width: 2rem;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.react-calendar__decade-view__years {
+  height: 13rem;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.react-calendar__decade-view__years button {
+  max-width: 6rem;
 }
 
 .react-calendar__year-view__months {
   justify-content: center;
   align-items: center;
-  min-height: 11rem;
+  min-height: 13rem;
   gap: 1rem;
 }
 
@@ -41,29 +63,24 @@
 
 .react-calendar__month-view__weekdays {
   text-align: center;
-  text-transform: lowercase;
   font-weight: bold;
-  font-size: 0.75em;
-  color: var(--theme-font);
+  font-size: 0.9em;
 }
 
-div .react-calendar__month-view__days__day {
-  color: var(--theme-font);
-}
-
-.react-calendar__month-view__days__day--neighboringMonth {
-  color: #757575;
-}
-
-.react-calendar__year-view .react-calendar__tile,
-.react-calendar__decade-view .react-calendar__tile,
-.react-calendar__century-view .react-calendar__tile {
-  border-radius: 10px;
-  color: var(--theme-font);
+.react-calendar__month-view__days {
+  padding-top: 0.2rem;
+  min-height: 12rem;
+  row-gap: 0.2rem;
+  align-items: stretch;
 }
 
 .react-calendar__tile + .react-calendar__tile--now {
   border-radius: 5px;
   background-color: orangered;
   color: black;
+}
+
+.react-calendar__month-view__days
+  > .react-calendar__month-view__days__day--neighboringMonth {
+  color: grey;
 }
