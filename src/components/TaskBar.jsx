@@ -3,6 +3,7 @@ import { menuStartIcon } from "../assets/icons";
 import { CalendarButton } from "./";
 
 const TaskBar = ({
+  lang,
   handleShowMenuStart,
   handleShowCalendar,
   toDoApp,
@@ -62,7 +63,7 @@ const TaskBar = ({
       <div className="additionals">
         {/* ##TODO - SOME SORT OF LOCALIZATION / WIFI CONNECTION ETC. */}
         <button>WiFi</button>
-        <CalendarButton handleShowCalendar={handleShowCalendar} />
+        <CalendarButton lang={lang} handleShowCalendar={handleShowCalendar} />
       </div>
     </div>
   );

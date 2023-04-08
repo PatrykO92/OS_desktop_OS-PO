@@ -2,7 +2,7 @@ import "../assets/styles/calendarButton.css";
 
 import { useState, useEffect } from "react";
 
-function CalendarButton({ handleShowCalendar }) {
+const CalendarButton = ({ lang, handleShowCalendar }) => {
   const [now, setNow] = useState(new Date());
 
   useEffect(() => {
@@ -12,11 +12,20 @@ function CalendarButton({ handleShowCalendar }) {
     return () => clearInterval(intervalId);
   }, []);
 
-  const formattedDate = `${now.getDate().toString().padStart(2, "0")}.${(
-    now.getMonth() + 1
-  )
-    .toString()
-    .padStart(2, "0")}.${now.getFullYear()}`;
+  let formattedDate;
+  if (lang.lng === "en-us") {
+    formattedDate = `${(now.getMonth() + 1).toString().padStart(2, "0")}/${now
+      .getDate()
+      .toString()
+      .padStart(2, "0")}/${now.getFullYear()}`;
+  } else {
+    formattedDate = `${now.getDate().toString().padStart(2, "0")}.${(
+      now.getMonth() + 1
+    )
+      .toString()
+      .padStart(2, "0")}.${now.getFullYear()}`;
+  }
+
   const formattedTime = `${now.getHours().toString().padStart(2, "0")}:${now
     .getMinutes()
     .toString()
@@ -28,6 +37,6 @@ function CalendarButton({ handleShowCalendar }) {
       <p>{formattedDate}</p>
     </button>
   );
-}
+};
 
 export default CalendarButton;

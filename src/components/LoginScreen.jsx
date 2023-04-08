@@ -54,6 +54,7 @@ const LoginScreen = ({ lang, user, changeStage }) => {
             <form
               onSubmit={(e) => {
                 e.preventDefault();
+                setPin("");
                 if (pin !== user.pin) {
                   pinInput.current.classList.add("login-screen_wrong-input");
                 }
