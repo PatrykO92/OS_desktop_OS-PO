@@ -12,6 +12,7 @@ import WorkScreen from "./WorkScreen";
 import ProgramContainer from "./ProgramContainer";
 import WebBrowser from "./WebBrowser";
 import ToDoApp from "./ToDoApp";
+import Personalize from "./Personalize";
 
 export {
   CalendarButton,
@@ -28,4 +29,5 @@ export {
   WebBrowser,
   ProgramContainer,
   ToDoApp,
+  Personalize,
 };

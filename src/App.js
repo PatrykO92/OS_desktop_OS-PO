@@ -12,6 +12,7 @@ import {
   WebBrowser,
   ToDoApp,
 } from "./components";
+
 import { textModel } from "./utils";
 
 import { useState } from "react";
@@ -164,7 +165,12 @@ function App() {
           closeAllPrograms={closeAllPrograms}
         />
       )}
-      {systemStage.closeScreen && <CloseScreen />}
+      {systemStage.closeScreen && (
+        <CloseScreen
+          changeStage={changeStage}
+          lang={textModel[windowsLanguage]}
+        />
+      )}
     </div>
   );
 }

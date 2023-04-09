@@ -1,17 +1,14 @@
 import "../assets/styles/desktop.css";
-import { wallpaperOne } from "../assets/images/wallpapers";
 
 const Desktop = ({
   handleStateToDoApp,
   handleStateWebBrowser,
   toDoApp,
   webBrowser,
+  wallpaper,
 }) => {
   return (
-    <div
-      className="desktop"
-      style={{ backgroundImage: `url(${wallpaperOne})` }}
-    >
+    <div className="desktop" style={{ backgroundImage: `url(${wallpaper})` }}>
       <button
         onClick={() => {
           handleStateToDoApp("hidden", false);

@@ -10,6 +10,9 @@ const textModel = {
     close: "Close",
     closeAll: "Close all",
     closeProgram: "Close program",
+    closeScreen1: "Thank you for using my app!",
+    closeScreen2:
+      " I wanted to showcase my skills in ReactJS, JavaScript, HTML, and CSS through this project. I had a lot of fun creating it. If you'd like, you can return to the start screen to create a new user or head to the login screen to explore the app again with the same user.",
     defaultUser: "Choose default user",
     dismiss: "Dismiss",
     fetchError: "Servers are overloaded, please try again later!",
@@ -61,6 +64,9 @@ const textModel = {
     close: "Zamknij",
     closeAll: "Zamknij wszystko",
     closeProgram: "Zamknij program",
+    closeScreen1: "Dziękuję za korzystanie z mojej aplikacji!",
+    closeScreen2:
+      " Chciałem tutaj zaprezentować moje umiejętności związane z ReactJS, JavaScript, HTML i CSS. Tworząc tę aplikację, świetnie się bawiłem. Jeśli chcesz, możesz przejść ponownie do ekranu startowego, aby stworzyć nowego użytkownika lub przejść do ekranu logowania, aby ponownie sprawdzić aplikację z tym samym użytkownikiem.",
     defaultUser: "Wybierz użytkownika domyślnego",
     dismiss: "Anuluj",
     fetchError: "Serwery są przeciążone, spróbuj ponownie później!",

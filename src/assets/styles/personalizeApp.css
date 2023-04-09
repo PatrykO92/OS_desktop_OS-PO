@@ -1,0 +1,113 @@
+.personalize-app {
+  z-index: 20;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  height: 100dvh;
+  width: 100vw;
+  width: 100dvw;
+  background-color: var(--program-container-background);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.personalize-app > div {
+  background-color: var(--theme-bg);
+  border-radius: 10px;
+  border: 1px solid var(--border-main);
+  padding: 0.3rem;
+}
+
+.personalize-window {
+  max-width: 50rem;
+  max-height: 30rem;
+  padding: 1rem;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.personalize-window::-webkit-scrollbar {
+  width: 5px;
+}
+
+.personalize-window::-webkit-scrollbar-track {
+  background: var(--theme-bg);
+  border-radius: 5px;
+}
+
+.personalize-window::-webkit-scrollbar-thumb {
+  background: var(--hover-main);
+  border-radius: 5px;
+}
+
+.personalize-window::-webkit-scrollbar-thumb:hover {
+  background: var(--hover-main);
+}
+
+.personalize-window__wallpaper > p:nth-child(1),
+.personalize-window__main-color > p:nth-child(1),
+.personalize-window__font-color p:nth-child(1) {
+  font-size: 1.7rem;
+}
+
+.personalize-window__wallpaper p,
+.personalize-window__main-color p,
+.personalize-window__font-color p {
+  font-weight: 500;
+}
+
+.personalize-window__wallpaper img {
+  border: 2px solid var(--border-main);
+  border-radius: 5px;
+}
+
+.personalize-window__wallpaper > img {
+  border: 2px solid var(--green);
+  max-width: 9rem;
+}
+
+.personalize-window__wallpaper__list,
+.personalize-window__main-color__list,
+.personalize-window__font-color__list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.personalize-window__wallpaper__list > img {
+  width: 4rem;
+}
+
+.personalize-window__wallpaper__list img:hover {
+  border-color: var(--blue);
+}
+
+.personalize-window__main-color__list button {
+  border-radius: 5px;
+  width: 4rem;
+  height: 4rem;
+  border: 2px solid var(--border-main);
+}
+.personalize-window__main-color__list button:hover {
+  border-color: var(--blue);
+}
+
+.personalize-window__font-color__list button {
+  border: 2px solid var(--border-main);
+  border-radius: 10px;
+  background-color: transparent;
+  font-size: 0.9rem;
+  font-weight: 600;
+  width: 4rem;
+  text-align: center;
+}
+
+.personalize-window__font-color__list button:hover {
+  border-color: var(--blue);
+}

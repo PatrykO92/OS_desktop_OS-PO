@@ -61,7 +61,7 @@
 }
 
 .news-box::-webkit-scrollbar-track {
-  background: var(--them-bg);
+  background: var(--theme-bg);
   border-radius: 5px;
 }
 

@@ -1,7 +1,8 @@
 :root {
   --theme-bg: hsla(198, 16%, 13%);
-  --theme-bg-light: hsla(197, 13%, 22%, 0.795);
+  --theme-bg-light: hsla(198, 16%, 13%, 0.795);
   --theme-font: hsl(0, 0%, 100%);
+  --theme-font222: #fcacff;
   --hover-main: rgba(255, 255, 255, 0.1);
   --border-main: #a0a096;
   --icon-bg: rgba(28, 35, 38, 0.329);
@@ -51,7 +52,9 @@ body {
 
 .whole-screen {
   height: 100vh;
+  height: 100dvh;
   width: 100vw;
+  width: 100dvw;
 }
 
 .fade-appear {

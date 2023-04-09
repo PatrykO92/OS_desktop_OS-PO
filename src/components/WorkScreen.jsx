@@ -1,5 +1,12 @@
 import "../assets/styles/workScreen.css";
-import { TaskBar, Desktop, DesktopContextMenu, MenuStart } from "./";
+import { wallpaperOne } from "../assets/images/wallpapers";
+import {
+  TaskBar,
+  Desktop,
+  DesktopContextMenu,
+  MenuStart,
+  Personalize,
+} from "./";
 
 import { useState } from "react";
 
@@ -18,6 +25,12 @@ const WorkScreen = ({
   handleStateWebBrowser,
   closeAllPrograms,
 }) => {
+  // useState hook and handler function for changing Desktop wallpaper
+  const [wallpaper, setWallpaper] = useState(wallpaperOne);
+  const handleWallpaperChange = (image) => {
+    setWallpaper(image);
+  };
+
   // useState hook for showing and hidding MenuStart
   const [showMenuStart, setShowMenuStart] = useState(false);
   const handleShowMenuStart = () => {
@@ -79,6 +92,7 @@ const WorkScreen = ({
           handleStateWebBrowser={handleStateWebBrowser}
           toDoApp={toDoApp}
           webBrowser={webBrowser}
+          wallpaper={wallpaper}
         />
         {desktopContextMenuPosition && (
           <DesktopContextMenu
@@ -124,6 +138,12 @@ const WorkScreen = ({
         >
           <Calendar onChange={onChange} value={value} locale={lang.lng} />
         </CSSTransition>
+
+        <Personalize
+          lang={lang}
+          wallpaper={wallpaper}
+          handleWallpaperChange={handleWallpaperChange}
+        />
       </div>
     </CSSTransition>
   );

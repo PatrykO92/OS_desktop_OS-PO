@@ -1,21 +1,35 @@
 import "../assets/styles/closeScreen.css";
 
-import { useState } from "react";
+import { CSSTransition } from "react-transition-group";
 
-// Whole component made to understand React CSS transistions.
-const CloseScreen = () => {
-  const [showButton, setShowButton] = useState(false);
-
+const CloseScreen = ({ lang, changeStage }) => {
   return (
-    <div>
-      <button
-        onClick={() => {
-          setShowButton(!showButton);
-        }}
-      >
-        Button
-      </button>
-    </div>
+    <CSSTransition
+      in={true}
+      appear={true}
+      timeout={300}
+      classNames="fade"
+      unmountOnExit
+    >
+      <div className="close-screen">
+        <p>{lang.closeScreen1}</p>
+        <p>{lang.closeScreen2}</p>
+        <button
+          onClick={() => {
+            changeStage("startScreen");
+          }}
+        >
+          Start Screen
+        </button>
+        <button
+          onClick={() => {
+            changeStage("loginScreen");
+          }}
+        >
+          Login Screen
+        </button>
+      </div>
+    </CSSTransition>
   );
 };
 
