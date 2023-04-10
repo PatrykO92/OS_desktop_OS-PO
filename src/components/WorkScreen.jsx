@@ -69,6 +69,12 @@ const WorkScreen = ({
     });
   };
 
+  // useState hook for showing and hidding Personalize
+  const [showPersonalize, setShowPersonalize] = useState(false);
+  const handleShowPersonalize = () => {
+    setShowPersonalize((oldVal) => !oldVal);
+  };
+
   return (
     <CSSTransition in={true} appear={true} timeout={500} classNames="fade">
       <div
@@ -102,6 +108,7 @@ const WorkScreen = ({
             closeAllPrograms={closeAllPrograms}
             handleCloseCalendar={handleCloseCalendar}
             handleCloseMenuStart={handleCloseMenuStart}
+            handleShowPersonalize={handleShowPersonalize}
           />
         )}
 
@@ -139,11 +146,20 @@ const WorkScreen = ({
           <Calendar onChange={onChange} value={value} locale={lang.lng} />
         </CSSTransition>
 
-        <Personalize
-          lang={lang}
-          wallpaper={wallpaper}
-          handleWallpaperChange={handleWallpaperChange}
-        />
+        <CSSTransition
+          in={showPersonalize}
+          appear={true}
+          timeout={500}
+          classNames="fade"
+          unmountOnExit
+        >
+          <Personalize
+            lang={lang}
+            wallpaper={wallpaper}
+            handleWallpaperChange={handleWallpaperChange}
+            handleShowPersonalize={handleShowPersonalize}
+          />
+        </CSSTransition>
       </div>
     </CSSTransition>
   );

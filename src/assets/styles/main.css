@@ -1,19 +1,20 @@
 :root {
-  --theme-bg: hsla(198, 16%, 13%);
-  --theme-bg-light: hsla(198, 16%, 13%, 0.795);
-  --theme-font: hsl(0, 0%, 100%);
-  --theme-font222: #fcacff;
-  --hover-main: rgba(255, 255, 255, 0.1);
+  --theme-bg: #1c2326;
+  --theme-bg-light: #1c2326cb;
+  --theme-font: #ffffff;
+  --hover-main: #ffffff1a;
   --border-main: #a0a096;
-  --icon-bg: rgba(28, 35, 38, 0.329);
+  --icon-bg: #1c232654;
   --red: #d40909;
   --green: #27960b;
   --blue: #5b53d6;
-  --frame: rgb(41, 39, 43);
-  --shadow: rgba(0, 0, 0, 0.3);
-  --program-container-background: rgba(0, 0, 0, 0.85);
-  --hidden: rgba(76, 73, 80, 0.658);
-  --showed: rgba(167, 162, 179, 0.644);
+  --frame: #29272b;
+  --shadow: #0000004d;
+  --program-container-background: #000000d9;
+  --hidden: #4c4950a8;
+  --showed: #a7a2b3a4;
+  --personalize-bg: #0a0918;
+  --personalize-border: #05634b;
 }
 
 *,

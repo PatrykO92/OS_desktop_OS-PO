@@ -14,6 +14,7 @@ const DesktopContextMenu = ({
   closeAllPrograms,
   handleCloseCalendar,
   handleCloseMenuStart,
+  handleShowPersonalize,
 }) => (
   <div
     id="desktop-context-menu"
@@ -26,7 +27,7 @@ const DesktopContextMenu = ({
       </p>
       <p>{lang.view}</p>
     </button>
-    <button>
+    <button onClick={handleShowPersonalize}>
       <p>
         <img src={brushIcon} alt={lang.personalize} />
       </p>

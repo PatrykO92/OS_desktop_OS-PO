@@ -123,11 +123,16 @@ const ToDoApp = ({ lang }) => {
           </button>
         </form>
       </div>
-      <div className="todo-app__list-container">
-        <div className="todo-app__list">
-          {toDoList.map((item) => renderOneToDo(item))}
+      {toDoList.length >= 1 ? (
+        <div className="todo-app__list-container">
+          <div className="todo-app__list">
+            {toDoList.map((item) => renderOneToDo(item))}
+          </div>
         </div>
-      </div>
+      ) : (
+        <div></div>
+      )}
+
       {showMsg && <div className="todo-app__item-added">Item added</div>}
     </div>
   );
