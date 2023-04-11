@@ -23,6 +23,8 @@ const WorkScreen = ({
   handleStateToDoApp,
   webBrowser,
   handleStateWebBrowser,
+  calculator,
+  handleStateCalculator,
   closeAllPrograms,
 }) => {
   // useState hook and handler function for changing Desktop wallpaper
@@ -76,7 +78,13 @@ const WorkScreen = ({
   };
 
   return (
-    <CSSTransition in={true} appear={true} timeout={500} classNames="fade">
+    <CSSTransition
+      in={true}
+      appear={true}
+      timeout={500}
+      classNames="fade"
+      unmountOnExit
+    >
       <div
         className="work-screen"
         onContextMenu={(e) =>
@@ -98,6 +106,8 @@ const WorkScreen = ({
           handleStateWebBrowser={handleStateWebBrowser}
           toDoApp={toDoApp}
           webBrowser={webBrowser}
+          calculator={calculator}
+          handleStateCalculator={handleStateCalculator}
           wallpaper={wallpaper}
         />
         {desktopContextMenuPosition && (
@@ -120,6 +130,8 @@ const WorkScreen = ({
           handleStateToDoApp={handleStateToDoApp}
           webBrowser={webBrowser}
           handleStateWebBrowser={handleStateWebBrowser}
+          calculator={calculator}
+          handleStateCalculator={handleStateCalculator}
         />
 
         <CSSTransition
@@ -134,6 +146,7 @@ const WorkScreen = ({
             user={user}
             changeStage={changeStage}
             handleStateWebBrowser={handleStateWebBrowser}
+            closeAllPrograms={closeAllPrograms}
           />
         </CSSTransition>
 

@@ -13,8 +13,10 @@ import ProgramContainer from "./ProgramContainer";
 import WebBrowser from "./WebBrowser";
 import ToDoApp from "./ToDoApp";
 import Personalize from "./Personalize";
+import Calculator from "./Calculator";
 
 export {
+  Calculator,
   CalendarButton,
   CloseScreen,
   Desktop,

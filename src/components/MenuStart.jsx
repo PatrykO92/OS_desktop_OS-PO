@@ -5,7 +5,13 @@ import { NewsBox } from "./";
 
 import { useState } from "react";
 
-const MenuStart = ({ lang, user, changeStage, handleStateWebBrowser }) => {
+const MenuStart = ({
+  lang,
+  user,
+  changeStage,
+  handleStateWebBrowser,
+  closeAllPrograms,
+}) => {
   const [showAlert, setShowAlert] = useState(false);
   const [nextStage, setNextStage] = useState(null);
 
@@ -15,6 +21,7 @@ const MenuStart = ({ lang, user, changeStage, handleStateWebBrowser }) => {
   };
 
   const handleAccept = () => {
+    closeAllPrograms();
     setShowAlert(false);
     changeStage(nextStage);
   };

@@ -13,6 +13,7 @@ import checkIcon from "./check-icon.svg";
 import uncheckIcon from "./uncheck-icon.svg";
 import trashCanIcon from "./trash-can-icon.svg";
 import plusCircleIcon from "./plus-circle-icon.svg";
+import calculatorIcon from "./calculator-icon.svg";
 
 export {
   powerOffIcon,
@@ -30,4 +31,5 @@ export {
   uncheckIcon,
   trashCanIcon,
   plusCircleIcon,
+  calculatorIcon,
 };

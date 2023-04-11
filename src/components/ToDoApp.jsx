@@ -1,3 +1,5 @@
+// TODO: change all handlers to event delegation
+
 import "../assets/styles/toDoApp.css";
 import {
   checkIcon,

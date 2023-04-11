@@ -5,6 +5,8 @@ const Desktop = ({
   handleStateWebBrowser,
   toDoApp,
   webBrowser,
+  calculator,
+  handleStateCalculator,
   wallpaper,
 }) => {
   return (
@@ -19,6 +21,7 @@ const Desktop = ({
         <img src={toDoApp.icon} alt={toDoApp.name} />
         <p>{toDoApp.name}</p>
       </button>
+
       <button
         onClick={() => {
           handleStateWebBrowser("hidden", false);
@@ -28,6 +31,17 @@ const Desktop = ({
       >
         <img src={webBrowser.icon} alt={webBrowser.name} />
         <p>{webBrowser.name}</p>
+      </button>
+
+      <button
+        onClick={() => {
+          handleStateCalculator("hidden", false);
+          handleStateCalculator("programEnabled", true);
+        }}
+        className="desktop_icon"
+      >
+        <img src={calculator.icon} alt={calculator.name} />
+        <p>{calculator.name}</p>
       </button>
     </div>
   );

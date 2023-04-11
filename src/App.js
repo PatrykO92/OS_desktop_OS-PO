@@ -1,12 +1,13 @@
 import "./assets/styles/main.css";
 
 // import Icons for specific programs
-import { toDoAppIcon, webBrowserIcon } from "./assets/icons";
+import { toDoAppIcon, webBrowserIcon, calculatorIcon } from "./assets/icons";
 
 import {
   LoginScreen,
   StartScreen,
   WorkScreen,
+  Calculator,
   CloseScreen,
   ProgramContainer,
   WebBrowser,
@@ -58,6 +59,7 @@ function App() {
     name: "ToDo",
     icon: toDoAppIcon,
   });
+
   const handleStateToDoApp = (name, value) => {
     setToDoApp((oldVal) => ({ ...oldVal, [name]: value }));
   };
@@ -79,9 +81,11 @@ function App() {
     icon: webBrowserIcon,
     defaultUrl: false,
   });
+
   const handleStateWebBrowser = (name, value) => {
     setWebBrowser((oldVal) => ({ ...oldVal, [name]: value }));
   };
+
   const handleDefaultStateWebBrowser = () => {
     setWebBrowser({
       programEnabled: false,
@@ -92,13 +96,37 @@ function App() {
     });
   };
 
+  //App:3 Calculator useState and handlers
+  const [calculator, setCalculator] = useState({
+    programEnabled: false,
+    hidden: false,
+    name: "Calculator",
+    icon: calculatorIcon,
+  });
+
+  const handleStateCalculator = (name, value) => {
+    setCalculator((oldVal) => ({ ...oldVal, [name]: value }));
+  };
+
+  const handleDefaultStateCalculator = () => {
+    setCalculator({
+      programEnabled: false,
+      hidden: false,
+      name: "Calculator",
+      icon: calculatorIcon,
+    });
+  };
+
+  // Close all programs function
   const closeAllPrograms = () => {
     handleDefaultStateToDoApp();
     handleDefaultStateWebBrowser();
+    handleDefaultStateCalculator();
   };
 
   return (
     <div className="whole-screen">
+      {/* App 1: To-Do-App */}
       <CSSTransition
         in={toDoApp.programEnabled}
         timeout={300}
@@ -116,6 +144,8 @@ function App() {
           <ToDoApp lang={textModel[windowsLanguage]} />
         </ProgramContainer>
       </CSSTransition>
+
+      {/* App 2: Web Browser */}
       <CSSTransition
         in={webBrowser.programEnabled}
         timeout={300}
@@ -134,6 +164,25 @@ function App() {
             lang={textModel[windowsLanguage]}
             passUrl={webBrowser.defaultUrl}
           />
+        </ProgramContainer>
+      </CSSTransition>
+
+      {/* App 3: Calculator */}
+      <CSSTransition
+        in={calculator.programEnabled}
+        timeout={300}
+        classNames="fade"
+        unmountOnExit
+      >
+        <ProgramContainer
+          lang={textModel[windowsLanguage]}
+          programName={calculator.name}
+          programIcon={calculator.icon}
+          programHidden={calculator.hidden}
+          handleProgramState={handleStateCalculator}
+          handleDefaultProgramState={handleDefaultStateCalculator}
+        >
+          <Calculator />
         </ProgramContainer>
       </CSSTransition>
 
@@ -162,6 +211,8 @@ function App() {
           handleStateToDoApp={handleStateToDoApp}
           webBrowser={webBrowser}
           handleStateWebBrowser={handleStateWebBrowser}
+          calculator={calculator}
+          handleStateCalculator={handleStateCalculator}
           closeAllPrograms={closeAllPrograms}
         />
       )}

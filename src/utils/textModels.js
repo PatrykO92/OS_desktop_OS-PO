@@ -21,6 +21,7 @@ const textModel = {
     fontColor: "Font color",
     home: "Home-page",
     link: "Link",
+    loginScreen: "Login Screen",
     lng: "en-us",
     lngFetch: "en",
     mainColor: "Main color",
@@ -39,6 +40,7 @@ const textModel = {
     remove: "Remove",
     sport: "sport",
     setDefault: "Set default theme",
+    startScreen: "Start screen",
     startScreenText1:
       "Welcome to my app! I recommend using fullscreen mode for the best experience (press F11). This is starting form to set up your user. You can choose all settings by yourself, or use the default user. Have fun!",
     startScreenText2: "Personal info",
@@ -79,6 +81,7 @@ const textModel = {
     fontColor: "Color czcionki",
     home: "Strona startowa",
     link: "Link",
+    loginScreen: "Ekran logowanie",
     lng: "pl",
     lngFetch: "pl",
     mainColor: "Kolor główny",
@@ -98,6 +101,7 @@ const textModel = {
     reset: "Uruchom ponownie",
     setDefault: "Ustaw motyw domyślny",
     sport: "sport",
+    startScreen: "Ekran startowy",
     startScreenText1:
       "Witam w mojej apce. Polecam używać trybu pełnoekranowego do tej aplikacji (wciśnij F11). To jest formularz startowy do ustawienia swojego użytkownika. Możesz ustawić wszystko samodzielnie, lub użyć użytkownika domyślnego. Miłej zabawy!",
     startScreenText2: "Dane osobiste",

@@ -4,7 +4,9 @@
   bottom: 3rem;
   left: 0;
   height: calc(100vh - 3rem);
+  height: calc(100dvh - 3rem);
   width: 100vw;
+  width: 100dvw;
   display: flex;
   flex-direction: column;
   border: 2px solid var(--frame);

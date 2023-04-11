@@ -1,4 +1,4 @@
-import "../assets/styles/personalizeApp.css";
+import "../assets/styles/personalizeMenu.css";
 import {
   wallpaperOne,
   wallpaperTwo,
@@ -63,13 +63,14 @@ const Personalize = ({
 
   return (
     <div
-      className="personalize-app"
+      className="personalize-menu"
       onClick={(e) => {
         if (e.target.className.includes("personalize-app"))
           handleShowPersonalize();
       }}
     >
       <div>
+        <button onClick={handleShowPersonalize}>{lang.close}</button>
         <div className="personalize-window">
           <div className="personalize-window__wallpaper">
             <p>{lang.wallpaper}</p>

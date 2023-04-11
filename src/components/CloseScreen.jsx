@@ -19,14 +19,14 @@ const CloseScreen = ({ lang, changeStage }) => {
             changeStage("startScreen");
           }}
         >
-          Start Screen
+          {lang.startScreen}
         </button>
         <button
           onClick={() => {
             changeStage("loginScreen");
           }}
         >
-          Login Screen
+          {lang.loginScreen}
         </button>
       </div>
     </CSSTransition>
