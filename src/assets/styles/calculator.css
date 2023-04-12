@@ -9,35 +9,48 @@
   display: flex;
   flex-direction: column;
   gap: 0.3rem;
-  padding: 0.5rem;
   background-color: var(--theme-bg);
   border-radius: 5px;
 }
 
-.calculator > div {
+.calculator__outputs {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.calculator__outputs > p {
+  max-width: 17rem;
+  text-align: end;
+  font-weight: 500;
+}
+
+.calculator__outputs > p:nth-child(2) {
+  font-size: 1.8rem;
+}
+
+.calculator__inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: 0.5rem;
+}
+
+.calculator__inputs > div {
   display: flex;
   flex-direction: row;
   gap: 0.3rem;
 }
 
-.calculator > div:nth-child(2) button,
-.calculator > div > button:last-of-type {
+.calculator__inputs > div:nth-child(1) button,
+.calculator__inputs > div > button:last-of-type {
   background-color: var(--hover-main);
 }
 
-.calculator input,
 .calculator button {
   color: var(--theme-font);
   font-weight: 500;
   font-size: 1.2rem;
-}
-
-.calculator input {
-  text-align: end;
-  width: 16.6rem;
-  margin: 1rem 0;
-  font-size: 1.8rem;
-  background-color: transparent;
 }
 
 .calculator button {
