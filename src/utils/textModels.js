@@ -44,10 +44,10 @@ const textModel = {
     setDefault: "Set default theme",
     startScreen: "Start screen",
     startScreenText1:
-      "Welcome to my app! I recommend using fullscreen mode for the best experience (press F11). This is starting form to set up your user. You can choose all settings by yourself, or use the default user. Have fun!",
+      "Welcome to my app!. This is starting form to set up your user. You can choose all settings by yourself, or use the default user. Have fun!",
     startScreenText2: "Personal info",
     startScreenText3:
-      "Please provide your name and surname, as well as your PIN. Your data is secure, as it is not being saved anywhere.",
+      "Please provide your name and surname, as well as your PIN. Please do not provide your real data and passwords, as everything is currently being saved in localStorage.",
     surname: "Surname (only letters)",
     toDoAppInputPlaceholder: "eg. buy eggs",
     uncheck: "Uncheck",
@@ -107,10 +107,10 @@ const textModel = {
     sport: "sport",
     startScreen: "Ekran startowy",
     startScreenText1:
-      "Witam w mojej apce. Polecam używać trybu pełnoekranowego do tej aplikacji (wciśnij F11). To jest formularz startowy do ustawienia swojego użytkownika. Możesz ustawić wszystko samodzielnie, lub użyć użytkownika domyślnego. Miłej zabawy!",
+      "Witam w mojej apce. To jest formularz startowy do ustawienia swojego użytkownika. Możesz ustawić wszystko samodzielnie, lub użyć użytkownika domyślnego. Miłej zabawy!",
     startScreenText2: "Dane osobiste",
     startScreenText3:
-      "Proszę podać imię, nazwisko oraz PIN. Twoje dane są bezpieczne, ponieważ nie są nigdzie zapisywane.",
+      "Proszę podać imię, nazwisko oraz PIN. Proszę nie podawaj swoich prawdziwych danych oraz haseł, ponieważ w tym momencie wszystko jest zapisywane w localStorage.",
     surname: "Nazwisko (tylko litery)",
     toDoAppInputPlaceholder: "np. kup jajka",
     uncheck: "Odznaczone",
