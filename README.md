@@ -41,6 +41,15 @@ The app uses the following dependencies:
 5. Implement event delegation in the personalize app to improve performance
 6. Preload some resources (such as images or fonts) to improve the user experience
 7. Ensure mobile responsiveness by implementing appropriate CSS rules for smaller screen sizes
+8. Add a weather app.
+9. Add a video player app.
+10. Add two simple games,
+
+- Tetris (one of my favorite games of all time)
+- one simple game that uses canvas
+
+11. Add a small chat app with websocket and backend functionality (to consider)
+12. Add React Drag & Drop functionality for icons (to consider)
 
 ## Screenshots
 
