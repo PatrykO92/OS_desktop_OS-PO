@@ -31,9 +31,10 @@
 }
 
 .calculator__outputs > p {
-  max-width: 17rem;
+  width: 20rem;
   text-align: end;
   font-weight: 500;
+  padding-right: 0.3rem;
 }
 
 .calculator__outputs > p:nth-child(1) {
@@ -42,19 +43,24 @@
 
 .calculator__outputs > p:nth-child(2) {
   font-size: 1.7rem;
+  overflow-x: hidden;
+}
+
+.calculator__outputs > p:nth-child(2):hover {
+  overflow-x: visible;
 }
 
 .calculator__inputs {
   display: flex;
   flex-direction: column;
-  gap: 0.3rem;
+  gap: 0.4rem;
   padding: 0.5rem;
 }
 
 .calculator__inputs > div {
   display: flex;
   flex-direction: row;
-  gap: 0.3rem;
+  gap: 0.4rem;
 }
 
 .calculator__inputs > div:nth-child(1) button,
@@ -69,7 +75,7 @@
 }
 
 .calculator button {
-  width: 4rem;
+  width: 4.5rem;
   height: 3rem;
   border-radius: 5px;
   border: 2px solid var(--border-main);

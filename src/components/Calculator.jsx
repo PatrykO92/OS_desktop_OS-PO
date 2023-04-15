@@ -45,6 +45,7 @@ const Calculator = ({ lang }) => {
   const performEvaluationOperation = () => {
     try {
       if (!calculationValue.includes("=")) {
+        // eslint-disable-next-line
         const evalValue = eval(`${calculationValue}${outputValue}`);
 
         if (evalValue === Infinity) {
@@ -59,44 +60,77 @@ const Calculator = ({ lang }) => {
     }
   };
 
+  // Code was rewrote with help of chat-gpt
   const performMathOperation = (mathSign) => {
-    if (!calculationValue.includes("=")) {
-      if (outputValue === "0" && calculationValue !== "0") {
-        setCalculationValue((oldVal) => `${oldVal.slice(0, -1)}${mathSign}`);
-      }
-
-      if (outputValue === "0") return;
-
-      if (calculationValue === "0") {
-        setCalculationValue(`${outputValue}${mathSign}`);
-        return setOutputValue("0");
-      }
-
-      if (mathSign === "%") {
-        const percentageValue = eval(`(${calculationValue}${outputValue})/100`);
-        setCalculationValue(
-          `${calculationValue}${percentageValue}${mathSign}=`
-        );
-        return setOutputValue(`${percentageValue}`);
-      }
-
-      if (calculationValue !== "0") {
-        const evalValue = eval(`${calculationValue}${outputValue}`);
-        setCalculationValue(`${evalValue}${mathSign}`);
-        return setOutputValue("0");
-      }
-    } else {
+    if (calculationValue.includes("=")) {
       setCalculationValue(`${outputValue}${mathSign}`);
       return setOutputValue("0");
     }
+
+    if (outputValue === "0") return;
+
+    let newCalculationValue;
+    let newOutputValue = "0";
+
+    if (calculationValue === "0") {
+      newCalculationValue = `${outputValue}${mathSign}`;
+    } else if (mathSign === "%") {
+      // eslint-disable-next-line
+      const percentageValue = eval(`(${calculationValue}${outputValue})/100`);
+      newCalculationValue = `${calculationValue}${percentageValue}${mathSign}=`;
+      newOutputValue = `${percentageValue}`;
+    } else {
+      // eslint-disable-next-line
+      const evalValue = eval(`${calculationValue}${outputValue}`);
+      newCalculationValue = `${evalValue}${mathSign}`;
+    }
+
+    setCalculationValue(newCalculationValue);
+    setOutputValue(newOutputValue);
   };
+
+  // Leagacy code, written by me, needed to analyze
+
+  // const performMathOperation = (mathSign) => {
+  //   if (!calculationValue.includes("=")) {
+  //     if (outputValue === "0" && calculationValue !== "0") {
+  //       setCalculationValue((oldVal) => `${oldVal.slice(0, -1)}${mathSign}`);
+  //     }
+
+  //     if (outputValue === "0") return;
+
+  //     if (calculationValue === "0") {
+  //       setCalculationValue(`${outputValue}${mathSign}`);
+  //       return setOutputValue("0");
+  //     }
+
+  //     if (mathSign === "%") {
+  //
+  //       const percentageValue = eval(`(${calculationValue}${outputValue})/100`);
+  //       setCalculationValue(
+  //         `${calculationValue}${percentageValue}${mathSign}=`
+  //       );
+  //       return setOutputValue(`${percentageValue}`);
+  //     }
+
+  //     if (calculationValue !== "0") {
+  //       // eslint-disable-next-line
+  //       const evalValue = eval(`${calculationValue}${outputValue}`);
+  //       setCalculationValue(`${evalValue}${mathSign}`);
+  //       return setOutputValue("0");
+  //     }
+  //   } else {
+  //     setCalculationValue(`${outputValue}${mathSign}`);
+  //     return setOutputValue("0");
+  //   }
+  // };
 
   useEffect(() => {
     if (calculationValue.includes("NaN") || outputValue.includes("NaN")) {
       cleanOutputs();
       errorHandler(lang.calculatorError);
     }
-  }, [outputValue, calculationValue]);
+  }, [outputValue, calculationValue, lang.calculatorError]);
 
   return (
     <div className="calculator-window">
