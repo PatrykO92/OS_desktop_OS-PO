@@ -5,6 +5,17 @@
   align-items: center;
 }
 
+.calculator-error {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  padding: 0.3rem;
+  border-radius: 5px;
+  transform: translate(-50%, -50%);
+  background-color: var(--red);
+  font-weight: 600;
+}
+
 .calculator {
   display: flex;
   flex-direction: column;
@@ -25,8 +36,12 @@
   font-weight: 500;
 }
 
+.calculator__outputs > p:nth-child(1) {
+  font-size: 0.9rem;
+}
+
 .calculator__outputs > p:nth-child(2) {
-  font-size: 1.8rem;
+  font-size: 1.7rem;
 }
 
 .calculator__inputs {

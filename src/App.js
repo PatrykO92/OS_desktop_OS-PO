@@ -182,7 +182,7 @@ function App() {
           handleProgramState={handleStateCalculator}
           handleDefaultProgramState={handleDefaultStateCalculator}
         >
-          <Calculator />
+          <Calculator lang={textModel[windowsLanguage]} />
         </ProgramContainer>
       </CSSTransition>
 
