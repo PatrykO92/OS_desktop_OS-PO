@@ -14,6 +14,7 @@ import WebBrowser from "./WebBrowser";
 import ToDoApp from "./ToDoApp";
 import Personalize from "./Personalize";
 import Calculator from "./Calculator";
+import TetrisApp from "./TetrisApp/TetrisApp";
 
 export {
   Calculator,
@@ -32,4 +33,5 @@ export {
   ProgramContainer,
   ToDoApp,
   Personalize,
+  TetrisApp,
 };

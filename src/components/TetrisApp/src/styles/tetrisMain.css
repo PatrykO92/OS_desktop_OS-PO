@@ -1,0 +1,86 @@
+:root {
+  --tetris-color1: #5800ff;
+  --tetris-color2: #0096ff;
+  --tetris-color3: #00d7ff;
+  --tetris-color4: #72ffff;
+  --tetris-color5: #72ffff13;
+  --tetris-background-color: black;
+}
+
+@font-face {
+  font-family: ethnocentric;
+  src: url("../fonts/ethnocentric.otf");
+}
+
+@font-face {
+  font-family: ethnocentric;
+  src: url("../fonts/ethnocentric-it.otf");
+  font-style: italic;
+}
+
+.tetris {
+  height: 100%;
+  background-color: var(--tetris-main-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var();
+}
+
+.tetris * {
+  font-family: ethnocentric;
+}
+
+.tetris__game-window {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-end;
+}
+
+.tetris__game-board-container {
+  display: grid;
+  grid-template-columns: repeat(10, 1.5rem);
+  grid-template-rows: repeat(20, 1.5rem);
+  gap: 1px;
+  border: 2px solid var(--tetris-color2);
+  border-top: 0;
+  background-color: var(--tetris-color5);
+  box-shadow: 0px -4px 15px var(--tetris-color4);
+}
+
+.tetris__game-board-container__item {
+  border-radius: 3px;
+  background-color: var(--tetris-background-color);
+}
+
+.tetris-item-block {
+  box-shadow: inset 0px 4px 15px var(--tetris-color3);
+}
+
+.tetris__game-board-container > div:nth-child(-n + 10) {
+  border-radius: 0px 0px 3px 3px;
+  filter: opacity(0.9);
+}
+
+.tetris__next-block-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1rem);
+  grid-template-rows: repeat(5, 1rem);
+  gap: 1px;
+  border: 2px solid var(--tetris-color2);
+  background-color: var(--tetris-color5);
+  max-width: fit-content;
+}
+
+.tetris__next-block-container__item {
+  border-radius: 3px;
+  background-color: var(--tetris-background-color);
+}
+
+.tetris__score-board,
+.tetris__level-loading {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}

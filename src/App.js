@@ -1,7 +1,12 @@
 import "./assets/styles/main.css";
 
 // import Icons for specific programs
-import { toDoAppIcon, webBrowserIcon, calculatorIcon } from "./assets/icons";
+import {
+  toDoAppIcon,
+  webBrowserIcon,
+  calculatorIcon,
+  tetrisIcon,
+} from "./assets/icons";
 
 import {
   LoginScreen,
@@ -12,6 +17,7 @@ import {
   ProgramContainer,
   WebBrowser,
   ToDoApp,
+  TetrisApp,
 } from "./components";
 
 import { textModel } from "./utils";
@@ -52,7 +58,7 @@ function App() {
     setUser(user);
   };
 
-  //App:1 TO-DO-APP useState and handlers
+  //App 1: TO-DO-APP useState and handlers
   const [toDoApp, setToDoApp] = useState({
     programEnabled: false,
     hidden: false,
@@ -73,7 +79,7 @@ function App() {
     });
   };
 
-  //App:2 Web Browser useState and handlers
+  //App 2: Web Browser useState and handlers
   const [webBrowser, setWebBrowser] = useState({
     programEnabled: false,
     hidden: false,
@@ -96,7 +102,7 @@ function App() {
     });
   };
 
-  //App:3 Calculator useState and handlers
+  //App 3: Calculator useState and handlers
   const [calculator, setCalculator] = useState({
     programEnabled: false,
     hidden: false,
@@ -117,11 +123,33 @@ function App() {
     });
   };
 
+  //App 4: Tetris useState and handlers
+  const [tetris, setTetris] = useState({
+    programEnabled: false,
+    hidden: false,
+    name: "Tetris",
+    icon: tetrisIcon,
+  });
+
+  const handleStateTetris = (name, value) => {
+    setTetris((oldVal) => ({ ...oldVal, [name]: value }));
+  };
+
+  const handleDefaultStateTetris = () => {
+    setTetris({
+      programEnabled: false,
+      hidden: false,
+      name: "Tetris",
+      icon: tetrisIcon,
+    });
+  };
+
   // Close all programs function
   const closeAllPrograms = () => {
     handleDefaultStateToDoApp();
     handleDefaultStateWebBrowser();
     handleDefaultStateCalculator();
+    handleDefaultStateTetris();
   };
 
   return (
@@ -186,6 +214,25 @@ function App() {
         </ProgramContainer>
       </CSSTransition>
 
+      {/* App 4: Tetris */}
+      <CSSTransition
+        in={tetris.programEnabled}
+        timeout={300}
+        classNames="fade"
+        unmountOnExit
+      >
+        <ProgramContainer
+          lang={textModel[windowsLanguage]}
+          programName={tetris.name}
+          programIcon={tetris.icon}
+          programHidden={tetris.hidden}
+          handleProgramState={handleStateTetris}
+          handleDefaultProgramState={handleDefaultStateTetris}
+        >
+          <TetrisApp lang={textModel[windowsLanguage]} />
+        </ProgramContainer>
+      </CSSTransition>
+
       {systemStage.startScreen && (
         <StartScreen
           lang={textModel[windowsLanguage]}
@@ -213,6 +260,8 @@ function App() {
           handleStateWebBrowser={handleStateWebBrowser}
           calculator={calculator}
           handleStateCalculator={handleStateCalculator}
+          tetris={tetris}
+          handleStateTetris={handleStateTetris}
           closeAllPrograms={closeAllPrograms}
         />
       )}

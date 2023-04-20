@@ -1,13 +1,16 @@
 import "../assets/styles/desktop.css";
 
 const Desktop = ({
-  handleStateToDoApp,
-  handleStateWebBrowser,
+  wallpaper,
+  // Apps states and handlers
   toDoApp,
+  handleStateToDoApp,
   webBrowser,
+  handleStateWebBrowser,
   calculator,
   handleStateCalculator,
-  wallpaper,
+  tetris,
+  handleStateTetris,
 }) => {
   return (
     <div className="desktop" style={{ backgroundImage: `url(${wallpaper})` }}>
@@ -42,6 +45,17 @@ const Desktop = ({
       >
         <img src={calculator.icon} alt={calculator.name} />
         <p>{calculator.name}</p>
+      </button>
+
+      <button
+        onClick={() => {
+          handleStateTetris("hidden", false);
+          handleStateTetris("programEnabled", true);
+        }}
+        className="desktop_icon"
+      >
+        <img src={tetris.icon} alt={tetris.name} />
+        <p>{tetris.name}</p>
       </button>
     </div>
   );

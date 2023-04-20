@@ -25,6 +25,8 @@ const WorkScreen = ({
   handleStateWebBrowser,
   calculator,
   handleStateCalculator,
+  tetris,
+  handleStateTetris,
   closeAllPrograms,
 }) => {
   // useState hook and handler function for changing Desktop wallpaper
@@ -102,12 +104,14 @@ const WorkScreen = ({
         }}
       >
         <Desktop
-          handleStateToDoApp={handleStateToDoApp}
-          handleStateWebBrowser={handleStateWebBrowser}
           toDoApp={toDoApp}
+          handleStateToDoApp={handleStateToDoApp}
           webBrowser={webBrowser}
+          handleStateWebBrowser={handleStateWebBrowser}
           calculator={calculator}
           handleStateCalculator={handleStateCalculator}
+          tetris={tetris}
+          handleStateTetris={handleStateTetris}
           wallpaper={wallpaper}
         />
         {desktopContextMenuPosition && (
@@ -132,6 +136,8 @@ const WorkScreen = ({
           handleStateWebBrowser={handleStateWebBrowser}
           calculator={calculator}
           handleStateCalculator={handleStateCalculator}
+          tetris={tetris}
+          handleStateTetris={handleStateTetris}
         />
 
         <CSSTransition

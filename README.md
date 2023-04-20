@@ -18,7 +18,7 @@ To run the app locally on your machine, first download the source code and run `
 - Create a user account
 - Customize your desktop environment by changing the wallpaper, main color, and font color
 - Log in and log out
-- Use built-in apps like a calculator, to-do list, and web browser
+- Use built-in apps like a calculator, to-do list, calendar and web browser
 
 ## Dependencies
 

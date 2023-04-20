@@ -8,12 +8,15 @@ const TaskBar = ({
   lang,
   handleShowMenuStart,
   handleShowCalendar,
+  //apps state and handlers
   toDoApp,
   handleStateToDoApp,
   webBrowser,
   handleStateWebBrowser,
   calculator,
   handleStateCalculator,
+  tetris,
+  handleStateTetris,
 }) => {
   return (
     <div className="task-bar">
@@ -32,6 +35,7 @@ const TaskBar = ({
                 handleStateToDoApp("hidden", !toDoApp.hidden);
                 handleStateWebBrowser("hidden", true);
                 handleStateCalculator("hidden", true);
+                handleStateTetris("hidden", true);
               }}
               className="task-bar_program-button"
               style={{
@@ -51,6 +55,7 @@ const TaskBar = ({
                 handleStateWebBrowser("hidden", !webBrowser.hidden);
                 handleStateToDoApp("hidden", true);
                 handleStateCalculator("hidden", true);
+                handleStateTetris("hidden", true);
               }}
               className="task-bar_program-button"
               style={{
@@ -70,6 +75,7 @@ const TaskBar = ({
                 handleStateCalculator("hidden", !calculator.hidden);
                 handleStateWebBrowser("hidden", true);
                 handleStateToDoApp("hidden", true);
+                handleStateTetris("hidden", true);
               }}
               className="task-bar_program-button"
               style={{
@@ -80,6 +86,26 @@ const TaskBar = ({
             >
               <img src={calculator.icon} alt={calculator.name} />
               <p>{calculator.name}</p>
+            </button>
+          )}
+
+          {tetris.programEnabled && (
+            <button
+              onClick={() => {
+                handleStateCalculator("hidden", true);
+                handleStateWebBrowser("hidden", true);
+                handleStateToDoApp("hidden", true);
+                handleStateTetris("hidden", !tetris.hidden);
+              }}
+              className="task-bar_program-button"
+              style={{
+                backgroundColor: `${
+                  tetris.hidden ? "var(--hidden)" : "var(--showed)"
+                }`,
+              }}
+            >
+              <img src={tetris.icon} alt={tetris.name} />
+              <p>{tetris.name}</p>
             </button>
           )}
         </div>
