@@ -4,6 +4,7 @@
   --tetris-color3: #00d7ff;
   --tetris-color4: #72ffff;
   --tetris-color5: #72ffff13;
+  --tetris-color6: #7eff72;
   --tetris-background-color: black;
 }
 
@@ -55,6 +56,10 @@
 
 .tetris-item-block {
   box-shadow: inset 0px 4px 15px var(--tetris-color3);
+}
+
+.tetris-item-tetrimino {
+  box-shadow: inset 0px 4px 15px var(--tetris-color6);
 }
 
 .tetris__game-board-container > div:nth-child(-n + 10) {
