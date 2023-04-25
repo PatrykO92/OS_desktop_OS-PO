@@ -68,21 +68,6 @@
   filter: opacity(0.9);
 }
 
-.tetris__next-block-container {
-  display: grid;
-  grid-template-columns: repeat(4, 1rem);
-  grid-template-rows: repeat(4, 1rem);
-  gap: 1px;
-  border: 2px solid var(--tetris-color2);
-  background-color: var(--tetris-color5);
-  max-width: fit-content;
-}
-
-.tetris__next-block-container__item {
-  border-radius: 3px;
-  background-color: var(--tetris-background-color);
-}
-
 .tetris__score-board,
 .tetris__level-loading {
   display: flex;
