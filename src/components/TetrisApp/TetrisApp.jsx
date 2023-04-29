@@ -1,3 +1,5 @@
+// TODO: HUGE CODE REFACTOR
+
 import "./src/styles/tetrisMain.css";
 import { pauseIcon } from "./src/icons";
 import { randomTetrominoSequence } from "./src/helpers";
