@@ -6,7 +6,6 @@
   gap: 1rem;
   width: 100%;
   height: 100%;
-
   background-size: cover;
 }
 
@@ -21,13 +20,39 @@
   color: var(--theme-font);
 }
 
+.login-screen_login-button {
+  padding: 0.3rem;
+  border: 2px solid var(--border-main);
+  background-color: var(--theme-bg);
+  border-radius: 50%;
+  transition: all 0.5s;
+}
+
+.login-screen_login-button:hover {
+  opacity: 0.7;
+}
+
+.login-screen_login-button > img {
+  filter: invert(100%);
+  width: 1.3rem;
+  height: 1.3rem;
+}
+
+.login-screen > form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.3rem;
+}
+
 .login-screen > form > input {
   padding: 0.3rem 1rem;
   border-radius: 10px;
-  width: 15rem;
+  width: 12rem;
   border: 2px solid var(--border-main);
   background-color: var(--theme-bg);
-  color: var(--them-font);
+  text-align: center;
+  color: var(--theme-font);
 }
 
 .login-screen > p:hover {

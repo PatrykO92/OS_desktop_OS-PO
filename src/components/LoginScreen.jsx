@@ -2,7 +2,7 @@ import "../assets/styles/loginScreen.css";
 import { osStartIcon } from "../assets/icons";
 import { wallpaperOne } from "../assets/images/wallpapers";
 import { LoadingSpinner } from "./";
-import { powerOffIcon, restartIcon } from "../assets/icons";
+import { powerOffIcon, restartIcon, arrowRightIcon } from "../assets/icons";
 
 import { useState, useEffect, useRef } from "react";
 
@@ -49,37 +49,59 @@ const LoginScreen = ({ lang, user, changeStage }) => {
           >
             <img src={user.avatar} alt="avatar" />
             <div>
-              {user.name} {user.surname}
+              {user.name} {user.surname}{" "}
+              {user.pin === "" && (
+                <button
+                  style={{ background: "transparent" }}
+                  className="login-screen_login-button"
+                  onClick={() => {
+                    changeStage("workScreen");
+                  }}
+                >
+                  <img src={arrowRightIcon} alt={lang.submit} />
+                </button>
+              )}
             </div>
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                setPin("");
-                if (pin !== user.pin) {
-                  pinInput.current.classList.add("login-screen_wrong-input");
-                }
-                if (pin === user.pin) changeStage("workScreen");
-              }}
-            >
-              <input
-                type="password"
-                placeholder={lang.pinPlaceholder}
-                ref={pinInput}
-                value={pin}
-                minLength={6}
-                maxLength={6}
-                onChange={(e) => {
-                  setPin(e.target.value);
-                }}
-              />
-            </form>
-            <p
-              onClick={() => {
-                setShowPin(!showPin);
-              }}
-            >
-              {lang.pinForgetMsg}
-            </p>
+
+            {user.pin !== "" && (
+              <>
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    setPin("");
+                    if (pin !== user.pin) {
+                      pinInput.current.classList.add(
+                        "login-screen_wrong-input"
+                      );
+                    }
+                    if (pin === user.pin) changeStage("workScreen");
+                  }}
+                >
+                  <input
+                    type="password"
+                    placeholder={lang.pinPlaceholder}
+                    ref={pinInput}
+                    value={pin}
+                    minLength={6}
+                    maxLength={6}
+                    onChange={(e) => {
+                      setPin(e.target.value);
+                    }}
+                  />
+                  <button className="login-screen_login-button" type="submit">
+                    <img src={arrowRightIcon} alt={lang.submit} />
+                  </button>
+                </form>
+                <p
+                  onClick={() => {
+                    setShowPin(!showPin);
+                  }}
+                >
+                  {lang.pinForgetMsg}
+                </p>
+              </>
+            )}
+
             {showPin && (
               <span className="tooltip">
                 {lang.yourPin}: {user.pin}
