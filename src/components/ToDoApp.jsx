@@ -39,12 +39,12 @@ const ToDoApp = ({ lang }) => {
   // set input value to "", when the thing is added to list
   const addToDoList = (text) => {
     setToDoList([
-      ...toDoList,
       {
         toDoID: uuidv4(),
         toDoDescription: text,
         toDoStatus: false,
       },
+      ...toDoList,
     ]);
     setShowMsg(true);
     setInputValue("");
@@ -80,7 +80,7 @@ const ToDoApp = ({ lang }) => {
         <p
           style={{
             textDecoration: `${item.toDoStatus ? "line-through" : ""}`,
-            color: `${item.toDoStatus ? "var(--todo-red)" : ""}`,
+            color: `${item.toDoStatus ? "var(--red)" : ""}`,
           }}
         >
           {item.toDoDescription}
