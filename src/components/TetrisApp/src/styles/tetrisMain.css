@@ -96,6 +96,11 @@
   border: 1px solid var(--tetris-color6);
 }
 
+.tetris__game-board__game-over p:nth-child(1) {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
 .tetris__game-board__menu__highscores {
   gap: 1rem;
 }

@@ -5,7 +5,7 @@ import { pauseIcon } from "./src/icons";
 import { randomTetrominoSequence } from "./src/helpers";
 import React, { useState, useEffect } from "react";
 
-const TetrisApp = () => {
+const TetrisApp = ({ lang }) => {
   const [pauseGame, setPauseGame] = useState(true);
   const [resumeGame, setResumeGame] = useState(false);
   const [showMenu, setShowMenu] = useState(true);
@@ -358,12 +358,16 @@ const TetrisApp = () => {
               {showMenu ? (
                 <div className="tetris__game-board__menu__buttons">
                   {resumeGame ? (
-                    <button onClick={resumeGameHandler}>Resume</button>
+                    <button onClick={resumeGameHandler}>
+                      {lang.tetrisResume}
+                    </button>
                   ) : (
                     ""
                   )}
 
-                  <button onClick={startGameHandler}>New game</button>
+                  <button onClick={startGameHandler}>
+                    {lang.tetrisNewGame}
+                  </button>
                   <button
                     onClick={() => {
                       setShowHighscore(true);
@@ -371,7 +375,7 @@ const TetrisApp = () => {
                       setGameOver(false);
                     }}
                   >
-                    Highscores
+                    {lang.tetrisHighscores}
                   </button>
                   <button
                     onClick={() => {
@@ -380,7 +384,7 @@ const TetrisApp = () => {
                       setGameOver(false);
                     }}
                   >
-                    Help
+                    {lang.tetrisHelp}
                   </button>
                 </div>
               ) : (
@@ -388,10 +392,10 @@ const TetrisApp = () => {
               )}
               {gameOver ? (
                 <div className="tetris__game-board__game-over">
-                  <p>Game Over!</p>
-                  <p>Your score:</p>
+                  <p>{lang.tetrisGameOver}</p>
+                  <p>{lang.tetrisYourScore}</p>
                   <p>{score}</p>
-                  <p>Highscore:</p>
+                  <p>{lang.tetrisHighscore}</p>
                   <p>{highscores.sort((a, b) => b - a)[0]}</p>
                 </div>
               ) : (
@@ -399,7 +403,7 @@ const TetrisApp = () => {
               )}
               {showHighscore ? (
                 <div className="tetris__game-board__menu__highscores">
-                  <div>Highscores</div>
+                  <div>{lang.tetrisHighscores}</div>
                   <div>
                     {highscores
                       .sort((a, b) => {
@@ -418,7 +422,7 @@ const TetrisApp = () => {
                     onClick={resetHighscoresHandler}
                     className="tetris-reset"
                   >
-                    Reset
+                    {lang.tetrisReset}
                   </button>
                   <button
                     onClick={() => {
@@ -426,7 +430,7 @@ const TetrisApp = () => {
                       setShowHighscore(false);
                     }}
                   >
-                    Back
+                    {lang.tetrisBack}
                   </button>
                 </div>
               ) : (
@@ -435,19 +439,19 @@ const TetrisApp = () => {
 
               {showHelp ? (
                 <div className="tetris__game-board__menu__help">
-                  <p>Control keys</p>
-                  <p>Move left: "a"</p>
-                  <p>Move right: "d"</p>
-                  <p>Soft drop: "s"</p>
-                  <p>Rotate: "w"</p>
-                  <p>Pause: "P"</p>
+                  <p>{lang.tetrisControlKeys}</p>
+                  <p>{lang.tetrisMoveLeft}: "a"</p>
+                  <p>{lang.tetrisMoveRight}: "d"</p>
+                  <p>{lang.tetrisSoftDrop}: "s"</p>
+                  <p>{lang.tetrisRotate}: "w"</p>
+                  <p>{lang.tetrisPause}: "P"</p>
                   <button
                     onClick={() => {
                       setShowMenu(true);
                       setShowHelp(false);
                     }}
                   >
-                    Back
+                    {lang.tetrisBack}
                   </button>
                 </div>
               ) : (
@@ -475,21 +479,25 @@ const TetrisApp = () => {
         <div className="tetris__score-board">
           {!pauseGame ? (
             <button onClick={pauseGameHandler}>
-              <img className="tetris-pause" src={pauseIcon} alt="pause" />
+              <img
+                className="tetris-pause"
+                src={pauseIcon}
+                alt={lang.tetrisPause}
+              />
             </button>
           ) : (
             ""
           )}
           <div>
-            <p>Lines</p>
+            <p>{lang.tetrisLines}</p>
             <p>{lines}</p>
           </div>
           <div>
-            <p>Level</p>
+            <p>{lang.tetrisLevel}</p>
             <p>{level}/6</p>
           </div>
           <div>
-            <p>Score</p>
+            <p>{lang.tetrisScore}</p>
             <p>{score}</p>
           </div>
         </div>
