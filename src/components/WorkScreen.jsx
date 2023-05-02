@@ -66,10 +66,19 @@ const WorkScreen = ({
 
   const handleDesktopContextMenu = (e, setDesktopContextMenuPosition) => {
     e.preventDefault();
+    let y = e.nativeEvent.clientY;
+    let x = e.nativeEvent.clientX;
+
+    if (window.innerHeight - y < 200) {
+      y = y - 200;
+    }
+    if (window.innerWidth - x < 200) {
+      x = x - 200;
+    }
     if (e.target.className !== "desktop") return;
     setDesktopContextMenuPosition({
-      x: e.nativeEvent.clientX,
-      y: e.nativeEvent.clientY,
+      x,
+      y,
     });
   };
 

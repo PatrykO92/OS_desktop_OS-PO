@@ -7,6 +7,8 @@ import {
   xmarkIcon,
 } from "../assets/icons";
 
+import { CSSTransition } from "react-transition-group";
+
 const DesktopContextMenu = ({
   lang,
   position,
@@ -16,42 +18,52 @@ const DesktopContextMenu = ({
   handleCloseMenuStart,
   handleShowPersonalize,
 }) => (
-  <div
-    id="desktop-context-menu"
-    style={{ top: position.y, left: position.x }}
-    onClick={onClick}
+  <CSSTransition
+    in={true}
+    appear={true}
+    timeout={1000}
+    classNames="desktop-context"
   >
-    <button>
-      <p>
-        <img src={desktopIcon} alt={lang.view} />
-      </p>
-      <p>{lang.view}</p>
-    </button>
-    <button onClick={handleShowPersonalize}>
-      <p>
-        <img src={brushIcon} alt={lang.personalize} />
-      </p>
-      <p>{lang.personalize}</p>
-    </button>
-    <button>
-      <p>
-        <img src={refreshIcon} alt={lang.refresh} />
-      </p>
-      <p>{lang.refresh}</p>
-    </button>
-    <button
-      onClick={() => {
-        closeAllPrograms();
-        handleCloseCalendar();
-        handleCloseMenuStart();
+    <div
+      id="desktop-context-menu"
+      style={{
+        top: position.y,
+        left: position.x,
       }}
+      onClick={onClick}
     >
-      <p>
-        <img src={xmarkIcon} alt={lang.closeAll} />
-      </p>
-      <p>{lang.closeAll}</p>
-    </button>
-  </div>
+      <button>
+        <p>
+          <img src={desktopIcon} alt={lang.view} />
+        </p>
+        <p>{lang.view}</p>
+      </button>
+      <button onClick={handleShowPersonalize}>
+        <p>
+          <img src={brushIcon} alt={lang.personalize} />
+        </p>
+        <p>{lang.personalize}</p>
+      </button>
+      <button>
+        <p>
+          <img src={refreshIcon} alt={lang.refresh} />
+        </p>
+        <p>{lang.refresh}</p>
+      </button>
+      <button
+        onClick={() => {
+          closeAllPrograms();
+          handleCloseCalendar();
+          handleCloseMenuStart();
+        }}
+      >
+        <p>
+          <img src={xmarkIcon} alt={lang.closeAll} />
+        </p>
+        <p>{lang.closeAll}</p>
+      </button>
+    </div>
+  </CSSTransition>
 );
 
 export default DesktopContextMenu;

@@ -3,7 +3,7 @@
 import "./src/styles/tetrisMain.css";
 import { pauseIcon } from "./src/icons";
 import { randomTetrominoSequence } from "./src/helpers";
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 const TetrisApp = ({ lang }) => {
   const [pauseGame, setPauseGame] = useState(true);
@@ -12,7 +12,7 @@ const TetrisApp = ({ lang }) => {
   const [showHelp, setShowHelp] = useState(false);
   const [showHighscore, setShowHighscore] = useState(false);
   const [highscores, setHighscores] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
-  const [score, setScore] = useState(232332);
+  const [score, setScore] = useState(0);
   const [gameOver, setGameOver] = useState(false);
   const [level, setLevel] = useState(1);
   const [lines, setLines] = useState(0);

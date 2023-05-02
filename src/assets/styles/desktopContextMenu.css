@@ -11,6 +11,7 @@
   gap: 0.2rem;
   border-radius: 5px;
   box-shadow: 2px 2px 5px var(--theme-bg);
+  border: 1px solid var(--hover-main);
 }
 
 #desktop-context-menu > button {
@@ -32,4 +33,15 @@
 #desktop-context-menu > button img {
   width: 0.9rem;
   filter: invert(100%);
+}
+
+.desktop-context-appear {
+  opacity: 0;
+  transform: scale(0);
+}
+
+.desktop-context-appear-active {
+  opacity: 1;
+  transform: scale(1);
+  transition: 1s all;
 }
