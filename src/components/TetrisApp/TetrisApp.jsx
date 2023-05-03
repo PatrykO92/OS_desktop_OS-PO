@@ -355,6 +355,15 @@ const TetrisApp = ({ lang }) => {
         <div className="tetris__game-board">
           {pauseGame ? (
             <div className="tetris__game-board__menu">
+              <div className="tetris__game-board__menu__title">
+                <span>T</span>
+                <span>e</span>
+                <span>t</span>
+                <span>r</span>
+                <span>i</span>
+                <span>s</span>
+              </div>
+
               {showMenu ? (
                 <div className="tetris__game-board__menu__buttons">
                   {resumeGame ? (
