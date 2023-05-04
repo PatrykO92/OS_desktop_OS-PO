@@ -1,8 +1,8 @@
 #desktop-context-menu {
   z-index: 2;
   position: absolute;
-  min-width: 8rem;
-  min-height: 7rem;
+  width: 10rem;
+  height: 9rem;
   padding: 0.3rem;
   background-color: var(--theme-bg);
   display: flex;
