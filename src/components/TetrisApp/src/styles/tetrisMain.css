@@ -80,7 +80,6 @@
 
 .tetris__game-board__menu__title {
   font-size: 3rem;
-  text-decoration: underline;
   position: absolute;
   color: var(--tetris-color3);
   top: 0;
@@ -260,10 +259,9 @@
     color: var(--tetris-color3);
   }
   50% {
-    color: var(--tetris-color2);
+    color: var(--tetris-color1);
   }
   100% {
     color: var(--tetris-color3);
-    text-decoration: underline;
   }
 }

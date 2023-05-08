@@ -1,0 +1,33 @@
+.introjs-tooltip {
+  background-color: var(--theme-bg);
+  color: var(--theme-font);
+  border-color: var(--border-main);
+}
+
+.introjs-tooltip a {
+  background-color: var(--theme-bg);
+  color: var(--theme-font);
+  text-shadow: none;
+  box-shadow: none;
+}
+
+.introjs-tooltip a:focus {
+  background-color: var(--theme-bg);
+  color: var(--theme-font);
+  text-shadow: none;
+  box-shadow: none;
+  outline: none;
+}
+
+.introjs-tooltip a:hover {
+  background-color: var(--hover-main);
+  color: var(--theme-font);
+}
+
+.introjs-tooltiptext {
+  color: var(--theme-font);
+}
+
+.introjs-helperLayer {
+  outline: 2px solid var(--blue);
+}

@@ -8,9 +8,14 @@ import {
   Personalize,
 } from "./";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import { CSSTransition } from "react-transition-group";
+
+import "intro.js/introjs.css";
+import "../assets/styles/introjsMyStyling.css";
+
+import { Steps } from "intro.js-react";
 
 import Calendar from "react-calendar";
 import "../assets/styles/myCalendar.css";
@@ -96,6 +101,28 @@ const WorkScreen = ({
     setShowPersonalize((oldVal) => !oldVal);
   };
 
+  const [stepsEnabled, setStepsEnabled] = useState(false);
+  const steps = [
+    {
+      element: ".desktop_icon",
+      intro: "Click once to open an app",
+    },
+    {
+      element: ".menu-start-btn",
+      intro: "This is menu start",
+    },
+    {
+      element: ".task-bar",
+      intro: "Click right mouse to open context menu",
+    },
+  ];
+
+  useEffect(() => {
+    setTimeout(() => {
+      setStepsEnabled(true);
+    }, 1000);
+  }, []);
+
   return (
     <CSSTransition
       in={true}
@@ -120,6 +147,15 @@ const WorkScreen = ({
           }
         }}
       >
+        <Steps
+          enabled={stepsEnabled}
+          steps={steps}
+          initialStep={0}
+          onExit={() => {
+            setStepsEnabled(false);
+          }}
+        />
+
         <Desktop
           toDoApp={toDoApp}
           handleStateToDoApp={handleStateToDoApp}
