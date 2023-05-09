@@ -120,7 +120,7 @@ const WorkScreen = ({
   useEffect(() => {
     setTimeout(() => {
       setStepsEnabled(true);
-    }, 1000);
+    }, 500);
   }, []);
 
   return (

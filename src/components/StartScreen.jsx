@@ -16,22 +16,52 @@ import {
 
 import { useState } from "react";
 
+import axios from "axios";
+
 const StartScreen = ({ lang, changeLang, changeUser, changeStage }) => {
-  const [showPin, setShowPin] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const [formStep, setFormStep] = useState(1);
 
   const [userForm, setUserForm] = useState({
-    name: "",
-    surname: "",
-    pin: "",
-    avatar: avatarOne,
+    username: "",
+    email: "",
+    password1: "",
+    password2: "",
+    avatar: null,
   });
 
-  const handleAvatarChange = (e) => {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    const formData = new FormData();
+    formData.append("username", userForm.username);
+    formData.append("email", userForm.email);
+    formData.append("password1", userForm.password1);
+    formData.append("password2", userForm.password2);
+    formData.append("avatar", userForm.avatar);
+
+    axios
+      .post("http://127.0.0.1:8000/api/v1/dj-rest-auth/registration/", formData)
+      .then((response) => {
+        console.log(typeof response);
+        console.log(response);
+        response.status === 204 && console.log("Success");
+      })
+      .catch((error) => console.log("Axios error:", error));
+  };
+
+  const handleAvatarChangeImage = (e) => {
     setUserForm((oldVal) => ({
       ...oldVal,
       avatar: e.target.value,
     }));
+  };
+
+  const handleAvatarChange = (event) => {
+    setUserForm({
+      ...userForm,
+      avatar: event.target.files[0], // set the avatar to the selected file
+    });
   };
 
   return (
@@ -119,42 +149,56 @@ const StartScreen = ({ lang, changeLang, changeUser, changeStage }) => {
                 type="text"
                 minLength={3}
                 maxLength={30}
-                value={userForm.name}
+                value={userForm.username}
                 onChange={(e) =>
-                  setUserForm((oldVal) => ({ ...oldVal, name: e.target.value }))
+                  setUserForm((oldVal) => ({
+                    ...oldVal,
+                    username: e.target.value,
+                  }))
                 }
                 required
-                pattern="[A-Za-z]+"
               />
             </label>
             <label>
               {lang.surname}:
               <input
-                minLength={3}
-                maxLength={30}
-                type="text"
-                value={userForm.surname}
+                type="email"
+                value={userForm.email}
                 onChange={(e) =>
                   setUserForm((oldVal) => ({
                     ...oldVal,
-                    surname: e.target.value,
+                    email: e.target.value,
                   }))
                 }
                 required
-                pattern="[A-Za-z]+"
               />
             </label>
             <label>
               {lang.pin}:
               <input
                 type="password"
-                minLength={6}
-                maxLength={6}
-                pattern="[0-9]+"
+                minLength={8}
+                maxLength={12}
                 required
-                value={userForm.pin}
+                value={userForm.password1}
                 onChange={(e) =>
-                  setUserForm((oldVal) => ({ ...oldVal, pin: e.target.value }))
+                  setUserForm((oldVal) => ({
+                    ...oldVal,
+                    password1: e.target.value,
+                  }))
+                }
+              />
+              <input
+                type="password"
+                minLength={8}
+                maxLength={12}
+                required
+                value={userForm.password2}
+                onChange={(e) =>
+                  setUserForm((oldVal) => ({
+                    ...oldVal,
+                    password2: e.target.value,
+                  }))
                 }
               />
             </label>
@@ -186,7 +230,7 @@ const StartScreen = ({ lang, changeLang, changeUser, changeStage }) => {
               id="avatar1"
               name="avatar"
               value={avatarOne}
-              onChange={(e) => handleAvatarChange(e)}
+              onChange={(e) => handleAvatarChangeImage(e)}
             />
             <label htmlFor="avatar1">
               <img src={avatarOne} alt={lang.chooseAvatar} />
@@ -196,7 +240,7 @@ const StartScreen = ({ lang, changeLang, changeUser, changeStage }) => {
               id="avatar2"
               name="avatar"
               value={avatarTwo}
-              onChange={(e) => handleAvatarChange(e)}
+              onChange={(e) => handleAvatarChangeImage(e)}
             />
             <label htmlFor="avatar2">
               <img src={avatarTwo} alt={lang.chooseAvatar} />
@@ -206,7 +250,7 @@ const StartScreen = ({ lang, changeLang, changeUser, changeStage }) => {
               id="avatar3"
               name="avatar"
               value={avatarThree}
-              onChange={(e) => handleAvatarChange(e)}
+              onChange={(e) => handleAvatarChangeImage(e)}
             />
             <label htmlFor="avatar3">
               <img src={avatarThree} alt={lang.chooseAvatar} />
@@ -216,7 +260,7 @@ const StartScreen = ({ lang, changeLang, changeUser, changeStage }) => {
               id="avatar4"
               name="avatar"
               value={avatarFour}
-              onChange={(e) => handleAvatarChange(e)}
+              onChange={(e) => handleAvatarChangeImage(e)}
             />
             <label htmlFor="avatar4">
               <img src={avatarFour} alt={lang.chooseAvatar} />
@@ -226,7 +270,7 @@ const StartScreen = ({ lang, changeLang, changeUser, changeStage }) => {
               id="avatar5"
               name="avatar"
               value={avatarFive}
-              onChange={(e) => handleAvatarChange(e)}
+              onChange={(e) => handleAvatarChangeImage(e)}
             />
             <label htmlFor="avatar5">
               <img src={avatarFive} alt={lang.chooseAvatar} />
@@ -236,7 +280,7 @@ const StartScreen = ({ lang, changeLang, changeUser, changeStage }) => {
               id="avatar6"
               name="avatar"
               value={avatarSix}
-              onChange={(e) => handleAvatarChange(e)}
+              onChange={(e) => handleAvatarChangeImage(e)}
             />
             <label htmlFor="avatar6">
               <img src={avatarSix} alt={lang.chooseAvatar} />
@@ -246,7 +290,7 @@ const StartScreen = ({ lang, changeLang, changeUser, changeStage }) => {
               id="avatar7"
               name="avatar"
               value={avatarSeven}
-              onChange={(e) => handleAvatarChange(e)}
+              onChange={(e) => handleAvatarChangeImage(e)}
             />
             <label htmlFor="avatar7">
               <img src={avatarSeven} alt={lang.chooseAvatar} />
@@ -256,7 +300,7 @@ const StartScreen = ({ lang, changeLang, changeUser, changeStage }) => {
               id="avatar8"
               name="avatar"
               value={avatarEight}
-              onChange={(e) => handleAvatarChange(e)}
+              onChange={(e) => handleAvatarChangeImage(e)}
             />
             <label htmlFor="avatar8">
               <img src={avatarEight} alt={lang.chooseAvatar} />
@@ -266,7 +310,7 @@ const StartScreen = ({ lang, changeLang, changeUser, changeStage }) => {
               id="avatar9"
               name="avatar"
               value={avatarNine}
-              onChange={(e) => handleAvatarChange(e)}
+              onChange={(e) => handleAvatarChangeImage(e)}
             />
             <label htmlFor="avatar9">
               <img src={avatarNine} alt={lang.chooseAvatar} />
@@ -276,7 +320,7 @@ const StartScreen = ({ lang, changeLang, changeUser, changeStage }) => {
               id="avatar10"
               name="avatar"
               value={avatarTen}
-              onChange={(e) => handleAvatarChange(e)}
+              onChange={(e) => handleAvatarChangeImage(e)}
             />
             <label htmlFor="avatar10">
               <img src={avatarTen} alt={lang.chooseAvatar} />
@@ -286,7 +330,7 @@ const StartScreen = ({ lang, changeLang, changeUser, changeStage }) => {
               id="avatar11"
               name="avatar"
               value={avatarEleven}
-              onChange={(e) => handleAvatarChange(e)}
+              onChange={(e) => handleAvatarChangeImage(e)}
             />
             <label htmlFor="avatar11">
               <img src={avatarEleven} alt={lang.chooseAvatar} />
@@ -296,7 +340,7 @@ const StartScreen = ({ lang, changeLang, changeUser, changeStage }) => {
               id="avatar12"
               name="avatar"
               value={avatarTwelve}
-              onChange={(e) => handleAvatarChange(e)}
+              onChange={(e) => handleAvatarChangeImage(e)}
             />
             <label htmlFor="avatar12">
               <img src={avatarTwelve} alt={lang.chooseAvatar} />
@@ -306,7 +350,7 @@ const StartScreen = ({ lang, changeLang, changeUser, changeStage }) => {
               id="avatar13"
               name="avatar"
               value={avatarThirteen}
-              onChange={(e) => handleAvatarChange(e)}
+              onChange={(e) => handleAvatarChangeImage(e)}
             />
             <label htmlFor="avatar13">
               <img src={avatarThirteen} alt={lang.chooseAvatar} />
@@ -316,7 +360,7 @@ const StartScreen = ({ lang, changeLang, changeUser, changeStage }) => {
               id="avatar14"
               name="avatar"
               value={avatarFourteen}
-              onChange={(e) => handleAvatarChange(e)}
+              onChange={(e) => handleAvatarChangeImage(e)}
             />
             <label htmlFor="avatar14">
               <img src={avatarFourteen} alt={lang.chooseAvatar} />
@@ -350,10 +394,10 @@ const StartScreen = ({ lang, changeLang, changeUser, changeStage }) => {
             <p>
               PIN:
               <span
-                onMouseOver={() => setShowPin(true)}
-                onMouseOut={() => setShowPin(false)}
+                onMouseOver={() => setShowPassword(true)}
+                onMouseOut={() => setShowPassword(false)}
               >
-                {showPin ? userForm.pin : lang.showPin}
+                {showPassword ? userForm.pin : lang.showPassword}
               </span>
             </p>
           </div>

@@ -121,7 +121,6 @@ const Personalize = ({
 
           <div className="personalize-window__main-color">
             <p>{lang.mainColor}</p>
-            <button style={{ backgroundColor: theme.themeBg }} />
             <div className="personalize-window__main-color__list">
               <button
                 style={{ backgroundColor: "#1c2326" }}

@@ -15,7 +15,7 @@
 }
 
 .personalize-menu > div {
-  background-color: var(--personalize-bg);
+  background-color: var(--theme-bg);
   border-radius: 10px;
   border: 1px solid var(--border-main);
   padding: 1rem;
@@ -106,12 +106,6 @@
 .personalize-window__main-color button {
   border-radius: 5px;
   border: 1px solid var(--border-main);
-}
-
-.personalize-window__main-color > button {
-  height: 8.5rem;
-  width: 8.5rem;
-  border: 1px solid var(--personalize-border);
 }
 
 .personalize-window__main-color__list button {
