@@ -6,7 +6,7 @@ import LoadingSpinner from "./LoadingSpinner";
 import LoginScreen from "./LoginScreen";
 import MenuStart from "./MenuStart";
 import NewsBox from "./NewsBox";
-import StartScreen from "./StartScreen";
+import StartScreen from "./StartScreen/StartScreen";
 import TaskBar from "./TaskBar";
 import WorkScreen from "./WorkScreen";
 import ProgramContainer from "./ProgramContainer";

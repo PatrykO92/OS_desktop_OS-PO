@@ -1,4 +1,4 @@
-.starter-screen {
+.start-screen {
   height: 100%;
   width: 100%;
   display: flex;
@@ -6,15 +6,15 @@
   background-color: var(--theme-bg);
 }
 
-.starter-screen button {
+.start-screen button {
   background-color: transparent;
 }
 
-.starter-screen button:hover {
+.start-screen button:hover {
   background-color: var(--hover-main);
 }
 
-.starter-screen_step-one {
+.start-screen_step-one {
   width: 35rem;
   display: flex;
   flex-direction: column;
@@ -24,12 +24,12 @@
   font-size: 2rem;
 }
 
-.starter-screen_step-one > div {
+.start-screen_step-one > div {
   display: flex;
   gap: 1rem;
 }
 
-.starter-screen_step-one button {
+.start-screen_step-one button {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -37,7 +37,7 @@
   min-width: 10rem;
 }
 
-.starter-screen_step-two {
+.start-screen_step-two {
   width: 35rem;
   display: flex;
   flex-direction: column;
@@ -45,23 +45,23 @@
   align-items: center;
 }
 
-.starter-screen_step-two > div {
+.start-screen_step-two > div {
   max-width: 25rem;
   margin-bottom: 2rem;
 }
 
-.starter-screen_step-two > div > p {
+.start-screen_step-two > div > p {
   line-height: 1.5rem;
 }
 
-.starter-screen_step-two > div > p:nth-child(1) {
+.start-screen_step-two > div > p:nth-child(1) {
   font-size: 2rem;
   text-align: center;
   margin-bottom: 2rem;
   font-weight: 500;
 }
 
-.starter-screen_step-two button {
+.start-screen_step-two button {
   min-width: 16rem;
   display: flex;
   justify-content: flex-start;
@@ -74,13 +74,13 @@
   margin: 0.3rem 0;
 }
 
-.starter-screen_step-two img {
+.start-screen_step-two img {
   filter: invert(100%);
   height: 2rem;
   width: 2rem;
 }
 
-.starter-screen_step-three {
+.start-screen_step-three {
   padding: 2rem;
   width: 35rem;
   display: flex;
@@ -89,16 +89,16 @@
   gap: 2rem;
 }
 
-.starter-screen_step-three div:nth-child(1) {
+.start-screen_step-three div:nth-child(1) {
   font-size: 3rem;
   font-weight: 700;
 }
-.starter-screen_step-three div {
+.start-screen_step-three div {
   display: flex;
   justify-content: space-between;
 }
 
-.starter-screen_step-three label {
+.start-screen_step-three label {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -106,7 +106,7 @@
   font-weight: 600;
 }
 
-.starter-screen_step-three input {
+.start-screen_step-three input {
   padding: 0.2rem;
   background-color: var(--theme-bg-light);
   font-weight: 600;
@@ -114,15 +114,15 @@
   color: var(--theme-font);
 }
 
-.starter-screen_step-three input:valid {
+.start-screen_step-three input:valid {
   outline: 2px solid var(--green);
 }
 
-.starter-screen_step-three input:invalid {
+.start-screen_step-three input:invalid {
   outline: 2px solid var(--red);
 }
 
-.starter-screen_step-three button {
+.start-screen_step-three button {
   min-width: 5rem;
   color: var(--theme-font);
   display: flex;
@@ -134,13 +134,13 @@
   border-radius: 5px;
 }
 
-.starter-screen_step-three button > img {
+.start-screen_step-three button > img {
   filter: invert(100%);
   height: 2rem;
   width: 2rem;
 }
 
-.starter-screen_step-four {
+.start-screen_step-four {
   max-width: 35rem;
   display: flex;
   gap: 1rem;
@@ -148,63 +148,63 @@
   justify-content: center;
 }
 
-.starter-screen_step-four p {
+.start-screen_step-four p {
   text-align: center;
   font-size: 1.5rem;
   font-weight: 500;
   margin-bottom: 1rem;
 }
 
-.starter-screen_step-four input {
+.start-screen_step-four input {
   display: none;
 }
 
-.starter-screen_step-four_avatar-list {
+.start-screen_step-four_avatar-list {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
   gap: 0.5rem;
 }
 
-.starter-screen_step-four label {
+.start-screen_step-four label {
   transition: all 0.3s;
 }
 
-.starter-screen_step-four label:hover {
+.start-screen_step-four label:hover {
   transform: scale(1.1);
 }
 
-.starter-screen_step-four label > img {
+.start-screen_step-four label > img {
   height: 4rem;
   width: 4rem;
   border-radius: 50%;
 }
 
-.starter-screen_step-four_choosed-avatar {
+.start-screen_step-four_choosed-avatar {
   display: flex;
   flex-direction: column;
   align-items: center;
   border-top: 1px solid var(--border-main);
 }
 
-.starter-screen_step-four_choosed-avatar > p {
+.start-screen_step-four_choosed-avatar > p {
   font-size: 2rem;
 }
 
-.starter-screen_step-four_choosed-avatar > img {
+.start-screen_step-four_choosed-avatar > img {
   width: 9rem;
   height: 9rem;
   border-radius: 50%;
 }
 
-.starter-screen_step-four_buttons,
-.starter-screen_step-five_buttons {
+.start-screen_step-four_buttons,
+.start-screen_step-five_buttons {
   display: flex;
   justify-content: space-between;
 }
 
-.starter-screen_step-four_buttons button,
-.starter-screen_step-five_buttons button {
+.start-screen_step-four_buttons button,
+.start-screen_step-five_buttons button {
   min-width: 5rem;
   color: var(--theme-font);
   display: flex;
@@ -216,14 +216,14 @@
   border-radius: 5px;
 }
 
-.starter-screen_step-four_buttons img,
-.starter-screen_step-five_buttons img {
+.start-screen_step-four_buttons img,
+.start-screen_step-five_buttons img {
   filter: invert(100%);
   height: 2rem;
   width: 2rem;
 }
 
-.starter-screen_step-five {
+.start-screen_step-five {
   width: 35rem;
   display: flex;
   flex-direction: column;
@@ -231,44 +231,44 @@
   gap: 4rem;
 }
 
-.starter-screen_step-five_avatar,
-.starter-screen_step-five_description {
+.start-screen_step-five_avatar,
+.start-screen_step-five_description {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.4rem;
 }
 
-.starter-screen_step-five_description p:nth-child(1) {
+.start-screen_step-five_description p:nth-child(1) {
   font-size: 2rem;
   font-weight: 500;
 }
 
-.starter-screen_step-five_description p:nth-child(2) {
+.start-screen_step-five_description p:nth-child(2) {
   font-size: 0.9rem;
   font-weight: 500;
 }
 
-.starter-screen_step-five_description p:nth-child(3) {
+.start-screen_step-five_description p:nth-child(3) {
   margin-top: 2rem;
   font-size: 1.4rem;
   font-weight: 500;
 }
 
-.starter-screen_step-five_description p:nth-child(4) {
+.start-screen_step-five_description p:nth-child(4) {
   font-size: 0.9rem;
   font-weight: 600;
   min-width: 10rem;
 }
 
-.starter-screen_step-five_description span {
+.start-screen_step-five_description span {
   display: inline-block;
   color: var(--blue);
   min-width: 4rem;
   margin-left: 1rem;
 }
 
-.starter-screen_step-five_avatar > img {
+.start-screen_step-five_avatar > img {
   width: 15rem;
   height: 15rem;
   border-radius: 50%;
