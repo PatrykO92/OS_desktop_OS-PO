@@ -20,6 +20,7 @@ import gbFlagIcon from "./GB-flag.svg";
 import userIcon from "./user-icon.svg";
 import arrowLeftIcon from "./arrow-left-icon.svg";
 import arrowRightIcon from "./arrow-right-icon.svg";
+import loginIcon from "./login-icon.svg";
 
 export {
   arrowLeftIcon,
@@ -44,4 +45,5 @@ export {
   polishFlagIcon,
   gbFlagIcon,
   userIcon,
+  loginIcon,
 };

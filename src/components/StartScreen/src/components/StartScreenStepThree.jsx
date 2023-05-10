@@ -1,69 +1,88 @@
 import { arrowLeftIcon, arrowRightIcon } from "../../../../assets/icons";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-import axios from "axios";
+const StartScreenStepThree = ({
+  lang,
+  changeStartScreenStep,
+  userForm,
+  setUserForm,
+}) => {
+  const [showError, setShowError] = useState({ error: false, message: "" });
 
-const StartScreenStepThree = ({ lang, changeFormStep }) => {
-  const [userForm, setUserForm] = useState({
-    username: "",
-    email: "",
-    password1: "",
-    password2: "",
-    avatar: null,
-  });
+  useEffect(() => {
+    if (showError.error) {
+      setTimeout(() => {
+        setShowError({ error: false, message: "" });
+      }, 1500);
+    }
+  }, [showError]);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const validatePassword = (userForm) => {
+    const { password1, password2 } = userForm;
 
-    const formData = new FormData();
-    formData.append("username", userForm.username);
-    formData.append("email", userForm.email);
-    formData.append("password1", userForm.password1);
-    formData.append("password2", userForm.password2);
-    formData.append("avatar", userForm.avatar);
+    // Check if the two password inputs match
+    if (password1 !== password2) {
+      return { error: true, message: "Passwords do not match" };
+    }
 
-    axios
-      .post("http://127.0.0.1:8000/api/v1/dj-rest-auth/registration/", formData)
-      .then((response) => {
-        console.log(typeof response);
-        console.log(response);
-        response.status === 204 && console.log("Success");
-      })
-      .catch((error) => console.log("Axios error:", error));
+    // Check if the password meets certain criteria (e.g., minimum length)
+    if (password1.length < 8) {
+      return {
+        error: true,
+        message: "Password must be at least 8 characters long",
+      };
+    }
+
+    // Check if the password is a commonly used password
+    const commonPasswords = [
+      "123456",
+      "password",
+      "123456789",
+      "12345678",
+      "12345",
+      "1234567",
+      "1234567890",
+      "1234",
+      "qwerty",
+      "abc123",
+    ];
+    if (commonPasswords.includes(password1.toLowerCase())) {
+      return { error: true, message: "Password is commonly used" };
+    }
+
+    // Check if the password is entirely numeric
+    if (/^\d+$/.test(password1)) {
+      return { error: true, message: "Password can't be entirely numeric" };
+    }
+
+    // If the password passes all checks, return error = false
+    return { error: false };
   };
 
   return (
     <div>
+      {showError.error ? (
+        <div className="start-screen_step-three_error">{showError.message}</div>
+      ) : (
+        ""
+      )}
       <form
-        action="/submit-form"
-        method="POST"
         className="start-screen_step-three"
         onSubmit={(e) => {
           e.preventDefault();
-          changeFormStep(4);
+          const { error, message } = validatePassword(userForm);
+          if (error) {
+            setShowError({ error: true, message });
+          } else {
+            changeStartScreenStep(4);
+          }
         }}
       >
         <div>{lang.startScreenText3}</div>
         <p>{lang.startScreenText4}</p>
         <label>
-          {lang.name}:
-          <input
-            type="text"
-            minLength={3}
-            maxLength={30}
-            value={userForm.username}
-            onChange={(e) =>
-              setUserForm((oldVal) => ({
-                ...oldVal,
-                username: e.target.value,
-              }))
-            }
-            required
-          />
-        </label>
-        <label>
-          {lang.surname}:
+          {lang.email}:
           <input
             type="email"
             value={userForm.email}
@@ -73,16 +92,12 @@ const StartScreenStepThree = ({ lang, changeFormStep }) => {
                 email: e.target.value,
               }))
             }
-            required
           />
         </label>
         <label>
-          {lang.pin}:
+          {lang.password1}:
           <input
             type="password"
-            minLength={8}
-            maxLength={12}
-            required
             value={userForm.password1}
             onChange={(e) =>
               setUserForm((oldVal) => ({
@@ -91,11 +106,11 @@ const StartScreenStepThree = ({ lang, changeFormStep }) => {
               }))
             }
           />
+        </label>
+        <label>
+          {lang.password2}:
           <input
             type="password"
-            minLength={8}
-            maxLength={12}
-            required
             value={userForm.password2}
             onChange={(e) =>
               setUserForm((oldVal) => ({
@@ -106,7 +121,7 @@ const StartScreenStepThree = ({ lang, changeFormStep }) => {
           />
         </label>
         <div>
-          <button type="button" onClick={() => changeFormStep(2)}>
+          <button type="button" onClick={() => changeStartScreenStep(2)}>
             <img src={arrowLeftIcon} alt="" />
             {lang.back}
           </button>

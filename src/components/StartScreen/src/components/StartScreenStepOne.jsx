@@ -1,6 +1,6 @@
 import { polishFlagIcon, gbFlagIcon } from "../../../../assets/icons";
 
-const StartScreenStepOne = ({ lang, changeLang, changeFormStep }) => {
+const StartScreenStepOne = ({ lang, changeLang, changeStartScreenStep }) => {
   return (
     <div className="start-screen_step-one">
       <div>
@@ -14,7 +14,7 @@ const StartScreenStepOne = ({ lang, changeLang, changeFormStep }) => {
           }}
           onClick={() => {
             changeLang("en");
-            changeFormStep(2);
+            changeStartScreenStep(2);
           }}
         >
           <img src={gbFlagIcon} alt="English" />
@@ -25,7 +25,7 @@ const StartScreenStepOne = ({ lang, changeLang, changeFormStep }) => {
           }}
           onClick={() => {
             changeLang("pl");
-            changeFormStep(2);
+            changeStartScreenStep(2);
           }}
         >
           <img src={polishFlagIcon} alt="Polski" />
