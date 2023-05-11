@@ -1,6 +1,12 @@
-import { plusCircleIcon, userIcon, loginIcon } from "../../../../assets/icons";
+import { plusCircleIcon, userIcon } from "../../../../assets/icons";
+import { avatarOne } from "../../../../assets/images/avatar-images";
 
-const StartScreenStepTwo = ({ lang, changeStage, changeStartScreenStep }) => {
+const StartScreenStepTwo = ({
+  lang,
+  changeStage,
+  changeStartScreenStep,
+  changeUser,
+}) => {
   return (
     <div className="start-screen_step-two">
       <div>
@@ -10,6 +16,13 @@ const StartScreenStepTwo = ({ lang, changeStage, changeStartScreenStep }) => {
 
       <button
         onClick={() => {
+          changeUser({
+            name: "Nicolaus",
+            lastName: "Copernicus",
+            pin: "",
+            avatar: avatarOne,
+            userTag: "Nic_Cop",
+          });
           changeStage("loginScreen");
         }}
       >
@@ -24,15 +37,6 @@ const StartScreenStepTwo = ({ lang, changeStage, changeStartScreenStep }) => {
       >
         <img src={plusCircleIcon} alt="" />
         {lang.userSetup}
-      </button>
-
-      <button
-        onClick={() => {
-          changeStage("loginScreen");
-        }}
-      >
-        <img src={loginIcon} alt="" />
-        {lang.loginButton}
       </button>
     </div>
   );

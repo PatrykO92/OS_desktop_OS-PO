@@ -1,50 +1,41 @@
 import { arrowLeftIcon, checkIcon } from "../../../../assets/icons";
 
-import { useState } from "react";
+import { loginInToBackend } from "../../../../utils";
 
-import axios from "axios";
+import { useState } from "react";
 
 const StartScreenStepFive = ({
   lang,
   changeStartScreenStep,
   changeStage,
+  changeUser,
   userForm,
 }) => {
-  const [showPassword, setShowPassword] = useState(false);
+  const [showPin, setShowPin] = useState(false);
 
   const handleSubmit = () => {
-    const formData = new FormData();
-    formData.append("username", userForm.email);
-    formData.append("email", userForm.email);
-    formData.append("password1", userForm.password1);
-    formData.append("password2", userForm.password2);
-    formData.append("avatar", userForm.avatar);
-
-    axios
-      .post("http://127.0.0.1:8000/api/v1/dj-rest-auth/registration/", formData)
-      .then((response) => {
-        if (response.status === 204) {
-          changeStage("loginScreen");
-        }
-      })
-      .catch((error) => console.log("Axios error:", error));
+    loginInToBackend();
+    // const userTag =
+    //   userForm.name.slice(0, 3) + "_" + userForm.lastName.slice(0, 3);
+    // changeUser({ ...userForm, userTag });
+    // changeStage("loginScreen");
   };
 
   return (
     <div className="start-screen_step-five">
       <div className="start-screen_step-five_description">
-        <button onClick={() => console.log(userForm)}>TEST</button>
         <p>{lang.finalSummary}</p>
         <p>{lang.finalSummaryDes}</p>
-
-        <p>{userForm.email}</p>
+        <p>
+          {userForm.name} {userForm.lastName}
+        </p>
         <p>
           PIN:
           <span
-            onMouseOver={() => setShowPassword(true)}
-            onMouseOut={() => setShowPassword(false)}
+            onMouseOver={() => setShowPin(true)}
+            onMouseOut={() => setShowPin(false)}
           >
-            {showPassword ? userForm.password1 : lang.showPassword}
+            {showPin ? userForm.pin : lang.showPin}
           </span>
         </p>
       </div>
@@ -52,17 +43,11 @@ const StartScreenStepFive = ({
         <img src={userForm.avatar} alt="user avatar" />
       </div>
       <div className="start-screen_step-five_buttons">
-        <button type="button" onClick={() => changeStartScreenStep(4)}>
+        <button onClick={() => changeStartScreenStep(4)}>
           <img src={arrowLeftIcon} alt="" />
           {lang.back}
         </button>
-        <button
-          type="button"
-          onClick={() => {
-            handleSubmit();
-            // changeStage("loginScreen");
-          }}
-        >
+        <button onClick={handleSubmit}>
           <img src={checkIcon} alt="" />
           {lang.submit}
         </button>

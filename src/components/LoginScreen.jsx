@@ -49,7 +49,7 @@ const LoginScreen = ({ lang, user, changeStage }) => {
           >
             <img src={user.avatar} alt="avatar" />
             <div>
-              {user.name} {user.surname}{" "}
+              {user.name} {user.lastName}{" "}
               {user.pin === "" && (
                 <button
                   style={{ background: "transparent" }}

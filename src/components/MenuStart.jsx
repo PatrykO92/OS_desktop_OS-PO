@@ -40,10 +40,10 @@ const MenuStart = ({
           <button>
             <img
               src={user.avatar}
-              alt={`${lang.name} ${lang.surname}`}
+              alt={`${lang.name} ${lang.lastName}`}
               className="menu-start-avatar"
             />
-            <p>{`${user.name} ${user.surname}`}</p>
+            <p>{`${user.name} ${user.lastName}`}</p>
           </button>
           <div>
             <button onClick={() => handleButtonClick("loginScreen")}>

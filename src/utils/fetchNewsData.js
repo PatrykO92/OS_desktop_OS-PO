@@ -5,7 +5,7 @@ const apiKey = process.env.REACT_APP_API_KEY;
 const fetchNewsData = (lang, topHead, topic) => {
   return axios
     .get(
-      `https://newsapi.org/v2/${!topHead ? "top-headlines" : "everything"}?` +
+      `htt__ps://newsapi.org/v2/${!topHead ? "top-headlines" : "everything"}?` +
         `language=${lang}&` +
         `${topic ? `q=${topic}&` : ""}` +
         `${!topHead ? "" : "sortBy=relevancy&"}` +
