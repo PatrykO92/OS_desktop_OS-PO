@@ -73,6 +73,7 @@ const textModel = {
     tetrisYourScore: "Your score",
 
     uncheck: "Uncheck",
+    undo: "Undo",
     userSetup: "Create user",
     view: "View",
     wallpaper: "Wallpaper",
@@ -158,6 +159,7 @@ const textModel = {
     tetrisYourScore: "Twój wynik",
     uncheck: "Odznaczone",
     userSetup: "Stwórz użytkownika",
+    undo: "Cofnij",
     view: "Widok",
     wallpaper: "Tapeta",
     weather: "pogoda",

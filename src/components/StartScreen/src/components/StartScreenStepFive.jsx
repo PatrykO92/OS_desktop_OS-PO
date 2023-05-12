@@ -15,10 +15,10 @@ const StartScreenStepFive = ({
 
   const handleSubmit = () => {
     loginInToBackend();
-    // const userTag =
-    //   userForm.name.slice(0, 3) + "_" + userForm.lastName.slice(0, 3);
-    // changeUser({ ...userForm, userTag });
-    // changeStage("loginScreen");
+    const userTag =
+      userForm.name.slice(0, 3) + "_" + userForm.lastName.slice(0, 3);
+    changeUser({ ...userForm, userTag });
+    changeStage("loginScreen");
   };
 
   return (

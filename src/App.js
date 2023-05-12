@@ -106,7 +106,7 @@ function App() {
   const [calculator, setCalculator] = useState({
     programEnabled: false,
     hidden: false,
-    name: "Calculator",
+    name: "Calculus",
     icon: calculatorIcon,
   });
 
@@ -118,7 +118,7 @@ function App() {
     setCalculator({
       programEnabled: false,
       hidden: false,
-      name: "Calculator",
+      name: "Calculus",
       icon: calculatorIcon,
     });
   };
@@ -253,6 +253,7 @@ function App() {
           lang={textModel[windowsLanguage]}
           user={user}
           changeStage={changeStage}
+          changeLang={changeLang}
           // Programs states and handlers
           toDoApp={toDoApp}
           handleStateToDoApp={handleStateToDoApp}

@@ -131,7 +131,7 @@ const Calculator = ({ lang }) => {
           <div>
             <button onClick={() => performMathOperation("%")}>%</button>
             <button onClick={cleanOutputs}>C</button>
-            <button onClick={removeLastNumberFromOutput}>Back</button>
+            <button onClick={removeLastNumberFromOutput}>{lang.undo}</button>
             <button onClick={() => performMathOperation("/")}>/</button>
           </div>
           <div>

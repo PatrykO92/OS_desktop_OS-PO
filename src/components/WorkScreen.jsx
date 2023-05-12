@@ -24,6 +24,7 @@ const WorkScreen = ({
   lang,
   user,
   changeStage,
+  changeLang,
   toDoApp,
   handleStateToDoApp,
   webBrowser,
@@ -181,6 +182,7 @@ const WorkScreen = ({
 
         <TaskBar
           lang={lang}
+          changeLang={changeLang}
           handleShowCalendar={handleShowCalendar}
           handleShowMenuStart={handleShowMenuStart}
           toDoApp={toDoApp}

@@ -15,10 +15,7 @@ const loginToBackend = () =>
     .then((response) => {
       const token = response.data.key;
       localStorage.setItem("authToken", token);
-
-      // Handle login success
       console.log("Login successful!");
-      // Call any function to do something after successful login
     })
     .catch((error) => {
       console.log(error);

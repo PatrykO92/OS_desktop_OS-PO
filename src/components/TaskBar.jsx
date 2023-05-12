@@ -1,13 +1,14 @@
-// TODO - SOME SORT OF LOCALIZATION / WIFI CONNECTION ETC. in WiFi button
+// TODO - SOME SORT OF LOCALIZATION
 
 import "../assets/styles/taskBar.css";
-import { menuStartIcon } from "../assets/icons";
+import { menuStartIcon, gbFlagIcon, polishFlagIcon } from "../assets/icons";
 import { CalendarButton } from "./";
 
 const TaskBar = ({
   lang,
   handleShowMenuStart,
   handleShowCalendar,
+  changeLang,
   //apps state and handlers
   toDoApp,
   handleStateToDoApp,
@@ -112,7 +113,20 @@ const TaskBar = ({
       </div>
 
       <div className="additionals">
-        <button>WiFi</button>
+        <button
+          className="task-bar__language-button"
+          onClick={() => {
+            if (lang.lng === "pl") {
+              changeLang("en");
+            } else changeLang("pl");
+          }}
+        >
+          <img
+            src={lang.lng === "pl" ? polishFlagIcon : gbFlagIcon}
+            alt={lang.lng === "pl" ? "polski" : "english"}
+          />
+          {lang.lng === "pl" ? "PL" : "EN"}
+        </button>
         <CalendarButton lang={lang} handleShowCalendar={handleShowCalendar} />
       </div>
     </div>

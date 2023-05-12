@@ -66,3 +66,13 @@
 .task-bar_program-buttons > button:hover {
   box-shadow: 0 0 2px 1px var(--blue);
 }
+
+.task-bar__language-button {
+  font-size: 0.6rem;
+  color: var(--theme-font);
+}
+
+.task-bar__language-button img {
+  width: 1.5rem;
+  height: 1.5rem;
+}
