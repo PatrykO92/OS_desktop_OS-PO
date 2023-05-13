@@ -6,25 +6,25 @@ import { newsPlaceholderImage } from "../assets/images/placeholder-images";
 import { useState, useEffect } from "react";
 
 const NewsBox = ({ lang, handleStateWebBrowser }) => {
-  const [newsTopic, setNewsTopic] = useState(false);
+  const [newsCategory, setNewsCategory] = useState("general");
   const [isLoading, setIsLoading] = useState(true);
   const [newsData, setNewsData] = useState(null);
-  const [fetchError, setFetchError] = useState(null);
+  const [fetchError, setFetchError] = useState(false);
   const [actualNews, setActualNews] = useState(null);
   const [showActualNews, setShowActualNews] = useState(false);
 
   // fetch data at component start and change topic
   useEffect(() => {
     setIsLoading(true);
-    fetchNewsData(lang.lngFetch, newsTopic, newsTopic)
+    fetchNewsData(lang.country, newsCategory)
       .then((data) => {
         setNewsData(data);
       })
       .catch((err) => {
-        setFetchError(err);
+        setFetchError(true);
       })
       .finally(setIsLoading(false));
-  }, [newsTopic, lang.lngFetch]);
+  }, [newsCategory, lang.country]);
 
   const oneArticle = (data) => {
     const backgroundImage = data.urlToImage
@@ -53,31 +53,31 @@ const NewsBox = ({ lang, handleStateWebBrowser }) => {
         <div className="news-box-buttons">
           <button
             onClick={() => {
-              setNewsTopic(lang.sport);
+              setNewsCategory("sports");
             }}
           >
             {lang.sport}
           </button>
           <button
             onClick={() => {
-              setNewsTopic(lang.programming);
+              setNewsCategory("technology");
             }}
           >
-            {lang.programming}
+            {lang.technology}
           </button>
           <button
             onClick={() => {
-              setNewsTopic(lang.politic);
+              setNewsCategory("business");
             }}
           >
-            {lang.politic}
+            {lang.business}
           </button>
           <button
             onClick={() => {
-              setNewsTopic(lang.weather);
+              setNewsCategory("entertainment");
             }}
           >
-            {lang.weather}
+            {lang.entertainment}
           </button>
         </div>
 

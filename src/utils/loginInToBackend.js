@@ -8,9 +8,9 @@ const password = process.env.REACT_APP_PASSWORD;
 const loginToBackend = () =>
   axios
     .post(`${apiUrl}api/dj-rest-auth/login/`, {
-      username,
-      email,
-      password,
+      username: username,
+      email: email,
+      password: password,
     })
     .then((response) => {
       const token = response.data.key;
@@ -18,7 +18,7 @@ const loginToBackend = () =>
       console.log("Login successful!");
     })
     .catch((error) => {
-      console.log(error);
+      console.log("Error, try again later");
     });
 
 export default loginToBackend;

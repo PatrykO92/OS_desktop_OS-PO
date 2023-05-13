@@ -1,5 +1,6 @@
 import { plusCircleIcon, userIcon } from "../../../../assets/icons";
 import { avatarOne } from "../../../../assets/images/avatar-images";
+import { loginInToBackend } from "../../../../utils";
 
 const StartScreenStepTwo = ({
   lang,
@@ -16,6 +17,7 @@ const StartScreenStepTwo = ({
 
       <button
         onClick={() => {
+          loginInToBackend();
           changeUser({
             name: "Nicolaus",
             lastName: "Copernicus",

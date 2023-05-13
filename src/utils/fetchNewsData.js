@@ -1,22 +1,15 @@
 import axios from "axios";
 
-const apiKey = process.env.REACT_APP_API_KEY;
+const apiUrl = process.env.REACT_APP_BACKEND_URL;
 
-const fetchNewsData = (lang, topHead, topic) => {
-  return axios
-    .get(
-      `htt__ps://newsapi.org/v2/${!topHead ? "top-headlines" : "everything"}?` +
-        `language=${lang}&` +
-        `${topic ? `q=${topic}&` : ""}` +
-        `${!topHead ? "" : "sortBy=relevancy&"}` +
-        "pageSize=5&" +
-        `apiKey=${apiKey}`
-    )
-    .then(function (response) {
-      return response;
-    })
-    .catch(function (err) {
-      throw new Error(err);
-    });
+const fetchNewsData = async (country, category) => {
+  try {
+    const response = await axios.get(
+      `${apiUrl}api/newsapi/get?country=${country}&category=${category}`
+    );
+    return response;
+  } catch (err) {
+    throw new Error(err);
+  }
 };
 export default fetchNewsData;
