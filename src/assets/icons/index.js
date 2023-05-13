@@ -16,7 +16,7 @@ import plusCircleIcon from "./plus-circle-icon.svg";
 import calculatorIcon from "./calculator-icon.svg";
 import tetrisIcon from "./tetris-icon.svg";
 import polishFlagIcon from "./polish-flag.svg";
-import gbFlagIcon from "./gb-flag.svg";
+import gbFlagIcon from "./gb-flag-icon.svg";
 import userIcon from "./user-icon.svg";
 import arrowLeftIcon from "./arrow-left-icon.svg";
 import arrowRightIcon from "./arrow-right-icon.svg";
