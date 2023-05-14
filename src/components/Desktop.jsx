@@ -1,6 +1,13 @@
 import "../assets/styles/desktop.css";
 
+import "intro.js/introjs.css";
+import "../assets/styles/introjsMyStyling.css";
+
+import { useState } from "react";
+import { Steps, Hints } from "intro.js-react";
+
 const Desktop = ({
+  lang,
   wallpaper,
   // Apps states and handlers
   toDoApp,
@@ -12,8 +19,51 @@ const Desktop = ({
   tetris,
   handleStateTetris,
 }) => {
+  const [stepsEnabled, setStepsEnabled] = useState(true);
+  const [hintsEnabled, setHintsEnabled] = useState(true);
+  const steps = [
+    {
+      element: ".desktop_icon",
+      intro: lang.step1,
+    },
+    {
+      element: ".menu-start-btn",
+      intro: lang.step2,
+    },
+    {
+      element: ".task-bar__language-button",
+      intro: lang.step3,
+    },
+  ];
+
+  const hints = [
+    {
+      element: ".desktop",
+      hint: lang.hint1,
+      hintPosition: "middle-middle",
+    },
+  ];
+
   return (
     <div className="desktop" style={{ backgroundImage: `url(${wallpaper})` }}>
+      <Steps
+        enabled={stepsEnabled}
+        steps={steps}
+        initialStep={0}
+        options={{
+          nextLabel: lang.next,
+          prevLabel: lang.back,
+          doneLabel: "Ok",
+          showBullets: false,
+        }}
+        onExit={() => setStepsEnabled(false)}
+      />
+      <Hints
+        enabled={hintsEnabled}
+        hints={hints}
+        options={{ hintButtonLabel: "Ok", showBullets: false }}
+        onClose={() => setHintsEnabled(false)}
+      />
       <button
         onClick={() => {
           handleStateToDoApp("hidden", false);

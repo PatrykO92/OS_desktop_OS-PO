@@ -1,5 +1,5 @@
 import "../assets/styles/workScreen.css";
-import { wallpaperOne } from "../assets/images/wallpapers";
+import { wallpaperFive } from "../assets/images/wallpapers";
 import {
   TaskBar,
   Desktop,
@@ -8,14 +8,9 @@ import {
   Personalize,
 } from "./";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import { CSSTransition } from "react-transition-group";
-
-import "intro.js/introjs.css";
-import "../assets/styles/introjsMyStyling.css";
-
-import { Steps } from "intro.js-react";
 
 import Calendar from "react-calendar";
 import "../assets/styles/myCalendar.css";
@@ -36,7 +31,7 @@ const WorkScreen = ({
   closeAllPrograms,
 }) => {
   // useState hook and handler function for changing Desktop wallpaper
-  const [wallpaper, setWallpaper] = useState(wallpaperOne);
+  const [wallpaper, setWallpaper] = useState(wallpaperFive);
   const handleWallpaperChange = (image) => {
     setWallpaper(image);
   };
@@ -102,28 +97,6 @@ const WorkScreen = ({
     setShowPersonalize((oldVal) => !oldVal);
   };
 
-  const [stepsEnabled, setStepsEnabled] = useState(false);
-  const steps = [
-    {
-      element: ".desktop_icon",
-      intro: "Click once to open an app",
-    },
-    {
-      element: ".menu-start-btn",
-      intro: "This is menu start",
-    },
-    {
-      element: ".task-bar",
-      intro: "Click right mouse to open context menu",
-    },
-  ];
-
-  useEffect(() => {
-    setTimeout(() => {
-      setStepsEnabled(true);
-    }, 500);
-  }, []);
-
   return (
     <CSSTransition
       in={true}
@@ -148,16 +121,8 @@ const WorkScreen = ({
           }
         }}
       >
-        <Steps
-          enabled={stepsEnabled}
-          steps={steps}
-          initialStep={0}
-          onExit={() => {
-            setStepsEnabled(false);
-          }}
-        />
-
         <Desktop
+          lang={lang}
           toDoApp={toDoApp}
           handleStateToDoApp={handleStateToDoApp}
           webBrowser={webBrowser}

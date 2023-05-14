@@ -1,7 +1,18 @@
+.introjs-hint-pulse {
+  background-color: var(--blue);
+}
+
 .introjs-tooltip {
   background-color: var(--theme-bg);
   color: var(--theme-font);
   border-color: var(--border-main);
+}
+
+.introjs-tooltiptext {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .introjs-tooltip a {
