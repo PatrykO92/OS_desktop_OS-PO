@@ -3,15 +3,17 @@
 import "./src/styles/tetrisMain.css";
 import { pauseIcon } from "./src/icons";
 import { randomTetrominoSequence } from "./src/helpers";
+
+import { addTetrisScore, getTetrisHighscores } from "../../utils";
 import { useState, useEffect } from "react";
 
-const TetrisApp = ({ lang }) => {
+const TetrisApp = ({ lang, user }) => {
   const [pauseGame, setPauseGame] = useState(true);
   const [resumeGame, setResumeGame] = useState(false);
   const [showMenu, setShowMenu] = useState(true);
   const [showHelp, setShowHelp] = useState(false);
   const [showHighscore, setShowHighscore] = useState(false);
-  const [highscores, setHighscores] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
+  const [highscores, setHighscores] = useState([]);
   const [score, setScore] = useState(0);
   const [gameOver, setGameOver] = useState(false);
   const [level, setLevel] = useState(1);
@@ -26,14 +28,6 @@ const TetrisApp = ({ lang }) => {
   const [actualTetrominoRow, setActualTetrominoRow] = useState(0);
   const [actualTetrominoCol, setActualTetrominoCol] = useState(3);
   const [hasMovedDown, setHasMovedDown] = useState(false);
-
-  const setHighscoresHandler = (score) => {
-    setHighscores((oldVal) => [...oldVal, score]);
-  };
-
-  const resetHighscoresHandler = () => {
-    setHighscores([0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
-  };
 
   const rotateTetromino = () => {
     let blocked = false;
@@ -264,22 +258,17 @@ const TetrisApp = ({ lang }) => {
     }
   };
 
-  // import highscores from local storage, if available, at start of the component
+  // get tetris Highscores from server
   useEffect(() => {
-    const savedTetrisHighscores = localStorage.getItem("savedTetrisHighscores");
-    if (savedTetrisHighscores) {
-      setHighscores(JSON.parse(savedTetrisHighscores));
-    }
-  }, []);
-
-  // save highscores to local storage, each time new scores is added to highscores
-  useEffect(() => {
-    localStorage.setItem("savedTetrisHighscores", JSON.stringify(highscores));
-  }, [highscores]);
+    getTetrisHighscores().then((data) => {
+      const transformedData = data.map((game) => [game.game_tag, game.score]);
+      setHighscores(transformedData);
+    });
+  }, [showHighscore]);
 
   useEffect(() => {
-    if (gameOver) setHighscoresHandler(score);
-  }, [gameOver, score]);
+    if (gameOver) addTetrisScore(user.userTag, score);
+  }, [gameOver, score, user]);
 
   useEffect(() => {
     function keyPress(event) {
@@ -402,10 +391,14 @@ const TetrisApp = ({ lang }) => {
               {gameOver ? (
                 <div className="tetris__game-board__game-over">
                   <p>{lang.tetrisGameOver}</p>
-                  <p>{lang.tetrisYourScore}</p>
+                  <p>
+                    {lang.tetrisYourScore} ({user.userTag})
+                  </p>
                   <p>{score}</p>
                   <p>{lang.tetrisHighscore}</p>
-                  <p>{highscores.sort((a, b) => b - a)[0]}</p>
+                  <p>
+                    {highscores[0][0]} - {highscores[0][1]}
+                  </p>
                 </div>
               ) : (
                 ""
@@ -414,25 +407,16 @@ const TetrisApp = ({ lang }) => {
                 <div className="tetris__game-board__menu__highscores">
                   <div>{lang.tetrisHighscores}</div>
                   <div>
-                    {highscores
-                      .sort((a, b) => {
-                        return b - a;
-                      })
-                      .slice(0, 8)
-                      .map((item, index) => (
-                        <div key={index * Math.random()}>
-                          <p>{index + 1}.</p>
-                          <p>{item}</p>
-                        </div>
-                      ))}
+                    {highscores.map((item, index) => (
+                      <div key={index * Math.random()}>
+                        <p>{index + 1}.</p>
+                        <p>
+                          <span>{item[0]}</span> - <span>{item[1]}</span>
+                        </p>
+                      </div>
+                    ))}
                   </div>
 
-                  <button
-                    onClick={resetHighscoresHandler}
-                    className="tetris-reset"
-                  >
-                    {lang.tetrisReset}
-                  </button>
                   <button
                     onClick={() => {
                       setShowMenu(true);

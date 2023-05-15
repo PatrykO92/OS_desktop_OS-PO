@@ -23,7 +23,7 @@ const StartScreenStepTwo = ({
             lastName: "Copernicus",
             pin: "",
             avatar: avatarOne,
-            userTag: "Nic_Cop",
+            userTag: "NiCo",
           });
           changeStage("loginScreen");
         }}

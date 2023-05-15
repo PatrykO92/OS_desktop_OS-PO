@@ -8,6 +8,7 @@
   --tetris-color7: #23e289;
   --tetris-color8: #3fee82;
   --tetris-color9: #72ffff4f;
+  --tetris-color10: #ffffff;
   --tetris-background-color: black;
 }
 
@@ -28,6 +29,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  color: var(--tetris-color10);
 }
 
 .tetris * {
@@ -159,17 +161,17 @@
 }
 
 .tetris__game-board__menu__highscores p {
-  min-width: 1.7rem;
-}
-
-.tetris__game-board__menu__highscores > .tetris-reset {
-  color: var(--tetris-color4);
-  font-size: 0.9rem;
+  min-width: 2rem;
 }
 
 .tetris__game-board__menu__help p:nth-child(1) {
   font-size: 1.2rem;
   margin-bottom: 1rem;
+}
+
+.tetris__game-board__menu__highscores p > span:first-child {
+  font-size: 0.8rem;
+  color: var(--tetris-color1);
 }
 
 .tetris__game-board-container {

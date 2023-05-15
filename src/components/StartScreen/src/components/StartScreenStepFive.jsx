@@ -15,8 +15,7 @@ const StartScreenStepFive = ({
 
   const handleSubmit = () => {
     loginInToBackend();
-    const userTag =
-      userForm.name.slice(0, 3) + "_" + userForm.lastName.slice(0, 3);
+    const userTag = userForm.name.slice(0, 2) + userForm.lastName.slice(0, 2);
     changeUser({ ...userForm, userTag });
     changeStage("loginScreen");
   };

@@ -229,7 +229,7 @@ function App() {
           handleProgramState={handleStateTetris}
           handleDefaultProgramState={handleDefaultStateTetris}
         >
-          <TetrisApp lang={textModel[windowsLanguage]} />
+          <TetrisApp lang={textModel[windowsLanguage]} user={user} />
         </ProgramContainer>
       </CSSTransition>
 

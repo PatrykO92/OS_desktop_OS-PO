@@ -67,7 +67,6 @@ const textModel = {
     tetrisSoftDrop: "Soft drop",
     tetrisRotate: "Rotate",
     tetrisPause: "Pause",
-    tetrisReset: "Reset",
     tetrisResume: "Resume",
     tetrisHighscores: "Highscores",
     tetrisHighscore: "Highscore",
