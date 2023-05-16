@@ -10,6 +10,7 @@ import {
 import { CSSTransition } from "react-transition-group";
 
 const DesktopContextMenu = ({
+  wholeScreenRef,
   lang,
   position,
   onClick,
@@ -23,6 +24,7 @@ const DesktopContextMenu = ({
     appear={true}
     timeout={1000}
     classNames="desktop-context"
+    unmountOnExit
   >
     <div
       id="desktop-context-menu"
@@ -44,7 +46,14 @@ const DesktopContextMenu = ({
         </p>
         <p>{lang.personalize}</p>
       </button>
-      <button>
+      <button
+        onClick={() => {
+          wholeScreenRef.current.classList.add("refresh-screen");
+          setTimeout(() => {
+            wholeScreenRef.current.classList.remove("refresh-screen");
+          }, 50);
+        }}
+      >
         <p>
           <img src={refreshIcon} alt={lang.refresh} />
         </p>

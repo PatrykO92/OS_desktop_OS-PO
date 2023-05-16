@@ -1,4 +1,5 @@
 import "../assets/styles/personalizeMenu.css";
+import { xmarkIcon } from "../assets/icons";
 import {
   wallpaperOne,
   wallpaperTwo,
@@ -70,7 +71,9 @@ const Personalize = ({
       }}
     >
       <div>
-        <button onClick={handleShowPersonalize}>{lang.close}</button>
+        <button onClick={handleShowPersonalize}>
+          <img src={xmarkIcon} alt={lang.close} />
+        </button>
         <div className="personalize-window">
           <div className="personalize-window__wallpaper">
             <p>{lang.wallpaper}</p>
@@ -215,16 +218,15 @@ const Personalize = ({
             <button
               onClick={() => {
                 setTheme({
-                  themeBg: " #1c2326",
-                  themeBgLight: " #1c2326cb",
-                  themeFont: " #ffffff",
+                  themeBg: "#1c2326",
+                  themeBgLight: "#1c2326cb",
+                  themeFont: "#ffffff",
                 });
-                handleWallpaperChange(wallpaperOne);
+                handleWallpaperChange(wallpaperFive);
               }}
             >
               {lang.setDefault}
             </button>
-            <button onClick={handleShowPersonalize}>{lang.close}</button>
           </div>
         </div>
       </div>

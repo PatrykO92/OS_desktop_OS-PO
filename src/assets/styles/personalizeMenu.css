@@ -24,7 +24,20 @@
 }
 
 .personalize-menu > div > button {
-  margin: 0 1.2rem 0.5rem auto;
+  margin: 0 0 0.5rem auto;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  transition: all 0.5s;
+}
+
+.personalize-menu > div > button > img {
+  filter: invert(100%);
+  width: 1rem;
+}
+
+.personalize-menu > div > button:hover {
+  background-color: var(--hover-main);
 }
 
 .personalize-window {

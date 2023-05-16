@@ -50,6 +50,10 @@ body {
   overflow: hidden;
 }
 
+.refresh-screen {
+  opacity: 0;
+}
+
 .whole-screen {
   height: 100vh;
   height: 100dvh;

@@ -19,8 +19,9 @@ const textModel = {
       " I wanted to showcase my skills in ReactJS, JavaScript, HTML, and CSS through this project. I had a lot of fun creating it. If you'd like, you can return to the start screen to create a new user or head to the login screen to explore the app again with the same user.",
     entertainment: "entertainment",
     guestUser: "Guest user",
-    hint1: "Click right mouse button on desktop, to open context menu.",
+
     dismiss: "Dismiss",
+    dontShowAgain: "Don't show this again",
     fetchError: "Servers are overloaded, please try again later!",
     finalSummary: "Summary",
     finalSummaryDes: "Double-check everything looks fine, before accepting",
@@ -54,6 +55,7 @@ const textModel = {
     step1: "Click once to open an app.",
     step2: "This is menu start.",
     step3: "You can change language here.",
+    hint4: "Click right mouse button on desktop, to open context menu.",
     submit: "Submit",
     name: "Name",
     lastName: "Last name",
@@ -109,9 +111,9 @@ const textModel = {
       " Chciałem tutaj zaprezentować moje umiejętności związane z ReactJS, JavaScript, HTML i CSS. Tworząc tę aplikację, świetnie się bawiłem. Jeśli chcesz, możesz przejść ponownie do ekranu startowego, aby stworzyć nowego użytkownika lub przejść do ekranu logowania, aby ponownie sprawdzić aplikację z tym samym użytkownikiem.",
     entertainment: "rozrywka",
     guestUser: "Konto gościa",
-    hint1:
-      "Kliknij prawym przyciskiem myszy na pulpicie, aby otworzyć menu kontekstowe.",
+
     dismiss: "Anuluj",
+    dontShowAgain: "Nie pokazuj ponownie",
     fetchError: "Serwery są przeciążone, spróbuj ponownie później!",
     finalSummary: "Podsumowanie",
     finalSummaryDes: "Sprawdź czy wszystko pasuje, przed akceptacją",
@@ -147,6 +149,8 @@ const textModel = {
     step1: "Kliknij raz aby otworzyć aplikację.",
     step2: "To jest menu start.",
     step3: "Tutaj możesz wybrać język.",
+    step4:
+      "Kliknij prawym przyciskiem myszy na pulpicie, aby otworzyć menu kontekstowe.",
     name: "Imię",
     lastName: "Nazwisko",
     toDoAppInputPlaceholder: "np. kup jajka",

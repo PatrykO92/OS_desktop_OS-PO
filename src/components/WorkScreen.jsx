@@ -20,6 +20,7 @@ const WorkScreen = ({
   user,
   changeStage,
   changeLang,
+  wholeScreenRef,
   toDoApp,
   handleStateToDoApp,
   webBrowser,
@@ -67,6 +68,7 @@ const WorkScreen = ({
 
   const handleDesktopContextMenu = (e, setDesktopContextMenuPosition) => {
     e.preventDefault();
+    if (e.target.className !== "desktop") return;
     // #desktop-context-menu width value in rem
     const remValueX = 10;
     // #desktop-context-menu height value in rem
@@ -84,7 +86,7 @@ const WorkScreen = ({
     if (window.innerWidth - x < pixelValueX) {
       x = x - pixelValueX;
     }
-    if (e.target.className !== "desktop") return;
+
     setDesktopContextMenuPosition({
       x,
       y,
@@ -142,6 +144,7 @@ const WorkScreen = ({
             handleCloseCalendar={handleCloseCalendar}
             handleCloseMenuStart={handleCloseMenuStart}
             handleShowPersonalize={handleShowPersonalize}
+            wholeScreenRef={wholeScreenRef}
           />
         )}
 

@@ -11,7 +11,7 @@ import {
 import { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 
-const ToDoApp = ({ lang }) => {
+const ToDoApp = ({ lang, user }) => {
   // input value
   const [inputValue, setInputValue] = useState("");
 
@@ -23,16 +23,16 @@ const ToDoApp = ({ lang }) => {
 
   // import toDoList from local storage, if available, at start of the component
   useEffect(() => {
-    const savedToDoList = localStorage.getItem("toDoList");
+    const savedToDoList = localStorage.getItem(`toDoList${user.userTag}`);
     if (savedToDoList) {
       setToDoList(JSON.parse(savedToDoList));
     }
-  }, []);
+  }, [user]);
 
   // save toDoList to local storage, each time new item is added to toDoList
   useEffect(() => {
-    localStorage.setItem("toDoList", JSON.stringify(toDoList));
-  }, [toDoList]);
+    localStorage.setItem(`toDoList${user.userTag}`, JSON.stringify(toDoList));
+  }, [user, toDoList]);
 
   // add things to toDoList, using uuid library to generate a random ID for each toDo task
   // toDoStatus describes if things are already finished or still to do

@@ -5,7 +5,12 @@
 .introjs-tooltip {
   background-color: var(--theme-bg);
   color: var(--theme-font);
-  border-color: var(--border-main);
+  border-radius: 5px;
+  border: 1px solid var(--border-main);
+}
+
+.introjs-skipbutton {
+  border-radius: 0 5px 0 0;
 }
 
 .introjs-tooltiptext {
@@ -41,4 +46,10 @@
 
 .introjs-helperLayer {
   outline: 2px solid var(--blue);
+}
+
+.introjs-dontShowAgain label {
+  color: var(--theme-font);
+  background-color: var(--theme-bg);
+  margin-bottom: 0.4rem;
 }

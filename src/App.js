@@ -22,11 +22,12 @@ import {
 
 import { textModel } from "./utils";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 import { CSSTransition } from "react-transition-group";
 
 function App() {
+  const wholeScreenRef = useRef(null);
   // useStateHook and function to set actually used language, default set to "en".
   const [windowsLanguage, setWindowsLanguage] = useState("en");
   const changeLang = (language) => {
@@ -153,7 +154,7 @@ function App() {
   };
 
   return (
-    <div className="whole-screen">
+    <div className="whole-screen" ref={wholeScreenRef}>
       {/* App 1: To-Do-App */}
       <CSSTransition
         in={toDoApp.programEnabled}
@@ -169,7 +170,7 @@ function App() {
           handleProgramState={handleStateToDoApp}
           handleDefaultProgramState={handleDefaultStateToDoApp}
         >
-          <ToDoApp lang={textModel[windowsLanguage]} />
+          <ToDoApp lang={textModel[windowsLanguage]} user={user} />
         </ProgramContainer>
       </CSSTransition>
 
@@ -254,6 +255,7 @@ function App() {
           user={user}
           changeStage={changeStage}
           changeLang={changeLang}
+          wholeScreenRef={wholeScreenRef}
           // Programs states and handlers
           toDoApp={toDoApp}
           handleStateToDoApp={handleStateToDoApp}
