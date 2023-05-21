@@ -1,12 +1,5 @@
 import "../assets/styles/workScreen.css";
-import { wallpaperFive } from "../assets/images/wallpapers";
-import {
-  TaskBar,
-  Desktop,
-  DesktopContextMenu,
-  MenuStart,
-  Personalize,
-} from "./";
+import { TaskBar, Desktop, DesktopContextMenu, MenuStart } from "./";
 
 import { useState } from "react";
 
@@ -21,6 +14,7 @@ const WorkScreen = ({
   changeStage,
   changeLang,
   wholeScreenRef,
+  wallpaper,
   toDoApp,
   handleStateToDoApp,
   webBrowser,
@@ -29,14 +23,13 @@ const WorkScreen = ({
   handleStateCalculator,
   tetris,
   handleStateTetris,
+  personalize,
+  handleStatePersonalize,
+  personalizeUser,
+  handleStatePersonalizeUser,
+  hideAllPrograms,
   closeAllPrograms,
 }) => {
-  // useState hook and handler function for changing Desktop wallpaper
-  const [wallpaper, setWallpaper] = useState(wallpaperFive);
-  const handleWallpaperChange = (image) => {
-    setWallpaper(image);
-  };
-
   // useState hook for showing and hidding MenuStart
   const [showMenuStart, setShowMenuStart] = useState(false);
   const handleShowMenuStart = () => {
@@ -93,12 +86,6 @@ const WorkScreen = ({
     });
   };
 
-  // useState hook for showing and hidding Personalize
-  const [showPersonalize, setShowPersonalize] = useState(false);
-  const handleShowPersonalize = () => {
-    setShowPersonalize((oldVal) => !oldVal);
-  };
-
   return (
     <CSSTransition
       in={true}
@@ -143,7 +130,7 @@ const WorkScreen = ({
             closeAllPrograms={closeAllPrograms}
             handleCloseCalendar={handleCloseCalendar}
             handleCloseMenuStart={handleCloseMenuStart}
-            handleShowPersonalize={handleShowPersonalize}
+            handleStatePersonalize={handleStatePersonalize}
             wholeScreenRef={wholeScreenRef}
           />
         )}
@@ -161,6 +148,11 @@ const WorkScreen = ({
           handleStateCalculator={handleStateCalculator}
           tetris={tetris}
           handleStateTetris={handleStateTetris}
+          personalize={personalize}
+          handleStatePersonalize={handleStatePersonalize}
+          personalizeUser={personalizeUser}
+          handleStatePersonalizeUser={handleStatePersonalizeUser}
+          hideAllPrograms={hideAllPrograms}
         />
 
         <CSSTransition
@@ -175,6 +167,8 @@ const WorkScreen = ({
             user={user}
             changeStage={changeStage}
             handleStateWebBrowser={handleStateWebBrowser}
+            handleStatePersonalizeUser={handleStatePersonalizeUser}
+            hideAllPrograms={hideAllPrograms}
             closeAllPrograms={closeAllPrograms}
           />
         </CSSTransition>
@@ -186,21 +180,6 @@ const WorkScreen = ({
           unmountOnExit
         >
           <Calendar onChange={onChange} value={value} locale={lang.lng} />
-        </CSSTransition>
-
-        <CSSTransition
-          in={showPersonalize}
-          appear={true}
-          timeout={500}
-          classNames="fade"
-          unmountOnExit
-        >
-          <Personalize
-            lang={lang}
-            wallpaper={wallpaper}
-            handleWallpaperChange={handleWallpaperChange}
-            handleShowPersonalize={handleShowPersonalize}
-          />
         </CSSTransition>
       </div>
     </CSSTransition>

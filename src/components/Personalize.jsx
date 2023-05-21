@@ -1,5 +1,4 @@
 import "../assets/styles/personalizeMenu.css";
-import { xmarkIcon } from "../assets/icons";
 import {
   wallpaperOne,
   wallpaperTwo,
@@ -13,12 +12,7 @@ import {
 
 import { useState, useEffect } from "react";
 
-const Personalize = ({
-  lang,
-  wallpaper,
-  handleWallpaperChange,
-  handleShowPersonalize,
-}) => {
+const Personalize = ({ lang, wallpaper, handleWallpaperChange }) => {
   const [theme, setTheme] = useState({
     themeBg: "",
     themeBgLight: "",
@@ -63,172 +57,159 @@ const Personalize = ({
   };
 
   return (
-    <div
-      className="personalize-menu"
-      onClick={(e) => {
-        if (e.target.className.includes("personalize-app"))
-          handleShowPersonalize();
-      }}
-    >
-      <div>
-        <button onClick={handleShowPersonalize}>
-          <img src={xmarkIcon} alt={lang.close} />
-        </button>
-        <div className="personalize-window">
-          <div className="personalize-window__wallpaper">
-            <p>{lang.wallpaper}</p>
-            <img src={wallpaper} alt={`${lang.wallpaper}`} />
-            <div className="personalize-window__wallpaper__list">
-              <img
-                src={wallpaperOne}
-                alt={`${lang.wallpaper} 1`}
-                onClick={() => handleWallpaperChange(wallpaperOne)}
-              />
-              <img
-                src={wallpaperTwo}
-                alt={`${lang.wallpaper} 2`}
-                onClick={() => handleWallpaperChange(wallpaperTwo)}
-              />
-              <img
-                src={wallpaperThree}
-                alt={`${lang.wallpaper} 3`}
-                onClick={() => handleWallpaperChange(wallpaperThree)}
-              />
-              <img
-                src={wallpaperFour}
-                alt={`${lang.wallpaper} 4`}
-                onClick={() => handleWallpaperChange(wallpaperFour)}
-              />
-              <img
-                src={wallpaperFive}
-                alt={`${lang.wallpaper} 5`}
-                onClick={() => handleWallpaperChange(wallpaperFive)}
-              />
-              <img
-                src={wallpaperSix}
-                alt={`${lang.wallpaper} 6`}
-                onClick={() => handleWallpaperChange(wallpaperSix)}
-              />
-              <img
-                src={wallpaperSeven}
-                alt={`${lang.wallpaper} 7`}
-                onClick={() => handleWallpaperChange(wallpaperSeven)}
-              />
-              <img
-                src={wallpaperEight}
-                alt={`${lang.wallpaper} 8`}
-                onClick={() => handleWallpaperChange(wallpaperEight)}
-              />
-            </div>
-          </div>
-
-          <div className="personalize-window__main-color">
-            <p>{lang.mainColor}</p>
-            <div className="personalize-window__main-color__list">
-              <button
-                style={{ backgroundColor: "#1c2326" }}
-                onClick={handleThemeBgColorChange}
-              />
-              <button
-                style={{ backgroundColor: "#223942" }}
-                onClick={handleThemeBgColorChange}
-              />
-              <button
-                style={{ backgroundColor: "#224230" }}
-                onClick={handleThemeBgColorChange}
-              />
-              <button
-                style={{ backgroundColor: "#3f4222" }}
-                onClick={handleThemeBgColorChange}
-              />
-              <button
-                style={{ backgroundColor: "#423022" }}
-                onClick={handleThemeBgColorChange}
-              />
-              <button
-                style={{ backgroundColor: "#422222" }}
-                onClick={handleThemeBgColorChange}
-              />
-              <button
-                style={{ backgroundColor: "#4f2a53" }}
-                onClick={handleThemeBgColorChange}
-              />
-              <button
-                style={{ backgroundColor: "#000000" }}
-                onClick={handleThemeBgColorChange}
-              />
-            </div>
-          </div>
-
-          <div className="personalize-window__font-color">
-            <p>{lang.fontColor}</p>
-
-            <div className="personalize-window__font-color__list">
-              <button
-                style={{ color: "#ffffff" }}
-                onClick={handleThemeFontColorChange}
-              >
-                {lang.fontColor} 1
-              </button>
-              <button
-                style={{ color: "#85d8ff" }}
-                onClick={handleThemeFontColorChange}
-              >
-                {lang.fontColor} 2
-              </button>
-              <button
-                style={{ color: "#97ff9c" }}
-                onClick={handleThemeFontColorChange}
-              >
-                {lang.fontColor} 3
-              </button>
-              <button
-                style={{ color: "#e9ff85" }}
-                onClick={handleThemeFontColorChange}
-              >
-                {lang.fontColor} 4
-              </button>
-              <button
-                style={{ color: "#fd9696" }}
-                onClick={handleThemeFontColorChange}
-              >
-                {lang.fontColor} 5
-              </button>
-              <button
-                style={{ color: "#fdbf96" }}
-                onClick={handleThemeFontColorChange}
-              >
-                {lang.fontColor} 6
-              </button>
-              <button
-                style={{ color: "#c696fd" }}
-                onClick={handleThemeFontColorChange}
-              >
-                {lang.fontColor} 7
-              </button>
-              <button
-                style={{ color: "#fcacff" }}
-                onClick={handleThemeFontColorChange}
-              >
-                {lang.fontColor} 8
-              </button>
-            </div>
-          </div>
-          <div className="personalize-window__buttons">
-            <button
-              onClick={() => {
-                setTheme({
-                  themeBg: "#1c2326",
-                  themeBgLight: "#1c2326cb",
-                  themeFont: "#ffffff",
-                });
-                handleWallpaperChange(wallpaperFive);
-              }}
-            >
-              {lang.setDefault}
-            </button>
-          </div>
+    <div className="personalize-menu">
+      <div className="personalize-window__wallpaper">
+        <p>{lang.wallpaper}</p>
+        <img src={wallpaper} alt={`${lang.wallpaper}`} />
+        <div className="personalize-window__wallpaper__list">
+          <img
+            src={wallpaperOne}
+            alt={`${lang.wallpaper} 1`}
+            onClick={() => handleWallpaperChange(wallpaperOne)}
+          />
+          <img
+            src={wallpaperTwo}
+            alt={`${lang.wallpaper} 2`}
+            onClick={() => handleWallpaperChange(wallpaperTwo)}
+          />
+          <img
+            src={wallpaperThree}
+            alt={`${lang.wallpaper} 3`}
+            onClick={() => handleWallpaperChange(wallpaperThree)}
+          />
+          <img
+            src={wallpaperFour}
+            alt={`${lang.wallpaper} 4`}
+            onClick={() => handleWallpaperChange(wallpaperFour)}
+          />
+          <img
+            src={wallpaperFive}
+            alt={`${lang.wallpaper} 5`}
+            onClick={() => handleWallpaperChange(wallpaperFive)}
+          />
+          <img
+            src={wallpaperSix}
+            alt={`${lang.wallpaper} 6`}
+            onClick={() => handleWallpaperChange(wallpaperSix)}
+          />
+          <img
+            src={wallpaperSeven}
+            alt={`${lang.wallpaper} 7`}
+            onClick={() => handleWallpaperChange(wallpaperSeven)}
+          />
+          <img
+            src={wallpaperEight}
+            alt={`${lang.wallpaper} 8`}
+            onClick={() => handleWallpaperChange(wallpaperEight)}
+          />
         </div>
+      </div>
+
+      <div className="personalize-window__main-color">
+        <p>{lang.mainColor}</p>
+        <div className="personalize-window__main-color__list">
+          <button
+            style={{ backgroundColor: "#1c2326" }}
+            onClick={handleThemeBgColorChange}
+          />
+          <button
+            style={{ backgroundColor: "#223942" }}
+            onClick={handleThemeBgColorChange}
+          />
+          <button
+            style={{ backgroundColor: "#224230" }}
+            onClick={handleThemeBgColorChange}
+          />
+          <button
+            style={{ backgroundColor: "#3f4222" }}
+            onClick={handleThemeBgColorChange}
+          />
+          <button
+            style={{ backgroundColor: "#423022" }}
+            onClick={handleThemeBgColorChange}
+          />
+          <button
+            style={{ backgroundColor: "#422222" }}
+            onClick={handleThemeBgColorChange}
+          />
+          <button
+            style={{ backgroundColor: "#4f2a53" }}
+            onClick={handleThemeBgColorChange}
+          />
+          <button
+            style={{ backgroundColor: "#000000" }}
+            onClick={handleThemeBgColorChange}
+          />
+        </div>
+      </div>
+
+      <div className="personalize-window__font-color">
+        <p>{lang.fontColor}</p>
+
+        <div className="personalize-window__font-color__list">
+          <button
+            style={{ color: "#ffffff" }}
+            onClick={handleThemeFontColorChange}
+          >
+            {lang.fontColor} 1
+          </button>
+          <button
+            style={{ color: "#85d8ff" }}
+            onClick={handleThemeFontColorChange}
+          >
+            {lang.fontColor} 2
+          </button>
+          <button
+            style={{ color: "#97ff9c" }}
+            onClick={handleThemeFontColorChange}
+          >
+            {lang.fontColor} 3
+          </button>
+          <button
+            style={{ color: "#e9ff85" }}
+            onClick={handleThemeFontColorChange}
+          >
+            {lang.fontColor} 4
+          </button>
+          <button
+            style={{ color: "#fd9696" }}
+            onClick={handleThemeFontColorChange}
+          >
+            {lang.fontColor} 5
+          </button>
+          <button
+            style={{ color: "#fdbf96" }}
+            onClick={handleThemeFontColorChange}
+          >
+            {lang.fontColor} 6
+          </button>
+          <button
+            style={{ color: "#c696fd" }}
+            onClick={handleThemeFontColorChange}
+          >
+            {lang.fontColor} 7
+          </button>
+          <button
+            style={{ color: "#fcacff" }}
+            onClick={handleThemeFontColorChange}
+          >
+            {lang.fontColor} 8
+          </button>
+        </div>
+      </div>
+      <div className="personalize-window__buttons">
+        <button
+          onClick={() => {
+            setTheme({
+              themeBg: "#1c2326",
+              themeBgLight: "#1c2326cb",
+              themeFont: "#ffffff",
+            });
+            handleWallpaperChange(wallpaperFive);
+          }}
+        >
+          {lang.setDefault}
+        </button>
       </div>
     </div>
   );

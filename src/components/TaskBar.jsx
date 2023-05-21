@@ -18,6 +18,11 @@ const TaskBar = ({
   handleStateCalculator,
   tetris,
   handleStateTetris,
+  personalize,
+  handleStatePersonalize,
+  personalizeUser,
+  handleStatePersonalizeUser,
+  hideAllPrograms,
 }) => {
   return (
     <div className="task-bar">
@@ -33,10 +38,8 @@ const TaskBar = ({
           {toDoApp.programEnabled && (
             <button
               onClick={() => {
+                hideAllPrograms();
                 handleStateToDoApp("hidden", !toDoApp.hidden);
-                handleStateWebBrowser("hidden", true);
-                handleStateCalculator("hidden", true);
-                handleStateTetris("hidden", true);
               }}
               className="task-bar_program-button"
               style={{
@@ -53,10 +56,8 @@ const TaskBar = ({
           {webBrowser.programEnabled && (
             <button
               onClick={() => {
+                hideAllPrograms();
                 handleStateWebBrowser("hidden", !webBrowser.hidden);
-                handleStateToDoApp("hidden", true);
-                handleStateCalculator("hidden", true);
-                handleStateTetris("hidden", true);
               }}
               className="task-bar_program-button"
               style={{
@@ -73,10 +74,8 @@ const TaskBar = ({
           {calculator.programEnabled && (
             <button
               onClick={() => {
+                hideAllPrograms();
                 handleStateCalculator("hidden", !calculator.hidden);
-                handleStateWebBrowser("hidden", true);
-                handleStateToDoApp("hidden", true);
-                handleStateTetris("hidden", true);
               }}
               className="task-bar_program-button"
               style={{
@@ -93,9 +92,7 @@ const TaskBar = ({
           {tetris.programEnabled && (
             <button
               onClick={() => {
-                handleStateCalculator("hidden", true);
-                handleStateWebBrowser("hidden", true);
-                handleStateToDoApp("hidden", true);
+                hideAllPrograms();
                 handleStateTetris("hidden", !tetris.hidden);
               }}
               className="task-bar_program-button"
@@ -107,6 +104,42 @@ const TaskBar = ({
             >
               <img src={tetris.icon} alt={tetris.name} />
               <p>{tetris.name}</p>
+            </button>
+          )}
+
+          {personalize.programEnabled && (
+            <button
+              onClick={() => {
+                hideAllPrograms();
+                handleStatePersonalize("hidden", !personalize.hidden);
+              }}
+              className="task-bar_program-button"
+              style={{
+                backgroundColor: `${
+                  personalize.hidden ? "var(--hidden)" : "var(--showed)"
+                }`,
+              }}
+            >
+              <img src={personalize.icon} alt={personalize.name} />
+              <p>{personalize.name}</p>
+            </button>
+          )}
+
+          {personalizeUser.programEnabled && (
+            <button
+              onClick={() => {
+                hideAllPrograms();
+                handleStatePersonalizeUser("hidden", !personalizeUser.hidden);
+              }}
+              className="task-bar_program-button"
+              style={{
+                backgroundColor: `${
+                  personalizeUser.hidden ? "var(--hidden)" : "var(--showed)"
+                }`,
+              }}
+            >
+              <img src={personalizeUser.icon} alt={personalizeUser.name} />
+              <p>{personalizeUser.name}</p>
             </button>
           )}
         </div>

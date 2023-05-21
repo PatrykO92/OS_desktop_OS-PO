@@ -1,71 +1,9 @@
 .personalize-menu {
-  z-index: 20;
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  height: 100dvh;
-  width: 100vw;
-  width: 100dvw;
-  background-color: var(--program-container-background);
+  height: 100%;
   display: flex;
+  gap: 2rem;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-}
-
-.personalize-menu > div {
-  background-color: var(--theme-bg);
-  border-radius: 10px;
-  border: 1px solid var(--border-main);
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-}
-
-.personalize-menu > div > button {
-  margin: 0 0 0.5rem auto;
-  height: 2rem;
-  display: flex;
-  align-items: center;
-  transition: all 0.5s;
-}
-
-.personalize-menu > div > button > img {
-  filter: invert(100%);
-  width: 1rem;
-}
-
-.personalize-menu > div > button:hover {
-  background-color: var(--hover-main);
-}
-
-.personalize-window {
-  max-width: 50rem;
-  max-height: 30rem;
-  padding: 1rem;
-  overflow-y: scroll;
-  display: flex;
-  flex-direction: column;
-  gap: 3rem;
-}
-
-.personalize-window::-webkit-scrollbar {
-  width: 5px;
-}
-
-.personalize-window::-webkit-scrollbar-track {
-  background: var(--theme-bg);
-  border-radius: 5px;
-}
-
-.personalize-window::-webkit-scrollbar-thumb {
-  background: var(--hover-main);
-  border-radius: 5px;
-}
-
-.personalize-window::-webkit-scrollbar-thumb:hover {
-  background: var(--hover-main);
 }
 
 .personalize-window__wallpaper,

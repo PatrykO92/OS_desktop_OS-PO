@@ -1,11 +1,15 @@
 import "./assets/styles/main.css";
 
+import { wallpaperFive } from "./assets/images/wallpapers";
+
 // import Icons for specific programs
 import {
   toDoAppIcon,
   webBrowserIcon,
   calculatorIcon,
   tetrisIcon,
+  brushIcon,
+  userIcon,
 } from "./assets/icons";
 
 import {
@@ -18,11 +22,13 @@ import {
   WebBrowser,
   ToDoApp,
   TetrisApp,
+  Personalize,
+  PersonalizeUser,
 } from "./components";
 
 import { textModel } from "./utils";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 import { CSSTransition } from "react-transition-group";
 
@@ -57,6 +63,12 @@ function App() {
   const [user, setUser] = useState({});
   const changeUser = (user) => {
     setUser(user);
+  };
+
+  // useState hook and handler function for changing Desktop wallpaper
+  const [wallpaper, setWallpaper] = useState(wallpaperFive);
+  const handleWallpaperChange = (image) => {
+    setWallpaper(image);
   };
 
   //App 1: TO-DO-APP useState and handlers
@@ -107,7 +119,7 @@ function App() {
   const [calculator, setCalculator] = useState({
     programEnabled: false,
     hidden: false,
-    name: "Calculus",
+    name: textModel[windowsLanguage].calculatorName,
     icon: calculatorIcon,
   });
 
@@ -119,7 +131,7 @@ function App() {
     setCalculator({
       programEnabled: false,
       hidden: false,
-      name: "Calculus",
+      name: textModel[windowsLanguage].calculatorName,
       icon: calculatorIcon,
     });
   };
@@ -145,13 +157,74 @@ function App() {
     });
   };
 
-  // Close all programs function
+  // App 5: Personalize useState and handlers
+  const [personalize, setPersonalize] = useState({
+    programEnabled: false,
+    hidden: false,
+    name: textModel[windowsLanguage].personalize,
+    icon: brushIcon,
+  });
+
+  const handleStatePersonalize = (name, value) => {
+    setPersonalize((oldVal) => ({ ...oldVal, [name]: value }));
+  };
+
+  const handleDefaultStatePersonalize = () => {
+    setPersonalize({
+      programEnabled: false,
+      hidden: false,
+      name: textModel[windowsLanguage].personalizeUser,
+      icon: brushIcon,
+    });
+  };
+
+  // App 6: PersonalizeUser useState and handlers
+  const [personalizeUser, setPersonalizeUser] = useState({
+    programEnabled: false,
+    hidden: false,
+    name: "Personalize User",
+    icon: userIcon,
+  });
+
+  const handleStatePersonalizeUser = (name, value) => {
+    setPersonalizeUser((oldVal) => ({ ...oldVal, [name]: value }));
+  };
+
+  const handleDefaultStatePersonalizeUser = () => {
+    setPersonalizeUser({
+      programEnabled: false,
+      hidden: false,
+      name: "Personalize User",
+      icon: userIcon,
+    });
+  };
+
+  const hideAllPrograms = () => {
+    handleStateToDoApp("hidden", true);
+    handleStateCalculator("hidden", true);
+    handleStatePersonalize("hidden", true);
+    handleStatePersonalizeUser("hidden", true);
+    handleStateTetris("hidden", true);
+    handleStateWebBrowser("hidden", true);
+  };
+
   const closeAllPrograms = () => {
     handleDefaultStateToDoApp();
     handleDefaultStateWebBrowser();
     handleDefaultStateCalculator();
     handleDefaultStateTetris();
+    handleDefaultStatePersonalize();
+    handleDefaultStatePersonalizeUser();
   };
+
+  useEffect(() => {
+    handleStateCalculator("name", textModel[windowsLanguage].calculatorName);
+    handleStatePersonalize("name", textModel[windowsLanguage].personalize);
+    handleStatePersonalizeUser(
+      "name",
+      textModel[windowsLanguage].personalizeUser
+    );
+  }, [windowsLanguage]);
 
   return (
     <div className="whole-screen" ref={wholeScreenRef}>
@@ -234,6 +307,52 @@ function App() {
         </ProgramContainer>
       </CSSTransition>
 
+      {/* App 5: Personalize */}
+      <CSSTransition
+        in={personalize.programEnabled}
+        timeout={300}
+        classNames="fade"
+        unmountOnExit
+      >
+        <ProgramContainer
+          lang={textModel[windowsLanguage]}
+          programName={personalize.name}
+          programIcon={personalize.icon}
+          programHidden={personalize.hidden}
+          handleProgramState={handleStatePersonalize}
+          handleDefaultProgramState={handleDefaultStatePersonalize}
+        >
+          <Personalize
+            lang={textModel[windowsLanguage]}
+            wallpaper={wallpaper}
+            handleWallpaperChange={handleWallpaperChange}
+          />
+        </ProgramContainer>
+      </CSSTransition>
+
+      {/* App 5: Personalize User */}
+      <CSSTransition
+        in={personalizeUser.programEnabled}
+        timeout={300}
+        classNames="fade"
+        unmountOnExit
+      >
+        <ProgramContainer
+          lang={textModel[windowsLanguage]}
+          programName={personalizeUser.name}
+          programIcon={personalizeUser.icon}
+          programHidden={personalizeUser.hidden}
+          handleProgramState={handleStatePersonalizeUser}
+          handleDefaultProgramState={handleDefaultStatePersonalizeUser}
+        >
+          <PersonalizeUser
+            lang={textModel[windowsLanguage]}
+            user={user}
+            changeUser={changeUser}
+          />
+        </ProgramContainer>
+      </CSSTransition>
+
       {systemStage.startScreen && (
         <StartScreen
           lang={textModel[windowsLanguage]}
@@ -253,9 +372,11 @@ function App() {
         <WorkScreen
           lang={textModel[windowsLanguage]}
           user={user}
+          changeUser={changeUser}
           changeStage={changeStage}
           changeLang={changeLang}
           wholeScreenRef={wholeScreenRef}
+          wallpaper={wallpaper}
           // Programs states and handlers
           toDoApp={toDoApp}
           handleStateToDoApp={handleStateToDoApp}
@@ -265,6 +386,11 @@ function App() {
           handleStateCalculator={handleStateCalculator}
           tetris={tetris}
           handleStateTetris={handleStateTetris}
+          personalize={personalize}
+          handleStatePersonalize={handleStatePersonalize}
+          personalizeUser={personalizeUser}
+          handleStatePersonalizeUser={handleStatePersonalizeUser}
+          hideAllPrograms={hideAllPrograms}
           closeAllPrograms={closeAllPrograms}
         />
       )}

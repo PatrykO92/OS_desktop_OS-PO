@@ -17,7 +17,7 @@ const DesktopContextMenu = ({
   closeAllPrograms,
   handleCloseCalendar,
   handleCloseMenuStart,
-  handleShowPersonalize,
+  handleStatePersonalize,
 }) => (
   <CSSTransition
     in={true}
@@ -40,7 +40,12 @@ const DesktopContextMenu = ({
         </p>
         <p>{lang.view}</p>
       </button>
-      <button onClick={handleShowPersonalize}>
+      <button
+        onClick={() => {
+          handleStatePersonalize("hidden", false);
+          handleStatePersonalize("programEnabled", true);
+        }}
+      >
         <p>
           <img src={brushIcon} alt={lang.personalize} />
         </p>

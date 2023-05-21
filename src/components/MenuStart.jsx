@@ -11,6 +11,8 @@ const MenuStart = ({
   changeStage,
   handleStateWebBrowser,
   closeAllPrograms,
+  handleStatePersonalizeUser,
+  hideAllPrograms,
 }) => {
   const [showAlert, setShowAlert] = useState(false);
   const [nextStage, setNextStage] = useState(null);
@@ -37,7 +39,13 @@ const MenuStart = ({
           <NewsBox lang={lang} handleStateWebBrowser={handleStateWebBrowser} />
         </div>
         <div className="menu-start-utils">
-          <button>
+          <button
+            onClick={() => {
+              hideAllPrograms();
+              handleStatePersonalizeUser("programEnabled", true);
+              handleStatePersonalizeUser("hidden", false);
+            }}
+          >
             <img
               src={user.avatar}
               alt={`${lang.name} ${lang.lastName}`}
