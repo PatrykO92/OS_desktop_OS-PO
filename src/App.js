@@ -35,9 +35,9 @@ import { CSSTransition } from "react-transition-group";
 function App() {
   const wholeScreenRef = useRef(null);
   // useStateHook and function to set actually used language, default set to "en".
-  const [windowsLanguage, setWindowsLanguage] = useState("en");
+  const [systemLanguage, setSystemLanguage] = useState("en");
   const changeLang = (language) => {
-    setWindowsLanguage(language);
+    setSystemLanguage(language);
   };
 
   // useStateHook to inform, at what stage is app currently
@@ -119,7 +119,7 @@ function App() {
   const [calculator, setCalculator] = useState({
     programEnabled: false,
     hidden: false,
-    name: textModel[windowsLanguage].calculatorName,
+    name: textModel[systemLanguage].calculatorName,
     icon: calculatorIcon,
   });
 
@@ -131,7 +131,7 @@ function App() {
     setCalculator({
       programEnabled: false,
       hidden: false,
-      name: textModel[windowsLanguage].calculatorName,
+      name: textModel[systemLanguage].calculatorName,
       icon: calculatorIcon,
     });
   };
@@ -161,7 +161,7 @@ function App() {
   const [personalize, setPersonalize] = useState({
     programEnabled: false,
     hidden: false,
-    name: textModel[windowsLanguage].personalize,
+    name: textModel[systemLanguage].personalize,
     icon: brushIcon,
   });
 
@@ -173,7 +173,7 @@ function App() {
     setPersonalize({
       programEnabled: false,
       hidden: false,
-      name: textModel[windowsLanguage].personalizeUser,
+      name: textModel[systemLanguage].personalize,
       icon: brushIcon,
     });
   };
@@ -217,14 +217,18 @@ function App() {
     handleDefaultStatePersonalizeUser();
   };
 
+  // update lang attribute
+  // update apps names, when language changes
   useEffect(() => {
-    handleStateCalculator("name", textModel[windowsLanguage].calculatorName);
-    handleStatePersonalize("name", textModel[windowsLanguage].personalize);
+    document.documentElement.lang = systemLanguage;
+
+    handleStateCalculator("name", textModel[systemLanguage].calculatorName);
+    handleStatePersonalize("name", textModel[systemLanguage].personalize);
     handleStatePersonalizeUser(
       "name",
-      textModel[windowsLanguage].personalizeUser
+      textModel[systemLanguage].personalizeUser
     );
-  }, [windowsLanguage]);
+  }, [systemLanguage]);
 
   return (
     <div className="whole-screen" ref={wholeScreenRef}>
@@ -236,14 +240,14 @@ function App() {
         unmountOnExit
       >
         <ProgramContainer
-          lang={textModel[windowsLanguage]}
+          lang={textModel[systemLanguage]}
           programName={toDoApp.name}
           programIcon={toDoApp.icon}
           programHidden={toDoApp.hidden}
           handleProgramState={handleStateToDoApp}
           handleDefaultProgramState={handleDefaultStateToDoApp}
         >
-          <ToDoApp lang={textModel[windowsLanguage]} user={user} />
+          <ToDoApp lang={textModel[systemLanguage]} user={user} />
         </ProgramContainer>
       </CSSTransition>
 
@@ -255,7 +259,7 @@ function App() {
         unmountOnExit
       >
         <ProgramContainer
-          lang={textModel[windowsLanguage]}
+          lang={textModel[systemLanguage]}
           programName={webBrowser.name}
           programIcon={webBrowser.icon}
           programHidden={webBrowser.hidden}
@@ -263,7 +267,7 @@ function App() {
           handleDefaultProgramState={handleDefaultStateWebBrowser}
         >
           <WebBrowser
-            lang={textModel[windowsLanguage]}
+            lang={textModel[systemLanguage]}
             passUrl={webBrowser.defaultUrl}
           />
         </ProgramContainer>
@@ -277,14 +281,14 @@ function App() {
         unmountOnExit
       >
         <ProgramContainer
-          lang={textModel[windowsLanguage]}
+          lang={textModel[systemLanguage]}
           programName={calculator.name}
           programIcon={calculator.icon}
           programHidden={calculator.hidden}
           handleProgramState={handleStateCalculator}
           handleDefaultProgramState={handleDefaultStateCalculator}
         >
-          <Calculator lang={textModel[windowsLanguage]} />
+          <Calculator lang={textModel[systemLanguage]} />
         </ProgramContainer>
       </CSSTransition>
 
@@ -296,14 +300,14 @@ function App() {
         unmountOnExit
       >
         <ProgramContainer
-          lang={textModel[windowsLanguage]}
+          lang={textModel[systemLanguage]}
           programName={tetris.name}
           programIcon={tetris.icon}
           programHidden={tetris.hidden}
           handleProgramState={handleStateTetris}
           handleDefaultProgramState={handleDefaultStateTetris}
         >
-          <TetrisApp lang={textModel[windowsLanguage]} user={user} />
+          <TetrisApp lang={textModel[systemLanguage]} user={user} />
         </ProgramContainer>
       </CSSTransition>
 
@@ -315,7 +319,7 @@ function App() {
         unmountOnExit
       >
         <ProgramContainer
-          lang={textModel[windowsLanguage]}
+          lang={textModel[systemLanguage]}
           programName={personalize.name}
           programIcon={personalize.icon}
           programHidden={personalize.hidden}
@@ -323,7 +327,7 @@ function App() {
           handleDefaultProgramState={handleDefaultStatePersonalize}
         >
           <Personalize
-            lang={textModel[windowsLanguage]}
+            lang={textModel[systemLanguage]}
             wallpaper={wallpaper}
             handleWallpaperChange={handleWallpaperChange}
           />
@@ -338,7 +342,7 @@ function App() {
         unmountOnExit
       >
         <ProgramContainer
-          lang={textModel[windowsLanguage]}
+          lang={textModel[systemLanguage]}
           programName={personalizeUser.name}
           programIcon={personalizeUser.icon}
           programHidden={personalizeUser.hidden}
@@ -346,7 +350,7 @@ function App() {
           handleDefaultProgramState={handleDefaultStatePersonalizeUser}
         >
           <PersonalizeUser
-            lang={textModel[windowsLanguage]}
+            lang={textModel[systemLanguage]}
             user={user}
             changeUser={changeUser}
           />
@@ -355,7 +359,7 @@ function App() {
 
       {systemStage.startScreen && (
         <StartScreen
-          lang={textModel[windowsLanguage]}
+          lang={textModel[systemLanguage]}
           changeLang={changeLang}
           changeUser={changeUser}
           changeStage={changeStage}
@@ -363,14 +367,14 @@ function App() {
       )}
       {systemStage.loginScreen && (
         <LoginScreen
-          lang={textModel[windowsLanguage]}
+          lang={textModel[systemLanguage]}
           user={user}
           changeStage={changeStage}
         />
       )}
       {systemStage.workScreen && (
         <WorkScreen
-          lang={textModel[windowsLanguage]}
+          lang={textModel[systemLanguage]}
           user={user}
           changeUser={changeUser}
           changeStage={changeStage}
@@ -397,7 +401,7 @@ function App() {
       {systemStage.closeScreen && (
         <CloseScreen
           changeStage={changeStage}
-          lang={textModel[windowsLanguage]}
+          lang={textModel[systemLanguage]}
         />
       )}
     </div>
