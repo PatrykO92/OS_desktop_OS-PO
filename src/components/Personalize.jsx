@@ -13,6 +13,8 @@ import {
 import { useState, useEffect } from "react";
 
 const Personalize = ({ lang, wallpaper, handleWallpaperChange }) => {
+  // FIX THIS TO SAVE AND GET VALUES FROM USER
+
   const [theme, setTheme] = useState({
     themeBg: "",
     themeBgLight: "",

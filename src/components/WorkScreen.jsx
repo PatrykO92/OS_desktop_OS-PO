@@ -12,6 +12,7 @@ const WorkScreen = ({
   lang,
   user,
   changeStage,
+  changeUser,
   changeLang,
   wholeScreenRef,
   wallpaper,
@@ -65,7 +66,7 @@ const WorkScreen = ({
     // #desktop-context-menu width value in rem
     const remValueX = 10;
     // #desktop-context-menu height value in rem
-    const remValueY = 9;
+    const remValueY = 11;
     const pixelValueX =
       parseInt(getComputedStyle(document.documentElement).fontSize) * remValueX;
     const pixelValueY =
@@ -100,7 +101,12 @@ const WorkScreen = ({
           handleDesktopContextMenu(e, setDesktopContextMenuPosition)
         }
         onClick={(e) => {
-          closeDesktopContextMenu();
+          if (
+            e?.target?.closest("button")?.id !==
+            "desktop-contex-menu__view-button"
+          )
+            closeDesktopContextMenu();
+
           if (
             e.target.className === "task-bar" ||
             e.target.className === "desktop"
@@ -125,7 +131,8 @@ const WorkScreen = ({
         {desktopContextMenuPosition && (
           <DesktopContextMenu
             position={desktopContextMenuPosition}
-            onClick={closeDesktopContextMenu}
+            closeDesktopContextMenu={closeDesktopContextMenu}
+            changeUser={changeUser}
             lang={lang}
             closeAllPrograms={closeAllPrograms}
             handleCloseCalendar={handleCloseCalendar}

@@ -60,7 +60,7 @@ function App() {
   };
 
   // useStateHook and function to set actually used user
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState(null);
   const changeUser = (user) => {
     setUser(user);
   };
@@ -182,7 +182,7 @@ function App() {
   const [personalizeUser, setPersonalizeUser] = useState({
     programEnabled: false,
     hidden: false,
-    name: "Personalize User",
+    name: textModel[systemLanguage].personalizeUser,
     icon: userIcon,
   });
 
@@ -194,7 +194,7 @@ function App() {
     setPersonalizeUser({
       programEnabled: false,
       hidden: false,
-      name: "Personalize User",
+      name: textModel[systemLanguage].personalizeUser,
       icon: userIcon,
     });
   };
@@ -229,6 +229,17 @@ function App() {
       textModel[systemLanguage].personalizeUser
     );
   }, [systemLanguage]);
+
+  // Apply settings, if user is changed.
+  useEffect(() => {
+    const root = document.documentElement;
+    if (user !== null) {
+      root.style.setProperty("--theme-bg", user.settings.themeBg);
+      root.style.setProperty("--theme-bg-light", user.settings.themeBgLight);
+      root.style.setProperty("--theme-font", user.settings.themeFont);
+      root.style.setProperty("--icon-size", user.settings.iconSize);
+    }
+  }, [user]);
 
   return (
     <div className="whole-screen" ref={wholeScreenRef}>

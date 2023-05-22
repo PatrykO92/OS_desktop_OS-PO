@@ -1,15 +1,6 @@
-import { useEffect } from "react";
 import { polishFlagIcon, gbFlagIcon } from "../../../../assets/icons";
 
 const StartScreenStepOne = ({ lang, changeLang, changeStartScreenStep }) => {
-  // SetUp default color themes
-  useEffect(() => {
-    const root = document.documentElement;
-    root.style.setProperty("--theme-bg", "#1c2326");
-    root.style.setProperty("--theme-bg-light", "#1c2326cb");
-    root.style.setProperty("--theme-font", "#ffffff");
-  }, []);
-
   return (
     <div className="start-screen_step-one">
       <div>
