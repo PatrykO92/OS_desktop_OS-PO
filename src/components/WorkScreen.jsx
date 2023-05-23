@@ -118,6 +118,7 @@ const WorkScreen = ({
       >
         <Desktop
           lang={lang}
+          user={user}
           toDoApp={toDoApp}
           handleStateToDoApp={handleStateToDoApp}
           webBrowser={webBrowser}

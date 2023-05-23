@@ -74,13 +74,13 @@ const DesktopContextMenu = ({
           unmountOnExit
         >
           <div className="desktop-contex-menu__view">
-            <button onClick={() => updateIconSize("4.5rem")}>
+            <button onClick={() => updateIconSize("5rem")}>
               <p>{lang.iconsSmall}</p>
             </button>
-            <button onClick={() => updateIconSize("5.5rem")}>
+            <button onClick={() => updateIconSize("7rem")}>
               <p>{lang.iconsMedium}</p>
             </button>
-            <button onClick={() => updateIconSize("7.5rem")}>
+            <button onClick={() => updateIconSize("9rem")}>
               <p>{lang.iconsBig}</p>
             </button>
           </div>

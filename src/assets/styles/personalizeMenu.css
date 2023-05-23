@@ -24,12 +24,12 @@
 }
 
 .personalize-window__wallpaper img {
-  border: 1px solid var(--border-main);
+  border: 2px solid var(--border-main);
   border-radius: 5px;
 }
 
 .personalize-window__wallpaper > img {
-  border: 1px solid var(--personalize-border);
+  border: 2px solid var(--personalize-border);
   width: 8.5rem;
   height: 8.5rem;
   object-fit: cover;
@@ -56,7 +56,7 @@
 
 .personalize-window__main-color button {
   border-radius: 5px;
-  border: 1px solid var(--border-main);
+  border: 2px solid var(--border-main);
 }
 
 .personalize-window__main-color__list button {
@@ -69,9 +69,10 @@
 }
 
 .personalize-window__font-color__list button {
-  border: 1px solid var(--border-main);
-  border-radius: 10px;
-  background-color: transparent;
+  border: 2px solid var(--border-main);
+  padding: 0.4rem;
+  border-radius: 5px;
+  background-color: var(--theme-bg);
   font-size: 0.9rem;
   font-weight: 600;
   width: 4rem;
@@ -91,12 +92,12 @@
 
 .personalize-window__buttons button,
 .personalize-menu > div > button {
-  background-color: transparent;
+  background-color: var(--theme-bg);
   border-radius: 5px;
   padding: 0.5rem;
   text-align: center;
   font-weight: 500;
-  border: 1px solid var(--border-main);
+  border: 2px solid var(--border-main);
   color: var(--theme-font);
 }
 

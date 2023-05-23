@@ -8,7 +8,7 @@ import { Steps } from "intro.js-react";
 
 const Desktop = ({
   lang,
-  wallpaper,
+  user,
   // Apps states and handlers
   toDoApp,
   handleStateToDoApp,
@@ -40,7 +40,10 @@ const Desktop = ({
   ];
 
   return (
-    <div className="desktop" style={{ backgroundImage: `url(${wallpaper})` }}>
+    <div
+      className="desktop"
+      style={{ backgroundImage: `url(${user.settings.wallpaper})` }}
+    >
       <Steps
         enabled={stepsEnabled}
         steps={steps}

@@ -10,51 +10,33 @@ import {
   wallpaperEight,
 } from "../assets/images/wallpapers";
 
-import { useState, useEffect } from "react";
-
-const Personalize = ({ lang, wallpaper, handleWallpaperChange }) => {
-  // FIX THIS TO SAVE AND GET VALUES FROM USER
-
-  const [theme, setTheme] = useState({
-    themeBg: "",
-    themeBgLight: "",
-    themeFont: "",
-  });
-
-  useEffect(() => {
-    // Get default theme values
-    const root = document.documentElement;
-    const themeBg = getComputedStyle(root).getPropertyValue("--theme-bg");
-    const themeBgLight =
-      getComputedStyle(root).getPropertyValue("--theme-bg-light");
-    const themeFont = getComputedStyle(root).getPropertyValue("--theme-font");
-
-    setTheme({ themeBg, themeBgLight, themeFont });
-  }, []);
-
-  useEffect(() => {
-    // set theme values, when useState theme hook is changed
-    const root = document.documentElement;
-    root.style.setProperty("--theme-bg", theme.themeBg);
-    root.style.setProperty("--theme-bg-light", theme.themeBgLight);
-    root.style.setProperty("--theme-font", theme.themeFont);
-  }, [theme]);
-
+const Personalize = ({ lang, user, changeUser }) => {
   const handleThemeBgColorChange = (e) => {
     const colorVal = e.target.style.backgroundColor;
     // second color is the same as primary, but with 0.75 opacity
     const secondColorVal = `rgba${colorVal.slice(3, -1)}, 0.75`;
-    setTheme((oldVal) => ({
+
+    changeUser((oldVal) => ({
       ...oldVal,
-      themeBg: colorVal,
-      themeBgLight: secondColorVal,
+      settings: {
+        ...oldVal.settings,
+        themeBg: colorVal,
+        themeBgLight: secondColorVal,
+      },
     }));
   };
 
   const handleThemeFontColorChange = (e) => {
-    setTheme((oldVal) => ({
+    changeUser((oldVal) => ({
       ...oldVal,
-      themeFont: e.target.style.color,
+      settings: { ...oldVal.settings, themeFont: e.target.style.color },
+    }));
+  };
+
+  const handleWallpaperChange = (wallpaper) => {
+    changeUser((oldVal) => ({
+      ...oldVal,
+      settings: { ...oldVal.settings, wallpaper: wallpaper },
     }));
   };
 
@@ -62,7 +44,7 @@ const Personalize = ({ lang, wallpaper, handleWallpaperChange }) => {
     <div className="personalize-menu">
       <div className="personalize-window__wallpaper">
         <p>{lang.wallpaper}</p>
-        <img src={wallpaper} alt={`${lang.wallpaper}`} />
+        <img src={user.settings.wallpaper} alt={`${lang.wallpaper}`} />
         <div className="personalize-window__wallpaper__list">
           <img
             src={wallpaperOne}
@@ -202,12 +184,16 @@ const Personalize = ({ lang, wallpaper, handleWallpaperChange }) => {
       <div className="personalize-window__buttons">
         <button
           onClick={() => {
-            setTheme({
-              themeBg: "#1c2326",
-              themeBgLight: "#1c2326cb",
-              themeFont: "#ffffff",
-            });
-            handleWallpaperChange(wallpaperFive);
+            changeUser((oldVal) => ({
+              ...oldVal,
+              settings: {
+                ...oldVal.settings,
+                themeBg: "#1c2326",
+                themeBgLight: "#1c2326cb",
+                themeFont: "#ffffff",
+                wallpaper: wallpaperFive,
+              },
+            }));
           }}
         >
           {lang.setDefault}

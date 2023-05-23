@@ -1,7 +1,5 @@
 import "./assets/styles/main.css";
 
-import { wallpaperFive } from "./assets/images/wallpapers";
-
 // import Icons for specific programs
 import {
   toDoAppIcon,
@@ -34,6 +32,7 @@ import { CSSTransition } from "react-transition-group";
 
 function App() {
   const wholeScreenRef = useRef(null);
+
   // useStateHook and function to set actually used language, default set to "en".
   const [systemLanguage, setSystemLanguage] = useState("en");
   const changeLang = (language) => {
@@ -63,12 +62,6 @@ function App() {
   const [user, setUser] = useState(null);
   const changeUser = (user) => {
     setUser(user);
-  };
-
-  // useState hook and handler function for changing Desktop wallpaper
-  const [wallpaper, setWallpaper] = useState(wallpaperFive);
-  const handleWallpaperChange = (image) => {
-    setWallpaper(image);
   };
 
   //App 1: TO-DO-APP useState and handlers
@@ -339,8 +332,8 @@ function App() {
         >
           <Personalize
             lang={textModel[systemLanguage]}
-            wallpaper={wallpaper}
-            handleWallpaperChange={handleWallpaperChange}
+            user={user}
+            changeUser={changeUser}
           />
         </ProgramContainer>
       </CSSTransition>
@@ -391,7 +384,6 @@ function App() {
           changeStage={changeStage}
           changeLang={changeLang}
           wholeScreenRef={wholeScreenRef}
-          wallpaper={wallpaper}
           // Programs states and handlers
           toDoApp={toDoApp}
           handleStateToDoApp={handleStateToDoApp}

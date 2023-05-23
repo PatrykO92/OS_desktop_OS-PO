@@ -1,4 +1,5 @@
 import { avatarOne } from "../assets/images/avatar-images";
+import { wallpaperOne } from "../assets/images/wallpapers";
 
 const defaultUser = {
   name: "Nicolaus",
@@ -11,6 +12,7 @@ const defaultUser = {
     themeBgLight: "#1c2326cb",
     themeFont: "#ffffff",
     iconSize: "5.5rem",
+    wallpaper: wallpaperOne,
   },
 };
 

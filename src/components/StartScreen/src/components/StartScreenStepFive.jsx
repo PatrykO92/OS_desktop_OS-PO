@@ -1,6 +1,6 @@
 import { arrowLeftIcon, checkIcon } from "../../../../assets/icons";
 
-import { loginInToBackend } from "../../../../utils";
+import { loginInToBackend, defaultUser } from "../../../../utils";
 
 import { useState } from "react";
 
@@ -16,7 +16,7 @@ const StartScreenStepFive = ({
   const handleSubmit = () => {
     loginInToBackend();
     const userTag = userForm.name.slice(0, 2) + userForm.lastName.slice(0, 2);
-    changeUser({ ...userForm, userTag });
+    changeUser({ ...userForm, userTag, settings: { ...defaultUser.settings } });
     changeStage("loginScreen");
   };
 
