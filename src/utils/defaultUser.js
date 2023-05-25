@@ -11,7 +11,7 @@ const defaultUser = {
     themeBg: "#1c2326",
     themeBgLight: "#1c2326cb",
     themeFont: "#ffffff",
-    iconSize: "5.5rem",
+    iconSize: "5rem",
     wallpaper: wallpaperOne,
   },
 };
