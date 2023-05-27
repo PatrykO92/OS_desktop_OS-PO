@@ -20,6 +20,7 @@ const DesktopContextMenu = ({
   handleCloseCalendar,
   handleCloseMenuStart,
   handleStatePersonalize,
+  handleCloseWeatherBox,
 }) => {
   const [showView, setShowView] = useState(false);
 
@@ -115,6 +116,8 @@ const DesktopContextMenu = ({
             closeAllPrograms();
             handleCloseCalendar();
             handleCloseMenuStart();
+            handleCloseWeatherBox();
+            handleStatePersonalize();
           }}
         >
           <p>

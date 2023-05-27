@@ -5,6 +5,7 @@ import {
   menuStartIcon,
   gbFlagIcon,
   polishFlagIcon,
+  cloudIcon,
   linkIcon,
   linkSlashIcon,
 } from "../assets/icons";
@@ -14,6 +15,7 @@ const TaskBar = ({
   lang,
   handleShowMenuStart,
   handleShowCalendar,
+  handleShowWeatherBox,
   changeLang,
   isConnectedToBackend,
   //apps state and handlers
@@ -178,6 +180,14 @@ const TaskBar = ({
             }
           />
         </button>
+
+        <button
+          className="task-bar__weather-button"
+          onClick={handleShowWeatherBox}
+        >
+          <img src={cloudIcon} alt={lang.weather} />
+        </button>
+
         <CalendarButton lang={lang} handleShowCalendar={handleShowCalendar} />
       </div>
     </div>

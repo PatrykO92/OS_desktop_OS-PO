@@ -73,12 +73,13 @@
 }
 
 .task-bar__language-button img {
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 1.2rem;
+  height: 1.2rem;
 }
 
-.task-bar__backend-button img {
+.task-bar__backend-button img,
+.task-bar__weather-button img {
   filter: invert(100%);
-  width: 1rem;
-  height: 1rem;
+  width: 1.2rem;
+  height: 1.2rem;
 }

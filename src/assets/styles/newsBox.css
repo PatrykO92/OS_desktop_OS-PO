@@ -4,7 +4,7 @@
   padding: 0.5rem;
   font-size: small;
   min-height: fit-content;
-  border-radius: 10px;
+  border-radius: 5px;
   background-color: var(--frame);
   display: flex;
   flex-wrap: wrap;

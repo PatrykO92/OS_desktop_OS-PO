@@ -4,7 +4,7 @@
   max-width: 40rem;
   background-color: var(--theme-bg);
   padding: 1rem;
-  border-radius: 10px;
+  border-radius: 5px;
 }
 
 .close-screen button {

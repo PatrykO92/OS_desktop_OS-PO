@@ -212,7 +212,7 @@ function App() {
     handleDefaultStatePersonalizeUser();
   };
 
-  // update lang attribute
+  // update language attribute
   // update apps names, when language changes
   useEffect(() => {
     document.documentElement.lang = systemLanguage;

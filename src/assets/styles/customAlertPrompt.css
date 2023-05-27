@@ -42,7 +42,7 @@
   align-items: center;
   min-height: 6rem;
   min-width: 10rem;
-  border-radius: 10px;
+  border-radius: 5px;
   border: 1px solid var(--border-main);
   padding: 0.5rem;
   background-color: var(--theme-bg);

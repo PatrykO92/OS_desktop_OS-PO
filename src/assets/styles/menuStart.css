@@ -4,7 +4,7 @@
   bottom: 3.5rem;
   left: 0.5rem;
   width: 25rem;
-  border-radius: 10px;
+  border-radius: 5px;
   border: 1px solid var(--border-main);
   display: flex;
   flex-direction: column;
@@ -34,7 +34,7 @@
 
 .menu-start-widget {
   background-color: var(--theme-bg-light);
-  border-radius: 10px 10px 0 0;
+  border-radius: 5px 5px 0 0;
 }
 
 .menu-start-utils {
@@ -44,7 +44,7 @@
   justify-content: space-between;
   align-items: center;
   background-color: var(--theme-bg);
-  border-radius: 0 0 10px 10px;
+  border-radius: 0 0 5px 5px;
 }
 
 .menu-start-utils > div {

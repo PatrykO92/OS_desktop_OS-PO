@@ -1,5 +1,11 @@
 import "../assets/styles/workScreen.css";
-import { TaskBar, Desktop, DesktopContextMenu, MenuStart } from "./";
+import {
+  TaskBar,
+  Desktop,
+  DesktopContextMenu,
+  MenuStart,
+  WeatherBox,
+} from "./";
 
 import { useState } from "react";
 
@@ -32,6 +38,15 @@ const WorkScreen = ({
   hideAllPrograms,
   closeAllPrograms,
 }) => {
+  // useState hook for showing and hidding MenuStart
+  const [showWeatherBox, setShowWeatherBox] = useState(false);
+  const handleShowWeatherBox = () => {
+    setShowWeatherBox((oldVal) => !oldVal);
+  };
+  const handleCloseWeatherBox = () => {
+    setShowWeatherBox(false);
+  };
+
   // useState hook for showing and hidding MenuStart
   const [showMenuStart, setShowMenuStart] = useState(false);
   const handleShowMenuStart = () => {
@@ -114,6 +129,7 @@ const WorkScreen = ({
           ) {
             handleCloseCalendar();
             handleCloseMenuStart();
+            handleCloseWeatherBox();
           }
         }}
       >
@@ -139,6 +155,7 @@ const WorkScreen = ({
             closeAllPrograms={closeAllPrograms}
             handleCloseCalendar={handleCloseCalendar}
             handleCloseMenuStart={handleCloseMenuStart}
+            handleCloseWeatherBox={handleCloseWeatherBox}
             handleStatePersonalize={handleStatePersonalize}
             wholeScreenRef={wholeScreenRef}
           />
@@ -150,6 +167,7 @@ const WorkScreen = ({
           isConnectedToBackend={isConnectedToBackend}
           handleShowCalendar={handleShowCalendar}
           handleShowMenuStart={handleShowMenuStart}
+          handleShowWeatherBox={handleShowWeatherBox}
           toDoApp={toDoApp}
           handleStateToDoApp={handleStateToDoApp}
           webBrowser={webBrowser}
@@ -190,6 +208,15 @@ const WorkScreen = ({
           unmountOnExit
         >
           <Calendar onChange={onChange} value={value} locale={lang.lng} />
+        </CSSTransition>
+
+        <CSSTransition
+          in={showWeatherBox}
+          timeout={300}
+          classNames="calendar-start"
+          unmountOnExit
+        >
+          <WeatherBox lang={lang} />
         </CSSTransition>
       </div>
     </CSSTransition>

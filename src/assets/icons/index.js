@@ -21,7 +21,7 @@ import userIcon from "./user-icon.svg";
 import arrowLeftIcon from "./arrow-left-icon.svg";
 import arrowRightIcon from "./arrow-right-icon.svg";
 import loginIcon from "./login-icon.svg";
-
+import cloudIcon from "./cloud-solid.svg";
 import linkIcon from "./link-solid.svg";
 import linkSlashIcon from "./link-slash-solid.svg";
 
@@ -51,4 +51,5 @@ export {
   loginIcon,
   linkIcon,
   linkSlashIcon,
+  cloudIcon,
 };

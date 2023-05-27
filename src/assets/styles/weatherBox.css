@@ -1,0 +1,30 @@
+#weather-box {
+  z-index: 13;
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  width: 20rem;
+  min-height: 14rem;
+  padding: 1rem 0;
+  border: 0.5px solid var(--border-main);
+  border-radius: 5px;
+  background-color: var(--theme-bg);
+}
+
+.weather-box__current-temp {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+}
+
+.weather-box__current-temp > p:nth-child(1) {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.weather-box__current-temp > p:nth-child(2) {
+  font-size: 0.8rem;
+  font-weight: 500;
+}

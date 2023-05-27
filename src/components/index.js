@@ -16,6 +16,7 @@ import Personalize from "./Personalize";
 import PersonalizeUser from "./PersonalizeUser";
 import Calculator from "./Calculator";
 import TetrisApp from "./TetrisApp/TetrisApp";
+import WeatherBox from "./WeatherBox";
 
 export {
   Calculator,
@@ -36,4 +37,5 @@ export {
   Personalize,
   PersonalizeUser,
   TetrisApp,
+  WeatherBox,
 };
