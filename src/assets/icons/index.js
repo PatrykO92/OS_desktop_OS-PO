@@ -22,6 +22,9 @@ import arrowLeftIcon from "./arrow-left-icon.svg";
 import arrowRightIcon from "./arrow-right-icon.svg";
 import loginIcon from "./login-icon.svg";
 
+import linkIcon from "./link-solid.svg";
+import linkSlashIcon from "./link-slash-solid.svg";
+
 export {
   arrowLeftIcon,
   arrowRightIcon,
@@ -46,4 +49,6 @@ export {
   gbFlagIcon,
   userIcon,
   loginIcon,
+  linkIcon,
+  linkSlashIcon,
 };

@@ -15,10 +15,10 @@ const loginToBackend = () =>
     .then((response) => {
       const token = response.data.key;
       localStorage.setItem("authToken", token);
-      console.log("Login successful!");
+      return true;
     })
     .catch((error) => {
-      console.log("Error, try again later");
+      throw new Error(error.message);
     });
 
 export default loginToBackend;

@@ -33,6 +33,8 @@ import { CSSTransition } from "react-transition-group";
 function App() {
   const wholeScreenRef = useRef(null);
 
+  const [isConnectedToBackend, setIsConnectedToBackend] = useState(false);
+
   // useStateHook and function to set actually used language, default set to "en".
   const [systemLanguage, setSystemLanguage] = useState("en");
   const changeLang = (language) => {
@@ -363,6 +365,7 @@ function App() {
 
       {systemStage.startScreen && (
         <StartScreen
+          setIsConnectedToBackend={setIsConnectedToBackend}
           lang={textModel[systemLanguage]}
           changeLang={changeLang}
           changeUser={changeUser}
@@ -380,6 +383,7 @@ function App() {
         <WorkScreen
           lang={textModel[systemLanguage]}
           user={user}
+          isConnectedToBackend={isConnectedToBackend}
           changeUser={changeUser}
           changeStage={changeStage}
           changeLang={changeLang}

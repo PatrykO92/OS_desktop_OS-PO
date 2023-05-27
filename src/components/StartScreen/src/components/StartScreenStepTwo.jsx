@@ -3,6 +3,7 @@ import { loginInToBackend, defaultUser } from "../../../../utils";
 
 const StartScreenStepTwo = ({
   lang,
+  setIsConnectedToBackend,
   changeStage,
   changeStartScreenStep,
   changeUser,
@@ -16,7 +17,14 @@ const StartScreenStepTwo = ({
 
       <button
         onClick={() => {
-          loginInToBackend();
+          const login = loginInToBackend();
+          login
+            .then((res) => {
+              if (res) setIsConnectedToBackend(true);
+            })
+            .catch((err) => {
+              setIsConnectedToBackend(false);
+            });
           changeUser(defaultUser);
           changeStage("loginScreen");
         }}

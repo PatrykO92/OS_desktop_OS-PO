@@ -11,6 +11,7 @@ import "../assets/styles/myCalendar.css";
 const WorkScreen = ({
   lang,
   user,
+  isConnectedToBackend,
   changeStage,
   changeUser,
   changeLang,
@@ -146,6 +147,7 @@ const WorkScreen = ({
         <TaskBar
           lang={lang}
           changeLang={changeLang}
+          isConnectedToBackend={isConnectedToBackend}
           handleShowCalendar={handleShowCalendar}
           handleShowMenuStart={handleShowMenuStart}
           toDoApp={toDoApp}

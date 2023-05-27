@@ -1,7 +1,13 @@
 // TODO - SOME SORT OF LOCALIZATION
 
 import "../assets/styles/taskBar.css";
-import { menuStartIcon, gbFlagIcon, polishFlagIcon } from "../assets/icons";
+import {
+  menuStartIcon,
+  gbFlagIcon,
+  polishFlagIcon,
+  linkIcon,
+  linkSlashIcon,
+} from "../assets/icons";
 import { CalendarButton } from "./";
 
 const TaskBar = ({
@@ -9,6 +15,7 @@ const TaskBar = ({
   handleShowMenuStart,
   handleShowCalendar,
   changeLang,
+  isConnectedToBackend,
   //apps state and handlers
   toDoApp,
   handleStateToDoApp,
@@ -159,6 +166,17 @@ const TaskBar = ({
             alt={lang.lng === "pl" ? "polski" : "english"}
           />
           {lang.lng === "pl" ? "PL" : "EN"}
+        </button>
+
+        <button className="task-bar__backend-button">
+          <img
+            src={isConnectedToBackend ? linkIcon : linkSlashIcon}
+            alt={
+              isConnectedToBackend
+                ? lang.connectedToBackend
+                : lang.notConnectedToBackend
+            }
+          />
         </button>
         <CalendarButton lang={lang} handleShowCalendar={handleShowCalendar} />
       </div>

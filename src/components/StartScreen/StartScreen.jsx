@@ -10,7 +10,13 @@ import {
 
 import { useState } from "react";
 
-const StartScreen = ({ lang, changeLang, changeStage, changeUser }) => {
+const StartScreen = ({
+  lang,
+  setIsConnectedToBackend,
+  changeLang,
+  changeStage,
+  changeUser,
+}) => {
   const [startScreenStep, setStartScreenStep] = useState(1);
   const changeStartScreenStep = (val) => {
     setStartScreenStep(val);
@@ -36,6 +42,7 @@ const StartScreen = ({ lang, changeLang, changeStage, changeUser }) => {
 
       {startScreenStep === 2 && (
         <StartScreenStepTwo
+          setIsConnectedToBackend={setIsConnectedToBackend}
           lang={lang}
           changeStartScreenStep={changeStartScreenStep}
           changeUser={changeUser}
@@ -64,6 +71,7 @@ const StartScreen = ({ lang, changeLang, changeStage, changeUser }) => {
           changeStartScreenStep={changeStartScreenStep}
           changeStage={changeStage}
           changeUser={changeUser}
+          setIsConnectedToBackend={setIsConnectedToBackend}
           userForm={userForm}
           setUserForm={setUserForm}
         />

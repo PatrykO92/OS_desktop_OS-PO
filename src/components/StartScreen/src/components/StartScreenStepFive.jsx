@@ -6,6 +6,7 @@ import { useState } from "react";
 
 const StartScreenStepFive = ({
   lang,
+  setIsConnectedToBackend,
   changeStartScreenStep,
   changeStage,
   changeUser,
@@ -14,7 +15,14 @@ const StartScreenStepFive = ({
   const [showPin, setShowPin] = useState(false);
 
   const handleSubmit = () => {
-    loginInToBackend();
+    const login = loginInToBackend();
+    login
+      .then((res) => {
+        if (res) setIsConnectedToBackend(true);
+      })
+      .catch((err) => {
+        setIsConnectedToBackend(false);
+      });
     const userTag = userForm.name.slice(0, 2) + userForm.lastName.slice(0, 2);
     changeUser({ ...userForm, userTag, settings: { ...defaultUser.settings } });
     changeStage("loginScreen");

@@ -22,6 +22,8 @@ const textModel = {
     closeScreen1: "Thank you for using my app!",
     closeScreen2:
       " I wanted to showcase my skills in ReactJS, JavaScript, HTML, and CSS through this project. I had a lot of fun creating it. If you'd like, you can return to the start screen to create a new user or head to the login screen to explore the app again with the same user.",
+    connectedToBackend: "Backend connected",
+    notConnectedToBackend: "Backend not connected",
     entertainment: "entertainment",
     enterPIN: "Enter new PIN",
     guestUser: "Guest user",
@@ -129,6 +131,8 @@ const textModel = {
     closeScreen1: "Dziękuję za korzystanie z mojej aplikacji!",
     closeScreen2:
       " Chciałem tutaj zaprezentować moje umiejętności związane z ReactJS, JavaScript, HTML i CSS. Tworząc tę aplikację, świetnie się bawiłem. Jeśli chcesz, możesz przejść ponownie do ekranu startowego, aby stworzyć nowego użytkownika lub przejść do ekranu logowania, aby ponownie sprawdzić aplikację z tym samym użytkownikiem.",
+    connectedToBackend: "Połączono z backendem",
+    notConnectedToBackend: "Nie połączono z backendem",
     entertainment: "rozrywka",
     enterPIN: "Podaj nowy PIN",
     guestUser: "Konto gościa",
