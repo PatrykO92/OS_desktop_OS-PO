@@ -7,20 +7,47 @@ import axios from "axios";
 
 const apiTimeZoneKey = process.env.REACT_APP_TIME_ZONE_KEY;
 
+const dayTime = [
+  "01:00",
+  "02:00",
+  "03:00",
+  "03:00",
+  "04:00",
+  "05:00",
+  "06:00",
+  "07:00",
+  "08:00",
+  "09:00",
+  "10:00",
+  "11:00",
+  "12:00",
+  "13:00",
+  "14:00",
+  "15:00",
+  "16:00",
+  "17:00",
+  "18:00",
+  "19:00",
+  "20:00",
+  "21:00",
+  "22:00",
+  "23:00",
+  "24:00",
+];
+
 const WeatherBox = ({ lang }) => {
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState({ show: false, message: "" });
   const [timezone, setTimezone] = useState(null);
   const [latitude, setLatitude] = useState(null);
   const [longitude, setLongitude] = useState(null);
-  const [locationNames, setLocationNames] = useState(null);
+  const [locationName, setLocationName] = useState(null);
   const [weatherData, setWeatherData] = useState(null);
   const [units, setUnits] = useState(null);
 
   //at start of the app
   useEffect(() => {
-    console.log("Fetch Location");
-
-    const fetchLocation = async () => {
+    const getLatitudeAndLongitude = async () => {
       try {
         const position = await new Promise((resolve, reject) => {
           navigator.geolocation.getCurrentPosition(resolve, reject);
@@ -29,11 +56,12 @@ const WeatherBox = ({ lang }) => {
         setLatitude(position.coords.latitude);
         setLongitude(position.coords.longitude);
       } catch (error) {
-        console.error("Error fetching location");
+        setError({ show: true, message: "Allow for localization." });
+        setIsLoading(false);
       }
     };
 
-    fetchLocation();
+    getLatitudeAndLongitude();
   }, []);
 
   // start after getting location
@@ -41,19 +69,19 @@ const WeatherBox = ({ lang }) => {
     const fetchTimezone = async () => {
       try {
         const response = await axios.get(
-          `http://api.timezonedb.com/v2.1/get-time-zone?key=${apiTimeZoneKey}&format=json&by=position&lat=${latitude}&lng=${longitude}`
+          `https://timezone.abstractapi.com/v1/current_time?api_key=${apiTimeZoneKey}&location=${latitude},${longitude}`
         );
-        console.log(response.data);
-        const { nextAbbreviation, cityName, countryName } = response.data;
-        setTimezone(nextAbbreviation);
-        setLocationNames({ city: cityName, country: countryName });
+        console.log(response);
+        const { timezone_location, requested_location } = response.data;
+        setTimezone(timezone_location);
+        setLocationName(requested_location);
       } catch (error) {
-        console.error("Error fetching time zone");
+        setError({ show: true, message: "Error fetching location." });
+        setIsLoading(false);
       }
     };
 
     if (latitude && longitude) {
-      console.log("Fetch Timezone");
       fetchTimezone();
     }
   }, [latitude, longitude]);
@@ -72,12 +100,12 @@ const WeatherBox = ({ lang }) => {
           setIsLoading(false);
         });
       } catch (error) {
-        console.log("Error fetching weather");
+        setError({ show: true, message: "Error fetching weather." });
+        setIsLoading(false);
       }
     };
 
     if (latitude && longitude && lang && timezone) {
-      console.log("Fetch Weather");
       fetchWeather();
     }
   }, [latitude, longitude, timezone, lang]);
@@ -91,19 +119,23 @@ const WeatherBox = ({ lang }) => {
           <p>
             {weatherData.current_weather.temperature} {units}
           </p>
-          <p>
-            {locationNames.city}, {locationNames.country} ({timezone})
-          </p>
+          <p>{locationName.split(", ").slice(1, 3).join(", ")}</p>
+          <div className="weather-box__day-temp">
+            {weatherData.hourly.temperature_2m
+              .slice(0, 25)
+              .map((item, index) => (
+                <p key={index}>
+                  <span>
+                    {item}
+                    {units}
+                  </span>
+                  <span>{dayTime[index]}</span>
+                </p>
+              ))}
+          </div>
         </div>
       )}
-
-      <button
-        onClick={() => {
-          console.log(weatherData);
-        }}
-      >
-        Click
-      </button>
+      {error.show && <div>{error.message}</div>}
     </div>
   );
 };
