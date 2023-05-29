@@ -16,17 +16,19 @@
 }
 
 .start-screen_step-one {
-  width: 35rem;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
   justify-content: center;
   align-items: center;
-  font-size: 2rem;
+  gap: 2rem;
 }
 
 .start-screen_step-one > div {
+  font-size: 1.6rem;
+  font-weight: 500;
   display: flex;
+  justify-content: center;
+  align-items: center;
   gap: 1rem;
 }
 
@@ -34,8 +36,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  max-height: 7rem;
-  min-width: 10rem;
+  height: 7rem;
+  width: 10rem;
 }
 
 .start-screen_step-two {

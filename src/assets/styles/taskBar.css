@@ -83,3 +83,24 @@
   width: 1.2rem;
   height: 1.2rem;
 }
+
+.task-bar__backend-button {
+  position: relative;
+}
+
+.task-bar__backend-button__desc {
+  background-color: var(--theme-bg);
+  border-radius: 5px;
+  border: 1px solid var(--border-main);
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0.3rem;
+  transform: translate(-50%, -100%);
+}
+
+.task-bar__backend-button__desc > span {
+  font-size: 0.9rem;
+  font-weight: 500;
+  white-space: nowrap;
+}

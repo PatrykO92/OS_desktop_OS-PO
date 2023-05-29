@@ -3,9 +3,7 @@ import { polishFlagIcon, gbFlagIcon } from "../../../../assets/icons";
 const StartScreenStepOne = ({ lang, changeLang, changeStartScreenStep }) => {
   return (
     <div className="start-screen_step-one">
-      <div>
-        <b>{lang.chooseLanguage}</b>
-      </div>
+      <div>{lang.chooseLanguage}:</div>
 
       <div>
         <button

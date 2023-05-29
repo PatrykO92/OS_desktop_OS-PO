@@ -56,13 +56,13 @@ const WeatherBox = ({ lang }) => {
         setLatitude(position.coords.latitude);
         setLongitude(position.coords.longitude);
       } catch (error) {
-        setError({ show: true, message: "Allow for localization." });
+        setError({ show: true, message: lang.weatherError1 });
         setIsLoading(false);
       }
     };
 
     getLatitudeAndLongitude();
-  }, []);
+  }, [lang]);
 
   // start after getting location
   useEffect(() => {
@@ -71,12 +71,11 @@ const WeatherBox = ({ lang }) => {
         const response = await axios.get(
           `https://timezone.abstractapi.com/v1/current_time?api_key=${apiTimeZoneKey}&location=${latitude},${longitude}`
         );
-        console.log(response);
         const { timezone_location, requested_location } = response.data;
         setTimezone(timezone_location);
         setLocationName(requested_location);
       } catch (error) {
-        setError({ show: true, message: "Error fetching location." });
+        setError({ show: true, message: lang.weatherError2 });
         setIsLoading(false);
       }
     };
@@ -84,9 +83,9 @@ const WeatherBox = ({ lang }) => {
     if (latitude && longitude) {
       fetchTimezone();
     }
-  }, [latitude, longitude]);
+  }, [latitude, longitude, lang]);
 
-  // start when all needed information loaded and when language changed
+  // start fetching weather data, when all needed information loaded and also when language changed
   useEffect(() => {
     const fetchWeather = async () => {
       try {
@@ -100,7 +99,7 @@ const WeatherBox = ({ lang }) => {
           setIsLoading(false);
         });
       } catch (error) {
-        setError({ show: true, message: "Error fetching weather." });
+        setError({ show: true, message: lang.weatherError3 });
         setIsLoading(false);
       }
     };
@@ -115,27 +114,29 @@ const WeatherBox = ({ lang }) => {
       {isLoading ? (
         <LoadingSpinner />
       ) : (
-        <div className="weather-box__current-temp">
-          <p>
-            {weatherData.current_weather.temperature} {units}
-          </p>
-          <p>{locationName.split(", ").slice(1, 3).join(", ")}</p>
-          <div className="weather-box__day-temp">
-            {weatherData.hourly.temperature_2m
-              .slice(0, 25)
-              .map((item, index) => (
-                <p key={index}>
-                  <span>
-                    {item}
-                    {units}
-                  </span>
-                  <span>{dayTime[index]}</span>
-                </p>
-              ))}
+        !error.show && (
+          <div className="weather-box__current-temp">
+            <p>
+              {weatherData?.current_weather?.temperature} {units}
+            </p>
+            <p>{locationName?.split(", ").slice(1, 3).join(", ")}</p>
+            <div className="weather-box__day-temp">
+              {weatherData?.hourly?.temperature_2m
+                .slice(0, 25)
+                .map((item, index) => (
+                  <p key={index}>
+                    <span>
+                      {item}
+                      {units}
+                    </span>
+                    <span>{dayTime[index]}</span>
+                  </p>
+                ))}
+            </div>
           </div>
-        </div>
+        )
       )}
-      {error.show && <div>{error.message}</div>}
+      {error.show && <div className="weather-box__error">{error.message}</div>}
     </div>
   );
 };

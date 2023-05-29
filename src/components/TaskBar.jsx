@@ -1,5 +1,3 @@
-// TODO - SOME SORT OF LOCALIZATION
-
 import "../assets/styles/taskBar.css";
 import {
   menuStartIcon,
@@ -10,6 +8,8 @@ import {
   linkSlashIcon,
 } from "../assets/icons";
 import { CalendarButton } from "./";
+
+import { useState } from "react";
 
 const TaskBar = ({
   lang,
@@ -33,6 +33,8 @@ const TaskBar = ({
   handleStatePersonalizeUser,
   hideAllPrograms,
 }) => {
+  const [showBackendInfo, setShowBackendInfo] = useState(false);
+
   return (
     <div className="task-bar">
       <div className="programs">
@@ -170,7 +172,17 @@ const TaskBar = ({
           {lang.lng === "pl" ? "PL" : "EN"}
         </button>
 
-        <button className="task-bar__backend-button">
+        <button
+          className="task-bar__weather-button"
+          onClick={handleShowWeatherBox}
+        >
+          <img src={cloudIcon} alt={lang.weather} />
+        </button>
+        <button
+          className="task-bar__backend-button"
+          onMouseEnter={() => setShowBackendInfo(true)}
+          onMouseLeave={() => setShowBackendInfo(false)}
+        >
           <img
             src={isConnectedToBackend ? linkIcon : linkSlashIcon}
             alt={
@@ -179,15 +191,16 @@ const TaskBar = ({
                 : lang.notConnectedToBackend
             }
           />
+          {showBackendInfo && (
+            <p className="task-bar__backend-button__desc">
+              <span>
+                {isConnectedToBackend
+                  ? lang.connectedToBackend
+                  : lang.notConnectedToBackend}
+              </span>
+            </p>
+          )}
         </button>
-
-        <button
-          className="task-bar__weather-button"
-          onClick={handleShowWeatherBox}
-        >
-          <img src={cloudIcon} alt={lang.weather} />
-        </button>
-
         <CalendarButton lang={lang} handleShowCalendar={handleShowCalendar} />
       </div>
     </div>
