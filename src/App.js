@@ -43,7 +43,7 @@ function App() {
 
   // useStateHook to inform, at what stage is app currently
   const [systemStage, setSystemStage] = useState({
-    startScreen: true,
+    startScreen: false,
     loginScreen: false,
     workScreen: false,
     closeScreen: false,
@@ -235,6 +235,23 @@ function App() {
       root.style.setProperty("--icon-size", user.settings.iconSize);
     }
   }, [user]);
+
+  // Save user settings to localStorage, on every user object change
+  useEffect(() => {
+    if (user !== null) localStorage.setItem("user", JSON.stringify(user));
+  }, [user]);
+
+  // at start of the app, check if there is already user saved, if so, move to loginScreen.
+  useEffect(() => {
+    const userLocalStorage = localStorage.getItem("user");
+
+    if (userLocalStorage !== null) {
+      setUser(JSON.parse(userLocalStorage));
+      changeStage("loginScreen");
+    } else {
+      changeStage("startScreen");
+    }
+  }, []);
 
   return (
     <div className="whole-screen" ref={wholeScreenRef}>
