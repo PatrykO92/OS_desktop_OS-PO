@@ -6,22 +6,24 @@ import {
   xmarkIcon,
 } from "../assets/icons";
 
-import { useState } from "react";
+import { useState, useContext } from "react";
 
 import { CSSTransition } from "react-transition-group";
 
-const DesktopContextMenu = ({
-  wholeScreenRef,
-  lang,
-  changeUser,
-  position,
-  closeDesktopContextMenu,
-  closeAllPrograms,
-  handleCloseCalendar,
-  handleCloseMenuStart,
-  handleStatePersonalize,
-  handleCloseWeatherBox,
-}) => {
+import { WholeAppContext } from "../App";
+
+const DesktopContextMenu = ({ position, closeDesktopContextMenu }) => {
+  const {
+    lang,
+    changeUser,
+    handleStatePersonalize,
+    wholeScreenRef,
+    closeAllPrograms,
+    handleCloseCalendar,
+    handleCloseMenuStart,
+    handleCloseWeatherBox,
+  } = useContext(WholeAppContext);
+
   const [showView, setShowView] = useState(false);
 
   const updateIconSize = (newSize) => {

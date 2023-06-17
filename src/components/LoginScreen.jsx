@@ -9,8 +9,10 @@ import { useState, useEffect, useRef } from "react";
 import { CSSTransition } from "react-transition-group";
 
 import { loginInToBackend } from "../utils";
+import { useNavigate } from "react-router-dom";
 
-const LoginScreen = ({ lang, user, changeStage, setIsConnectedToBackend }) => {
+const LoginScreen = ({ lang, user, setIsConnectedToBackend }) => {
+  const navigate = useNavigate();
   const pinInput = useRef(null);
   const [pin, setPin] = useState("");
 
@@ -66,7 +68,7 @@ const LoginScreen = ({ lang, user, changeStage, setIsConnectedToBackend }) => {
                   style={{ background: "transparent" }}
                   className="login-screen_login-button"
                   onClick={() => {
-                    changeStage("workScreen");
+                    navigate("/workScreen");
                   }}
                 >
                   <img src={arrowRightIcon} alt={lang.submit} />
@@ -85,7 +87,7 @@ const LoginScreen = ({ lang, user, changeStage, setIsConnectedToBackend }) => {
                         "login-screen_wrong-input"
                       );
                     }
-                    if (pin === user.pin) changeStage("workScreen");
+                    if (pin === user.pin) navigate("/workScreen");
                   }}
                 >
                   <input
@@ -126,7 +128,7 @@ const LoginScreen = ({ lang, user, changeStage, setIsConnectedToBackend }) => {
                   className="login-screen_button-img"
                 />
               </button>
-              <button onClick={() => changeStage("closeScreen")}>
+              <button onClick={() => navigate("/closeScreen")}>
                 <img
                   src={powerOffIcon}
                   alt={lang.power}

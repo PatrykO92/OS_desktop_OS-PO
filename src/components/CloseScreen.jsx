@@ -1,8 +1,11 @@
+import { useNavigate } from "react-router-dom";
 import "../assets/styles/closeScreen.css";
 
 import { CSSTransition } from "react-transition-group";
 
-const CloseScreen = ({ lang, changeStage }) => {
+const CloseScreen = ({ lang }) => {
+  const navigate = useNavigate();
+
   return (
     <CSSTransition
       in={true}
@@ -16,14 +19,14 @@ const CloseScreen = ({ lang, changeStage }) => {
         <p>{lang.closeScreen2}</p>
         <button
           onClick={() => {
-            changeStage("startScreen");
+            navigate("/startScreen");
           }}
         >
           {lang.startScreen}
         </button>
         <button
           onClick={() => {
-            changeStage("loginScreen");
+            navigate("/loginScreen");
           }}
         >
           {lang.loginScreen}

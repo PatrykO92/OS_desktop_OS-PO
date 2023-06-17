@@ -2,17 +2,20 @@ import "../assets/styles/customAlertPrompt.css";
 import "../assets/styles/menuStart.css";
 import { powerOffIcon, restartIcon } from "../assets/icons";
 
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { WholeAppContext } from "../App";
+import { useNavigate } from "react-router-dom";
 
-const MenuStart = ({
-  children,
-  lang,
-  user,
-  changeStage,
-  closeAllPrograms,
-  handleStatePersonalizeUser,
-  hideAllPrograms,
-}) => {
+const MenuStart = ({ children }) => {
+  const navigate = useNavigate();
+  const {
+    lang,
+    user,
+    closeAllPrograms,
+    handleStatePersonalizeUser,
+    hideAllPrograms,
+  } = useContext(WholeAppContext);
+
   const [showAlert, setShowAlert] = useState(false);
   const [nextStage, setNextStage] = useState(null);
 
@@ -24,7 +27,7 @@ const MenuStart = ({
   const handleAccept = () => {
     closeAllPrograms();
     setShowAlert(false);
-    changeStage(nextStage);
+    navigate(`/${nextStage}`);
   };
 
   const handleDismiss = () => {

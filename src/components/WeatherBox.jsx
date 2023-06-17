@@ -1,7 +1,9 @@
+import { WholeAppContext } from "../App";
+
 import "../assets/styles/weatherBox.css";
 import { LoadingSpinner } from "./";
 
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import axios from "axios";
 
@@ -35,7 +37,8 @@ const dayTime = [
   "24:00",
 ];
 
-const WeatherBox = ({ lang }) => {
+const WeatherBox = () => {
+  const { lang } = useContext(WholeAppContext);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState({ show: false, message: "" });
   const [timezone, setTimezone] = useState(null);

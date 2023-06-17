@@ -9,30 +9,34 @@ import {
 } from "../assets/icons";
 import { CalendarButton } from "./";
 
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { WholeAppContext } from "../App";
 
 const TaskBar = ({
-  lang,
   handleShowMenuStart,
   handleShowCalendar,
   handleShowWeatherBox,
-  changeLang,
-  isConnectedToBackend,
-  //apps state and handlers
-  toDoApp,
-  handleStateToDoApp,
-  webBrowser,
-  handleStateWebBrowser,
-  calculator,
-  handleStateCalculator,
-  tetris,
-  handleStateTetris,
-  personalize,
-  handleStatePersonalize,
-  personalizeUser,
-  handleStatePersonalizeUser,
-  hideAllPrograms,
 }) => {
+  const {
+    lang,
+    changeLang,
+    isConnectedToBackend,
+    //apps state and handlers
+    toDoApp,
+    handleStateToDoApp,
+    webBrowser,
+    handleStateWebBrowser,
+    calculator,
+    handleStateCalculator,
+    tetris,
+    handleStateTetris,
+    personalize,
+    handleStatePersonalize,
+    personalizeUser,
+    handleStatePersonalizeUser,
+    hideAllPrograms,
+  } = useContext(WholeAppContext);
+
   const [showBackendInfo, setShowBackendInfo] = useState(false);
 
   return (

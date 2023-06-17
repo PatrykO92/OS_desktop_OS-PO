@@ -1,12 +1,9 @@
+import { useNavigate } from "react-router-dom";
 import { plusCircleIcon, userIcon } from "../../../../assets/icons";
 import { defaultUser } from "../../../../utils";
 
-const StartScreenStepTwo = ({
-  lang,
-  changeStage,
-  changeStartScreenStep,
-  changeUser,
-}) => {
+const StartScreenStepTwo = ({ lang, changeStartScreenStep, changeUser }) => {
+  const navigate = useNavigate();
   return (
     <div className="start-screen_step-two">
       <div>
@@ -17,7 +14,7 @@ const StartScreenStepTwo = ({
       <button
         onClick={() => {
           changeUser(defaultUser);
-          changeStage("loginScreen");
+          navigate("/loginScreen");
         }}
       >
         <img src={userIcon} alt="" />

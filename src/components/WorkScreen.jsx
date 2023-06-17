@@ -1,3 +1,4 @@
+import { WholeAppContext } from "../App";
 import "../assets/styles/workScreen.css";
 import {
   TaskBar,
@@ -8,37 +9,15 @@ import {
   NewsBox,
 } from "./";
 
-import { useState } from "react";
+import { useState, useContext } from "react";
 
 import { CSSTransition } from "react-transition-group";
 
 import Calendar from "react-calendar";
 import "../assets/styles/myCalendar.css";
 
-const WorkScreen = ({
-  lang,
-  user,
-  isConnectedToBackend,
-  changeStage,
-  changeUser,
-  changeLang,
-  wholeScreenRef,
-  wallpaper,
-  toDoApp,
-  handleStateToDoApp,
-  webBrowser,
-  handleStateWebBrowser,
-  calculator,
-  handleStateCalculator,
-  tetris,
-  handleStateTetris,
-  personalize,
-  handleStatePersonalize,
-  personalizeUser,
-  handleStatePersonalizeUser,
-  hideAllPrograms,
-  closeAllPrograms,
-}) => {
+const WorkScreen = ({ children }) => {
+  const { lang } = useContext(WholeAppContext);
   // useState hook for showing and hidding MenuStart
   const [showWeatherBox, setShowWeatherBox] = useState(false);
   const handleShowWeatherBox = () => {
@@ -134,54 +113,20 @@ const WorkScreen = ({
           }
         }}
       >
-        <Desktop
-          lang={lang}
-          user={user}
-          toDoApp={toDoApp}
-          handleStateToDoApp={handleStateToDoApp}
-          webBrowser={webBrowser}
-          handleStateWebBrowser={handleStateWebBrowser}
-          calculator={calculator}
-          handleStateCalculator={handleStateCalculator}
-          tetris={tetris}
-          handleStateTetris={handleStateTetris}
-          wallpaper={wallpaper}
-        />
+        {children}
+        <Desktop />
+
         {desktopContextMenuPosition && (
           <DesktopContextMenu
             position={desktopContextMenuPosition}
             closeDesktopContextMenu={closeDesktopContextMenu}
-            changeUser={changeUser}
-            lang={lang}
-            closeAllPrograms={closeAllPrograms}
-            handleCloseCalendar={handleCloseCalendar}
-            handleCloseMenuStart={handleCloseMenuStart}
-            handleCloseWeatherBox={handleCloseWeatherBox}
-            handleStatePersonalize={handleStatePersonalize}
-            wholeScreenRef={wholeScreenRef}
           />
         )}
 
         <TaskBar
-          lang={lang}
-          changeLang={changeLang}
-          isConnectedToBackend={isConnectedToBackend}
           handleShowCalendar={handleShowCalendar}
           handleShowMenuStart={handleShowMenuStart}
           handleShowWeatherBox={handleShowWeatherBox}
-          toDoApp={toDoApp}
-          handleStateToDoApp={handleStateToDoApp}
-          webBrowser={webBrowser}
-          handleStateWebBrowser={handleStateWebBrowser}
-          calculator={calculator}
-          handleStateCalculator={handleStateCalculator}
-          tetris={tetris}
-          handleStateTetris={handleStateTetris}
-          personalize={personalize}
-          handleStatePersonalize={handleStatePersonalize}
-          personalizeUser={personalizeUser}
-          handleStatePersonalizeUser={handleStatePersonalizeUser}
-          hideAllPrograms={hideAllPrograms}
         />
 
         <CSSTransition
@@ -190,19 +135,8 @@ const WorkScreen = ({
           classNames="menu-start"
           unmountOnExit
         >
-          <MenuStart
-            handleCloseMenuStart={handleCloseMenuStart}
-            lang={lang}
-            user={user}
-            changeStage={changeStage}
-            handleStatePersonalizeUser={handleStatePersonalizeUser}
-            hideAllPrograms={hideAllPrograms}
-            closeAllPrograms={closeAllPrograms}
-          >
-            <NewsBox
-              lang={lang}
-              handleStateWebBrowser={handleStateWebBrowser}
-            />
+          <MenuStart handleCloseMenuStart={handleCloseMenuStart}>
+            <NewsBox />
           </MenuStart>
         </CSSTransition>
 
@@ -221,7 +155,7 @@ const WorkScreen = ({
           classNames="calendar-start"
           unmountOnExit
         >
-          <WeatherBox lang={lang} />
+          <WeatherBox />
         </CSSTransition>
       </div>
     </CSSTransition>

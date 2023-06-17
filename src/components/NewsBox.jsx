@@ -1,11 +1,15 @@
+import { WholeAppContext } from "../App";
+
 import "../assets/styles/newsBox.css";
 import { fetchNewsData } from "../utils";
 import { LoadingSpinner } from "./";
 import { newsPlaceholderImage } from "../assets/images/placeholder-images";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 
-const NewsBox = ({ lang, handleStateWebBrowser }) => {
+const NewsBox = () => {
+  const { lang, handleStateWebBrowser } = useContext(WholeAppContext);
+
   const [newsCategory, setNewsCategory] = useState("general");
   const [isLoading, setIsLoading] = useState(true);
   const [newsData, setNewsData] = useState(null);

@@ -3,22 +3,25 @@ import "../assets/styles/desktop.css";
 import "intro.js/introjs.css";
 import "../assets/styles/introjsMyStyling.css";
 
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Steps } from "intro.js-react";
 
-const Desktop = ({
-  lang,
-  user,
-  // Apps states and handlers
-  toDoApp,
-  handleStateToDoApp,
-  webBrowser,
-  handleStateWebBrowser,
-  calculator,
-  handleStateCalculator,
-  tetris,
-  handleStateTetris,
-}) => {
+import { WholeAppContext } from "../App";
+
+const Desktop = () => {
+  const {
+    user,
+    lang,
+    toDoApp,
+    handleStateToDoApp,
+    webBrowser,
+    handleStateWebBrowser,
+    calculator,
+    handleStateCalculator,
+    tetris,
+    handleStateTetris,
+  } = useContext(WholeAppContext);
+
   const [stepsEnabled, setStepsEnabled] = useState(true);
 
   const steps = [
@@ -42,7 +45,7 @@ const Desktop = ({
   return (
     <div
       className="desktop"
-      style={{ backgroundImage: `url(${user.settings.wallpaper})` }}
+      style={{ backgroundImage: `url(${user?.settings.wallpaper})` }}
     >
       <Steps
         enabled={stepsEnabled}

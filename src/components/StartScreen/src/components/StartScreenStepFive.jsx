@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { arrowLeftIcon, checkIcon } from "../../../../assets/icons";
 
 import { defaultUser } from "../../../../utils";
@@ -7,16 +8,16 @@ import { useState } from "react";
 const StartScreenStepFive = ({
   lang,
   changeStartScreenStep,
-  changeStage,
   changeUser,
   userForm,
 }) => {
+  const navigate = useNavigate();
   const [showPin, setShowPin] = useState(false);
 
   const handleSubmit = () => {
     const userTag = userForm.name.slice(0, 2) + userForm.lastName.slice(0, 2);
     changeUser({ ...userForm, userTag, settings: { ...defaultUser.settings } });
-    changeStage("loginScreen");
+    navigate("/loginScreen");
   };
 
   return (
