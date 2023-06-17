@@ -394,6 +394,7 @@ function App() {
           lang={textModel[systemLanguage]}
           user={user}
           changeStage={changeStage}
+          setIsConnectedToBackend={setIsConnectedToBackend}
         />
       )}
       {systemStage.workScreen && (

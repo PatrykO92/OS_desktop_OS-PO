@@ -1,15 +1,14 @@
 import "../assets/styles/customAlertPrompt.css";
 import "../assets/styles/menuStart.css";
 import { powerOffIcon, restartIcon } from "../assets/icons";
-import { NewsBox } from "./";
 
 import { useState } from "react";
 
 const MenuStart = ({
+  children,
   lang,
   user,
   changeStage,
-  handleStateWebBrowser,
   closeAllPrograms,
   handleStatePersonalizeUser,
   hideAllPrograms,
@@ -35,9 +34,7 @@ const MenuStart = ({
   return (
     <>
       <div className={`menu-start`}>
-        <div className="menu-start-widget">
-          <NewsBox lang={lang} handleStateWebBrowser={handleStateWebBrowser} />
-        </div>
+        {children}
         <div className="menu-start-utils">
           <button
             onClick={() => {

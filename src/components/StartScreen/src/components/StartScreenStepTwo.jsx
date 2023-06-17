@@ -1,9 +1,8 @@
 import { plusCircleIcon, userIcon } from "../../../../assets/icons";
-import { loginInToBackend, defaultUser } from "../../../../utils";
+import { defaultUser } from "../../../../utils";
 
 const StartScreenStepTwo = ({
   lang,
-  setIsConnectedToBackend,
   changeStage,
   changeStartScreenStep,
   changeUser,
@@ -17,14 +16,6 @@ const StartScreenStepTwo = ({
 
       <button
         onClick={() => {
-          const login = loginInToBackend();
-          login
-            .then((res) => {
-              if (res) setIsConnectedToBackend(true);
-            })
-            .catch((err) => {
-              setIsConnectedToBackend(false);
-            });
           changeUser(defaultUser);
           changeStage("loginScreen");
         }}

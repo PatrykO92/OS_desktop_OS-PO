@@ -5,6 +5,7 @@ import {
   DesktopContextMenu,
   MenuStart,
   WeatherBox,
+  NewsBox,
 } from "./";
 
 import { useState } from "react";
@@ -194,11 +195,15 @@ const WorkScreen = ({
             lang={lang}
             user={user}
             changeStage={changeStage}
-            handleStateWebBrowser={handleStateWebBrowser}
             handleStatePersonalizeUser={handleStatePersonalizeUser}
             hideAllPrograms={hideAllPrograms}
             closeAllPrograms={closeAllPrograms}
-          />
+          >
+            <NewsBox
+              lang={lang}
+              handleStateWebBrowser={handleStateWebBrowser}
+            />
+          </MenuStart>
         </CSSTransition>
 
         <CSSTransition

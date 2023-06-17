@@ -8,7 +8,9 @@ import { useState, useEffect, useRef } from "react";
 
 import { CSSTransition } from "react-transition-group";
 
-const LoginScreen = ({ lang, user, changeStage }) => {
+import { loginInToBackend } from "../utils";
+
+const LoginScreen = ({ lang, user, changeStage, setIsConnectedToBackend }) => {
   const pinInput = useRef(null);
   const [pin, setPin] = useState("");
 
@@ -19,12 +21,21 @@ const LoginScreen = ({ lang, user, changeStage }) => {
 
   // Aplication start, pretended loading of screen
   useEffect(() => {
+    const login = loginInToBackend();
+    login
+      .then((res) => {
+        if (res) setIsConnectedToBackend(true);
+      })
+      .catch((err) => {
+        setIsConnectedToBackend(false);
+      });
+
     if (loginStage === "start") {
       setTimeout(() => {
         setLoginStage("login");
       }, 1500);
     }
-  }, [loginStage]);
+  }, [loginStage, setIsConnectedToBackend]);
 
   return (
     <>
