@@ -2,8 +2,12 @@ import { useNavigate } from "react-router-dom";
 import "../assets/styles/closeScreen.css";
 
 import { CSSTransition } from "react-transition-group";
+import { useContext } from "react";
+import { WholeAppContext } from "../App";
 
-const CloseScreen = ({ lang }) => {
+const CloseScreen = () => {
+  const { lang } = useContext(WholeAppContext);
+
   const navigate = useNavigate();
 
   return (

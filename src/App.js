@@ -1,6 +1,5 @@
 // External libraries
 import { useState, useRef, useEffect, createContext } from "react";
-import { CSSTransition } from "react-transition-group";
 import { Routes, Route, useNavigate } from "react-router-dom";
 
 // Assets
@@ -19,14 +18,7 @@ import {
   LoginScreen,
   StartScreen,
   WorkScreen,
-  Calculator,
   CloseScreen,
-  ProgramContainer,
-  WebBrowser,
-  ToDoApp,
-  TetrisApp,
-  Personalize,
-  PersonalizeUser,
 } from "./components";
 
 // Utilities
@@ -159,6 +151,7 @@ function App() {
         lang: textModel[systemLanguage],
         user,
         isConnectedToBackend,
+        setIsConnectedToBackend,
         changeUser,
         changeLang,
         wholeScreenRef,
@@ -181,182 +174,12 @@ function App() {
     >
       <div className="whole-screen" ref={wholeScreenRef}>
         <Routes>
-          <Route
-            index
-            exact
-            path="/"
-            element={
-              <StartScreen
-                setIsConnectedToBackend={setIsConnectedToBackend}
-                lang={textModel[systemLanguage]}
-                changeLang={changeLang}
-                changeUser={changeUser}
-              />
-            }
-          />
-          <Route
-            exact
-            path="/startScreen"
-            element={
-              <StartScreen
-                setIsConnectedToBackend={setIsConnectedToBackend}
-                lang={textModel[systemLanguage]}
-                changeLang={changeLang}
-                changeUser={changeUser}
-              />
-            }
-          />
+          <Route index exact path="/" element={<StartScreen />} />
+          <Route exact path="/startScreen" element={<StartScreen />} />
 
-          <Route
-            exact
-            path="/loginScreen"
-            element={
-              <LoginScreen
-                lang={textModel[systemLanguage]}
-                user={user}
-                setIsConnectedToBackend={setIsConnectedToBackend}
-              />
-            }
-          />
-          <Route
-            exact
-            path="/workScreen"
-            element={
-              <WorkScreen>
-                {/* App 1: To-Do-App */}
-                <CSSTransition
-                  in={toDoApp.programEnabled}
-                  timeout={300}
-                  classNames="fade"
-                  unmountOnExit
-                >
-                  <ProgramContainer
-                    lang={textModel[systemLanguage]}
-                    programName={toDoApp.name}
-                    programIcon={toDoApp.icon}
-                    programHidden={toDoApp.hidden}
-                    handleProgramState={handleStateToDoApp}
-                    handleDefaultProgramState={handleDefaultStateToDoApp}
-                  >
-                    <ToDoApp lang={textModel[systemLanguage]} user={user} />
-                  </ProgramContainer>
-                </CSSTransition>
-
-                {/* App 2: Web Browser */}
-                <CSSTransition
-                  in={webBrowser.programEnabled}
-                  timeout={300}
-                  classNames="fade"
-                  unmountOnExit
-                >
-                  <ProgramContainer
-                    lang={textModel[systemLanguage]}
-                    programName={webBrowser.name}
-                    programIcon={webBrowser.icon}
-                    programHidden={webBrowser.hidden}
-                    handleProgramState={handleStateWebBrowser}
-                    handleDefaultProgramState={handleDefaultStateWebBrowser}
-                  >
-                    <WebBrowser
-                      lang={textModel[systemLanguage]}
-                      passUrl={webBrowser.defaultUrl}
-                    />
-                  </ProgramContainer>
-                </CSSTransition>
-
-                {/* App 3: Calculator */}
-                <CSSTransition
-                  in={calculator.programEnabled}
-                  timeout={300}
-                  classNames="fade"
-                  unmountOnExit
-                >
-                  <ProgramContainer
-                    lang={textModel[systemLanguage]}
-                    programName={calculator.name}
-                    programIcon={calculator.icon}
-                    programHidden={calculator.hidden}
-                    handleProgramState={handleStateCalculator}
-                    handleDefaultProgramState={handleDefaultStateCalculator}
-                  >
-                    <Calculator lang={textModel[systemLanguage]} />
-                  </ProgramContainer>
-                </CSSTransition>
-
-                {/* App 4: Tetris */}
-                <CSSTransition
-                  in={tetris.programEnabled}
-                  timeout={300}
-                  classNames="fade"
-                  unmountOnExit
-                >
-                  <ProgramContainer
-                    lang={textModel[systemLanguage]}
-                    programName={tetris.name}
-                    programIcon={tetris.icon}
-                    programHidden={tetris.hidden}
-                    handleProgramState={handleStateTetris}
-                    handleDefaultProgramState={handleDefaultStateTetris}
-                  >
-                    <TetrisApp lang={textModel[systemLanguage]} user={user} />
-                  </ProgramContainer>
-                </CSSTransition>
-
-                {/* App 5: Personalize */}
-                <CSSTransition
-                  in={personalize.programEnabled}
-                  timeout={300}
-                  classNames="fade"
-                  unmountOnExit
-                >
-                  <ProgramContainer
-                    lang={textModel[systemLanguage]}
-                    programName={personalize.name}
-                    programIcon={personalize.icon}
-                    programHidden={personalize.hidden}
-                    handleProgramState={handleStatePersonalize}
-                    handleDefaultProgramState={handleDefaultStatePersonalize}
-                  >
-                    <Personalize
-                      lang={textModel[systemLanguage]}
-                      user={user}
-                      changeUser={changeUser}
-                    />
-                  </ProgramContainer>
-                </CSSTransition>
-
-                {/* App 5: Personalize User */}
-                <CSSTransition
-                  in={personalizeUser.programEnabled}
-                  timeout={300}
-                  classNames="fade"
-                  unmountOnExit
-                >
-                  <ProgramContainer
-                    lang={textModel[systemLanguage]}
-                    programName={personalizeUser.name}
-                    programIcon={personalizeUser.icon}
-                    programHidden={personalizeUser.hidden}
-                    handleProgramState={handleStatePersonalizeUser}
-                    handleDefaultProgramState={
-                      handleDefaultStatePersonalizeUser
-                    }
-                  >
-                    <PersonalizeUser
-                      lang={textModel[systemLanguage]}
-                      user={user}
-                      changeUser={changeUser}
-                    />
-                  </ProgramContainer>
-                </CSSTransition>
-              </WorkScreen>
-            }
-          />
-          <Route
-            exact
-            path="/closeScreen"
-            element={<CloseScreen lang={textModel[systemLanguage]} />}
-          />
+          <Route exact path="/loginScreen" element={<LoginScreen />} />
+          <Route exact path="/workScreen" element={<WorkScreen />} />
+          <Route exact path="/closeScreen" element={<CloseScreen />} />
         </Routes>
       </div>
     </WholeAppContext.Provider>

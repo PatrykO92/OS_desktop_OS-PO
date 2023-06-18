@@ -1,3 +1,4 @@
+import { WholeAppContext } from "../../App";
 import "../../assets/styles/startScreen.css";
 
 import {
@@ -8,9 +9,10 @@ import {
   StartScreenStepFive,
 } from "./src/components";
 
-import { useState } from "react";
+import { useContext, useState } from "react";
 
-const StartScreen = ({ lang, changeLang, changeUser }) => {
+const StartScreen = () => {
+  const { lang, changeLang, changeUser } = useContext(WholeAppContext);
   const [startScreenStep, setStartScreenStep] = useState(1);
   const changeStartScreenStep = (val) => {
     setStartScreenStep(val);

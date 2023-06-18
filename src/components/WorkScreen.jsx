@@ -7,6 +7,13 @@ import {
   MenuStart,
   WeatherBox,
   NewsBox,
+  ToDoApp,
+  ProgramContainer,
+  WebBrowser,
+  Calculator,
+  TetrisApp,
+  Personalize,
+  PersonalizeUser,
 } from "./";
 
 import { useState, useContext } from "react";
@@ -16,8 +23,30 @@ import { CSSTransition } from "react-transition-group";
 import Calendar from "react-calendar";
 import "../assets/styles/myCalendar.css";
 
-const WorkScreen = ({ children }) => {
-  const { lang } = useContext(WholeAppContext);
+const WorkScreen = () => {
+  const {
+    lang,
+    user,
+    changeUser,
+    toDoApp,
+    handleStateToDoApp,
+    handleDefaultStateToDoApp,
+    webBrowser,
+    handleStateWebBrowser,
+    handleDefaultStateWebBrowser,
+    calculator,
+    handleStateCalculator,
+    handleDefaultStateCalculator,
+    tetris,
+    handleStateTetris,
+    handleDefaultStateTetris,
+    personalize,
+    handleStatePersonalize,
+    handleDefaultStatePersonalize,
+    personalizeUser,
+    handleStatePersonalizeUser,
+    handleDefaultStatePersonalizeUser,
+  } = useContext(WholeAppContext);
   // useState hook for showing and hidding MenuStart
   const [showWeatherBox, setShowWeatherBox] = useState(false);
   const handleShowWeatherBox = () => {
@@ -113,7 +142,6 @@ const WorkScreen = ({ children }) => {
           }
         }}
       >
-        {children}
         <Desktop />
 
         {desktopContextMenuPosition && (
@@ -122,6 +150,120 @@ const WorkScreen = ({ children }) => {
             closeDesktopContextMenu={closeDesktopContextMenu}
           />
         )}
+
+        {/* App 1: To-Do-App */}
+        <CSSTransition
+          in={toDoApp.programEnabled}
+          timeout={300}
+          classNames="fade"
+          unmountOnExit
+        >
+          <ProgramContainer
+            lang={lang}
+            programName={toDoApp.name}
+            programIcon={toDoApp.icon}
+            programHidden={toDoApp.hidden}
+            handleProgramState={handleStateToDoApp}
+            handleDefaultProgramState={handleDefaultStateToDoApp}
+          >
+            <ToDoApp lang={lang} user={user} />
+          </ProgramContainer>
+        </CSSTransition>
+
+        {/* App 2: Web Browser */}
+        <CSSTransition
+          in={webBrowser.programEnabled}
+          timeout={300}
+          classNames="fade"
+          unmountOnExit
+        >
+          <ProgramContainer
+            lang={lang}
+            programName={webBrowser.name}
+            programIcon={webBrowser.icon}
+            programHidden={webBrowser.hidden}
+            handleProgramState={handleStateWebBrowser}
+            handleDefaultProgramState={handleDefaultStateWebBrowser}
+          >
+            <WebBrowser lang={lang} passUrl={webBrowser.defaultUrl} />
+          </ProgramContainer>
+        </CSSTransition>
+
+        {/* App 3: Calculator */}
+        <CSSTransition
+          in={calculator.programEnabled}
+          timeout={300}
+          classNames="fade"
+          unmountOnExit
+        >
+          <ProgramContainer
+            lang={lang}
+            programName={calculator.name}
+            programIcon={calculator.icon}
+            programHidden={calculator.hidden}
+            handleProgramState={handleStateCalculator}
+            handleDefaultProgramState={handleDefaultStateCalculator}
+          >
+            <Calculator lang={lang} />
+          </ProgramContainer>
+        </CSSTransition>
+
+        {/* App 4: Tetris */}
+        <CSSTransition
+          in={tetris.programEnabled}
+          timeout={300}
+          classNames="fade"
+          unmountOnExit
+        >
+          <ProgramContainer
+            lang={lang}
+            programName={tetris.name}
+            programIcon={tetris.icon}
+            programHidden={tetris.hidden}
+            handleProgramState={handleStateTetris}
+            handleDefaultProgramState={handleDefaultStateTetris}
+          >
+            <TetrisApp lang={lang} user={user} />
+          </ProgramContainer>
+        </CSSTransition>
+
+        {/* App 5: Personalize */}
+        <CSSTransition
+          in={personalize.programEnabled}
+          timeout={300}
+          classNames="fade"
+          unmountOnExit
+        >
+          <ProgramContainer
+            lang={lang}
+            programName={personalize.name}
+            programIcon={personalize.icon}
+            programHidden={personalize.hidden}
+            handleProgramState={handleStatePersonalize}
+            handleDefaultProgramState={handleDefaultStatePersonalize}
+          >
+            <Personalize lang={lang} user={user} changeUser={changeUser} />
+          </ProgramContainer>
+        </CSSTransition>
+
+        {/* App 5: Personalize User */}
+        <CSSTransition
+          in={personalizeUser.programEnabled}
+          timeout={300}
+          classNames="fade"
+          unmountOnExit
+        >
+          <ProgramContainer
+            lang={lang}
+            programName={personalizeUser.name}
+            programIcon={personalizeUser.icon}
+            programHidden={personalizeUser.hidden}
+            handleProgramState={handleStatePersonalizeUser}
+            handleDefaultProgramState={handleDefaultStatePersonalizeUser}
+          >
+            <PersonalizeUser lang={lang} user={user} changeUser={changeUser} />
+          </ProgramContainer>
+        </CSSTransition>
 
         <TaskBar
           handleShowCalendar={handleShowCalendar}
