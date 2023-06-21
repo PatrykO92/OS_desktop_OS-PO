@@ -7,21 +7,23 @@ import {
   MenuStart,
   WeatherBox,
   NewsBox,
-  ToDoApp,
   ProgramContainer,
-  WebBrowser,
-  Calculator,
-  TetrisApp,
-  Personalize,
-  PersonalizeUser,
+  LoadingSpinner,
 } from "./";
 
-import { useState, useContext } from "react";
+import { useState, useContext, lazy, Suspense } from "react";
 
 import { CSSTransition } from "react-transition-group";
 
 import Calendar from "react-calendar";
 import "../assets/styles/myCalendar.css";
+
+const ToDoApp = lazy(() => import("./ToDoApp"));
+const WebBrowser = lazy(() => import("./WebBrowser"));
+const Calculator = lazy(() => import("./Calculator"));
+const TetrisApp = lazy(() => import("./TetrisApp/TetrisApp"));
+const Personalize = lazy(() => import("./Personalize"));
+const PersonalizeUser = lazy(() => import("./PersonalizeUser"));
 
 const WorkScreen = () => {
   const {
@@ -47,6 +49,7 @@ const WorkScreen = () => {
     handleStatePersonalizeUser,
     handleDefaultStatePersonalizeUser,
   } = useContext(WholeAppContext);
+
   // useState hook for showing and hidding MenuStart
   const [showWeatherBox, setShowWeatherBox] = useState(false);
   const handleShowWeatherBox = () => {
@@ -166,7 +169,9 @@ const WorkScreen = () => {
             handleProgramState={handleStateToDoApp}
             handleDefaultProgramState={handleDefaultStateToDoApp}
           >
-            <ToDoApp lang={lang} user={user} />
+            <Suspense fallback={<LoadingSpinner />}>
+              <ToDoApp lang={lang} user={user} />
+            </Suspense>
           </ProgramContainer>
         </CSSTransition>
 
@@ -185,7 +190,9 @@ const WorkScreen = () => {
             handleProgramState={handleStateWebBrowser}
             handleDefaultProgramState={handleDefaultStateWebBrowser}
           >
-            <WebBrowser lang={lang} passUrl={webBrowser.defaultUrl} />
+            <Suspense fallback={<LoadingSpinner />}>
+              <WebBrowser lang={lang} passUrl={webBrowser.defaultUrl} />
+            </Suspense>
           </ProgramContainer>
         </CSSTransition>
 
@@ -204,7 +211,10 @@ const WorkScreen = () => {
             handleProgramState={handleStateCalculator}
             handleDefaultProgramState={handleDefaultStateCalculator}
           >
-            <Calculator lang={lang} />
+            <Suspense fallback={<LoadingSpinner />}>
+              {" "}
+              <Calculator lang={lang} />
+            </Suspense>
           </ProgramContainer>
         </CSSTransition>
 
@@ -223,7 +233,9 @@ const WorkScreen = () => {
             handleProgramState={handleStateTetris}
             handleDefaultProgramState={handleDefaultStateTetris}
           >
-            <TetrisApp lang={lang} user={user} />
+            <Suspense fallback={<LoadingSpinner />}>
+              <TetrisApp lang={lang} user={user} />
+            </Suspense>
           </ProgramContainer>
         </CSSTransition>
 
@@ -242,11 +254,13 @@ const WorkScreen = () => {
             handleProgramState={handleStatePersonalize}
             handleDefaultProgramState={handleDefaultStatePersonalize}
           >
-            <Personalize lang={lang} user={user} changeUser={changeUser} />
+            <Suspense fallback={<LoadingSpinner />}>
+              <Personalize lang={lang} user={user} changeUser={changeUser} />
+            </Suspense>
           </ProgramContainer>
         </CSSTransition>
 
-        {/* App 5: Personalize User */}
+        {/* App 6: Personalize User */}
         <CSSTransition
           in={personalizeUser.programEnabled}
           timeout={300}
@@ -261,7 +275,13 @@ const WorkScreen = () => {
             handleProgramState={handleStatePersonalizeUser}
             handleDefaultProgramState={handleDefaultStatePersonalizeUser}
           >
-            <PersonalizeUser lang={lang} user={user} changeUser={changeUser} />
+            <Suspense fallback={<LoadingSpinner />}>
+              <PersonalizeUser
+                lang={lang}
+                user={user}
+                changeUser={changeUser}
+              />
+            </Suspense>
           </ProgramContainer>
         </CSSTransition>
 

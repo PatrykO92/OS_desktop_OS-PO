@@ -1,5 +1,12 @@
 // External libraries
-import { useState, useRef, useEffect, createContext } from "react";
+import {
+  useState,
+  useRef,
+  useEffect,
+  createContext,
+  lazy,
+  Suspense,
+} from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 
 // Assets
@@ -14,16 +21,22 @@ import {
 } from "./assets/icons";
 
 // Components
-import {
-  LoginScreen,
-  StartScreen,
-  WorkScreen,
-  CloseScreen,
-} from "./components";
+// import {
+//   LoginScreen,
+//   StartScreen,
+//   WorkScreen,
+//   CloseScreen,
+// } from "./components";
 
 // Utilities
 import { textModel } from "./utils";
 import { useAppState } from "./hooks/useAppState";
+import { LoadingSpinner } from "./components";
+
+const LoginScreen = lazy(() => import("./components/LoginScreen"));
+const StartScreen = lazy(() => import("./components/StartScreen/StartScreen"));
+const WorkScreen = lazy(() => import("./components/WorkScreen"));
+const CloseScreen = lazy(() => import("./components/CloseScreen"));
 
 export const WholeAppContext = createContext(null);
 
@@ -158,29 +171,37 @@ function App() {
         // Programs states and handlers
         toDoApp,
         handleStateToDoApp,
+        handleDefaultStateToDoApp,
         webBrowser,
         handleStateWebBrowser,
+        handleDefaultStateWebBrowser,
         calculator,
         handleStateCalculator,
+        handleDefaultStateCalculator,
         tetris,
         handleStateTetris,
+        handleDefaultStateTetris,
         personalize,
         handleStatePersonalize,
+        handleDefaultStatePersonalize,
         personalizeUser,
         handleStatePersonalizeUser,
+        handleDefaultStatePersonalizeUser,
         hideAllPrograms,
         closeAllPrograms,
       }}
     >
       <div className="whole-screen" ref={wholeScreenRef}>
-        <Routes>
-          <Route index exact path="/" element={<StartScreen />} />
-          <Route exact path="/startScreen" element={<StartScreen />} />
+        <Suspense fallback={<LoadingSpinner />}>
+          <Routes>
+            <Route index exact path="/" element={<StartScreen />} />
+            <Route exact path="/startScreen" element={<StartScreen />} />
 
-          <Route exact path="/loginScreen" element={<LoginScreen />} />
-          <Route exact path="/workScreen" element={<WorkScreen />} />
-          <Route exact path="/closeScreen" element={<CloseScreen />} />
-        </Routes>
+            <Route exact path="/loginScreen" element={<LoginScreen />} />
+            <Route exact path="/workScreen" element={<WorkScreen />} />
+            <Route exact path="/closeScreen" element={<CloseScreen />} />
+          </Routes>
+        </Suspense>
       </div>
     </WholeAppContext.Provider>
   );

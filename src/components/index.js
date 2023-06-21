@@ -10,16 +10,10 @@ import StartScreen from "./StartScreen/StartScreen";
 import TaskBar from "./TaskBar";
 import WorkScreen from "./WorkScreen";
 import ProgramContainer from "./ProgramContainer";
-import WebBrowser from "./WebBrowser";
-import ToDoApp from "./ToDoApp";
-import Personalize from "./Personalize";
-import PersonalizeUser from "./PersonalizeUser";
-import Calculator from "./Calculator";
-import TetrisApp from "./TetrisApp/TetrisApp";
+
 import WeatherBox from "./WeatherBox";
 
 export {
-  Calculator,
   CalendarButton,
   CloseScreen,
   Desktop,
@@ -31,11 +25,6 @@ export {
   StartScreen,
   TaskBar,
   WorkScreen,
-  WebBrowser,
   ProgramContainer,
-  ToDoApp,
-  Personalize,
-  PersonalizeUser,
-  TetrisApp,
   WeatherBox,
 };
