@@ -2,7 +2,6 @@ import { WholeAppContext } from "../App";
 import "../assets/styles/workScreen.css";
 import {
   TaskBar,
-  Desktop,
   DesktopContextMenu,
   MenuStart,
   WeatherBox,
@@ -18,6 +17,7 @@ import { CSSTransition } from "react-transition-group";
 import Calendar from "react-calendar";
 import "../assets/styles/myCalendar.css";
 
+const Desktop = lazy(() => import("./Desktop"));
 const ToDoApp = lazy(() => import("./ToDoApp"));
 const WebBrowser = lazy(() => import("./WebBrowser"));
 const Calculator = lazy(() => import("./Calculator"));
@@ -115,6 +115,12 @@ const WorkScreen = () => {
     });
   };
 
+  const closeAll = () => {
+    handleCloseCalendar();
+    handleCloseMenuStart();
+    handleCloseWeatherBox();
+  };
+
   return (
     <CSSTransition
       in={true}
@@ -139,9 +145,7 @@ const WorkScreen = () => {
             e.target.className === "task-bar" ||
             e.target.className === "desktop"
           ) {
-            handleCloseCalendar();
-            handleCloseMenuStart();
-            handleCloseWeatherBox();
+            closeAll();
           }
         }}
       >
@@ -151,6 +155,7 @@ const WorkScreen = () => {
           <DesktopContextMenu
             position={desktopContextMenuPosition}
             closeDesktopContextMenu={closeDesktopContextMenu}
+            closeAll={closeAll}
           />
         )}
 
@@ -212,7 +217,6 @@ const WorkScreen = () => {
             handleDefaultProgramState={handleDefaultStateCalculator}
           >
             <Suspense fallback={<LoadingSpinner />}>
-              {" "}
               <Calculator lang={lang} />
             </Suspense>
           </ProgramContainer>

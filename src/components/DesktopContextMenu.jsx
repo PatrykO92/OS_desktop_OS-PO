@@ -12,16 +12,17 @@ import { CSSTransition } from "react-transition-group";
 
 import { WholeAppContext } from "../App";
 
-const DesktopContextMenu = ({ position, closeDesktopContextMenu }) => {
+const DesktopContextMenu = ({
+  position,
+  closeDesktopContextMenu,
+  closeAll,
+}) => {
   const {
     lang,
     changeUser,
     handleStatePersonalize,
     wholeScreenRef,
     closeAllPrograms,
-    handleCloseCalendar,
-    handleCloseMenuStart,
-    handleCloseWeatherBox,
   } = useContext(WholeAppContext);
 
   const [showView, setShowView] = useState(false);
@@ -116,9 +117,7 @@ const DesktopContextMenu = ({ position, closeDesktopContextMenu }) => {
         <button
           onClick={() => {
             closeAllPrograms();
-            handleCloseCalendar();
-            handleCloseMenuStart();
-            handleCloseWeatherBox();
+            closeAll();
             handleStatePersonalize();
           }}
         >
