@@ -24,6 +24,7 @@ import loginIcon from "./login-icon.svg";
 import cloudIcon from "./cloud-solid.svg";
 import linkIcon from "./link-solid.svg";
 import linkSlashIcon from "./link-slash-solid.svg";
+import calendarIcon from "./calendar-icon.svg";
 
 export {
   arrowLeftIcon,
@@ -52,4 +53,5 @@ export {
   linkIcon,
   linkSlashIcon,
   cloudIcon,
+  calendarIcon,
 };

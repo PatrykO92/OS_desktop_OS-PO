@@ -30,6 +30,8 @@ const TaskBar = ({
     handleStateCalculator,
     tetris,
     handleStateTetris,
+    calendarApp,
+    handleStateCalendarApp,
     personalize,
     handleStatePersonalize,
     personalizeUser,
@@ -119,6 +121,24 @@ const TaskBar = ({
             >
               <img src={tetris.icon} alt={tetris.name} />
               <p>{tetris.name}</p>
+            </button>
+          )}
+
+          {calendarApp.programEnabled && (
+            <button
+              onClick={() => {
+                hideAllPrograms();
+                handleStateCalendarApp("hidden", !calendarApp.hidden);
+              }}
+              className="task-bar_program-button"
+              style={{
+                backgroundColor: `${
+                  calendarApp.hidden ? "var(--hidden)" : "var(--showed)"
+                }`,
+              }}
+            >
+              <img src={calendarApp.icon} alt={calendarApp.name} />
+              <p>{calendarApp.name}</p>
             </button>
           )}
 

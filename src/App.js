@@ -18,15 +18,8 @@ import {
   tetrisIcon,
   brushIcon,
   userIcon,
+  calendarIcon,
 } from "./assets/icons";
-
-// Components
-// import {
-//   LoginScreen,
-//   StartScreen,
-//   WorkScreen,
-//   CloseScreen,
-// } from "./components";
 
 // Utilities
 import { textModel } from "./utils";
@@ -91,6 +84,10 @@ function App() {
     handleDefaultStatePersonalizeUser,
   ] = useAppState({}, textModel[systemLanguage].personalizeUser, userIcon);
 
+  // App 7: CalendarApp
+  const [calendarApp, handleStateCalendarApp, handleDefaultStateCalendarApp] =
+    useAppState({}, "Calendar", calendarIcon);
+
   const hideAllPrograms = () => {
     handleStateToDoApp("hidden", true);
     handleStateCalculator("hidden", true);
@@ -98,6 +95,7 @@ function App() {
     handleStatePersonalizeUser("hidden", true);
     handleStateTetris("hidden", true);
     handleStateWebBrowser("hidden", true);
+    handleStateCalendarApp("hidden", true);
   };
 
   const closeAllPrograms = () => {
@@ -107,6 +105,7 @@ function App() {
     handleDefaultStateTetris();
     handleDefaultStatePersonalize();
     handleDefaultStatePersonalizeUser();
+    handleDefaultStateCalendarApp();
   };
 
   // update language attribute
@@ -187,6 +186,9 @@ function App() {
         personalizeUser,
         handleStatePersonalizeUser,
         handleDefaultStatePersonalizeUser,
+        calendarApp,
+        handleStateCalendarApp,
+        handleDefaultStateCalendarApp,
         hideAllPrograms,
         closeAllPrograms,
       }}

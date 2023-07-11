@@ -22,6 +22,7 @@ const ToDoApp = lazy(() => import("./ToDoApp"));
 const WebBrowser = lazy(() => import("./WebBrowser"));
 const Calculator = lazy(() => import("./Calculator"));
 const TetrisApp = lazy(() => import("./TetrisApp/TetrisApp"));
+const CalendarApp = lazy(() => import("./CalendarApp"));
 const Personalize = lazy(() => import("./Personalize"));
 const PersonalizeUser = lazy(() => import("./PersonalizeUser"));
 
@@ -43,6 +44,9 @@ const WorkScreen = () => {
     handleStateTetris,
     handleDefaultStateTetris,
     personalize,
+    calendarApp,
+    handleStateCalendarApp,
+    handleDefaultStateCalendarApp,
     handleStatePersonalize,
     handleDefaultStatePersonalize,
     personalizeUser,
@@ -285,6 +289,27 @@ const WorkScreen = () => {
                 user={user}
                 changeUser={changeUser}
               />
+            </Suspense>
+          </ProgramContainer>
+        </CSSTransition>
+
+        {/* App 7: CalendarApp */}
+        <CSSTransition
+          in={calendarApp.programEnabled}
+          timeout={300}
+          classNames="fade"
+          unmountOnExit
+        >
+          <ProgramContainer
+            lang={lang}
+            programName={calendarApp.name}
+            programIcon={calendarApp.icon}
+            programHidden={calendarApp.hidden}
+            handleProgramState={handleStateCalendarApp}
+            handleDefaultProgramState={handleDefaultStateCalendarApp}
+          >
+            <Suspense fallback={<LoadingSpinner />}>
+              <CalendarApp lang={lang} user={user} />
             </Suspense>
           </ProgramContainer>
         </CSSTransition>

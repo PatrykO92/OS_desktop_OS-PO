@@ -20,6 +20,8 @@ const Desktop = () => {
     handleStateCalculator,
     tetris,
     handleStateTetris,
+    calendarApp,
+    handleStateCalendarApp,
   } = useContext(WholeAppContext);
 
   const [stepsEnabled, setStepsEnabled] = useState(true);
@@ -103,6 +105,16 @@ const Desktop = () => {
       >
         <img src={tetris.icon} alt={tetris.name} />
         <p>{tetris.name}</p>
+      </button>
+      <button
+        onClick={() => {
+          handleStateCalendarApp("hidden", false);
+          handleStateCalendarApp("programEnabled", true);
+        }}
+        className="desktop_icon"
+      >
+        <img src={calendarApp.icon} alt={calendarApp.name} />
+        <p>{calendarApp.name}</p>
       </button>
     </div>
   );

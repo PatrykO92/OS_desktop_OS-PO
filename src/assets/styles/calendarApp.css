@@ -1,0 +1,19 @@
+.calendar--app {
+  min-height: 100%;
+  display: grid;
+  grid-template-columns: 18rem 1fr;
+  grid-template-rows: 3rem 1fr;
+}
+
+.calendar--app header {
+  grid-column: 1/-1;
+  background-color: red;
+}
+
+.calendar--app aside {
+  background-color: blue;
+}
+
+.calendar--app main {
+  background-color: antiquewhite;
+}
