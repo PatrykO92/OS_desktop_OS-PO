@@ -3,17 +3,89 @@
   display: grid;
   grid-template-columns: 18rem 1fr;
   grid-template-rows: 3rem 1fr;
+  gap: 1rem;
+  background-color: var(--theme-bg-light);
+  padding: 0.8rem;
 }
 
 .calendar--app header {
   grid-column: 1/-1;
-  background-color: red;
+  display: flex;
+  align-items: center;
+}
+
+.calendar--app header > p {
+  font-size: 1.5rem;
+  font-weight: 700;
 }
 
 .calendar--app aside {
-  background-color: blue;
+  display: flex;
+  flex-direction: column;
+}
+
+.calendar--app aside > ul {
+  list-style: none;
+  line-height: 200%;
 }
 
 .calendar--app main {
-  background-color: antiquewhite;
+  background-color: var(--theme-bg);
+  border-radius: 10px;
+}
+
+.calendar--app--main {
+  height: 100%;
+  padding: 0.3rem;
+}
+
+.calendar--app--main__header {
+  height: 10%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+.calendar--app--main__header button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--theme-font);
+}
+
+.calendar--app--main__body {
+  height: 90%;
+  display: grid;
+  gap: 1px;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: 3rem auto;
+}
+
+.calendar--app--main__day--name {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.calendar--app--main__day {
+  display: flex;
+  padding: 0.2rem;
+  border: 1px solid var(--border-main);
+}
+
+.calendar--app--main__day:hover {
+  border: 1px solid var(--blue);
+  outline: 2px solid var(--blue);
+}
+
+.calendar--app--main__day.empty {
+  border: none;
+}
+
+.calendar--app--main__day.empty:hover {
+  border: none;
+  outline: none;
 }
