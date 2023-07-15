@@ -3,11 +3,9 @@ import { WholeAppContext } from "../App";
 import "../assets/styles/weatherBox.css";
 import { LoadingSpinner } from "./";
 
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 
 import axios from "axios";
-
-const apiTimeZoneKey = process.env.REACT_APP_TIME_ZONE_KEY;
 
 const dayTime = [
   "01:00",
@@ -44,9 +42,12 @@ const WeatherBox = () => {
   const [timezone, setTimezone] = useState(null);
   const [latitude, setLatitude] = useState(null);
   const [longitude, setLongitude] = useState(null);
-  const [locationName, setLocationName] = useState(null);
   const [weatherData, setWeatherData] = useState(null);
   const [units, setUnits] = useState(null);
+
+  useMemo(() => {
+    setTimezone(Intl.DateTimeFormat().resolvedOptions().timeZone);
+  }, []);
 
   //at start of the app
   useEffect(() => {
@@ -66,27 +67,6 @@ const WeatherBox = () => {
 
     getLatitudeAndLongitude();
   }, [lang]);
-
-  // start after getting location
-  useEffect(() => {
-    const fetchTimezone = async () => {
-      try {
-        const response = await axios.get(
-          `https://timezone.abstractapi.com/v1/current_time?api_key=${apiTimeZoneKey}&location=${latitude},${longitude}`
-        );
-        const { timezone_location, requested_location } = response.data;
-        setTimezone(timezone_location);
-        setLocationName(requested_location);
-      } catch (error) {
-        setError({ show: true, message: lang.weatherError2 });
-        setIsLoading(false);
-      }
-    };
-
-    if (latitude && longitude) {
-      fetchTimezone();
-    }
-  }, [latitude, longitude, lang]);
 
   // start fetching weather data, when all needed information loaded and also when language changed
   useEffect(() => {
@@ -122,7 +102,7 @@ const WeatherBox = () => {
             <p>
               {weatherData?.current_weather?.temperature} {units}
             </p>
-            <p>{locationName?.split(", ").slice(1, 3).join(", ")}</p>
+
             <div className="weather-box__day-temp">
               {weatherData?.hourly?.temperature_2m
                 .slice(0, 25)
