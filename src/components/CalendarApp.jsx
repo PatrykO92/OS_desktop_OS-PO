@@ -4,26 +4,7 @@ import "../assets/styles/calendarApp.css";
 import { WholeAppContext } from "../App";
 
 //for testing
-const tasksToDo = {
-  "2023-7-16": [
-    { id: 12312, title: "Do Laundry", description: "do white laundry" },
-  ],
-  "2023-7-17": [
-    { id: 122334, title: "Do Laundry", description: "do white laundry" },
-  ],
-  "2023-7-11": [
-    { id: 1234, title: "Do Laundry", description: "do white laundry" },
-  ],
-  "2023-7-1": [
-    { id: 12434, title: "Do Laundry", description: "do white laundry" },
-  ],
-  "2023-7-3": [
-    { id: 15234, title: "Do Laundry", description: "do white laundry" },
-  ],
-  "2023-7-5": [
-    { id: 16234, title: "Do Laundry", description: "do white laundry" },
-  ],
-};
+const tasksToDo = {};
 
 const weekdays = [
   "Monday",
@@ -41,6 +22,17 @@ const CalendarApp = () => {
   const [allTasks, setAllTasks] = useState(tasksToDo);
   const [date, setDate] = useState(new Date());
   const [inputValue, setInputValue] = useState();
+
+  const addNewTask = () => {
+    const keyVal = date.toLocaleDateString();
+    const id = Math.floor(Math.random() * 100000000);
+    const topic = "Topic";
+    const description = "Some random topic";
+    setAllTasks((oldVal) => ({
+      ...oldVal,
+      [keyVal]: [...(oldVal[keyVal] || []), { id, title: topic, description }],
+    }));
+  };
 
   const actualMonth = () => {
     setDate(new Date());
@@ -77,46 +69,30 @@ const CalendarApp = () => {
 
     // Add cells for current month's days
     for (let day = 1; day <= daysInMonth; day++) {
+      const targetDate = new Date(year, month, day).toLocaleDateString("pl");
+      console.log(targetDate);
       let list = [];
-      if (`${year}-${month + 1}-${day}` === "2023-7-10") {
-        list.push(<p>Super</p>);
-        list.push(<p>Super</p>);
-        list.push(<p>Super</p>);
-        list.push(<p>Super</p>);
-        list.push(<p>Super</p>);
-        list.push(<p>Super</p>);
+      if (allTasks.hasOwnProperty(targetDate)) {
+        list.push(...allTasks[targetDate]);
       }
 
-      if (day === date.getDate()) {
-        calendarDays.push(
-          <div
-            className="calendar--app--main__day active--day"
-            onClick={() => {
-              setDate(new Date(year, month, day));
-            }}
-          >
-            {day}
+      calendarDays.push(
+        <div
+          className={`calendar--app--main__day ${
+            day === date.getDate() ? "active--day" : ""
+          }`}
+          onClick={() => {
+            setDate(new Date(year, month, day));
+          }}
+        >
+          {day}
+          <div className="calendar--app--main__day__tasks--list">
             {list?.map((item) => (
-              <p>{item}</p>
+              <p>{item.title}</p>
             ))}
           </div>
-        );
-      }
-      if (day !== date.getDate()) {
-        calendarDays.push(
-          <div
-            className="calendar--app--main__day"
-            onClick={() => {
-              setDate(new Date(year, month, day));
-            }}
-          >
-            {day}
-            <div className="calendar--app--main__day__tasks--list">
-              {list?.map((item) => item)}
-            </div>
-          </div>
-        );
-      }
+        </div>
+      );
     }
     return calendarDays;
   };
@@ -128,7 +104,9 @@ const CalendarApp = () => {
       </header>
       <aside>
         <ul>
-          <li>Button1</li>
+          <li>
+            <button onClick={addNewTask}>Test Button</button>
+          </li>
           <li>Button2</li>
           <li>Button3</li>
         </ul>
@@ -137,6 +115,7 @@ const CalendarApp = () => {
       <main>
         <div className="calendar--app--main">
           <div className="calendar--app--main__header">
+            Date picker:
             <input
               type="date"
               value={inputValue}
@@ -148,6 +127,7 @@ const CalendarApp = () => {
             <button onClick={prevMonth}>Previous Month</button>
             <button onClick={actualMonth}>Actual Month</button>
             <button onClick={nextMonth}>Next Month</button>
+            <p>{date.toLocaleDateString(lang.lng)}</p>
           </div>
           <div className="calendar--app--main__body">
             {weekdays.map((day, index) => (
