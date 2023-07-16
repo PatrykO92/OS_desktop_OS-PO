@@ -17,17 +17,24 @@ const weekdays = [
 ];
 
 const CalendarApp = () => {
-  const { lang } = useContext(WholeAppContext);
+  // get today date to show current day
   const today = new Date();
+
+  // get language
+  const { lang } = useContext(WholeAppContext);
+
+  // get all task from backend, to implement later
   const [allTasks, setAllTasks] = useState(tasksToDo);
+
   const [date, setDate] = useState(new Date());
   const [inputValue, setInputValue] = useState();
+  const [showAddTask, setShowAddTask] = useState(false);
+  const [topic, setTopic] = useState("");
+  const [description, setDescription] = useState("");
 
   const addNewTask = () => {
     const keyVal = date.toLocaleDateString();
     const id = Math.floor(Math.random() * 100000000);
-    const topic = "Topic";
-    const description = "Some random topic";
     setAllTasks((oldVal) => ({
       ...oldVal,
       [keyVal]: [...(oldVal[keyVal] || []), { id, title: topic, description }],
@@ -105,12 +112,36 @@ const CalendarApp = () => {
       <aside>
         <ul>
           <li>
-            <button onClick={addNewTask}>Test Button</button>
+            <button onClick={() => setShowAddTask((oldVal) => !oldVal)}>
+              Add new task
+            </button>
           </li>
-          <li>Button2</li>
-          <li>Button3</li>
         </ul>
-        <div className="calendar--app--task">Task Window</div>
+        {showAddTask && (
+          <form
+            className="calendar--app--task"
+            onSubmit={(e) => {
+              e.preventDefault();
+              addNewTask();
+              setTopic("");
+              setDescription("");
+              setShowAddTask(false);
+            }}
+          >
+            <label>Topic:</label>
+            <input
+              type="text"
+              required
+              value={topic}
+              onChange={(e) => setTopic(e.target.value)}
+            />
+            <textarea
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            ></textarea>
+            <button type="submit">Add</button>
+          </form>
+        )}
       </aside>
       <main>
         <div className="calendar--app--main">
