@@ -1,5 +1,4 @@
 import CalendarButton from "./CalendarButton";
-
 import DesktopContextMenu from "./DesktopContextMenu";
 import LoadingSpinner from "./LoadingSpinner";
 import MenuStart from "./MenuStart";
