@@ -25,19 +25,25 @@ const CalendarApp = () => {
 
   // get all task from backend, to implement later
   const [allTasks, setAllTasks] = useState(tasksToDo);
+
   const [currentTask, setCurrentTask] = useState(null);
 
   const [date, setDate] = useState(new Date());
+  const [showAddTask, setShowAddTask] = useState(false);
 
   const [startInputValue, setStartInputValue] = useState("");
   const [endInputValue, setEndInputValue] = useState("");
-
-  const [showAddTask, setShowAddTask] = useState(false);
-
+  const [formIcon, setFormIcon] = useState(
+    "/calendarAppFormIcons/fire-solid.svg"
+  );
+  const [formColor, setFormColor] = useState("white");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
-  const addNewTask = (color = "red", icon = "/icons/fire-solid.svg") => {
+  const addNewTask = (
+    color = "red",
+    icon = "/calendarAppFormIcons/fire-solid.svg"
+  ) => {
     const startTaskDate = new Date(startInputValue);
     startTaskDate.setHours(0);
     const endTaskDate = new Date(endInputValue);
@@ -153,6 +159,7 @@ const CalendarApp = () => {
         >
           <p>{day}</p>
           <div className="calendar--app--main__day__tasks--list">
+            {/* Render Task List */}
             {list?.map((item, index) => (
               <div
                 className="list--item"
@@ -207,6 +214,7 @@ const CalendarApp = () => {
 
         {showAddTask && (
           <form
+            style={{ borderColor: formColor }}
             className="calendar--app--task"
             onSubmit={(e) => {
               e.preventDefault();
@@ -215,7 +223,7 @@ const CalendarApp = () => {
                 (new Date(startInputValue) <= new Date(endInputValue)) &
                 (new Date(endInputValue) >= new Date(startInputValue))
               ) {
-                addNewTask();
+                addNewTask(formColor, formIcon);
                 setTitle("");
                 setDescription("");
                 setStartInputValue();
@@ -245,7 +253,49 @@ const CalendarApp = () => {
               value={endInputValue}
               onChange={(e) => setEndInputValue(e.target.value)}
             />
-            <label htmlFor="title">title:</label>
+
+            <div className="calendar--app--task__icons">
+              <IconRadioButton
+                onClick={setFormIcon}
+                iconUrl={"/calendarAppFormIcons/fire-solid.svg"}
+              />
+              <IconRadioButton
+                onClick={setFormIcon}
+                iconUrl={"/calendarAppFormIcons/comments-solid.svg"}
+              />
+              <IconRadioButton
+                onClick={setFormIcon}
+                iconUrl={"/calendarAppFormIcons/gamepad-solid.svg"}
+              />
+              <IconRadioButton
+                onClick={setFormIcon}
+                iconUrl={"/calendarAppFormIcons/gift-solid.svg"}
+              />
+              <IconRadioButton
+                onClick={setFormIcon}
+                iconUrl={"/calendarAppFormIcons/paperclip-solid.svg"}
+              />
+              <IconRadioButton
+                onClick={setFormIcon}
+                iconUrl={"/calendarAppFormIcons/plane-solid.svg"}
+              />
+              <IconRadioButton
+                onClick={setFormIcon}
+                iconUrl={"/calendarAppFormIcons/print-solid.svg"}
+              />
+            </div>
+
+            <div className="calendar--app--task__color">
+              <ColorRadioButton onClick={setFormColor} color={"red"} />
+              <ColorRadioButton onClick={setFormColor} color={"blue"} />
+              <ColorRadioButton onClick={setFormColor} color={"green"} />
+              <ColorRadioButton onClick={setFormColor} color={"yellow"} />
+              <ColorRadioButton onClick={setFormColor} color={"pink"} />
+              <ColorRadioButton onClick={setFormColor} color={"orange"} />
+              <ColorRadioButton onClick={setFormColor} color={"white"} />
+            </div>
+
+            <label htmlFor="title">Title:</label>
             <input
               id="title"
               type="text"
@@ -312,3 +362,46 @@ const CalendarApp = () => {
 };
 
 export default CalendarApp;
+
+// Small components for current app
+
+export function IconRadioButton({ onClick, iconUrl }) {
+  return (
+    <>
+      <label htmlFor={iconUrl}>
+        <img src={iconUrl} alt="icon" />
+      </label>
+      <input
+        hidden
+        id={iconUrl}
+        type="radio"
+        name="icon"
+        value={iconUrl}
+        onClick={() => {
+          onClick(iconUrl);
+        }}
+      />
+    </>
+  );
+}
+
+export function ColorRadioButton({ onClick, color }) {
+  return (
+    <>
+      <label
+        htmlFor={`${color}RadioButton`}
+        style={{ backgroundColor: color }}
+      ></label>
+      <input
+        id={`${color}RadioButton`}
+        hidden
+        type="radio"
+        name="color"
+        value={"color"}
+        onClick={() => {
+          onClick(color);
+        }}
+      />
+    </>
+  );
+}

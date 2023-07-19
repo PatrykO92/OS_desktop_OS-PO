@@ -9,11 +9,40 @@
   overflow-y: scroll;
 }
 
+.calendar--app::-webkit-scrollbar,
+.calendar--app *::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.calendar--app::-webkit-scrollbar-track,
+.calendar--app *::-webkit-scrollbar-track {
+  background: var(--hover-main);
+  border-radius: 5px;
+}
+
+.calendar--app::-webkit-scrollbar-thumb,
+.calendar--app *::-webkit-scrollbar-thumb {
+  background: var(--hover-main);
+  border-radius: 5px;
+}
+
+.calendar--app::-webkit-scrollbar-thumb:hover,
+.calendar--app *::-webkit-scrollbar-thumb:hover {
+  background: var(--blue);
+}
+
+.calendar--app img {
+  width: 1.2rem;
+  height: 1.2rem;
+  filter: invert(100%);
+}
+
 .calendar--app button {
   font-size: 0.8rem;
   font-weight: 500;
   padding: 0.3rem 0.4rem 0.4rem;
-  border-radius: 10px;
+  border-radius: 5px;
   background: none;
   border: 1px solid var(--border-main);
   cursor: pointer;
@@ -27,14 +56,14 @@
 
 .calendar--app input,
 .calendar--app textarea {
-  max-width: 10rem;
+  max-width: 100%;
   padding: 0.3rem 0.4rem 0.4rem;
   background-color: transparent;
   color: var(--theme-font);
   font-size: 1rem;
   font-weight: 600;
   border: 1px solid var(--border-main);
-  border-radius: 10px;
+  border-radius: 5px;
 }
 
 .calendar--app input::-webkit-calendar-picker-indicator {
@@ -66,7 +95,7 @@
 
 .calendar--app main {
   background-color: var(--theme-bg);
-  border-radius: 10px;
+  border-radius: 5px;
   height: 100%;
   padding: 0.3rem;
   display: flex;
@@ -152,6 +181,10 @@
   overflow-y: scroll;
 }
 
+.calendar--app--main__day__tasks--list .list--item:hover {
+  background-color: var(--hover-main);
+}
+
 .calendar--app--main__day__tasks--list::-webkit-scrollbar {
   display: none;
 }
@@ -165,18 +198,13 @@
   gap: 1rem;
 }
 
-.calendar--app--main__day__tasks--list img {
-  max-height: 1rem;
-  filter: invert(100%);
-}
-
 .calendar--app--task {
   padding: 0.9rem;
-  border-radius: 10px;
+  border-radius: 5px;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  border: 1px solid var(--hover-main);
+  border: 2px solid var(--hover-main);
 }
 
 .calendar--app--task input {
@@ -184,5 +212,27 @@
 }
 
 .calendar--app--task > textarea {
-  max-width: 100%;
+  resize: none;
+  min-height: 10rem;
+}
+
+.calendar--app--task__icons,
+.calendar--app--task__color {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.calendar--app--task__icons > label,
+.calendar--app--task__color > label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 5px;
+}
+
+.calendar--app--task__color > button:hover {
+  outline: 1px solid var(--blue);
 }
