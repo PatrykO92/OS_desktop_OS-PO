@@ -6,6 +6,26 @@ import { WholeAppContext } from "../App";
 //for testing
 const tasksToDo = [];
 
+const listOfIcons = [
+  "/calendarAppFormIcons/fire-solid.svg",
+  "/calendarAppFormIcons/comments-solid.svg",
+  "/calendarAppFormIcons/gamepad-solid.svg",
+  "/calendarAppFormIcons/gift-solid.svg",
+  "/calendarAppFormIcons/paperclip-solid.svg",
+  "/calendarAppFormIcons/plane-solid.svg",
+  "/calendarAppFormIcons/print-solid.svg",
+];
+
+const listOfColors = [
+  "red",
+  "blue",
+  "green",
+  "yellow",
+  "pink",
+  "orange",
+  "white",
+];
+
 const weekdays = [
   "Monday",
   "Tuesday",
@@ -36,7 +56,7 @@ const CalendarApp = () => {
   const [formIcon, setFormIcon] = useState(
     "/calendarAppFormIcons/fire-solid.svg"
   );
-  const [formColor, setFormColor] = useState("white");
+  const [formColor, setFormColor] = useState("red");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
@@ -44,13 +64,12 @@ const CalendarApp = () => {
     color = "red",
     icon = "/calendarAppFormIcons/fire-solid.svg"
   ) => {
+    const id = Math.floor(Math.random() * 100000000);
+
     const startTaskDate = new Date(startInputValue);
     startTaskDate.setHours(0);
     const endTaskDate = new Date(endInputValue);
     endTaskDate.setHours(0);
-
-    // random id -- later on uuid
-    const id = Math.floor(Math.random() * 100000000);
 
     setAllTasks((oldVal) => [
       ...oldVal,
@@ -141,10 +160,13 @@ const CalendarApp = () => {
             day === date.getDate() ? "active--day" : ""
           }`}
           onClick={(e) => {
-            //guard for later refactor
+            // guard, to prevent event propagation
             if (e.target.closest("div")?.className === "list--item") return;
+
             setCurrentTask(null);
+
             setShowAddTask(true);
+
             const selectedDate = new Date(year, month, day);
 
             const selectedInputDate = new Date(year, month, day + 1)
@@ -198,16 +220,7 @@ const CalendarApp = () => {
                 setEndInputValue();
               }}
             >
-              Add new task
-            </button>
-            <button
-              onClick={() => {
-                console.log(allTasks);
-                console.log(startInputValue, endInputValue);
-                console.log(currentTask);
-              }}
-            >
-              test button
+              {showAddTask ? "Hide" : "Add new task"}
             </button>
           </li>
         </ul>
@@ -229,14 +242,12 @@ const CalendarApp = () => {
                 setStartInputValue();
                 setEndInputValue();
                 setShowAddTask(false);
-              } else {
-                // setup error later
-                console.log("not ok");
               }
             }}
           >
             <label htmlFor="startDate">Start:</label>
             <input
+              required
               id="startDate"
               type="date"
               value={startInputValue}
@@ -248,6 +259,7 @@ const CalendarApp = () => {
             />
             <label htmlFor="endDate">End:</label>
             <input
+              required
               id="endDate"
               type="date"
               value={endInputValue}
@@ -255,48 +267,30 @@ const CalendarApp = () => {
             />
 
             <div className="calendar--app--task__icons">
-              <IconRadioButton
-                onClick={setFormIcon}
-                iconUrl={"/calendarAppFormIcons/fire-solid.svg"}
-              />
-              <IconRadioButton
-                onClick={setFormIcon}
-                iconUrl={"/calendarAppFormIcons/comments-solid.svg"}
-              />
-              <IconRadioButton
-                onClick={setFormIcon}
-                iconUrl={"/calendarAppFormIcons/gamepad-solid.svg"}
-              />
-              <IconRadioButton
-                onClick={setFormIcon}
-                iconUrl={"/calendarAppFormIcons/gift-solid.svg"}
-              />
-              <IconRadioButton
-                onClick={setFormIcon}
-                iconUrl={"/calendarAppFormIcons/paperclip-solid.svg"}
-              />
-              <IconRadioButton
-                onClick={setFormIcon}
-                iconUrl={"/calendarAppFormIcons/plane-solid.svg"}
-              />
-              <IconRadioButton
-                onClick={setFormIcon}
-                iconUrl={"/calendarAppFormIcons/print-solid.svg"}
-              />
+              {listOfIcons.map((iconUrl) => (
+                <IconRadioButton
+                  onClick={setFormIcon}
+                  activeIcon={formIcon}
+                  iconUrl={iconUrl}
+                  key={iconUrl}
+                />
+              ))}
             </div>
 
             <div className="calendar--app--task__color">
-              <ColorRadioButton onClick={setFormColor} color={"red"} />
-              <ColorRadioButton onClick={setFormColor} color={"blue"} />
-              <ColorRadioButton onClick={setFormColor} color={"green"} />
-              <ColorRadioButton onClick={setFormColor} color={"yellow"} />
-              <ColorRadioButton onClick={setFormColor} color={"pink"} />
-              <ColorRadioButton onClick={setFormColor} color={"orange"} />
-              <ColorRadioButton onClick={setFormColor} color={"white"} />
+              {listOfColors.map((color, index) => (
+                <ColorRadioButton
+                  color={color}
+                  onClick={setFormColor}
+                  activeColor={formColor}
+                  key={`${index}-${color}`}
+                />
+              ))}
             </div>
 
             <label htmlFor="title">Title:</label>
             <input
+              maxLength={18}
               id="title"
               type="text"
               required
@@ -314,9 +308,32 @@ const CalendarApp = () => {
         )}
 
         {currentTask ? (
-          <div>
-            <p>{currentTask.title}</p>
-            <p>{currentTask.description}</p>
+          <div
+            className="calendar--app--current"
+            style={{ borderColor: currentTask?.color }}
+          >
+            <p className="calendar--app--current__date">
+              <span>
+                {currentTask.startTaskDate.toLocaleDateString(lang.lng)}
+              </span>
+
+              {currentTask.startTaskDate.toLocaleDateString() !==
+              currentTask.endTaskDate.toLocaleDateString() ? (
+                <span>
+                  {" - "}
+                  {currentTask.endTaskDate.toLocaleDateString(lang.lng)}
+                </span>
+              ) : (
+                ""
+              )}
+            </p>
+            <p className="calendar--app--current__title">
+              <img src={currentTask.icon} alt="icon" />
+              {currentTask?.title}
+            </p>
+            <p className="calendar--app--current__description">
+              {currentTask?.description}
+            </p>
             <button
               onClick={() => {
                 removeTask(currentTask.id);
@@ -364,11 +381,16 @@ const CalendarApp = () => {
 export default CalendarApp;
 
 // Small components for current app
-
-export function IconRadioButton({ onClick, iconUrl }) {
+export function IconRadioButton({ onClick, iconUrl, activeIcon }) {
   return (
     <>
-      <label htmlFor={iconUrl}>
+      <label
+        htmlFor={iconUrl}
+        style={{
+          outline:
+            activeIcon === iconUrl ? "2px solid var(--border-main)" : "none",
+        }}
+      >
         <img src={iconUrl} alt="icon" />
       </label>
       <input
@@ -385,12 +407,16 @@ export function IconRadioButton({ onClick, iconUrl }) {
   );
 }
 
-export function ColorRadioButton({ onClick, color }) {
+export function ColorRadioButton({ onClick, color, activeColor }) {
   return (
     <>
       <label
         htmlFor={`${color}RadioButton`}
-        style={{ backgroundColor: color }}
+        style={{
+          backgroundColor: color,
+          outline:
+            activeColor === color ? "2px solid var(--border-main)" : "none",
+        }}
       ></label>
       <input
         id={`${color}RadioButton`}
