@@ -22,7 +22,7 @@ const ToDoApp = lazy(() => import("./ToDoApp"));
 const WebBrowser = lazy(() => import("./WebBrowser"));
 const Calculator = lazy(() => import("./Calculator"));
 const TetrisApp = lazy(() => import("./TetrisApp/TetrisApp"));
-const CalendarApp = lazy(() => import("./CalendarApp"));
+const CalendarApp = lazy(() => import("./CalendarApp/CalendarApp"));
 const Personalize = lazy(() => import("./Personalize"));
 const PersonalizeUser = lazy(() => import("./PersonalizeUser"));
 

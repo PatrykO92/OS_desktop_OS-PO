@@ -1,11 +1,11 @@
 import "../assets/styles/taskBar.css";
 import {
   menuStartIcon,
-  gbFlagIcon,
-  polishFlagIcon,
   cloudIcon,
   linkIcon,
   linkSlashIcon,
+  plFlagIcon,
+  usFlagIcon,
 } from "../assets/icons";
 import { CalendarButton } from "./";
 
@@ -190,7 +190,7 @@ const TaskBar = ({
           }}
         >
           <img
-            src={lang.lng === "pl" ? polishFlagIcon : gbFlagIcon}
+            src={lang.lng === "pl" ? plFlagIcon : usFlagIcon}
             alt={lang.lng === "pl" ? "polski" : "english"}
           />
           {lang.lng === "pl" ? "PL" : "EN"}

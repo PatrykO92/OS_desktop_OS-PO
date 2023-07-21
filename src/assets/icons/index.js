@@ -15,8 +15,6 @@ import trashCanIcon from "./trash-can-icon.svg";
 import plusCircleIcon from "./plus-circle-icon.svg";
 import calculatorIcon from "./calculator-icon.svg";
 import tetrisIcon from "./tetris-icon.svg";
-import polishFlagIcon from "./polish-flag.svg";
-import gbFlagIcon from "./gb-flag-icon.svg";
 import userIcon from "./user-icon.svg";
 import arrowLeftIcon from "./arrow-left-icon.svg";
 import arrowRightIcon from "./arrow-right-icon.svg";
@@ -25,6 +23,8 @@ import cloudIcon from "./cloud-solid.svg";
 import linkIcon from "./link-solid.svg";
 import linkSlashIcon from "./link-slash-solid.svg";
 import calendarIcon from "./calendar-icon.svg";
+import plFlagIcon from "./pl-flag-icon.svg";
+import usFlagIcon from "./us-flag-icon.svg";
 
 export {
   arrowLeftIcon,
@@ -46,12 +46,12 @@ export {
   plusCircleIcon,
   calculatorIcon,
   tetrisIcon,
-  polishFlagIcon,
-  gbFlagIcon,
   userIcon,
   loginIcon,
   linkIcon,
   linkSlashIcon,
   cloudIcon,
   calendarIcon,
+  plFlagIcon,
+  usFlagIcon,
 };

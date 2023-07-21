@@ -1,4 +1,4 @@
-import { polishFlagIcon, gbFlagIcon } from "../../../../assets/icons";
+import { plFlagIcon, usFlagIcon } from "../../../../assets/icons";
 
 const StartScreenStepOne = ({ lang, changeLang, changeStartScreenStep }) => {
   return (
@@ -15,7 +15,7 @@ const StartScreenStepOne = ({ lang, changeLang, changeStartScreenStep }) => {
             changeStartScreenStep(2);
           }}
         >
-          <img src={gbFlagIcon} alt="English" />
+          <img src={usFlagIcon} alt="English" />
         </button>
         <button
           onMouseOver={() => {
@@ -26,7 +26,7 @@ const StartScreenStepOne = ({ lang, changeLang, changeStartScreenStep }) => {
             changeStartScreenStep(2);
           }}
         >
-          <img src={polishFlagIcon} alt="Polski" />
+          <img src={plFlagIcon} alt="Polski" />
         </button>
       </div>
     </div>
