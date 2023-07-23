@@ -24,7 +24,8 @@ import {
 // Utilities
 import { textModel } from "./utils";
 import { useAppState } from "./hooks/useAppState";
-import { LoadingSpinner } from "./components";
+import LoggedInChecker from "./components/LoggedInChecker";
+import { LoadingSpinnerFullscreen } from "./components/LoadingSpinner";
 
 const LoginScreen = lazy(() => import("./components/LoginScreen"));
 const StartScreen = lazy(() => import("./components/StartScreen/StartScreen"));
@@ -34,8 +35,8 @@ const CloseScreen = lazy(() => import("./components/CloseScreen"));
 export const WholeAppContext = createContext(null);
 
 function App() {
-  const wholeScreenRef = useRef(null);
   const navigate = useNavigate();
+  const wholeScreenRef = useRef(null);
 
   const [isConnectedToBackend, setIsConnectedToBackend] = useState(false);
 
@@ -141,12 +142,13 @@ function App() {
     if (user !== null) localStorage.setItem("user", JSON.stringify(user));
   }, [user]);
 
-  // at start of the app, check if there is already user saved, if so, move to loginScreen.
+  // at start of the app, check if there is already user logged, if so, move to loginScreen.
   useEffect(
     () => {
+      const authToken = localStorage.getItem("authToken");
       const userLocalStorage = localStorage.getItem("user");
 
-      if (userLocalStorage !== null) {
+      if (authToken !== null) {
         setUser(JSON.parse(userLocalStorage));
         navigate("/loginScreen");
       } else {
@@ -194,14 +196,18 @@ function App() {
       }}
     >
       <div className="whole-screen" ref={wholeScreenRef}>
-        <Suspense fallback={<LoadingSpinner />}>
+        <Suspense fallback={<LoadingSpinnerFullscreen />}>
           <Routes>
             <Route index exact path="/" element={<StartScreen />} />
             <Route exact path="/startScreen" element={<StartScreen />} />
 
             <Route exact path="/loginScreen" element={<LoginScreen />} />
-            <Route exact path="/workScreen" element={<WorkScreen />} />
-            <Route exact path="/closeScreen" element={<CloseScreen />} />
+            <Route path="/" element={<LoggedInChecker />}>
+              <Route exact path="/workScreen" element={<WorkScreen />} />
+              <Route exact path="/closeScreen" element={<CloseScreen />} />
+            </Route>
+
+            <Route exact path="*" element={<StartScreen />} />
           </Routes>
         </Suspense>
       </div>

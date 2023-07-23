@@ -1,20 +1,19 @@
 import axios from "axios";
 
 const apiUrl = process.env.REACT_APP_BACKEND_URL;
-const username = process.env.REACT_APP_USERNAME;
-const email = process.env.REACT_APP_EMAIL;
-const password = process.env.REACT_APP_PASSWORD;
 
-const loginToBackend = () =>
+const loginToBackend = (username, email, password, defaultUser) =>
   axios
     .post(`${apiUrl}api/dj-rest-auth/login/`, {
-      username: username,
-      email: email,
-      password: password,
+      username,
+      email,
+      password,
     })
     .then((response) => {
       const token = response.data.key;
       localStorage.setItem("authToken", token);
+      localStorage.setItem("user", JSON.stringify(defaultUser));
+      console.log(JSON.stringify(defaultUser));
       return true;
     })
     .catch((error) => {

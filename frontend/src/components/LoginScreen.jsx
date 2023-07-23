@@ -1,21 +1,21 @@
 import "../assets/styles/loginScreen.css";
 import { osStartIcon } from "../assets/icons";
 import { wallpaperOne } from "../assets/images/wallpapers";
-import { LoadingSpinner } from "./";
+import { LoadingSpinner } from "./LoadingSpinner";
 import { powerOffIcon, restartIcon, arrowRightIcon } from "../assets/icons";
 
 import { useState, useEffect, useRef, useContext } from "react";
 
 import { CSSTransition } from "react-transition-group";
 
-import { loginInToBackend } from "../utils";
 import { useNavigate } from "react-router-dom";
 import { WholeAppContext } from "../App";
 
 const LoginScreen = () => {
-  const { lang, setIsConnectedToBackend, user } = useContext(WholeAppContext);
+  const { lang, user } = useContext(WholeAppContext);
 
   const navigate = useNavigate();
+
   const pinInput = useRef(null);
   const [pin, setPin] = useState("");
 
@@ -26,21 +26,12 @@ const LoginScreen = () => {
 
   // Aplication start, pretended loading of screen
   useEffect(() => {
-    const login = loginInToBackend();
-    login
-      .then((res) => {
-        if (res) setIsConnectedToBackend(true);
-      })
-      .catch((err) => {
-        setIsConnectedToBackend(false);
-      });
-
     if (loginStage === "start") {
       setTimeout(() => {
         setLoginStage("login");
       }, 1500);
     }
-  }, [loginStage, setIsConnectedToBackend]);
+  }, [loginStage]);
 
   return (
     <>
