@@ -45,10 +45,14 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # 3rd-party apps
     "rest_framework",
+    "rest_framework.authtoken",
     "corsheaders",
     # My apps
     "accounts.apps.AccountsConfig",
     "todos.apps.TodosConfig",
+    "news_api.apps.NewsApiConfig",
+    "tetris.apps.TetrisConfig",
+    "wallpapers.apps.WallpapersConfig",
 ]
 
 MIDDLEWARE = [
@@ -144,8 +148,11 @@ AUTH_USER_MODEL = "accounts.CustomUser"
 
 REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": [
-        # TODO
-        "rest_framework.permissions.AllowAny",
+        "rest_framework.permissions.IsAuthenticated",
+    ],
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.SessionAuthentication",
+        "rest_framework.authentication.TokenAuthentication",
     ],
 }
 
