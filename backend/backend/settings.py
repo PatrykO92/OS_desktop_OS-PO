@@ -52,7 +52,6 @@ INSTALLED_APPS = [
     "todos.apps.TodosConfig",
     "news_api.apps.NewsApiConfig",
     "tetris.apps.TetrisConfig",
-    "wallpapers.apps.WallpapersConfig",
 ]
 
 MIDDLEWARE = [
