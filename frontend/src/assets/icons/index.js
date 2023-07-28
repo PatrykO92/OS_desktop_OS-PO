@@ -25,6 +25,7 @@ import linkSlashIcon from "./link-slash-solid.svg";
 import calendarIcon from "./calendar-icon.svg";
 import plFlagIcon from "./pl-flag-icon.svg";
 import usFlagIcon from "./us-flag-icon.svg";
+import defaultUserIcon from "./defaultUserIcon.svg";
 
 export {
   arrowLeftIcon,
@@ -54,4 +55,5 @@ export {
   calendarIcon,
   plFlagIcon,
   usFlagIcon,
+  defaultUserIcon,
 };

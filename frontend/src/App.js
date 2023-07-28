@@ -28,7 +28,7 @@ import LoggedInChecker from "./components/LoggedInChecker";
 import { LoadingSpinnerFullscreen } from "./components/LoadingSpinner";
 
 const LoginScreen = lazy(() => import("./components/LoginScreen"));
-const StartScreen = lazy(() => import("./components/StartScreen/StartScreen"));
+const StartScreen = lazy(() => import("./components/StartScreen"));
 const WorkScreen = lazy(() => import("./components/WorkScreen"));
 const CloseScreen = lazy(() => import("./components/CloseScreen"));
 
@@ -126,38 +126,41 @@ function App() {
     [systemLanguage]
   );
 
-  // Apply settings, if user is changed.
-  useEffect(() => {
-    const root = document.documentElement;
-    if (user !== null) {
-      root.style.setProperty("--theme-bg", user.settings.themeBg);
-      root.style.setProperty("--theme-bg-light", user.settings.themeBgLight);
-      root.style.setProperty("--theme-font", user.settings.themeFont);
-      root.style.setProperty("--icon-size", user.settings.iconSize);
-    }
-  }, [user]);
+  // #TODO
+  // // Apply settings, if user is changed.
+  // useEffect(() => {
+  //   const root = document.documentElement;
+  //   if (user !== null) {
+  //     root.style.setProperty("--theme-bg", user.settings.themeBg);
+  //     root.style.setProperty("--theme-bg-light", user.settings.themeBgLight);
+  //     root.style.setProperty("--theme-font", user.settings.themeFont);
+  //     root.style.setProperty("--icon-size", user.settings.iconSize);
+  //   }
+  // }, [user]);
 
+  // // TODO
   // Save user settings to localStorage, on every user object change
-  useEffect(() => {
-    if (user !== null) localStorage.setItem("user", JSON.stringify(user));
-  }, [user]);
+  // useEffect(() => {
+  //   if (user !== null) localStorage.setItem("user", JSON.stringify(user));
+  // }, [user]);
 
+  //TODO
   // at start of the app, check if there is already user logged, if so, move to loginScreen.
-  useEffect(
-    () => {
-      const authToken = localStorage.getItem("authToken");
-      const userLocalStorage = localStorage.getItem("user");
+  // useEffect(
+  //   () => {
+  //     const authToken = localStorage.getItem("authToken");
+  //     const userLocalStorage = localStorage.getItem("user");
 
-      if (authToken !== null) {
-        setUser(JSON.parse(userLocalStorage));
-        navigate("/loginScreen");
-      } else {
-        navigate("/startScreen");
-      }
-    },
-    // eslint-disable-next-line
-    []
-  );
+  //     if (authToken !== null) {
+  //       setUser(JSON.parse(userLocalStorage));
+  //       navigate("/loginScreen");
+  //     } else {
+  //       navigate("/startScreen");
+  //     }
+  //   },
+  //   // eslint-disable-next-line
+  //   []
+  // );
 
   return (
     <WholeAppContext.Provider

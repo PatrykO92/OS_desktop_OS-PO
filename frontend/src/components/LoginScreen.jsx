@@ -57,7 +57,7 @@ const LoginScreen = () => {
             <img src={user.avatar} alt="avatar" />
             <div>
               {user.name} {user.lastName}{" "}
-              {user.pin === "" && (
+              {user.pin === null && (
                 <button
                   style={{ background: "transparent" }}
                   className="login-screen_login-button"
@@ -70,7 +70,7 @@ const LoginScreen = () => {
               )}
             </div>
 
-            {user.pin !== "" && (
+            {user.pin !== null && (
               <>
                 <form
                   onSubmit={(e) => {
