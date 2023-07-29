@@ -10,19 +10,33 @@ import { CSSTransition } from "react-transition-group";
 
 import { useNavigate } from "react-router-dom";
 import { WholeAppContext } from "../App";
+import getUserDetail from "../utils/getUserDetail";
+import loginToBackend from "../utils/loginToBackend";
 
 const LoginScreen = () => {
-  const { lang, user } = useContext(WholeAppContext);
-
+  const { lang, user, setIsConnectedToBackend, changeUser } =
+    useContext(WholeAppContext);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
-
   const pinInput = useRef(null);
   const [pin, setPin] = useState("");
 
   const [showPin, setShowPin] = useState(false);
-
   // There are 2 stages, "start" and "login"
   const [loginStage, setLoginStage] = useState("start");
+
+  const login = async () => {
+    const data = await loginToBackend(email, password);
+    if (data.status === 200) {
+      setIsConnectedToBackend(true);
+      changeUser(await getUserDetail());
+      return true;
+    } else {
+      return false;
+    }
+  };
 
   // Aplication start, pretended loading of screen
   useEffect(() => {
@@ -54,45 +68,28 @@ const LoginScreen = () => {
             className="login-screen"
             style={{ backgroundImage: `url(${wallpaperOne})` }}
           >
-            <img src={user.avatar} alt="avatar" />
-            <div>
-              {user.name} {user.lastName}{" "}
-              {user.pin === null && (
-                <button
-                  style={{ background: "transparent" }}
-                  className="login-screen_login-button"
-                  onClick={() => {
-                    navigate("/workScreen");
-                  }}
-                >
-                  <img src={arrowRightIcon} alt={lang.submit} />
-                </button>
-              )}
-            </div>
-
-            {user.pin !== null && (
+            {user === null && (
               <>
                 <form
-                  onSubmit={(e) => {
+                  onSubmit={async (e) => {
                     e.preventDefault();
-                    setPin("");
-                    if (pin !== user.pin) {
-                      pinInput.current.classList.add(
-                        "login-screen_wrong-input"
-                      );
-                    }
-                    if (pin === user.pin) navigate("/workScreen");
+                    if (await login()) navigate("/workScreen");
                   }}
                 >
                   <input
-                    type="password"
-                    placeholder={lang.pinPlaceholder}
-                    ref={pinInput}
-                    value={pin}
-                    minLength={6}
-                    maxLength={6}
+                    type="email"
+                    placeholder={lang.email}
+                    value={email}
                     onChange={(e) => {
-                      setPin(e.target.value);
+                      setEmail(e.target.value);
+                    }}
+                  />
+                  <input
+                    type="password"
+                    placeholder={lang.password}
+                    value={password}
+                    onChange={(e) => {
+                      setPassword(e.target.value);
                     }}
                   />
                   <button className="login-screen_login-button" type="submit">
@@ -101,18 +98,98 @@ const LoginScreen = () => {
                 </form>
                 <p
                   onClick={() => {
-                    setShowPin(!showPin);
+                    setShowPassword(!showPassword);
                   }}
                 >
-                  {lang.pinForgetMsg}
+                  {lang.passwordForgetMsg}
                 </p>
+                {showPassword && (
+                  <span className="tooltip">
+                    <p>Send email with password/password reset</p>
+                    <form>
+                      <input
+                        type="email"
+                        placeholder={lang.email}
+                        value={email}
+                        onChange={(e) => {
+                          setEmail(e.target.value);
+                        }}
+                      />
+                      <button
+                        className="login-screen_login-button"
+                        type="submit"
+                      >
+                        <img src={arrowRightIcon} alt={lang.submit} />
+                      </button>
+                    </form>
+                  </span>
+                )}
               </>
             )}
-
-            {showPin && (
-              <span className="tooltip">
-                {lang.yourPin}: {user.pin}
-              </span>
+            {user !== null && (
+              <>
+                <img src={user.avatar} alt="avatar" />
+                <div>
+                  {user.name} {user.lastName}{" "}
+                  {user.pin === null && (
+                    <button
+                      style={{ background: "transparent" }}
+                      className="login-screen_login-button"
+                      onClick={() => {
+                        navigate("/workScreen");
+                      }}
+                    >
+                      <img src={arrowRightIcon} alt={lang.submit} />
+                    </button>
+                  )}
+                </div>
+                {user.pin !== null && (
+                  <>
+                    <form
+                      onSubmit={(e) => {
+                        e.preventDefault();
+                        setPin("");
+                        if (pin !== user.pin) {
+                          pinInput.current.classList.add(
+                            "login-screen_wrong-input"
+                          );
+                        }
+                        if (pin === user.pin) navigate("/workScreen");
+                      }}
+                    >
+                      <input
+                        type="password"
+                        placeholder={lang.pinPlaceholder}
+                        ref={pinInput}
+                        value={pin}
+                        minLength={6}
+                        maxLength={6}
+                        onChange={(e) => {
+                          setPin(e.target.value);
+                        }}
+                      />
+                      <button
+                        className="login-screen_login-button"
+                        type="submit"
+                      >
+                        <img src={arrowRightIcon} alt={lang.submit} />
+                      </button>
+                    </form>
+                    <p
+                      onClick={() => {
+                        setShowPin(!showPin);
+                      }}
+                    >
+                      {lang.pinForgetMsg}
+                    </p>
+                  </>
+                )}
+                {showPin && (
+                  <span className="tooltip">
+                    {lang.yourPin}: {user.pin}
+                  </span>
+                )}
+              </>
             )}
             <div className="login-screen_buttons">
               <button onClick={() => setLoginStage("start")}>

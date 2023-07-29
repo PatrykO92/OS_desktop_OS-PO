@@ -14,7 +14,6 @@ const loginToBackend = async (email, password) =>
       return response;
     })
     .catch((error) => {
-      console.log(error);
       throw new Error(error.message);
     });
 

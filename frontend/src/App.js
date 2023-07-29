@@ -46,8 +46,8 @@ function App() {
     setSystemLanguage(language);
   };
 
-  // useStateHook and function to set actually used user
-  const [user, setUser] = useState(null);
+  // useStateHook and function to set actually used user, default you get user from localStorage, null if not found
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
   const changeUser = (user) => {
     setUser(user);
   };
@@ -114,7 +114,6 @@ function App() {
   useEffect(
     () => {
       document.documentElement.lang = systemLanguage;
-
       handleStateCalculator("name", textModel[systemLanguage].calculatorName);
       handleStatePersonalize("name", textModel[systemLanguage].personalize);
       handleStatePersonalizeUser(
@@ -126,41 +125,36 @@ function App() {
     [systemLanguage]
   );
 
-  // #TODO
-  // // Apply settings, if user is changed.
-  // useEffect(() => {
-  //   const root = document.documentElement;
-  //   if (user !== null) {
-  //     root.style.setProperty("--theme-bg", user.settings.themeBg);
-  //     root.style.setProperty("--theme-bg-light", user.settings.themeBgLight);
-  //     root.style.setProperty("--theme-font", user.settings.themeFont);
-  //     root.style.setProperty("--icon-size", user.settings.iconSize);
-  //   }
-  // }, [user]);
+  // Apply settings, if user is changed.
+  useEffect(() => {
+    const root = document.documentElement;
+    if (user !== null) {
+      root.style.setProperty("--theme-bg", user.settings.themeBg);
+      root.style.setProperty("--theme-bg-light", user.settings.themeBgLight);
+      root.style.setProperty("--theme-font", user.settings.themeFont);
+      root.style.setProperty("--icon-size", user.settings.iconSize);
+    }
+  }, [user]);
 
-  // // TODO
   // Save user settings to localStorage, on every user object change
-  // useEffect(() => {
-  //   if (user !== null) localStorage.setItem("user", JSON.stringify(user));
-  // }, [user]);
+  useEffect(() => {
+    if (user !== null) localStorage.setItem("user", JSON.stringify(user));
+  }, [user]);
 
-  //TODO
-  // at start of the app, check if there is already user logged, if so, move to loginScreen.
-  // useEffect(
-  //   () => {
-  //     const authToken = localStorage.getItem("authToken");
-  //     const userLocalStorage = localStorage.getItem("user");
-
-  //     if (authToken !== null) {
-  //       setUser(JSON.parse(userLocalStorage));
-  //       navigate("/loginScreen");
-  //     } else {
-  //       navigate("/startScreen");
-  //     }
-  //   },
-  //   // eslint-disable-next-line
-  //   []
-  // );
+  useEffect(
+    () => {
+      const authToken = localStorage.getItem("authToken");
+      const userLocalStorage = localStorage.getItem("user");
+      if (authToken !== null && userLocalStorage !== null) {
+        setIsConnectedToBackend(true);
+        navigate("/loginScreen");
+      } else {
+        navigate("/startScreen");
+      }
+    },
+    // eslint-disable-next-line
+    []
+  );
 
   return (
     <WholeAppContext.Provider

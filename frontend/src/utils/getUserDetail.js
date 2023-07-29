@@ -1,4 +1,5 @@
 import axios from "axios";
+import { defaultUserIcon } from "../assets/icons";
 
 const apiUrl = process.env.REACT_APP_BACKEND_URL;
 
@@ -10,7 +11,17 @@ const getUserDetail = async () => {
         Authorization: `Token ${authToken}`,
       },
     });
-    return response.data; // Return the user data from the response
+    const { email, first_name, last_name, pin, user_tag, settings, avatar } =
+      response.data;
+    return {
+      email,
+      name: first_name,
+      lastName: last_name,
+      pin,
+      avatar: `${avatar === null ? defaultUserIcon : avatar}`,
+      userTag: user_tag,
+      settings,
+    };
   } catch (error) {
     throw new Error(error.message);
   }

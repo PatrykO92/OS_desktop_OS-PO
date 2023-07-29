@@ -3,7 +3,7 @@ import fetchNewsData from "./fetchNewsData";
 import loginInToBackend from "./loginToBackend";
 import addTetrisScore from "./addTetrisScore";
 import getTetrisHighscores from "./getTetrisHighscores";
-import defaultUser from "./defaultUser";
+import defaultSettings from "./defaultSettings";
 
 export {
   textModel,
@@ -11,5 +11,5 @@ export {
   loginInToBackend,
   addTetrisScore,
   getTetrisHighscores,
-  defaultUser,
+  defaultSettings,
 };

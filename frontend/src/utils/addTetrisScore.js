@@ -14,7 +14,7 @@ const addTetrisScore = async (userTag, score) => {
     score: score,
   };
   try {
-    await axios.post(`${apiUrl}api/tetris/`, data, config);
+    await axios.post(`${apiUrl}api/v1/tetris/`, data, config);
   } catch (error) {
     console.error("Problem with server");
   }

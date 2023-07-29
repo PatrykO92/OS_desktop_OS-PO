@@ -10,7 +10,7 @@ const getTetrisHighscores = async () => {
     },
   };
   try {
-    const response = await axios.get(`${apiUrl}api/tetris/`, config);
+    const response = await axios.get(`${apiUrl}api/v1/tetris/`, config);
     return response.data;
   } catch (error) {
     console.error("Problem with server");

@@ -45,6 +45,7 @@
   gap: 0.3rem;
 }
 
+.tooltip > form > input,
 .login-screen > form > input {
   padding: 0.3rem 1rem;
   border-radius: 5px;

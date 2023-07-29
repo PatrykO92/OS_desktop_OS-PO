@@ -1,4 +1,4 @@
-.start-screen {
+.startScreen {
   height: 100%;
   width: 100%;
   display: flex;
@@ -7,15 +7,15 @@
   background-color: var(--theme-bg);
 }
 
-.start-screen button {
+.startScreen button {
   background-color: transparent;
 }
 
-.start-screen button:hover {
+.startScreen button:hover {
   outline: 2px solid var(--blue);
 }
 
-.start-screen .step-one {
+.stepOne {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -23,31 +23,31 @@
   gap: 2rem;
 }
 
-.start-screen .step-one > p {
+.stepOne > p {
   text-align: center;
   font-size: 1.5rem;
   font-weight: 600;
 }
 
-.start-screen .step-one .buttons {
+.stepOneButtons {
   display: flex;
   justify-content: center;
   gap: 1rem;
 }
 
-.start-screen .step-one button {
+.stepOne button {
   width: 6rem;
   height: 3rem;
 }
 
-.start-screen .step-one button > img {
+.stepOne button > img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center;
 }
 
-.start-screen .step-two {
+.stepTwo {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -55,28 +55,38 @@
   gap: 1rem;
 }
 
-.start-screen .step-two > div {
+.stepTwo > div {
   text-align: center;
   font-size: 1.3rem;
   font-weight: 500;
   line-height: 2rem;
 }
 
-.start-screen .step-two button {
+.stepTwo button {
+  width: 15rem;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   gap: 1rem;
   padding: 0.3rem;
   border-radius: 5px;
 }
 
-.start-screen .step-two button > img {
+.stepTwo button > img {
   height: 2rem;
+  width: 2rem;
   filter: invert(100%);
 }
 
-.start-screen .step-two button > span {
+.stepTwo button > span {
   color: var(--theme-font);
   font-weight: 600;
+}
+
+.stepThree {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
 }
