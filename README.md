@@ -1,66 +1,54 @@
 # OS PO® Operating System - Patryk Orlowski
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-This is a desktop simulator built with ReactJS that allows users to customize their desktop environment and use built-in apps like a calculator, to-do list, and web browser.
+Welcome to the OS PO® Operating System repository! This project is a full-stack desktop simulator built with ReactJS and Django Rest API. The application enables users to customize their desktop environment and use built-in apps such as a calculator, to-do list, calendar, and more.
 
 ## Live Version
 
-Check out the live version of the app [here](https://operating-system-po.netlify.app/).
-
-## Running the App
-
-To run the app locally on your machine, first download the source code and run `npm install` to install dependencies. Then, run `npm start` to start the app.
-
-## Features
-
-- Choose your preferred language (Polish or English)
-- Create a user account
-- Customize your desktop environment by changing the wallpaper, main color, and font color
-- Log in and log out
-- Use built-in apps like a calculator, tetris, to-do list, calendar and web browser
-
-## Dependencies
-
-The app uses the following dependencies:
-
-- axios
-- react-transitions-group
-- react-calendar
-
-## TODO
-
-1. Improve start screen and close screen styling
-2. Create a small backend with ExpressJS for easier app maintaining:
-
-- Add a feature to fetch data from an external NewsAPI
-- Implement a secure password storage solution that doesn't rely on `localStorage`
-
-3. Create a `PersonalizeAvatarComponent` to allow users to customize their avatar/icon
-4. Add more built-in apps to increase the functionality of the simulator
-5. Implement event delegation in the personalize app to improve performance
-6. Preload some resources (such as images or fonts) to improve the user experience
-7. Ensure mobile responsiveness by implementing appropriate CSS rules for smaller screen sizes
-8. Add a weather app.
-9. Add a video player app.
-10. Add two simple games,
-
-- Tetris (one of my favorite games of all time)
-- one simple game that uses canvas
-
-11. Add a small chat app with websocket and backend functionality (to consider)
-12. Add React Drag & Drop functionality for icons (to consider)
+**Please note that the live version is currently experiencing some issues due to extensive code refactoring.**
+You can still check it out [here](https://operating-system-po.netlify.app/).
 
 ## Screenshots
 
-![Screenshot of OS PO® Operating System](/readme/screenshot.jpg)
+![Screenshot](/readme/screenshot1.jpg)
+![Screenshot](/readme/screenshot2.jpg)
 
-## Reporting Issues
+## Features
 
-If you encounter any issues or bugs with the app, please email me at patryk-orlowski1992@gmail.com.
+1. Choose your preferred language (Polish or English).
+2. Register, log in, log out, and edit user accounts.
+3. Customize your desktop environment by changing the wallpaper, main color, icon size, and font color.
+4. Check the latest news using the start menu widget.
+5. Stay updated on the temperature with the weather widget.
+6. Utilize these built-in apps:
+
+- **Calculator:** A fully functional calculator for handling calculations.
+- **Tetris:** Enjoy a working Tetris game with the ability to save your high scores.
+- **To-do list:** Stay organized with a functional to-do list that saves data to the backend.
+- **Calendar app:** Efficiently manage your schedule with a functional calendar app that allows you to save tasks, all data securely stored in the backend.
+- **Web browser:** Experience a simulated web browsing environment based on an iframe, enabling you to open news without leaving the simulation.
+
+## Repository Structure
+
+The repository consists of two main components: frontend and backend. Below, you'll find more details about each part of the project.
+
+### Frontend
+
+The frontend is created with ReactJS and bootstrapped using create-react-app.
+For more information on the frontend component, including setup instructions, dependencies, and development guidelines, please refer to the [Frontend README](./frontend/README.md).
+
+### Backend
+
+The backend is created with Django and implements a REST API.
+For more information on the backend component, including setup instructions, dependencies, and API documentation, please refer to the [Backend README](./backend/README.md).
 
 ## License
 
 This app is not currently licensed.
 
-Thank you for checking out OS PO® Operating System - Patryk Orlowski!
+## Reporting Issues
+
+If you encounter any issues or bugs with the app, please feel free to reach out to me via email at patryk-orlowski1992@gmail.com. I appreciate your feedback and will work on resolving the problems as soon as possible.
+
+## Greetings
+
+Thank you for checking out OS PO® Operating System - Patryk Orlowski! Feel free to explore the project and customize your desktop environment with ease. If you have any questions or need further assistance, don't hesitate to contact me. Happy coding!
