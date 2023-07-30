@@ -1,4 +1,7 @@
 .loading-spinner-fullscreen {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100vw;
   width: 100dvw;
   height: 100vh;
@@ -6,6 +9,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 100;
+  background-color: var(--shadow-bg);
 }
 
 .loading-spinner-window {
@@ -17,6 +22,7 @@
 }
 
 .loading-spinner {
+  z-index: 150;
   width: 3rem;
   height: 3rem;
   border-radius: 50%;

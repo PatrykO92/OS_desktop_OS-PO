@@ -2,6 +2,7 @@ const textModel = {
   en: {
     accept: "Accept",
     add: "Add",
+    alreadyAccount: "Already have an account",
     areYouSure: "Are you sure?",
     back: "Back",
     business: "business",
@@ -117,6 +118,7 @@ const textModel = {
     accept: "Akceptuj",
     add: "Dodaj",
     areYouSure: "Jesteś pewny?",
+    alreadyAccount: "Mam już konto",
     back: "Powrót",
     business: "biznes",
     calculatorError: "To nie ma sensu :D",

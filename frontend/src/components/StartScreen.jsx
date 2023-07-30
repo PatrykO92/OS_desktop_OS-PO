@@ -6,6 +6,8 @@ import {
   plusCircleIcon,
   loginIcon,
   userIcon,
+  arrowLeftIcon,
+  defaultUserIcon,
 } from "../assets/icons";
 
 import { WholeAppContext } from "../App";
@@ -16,20 +18,71 @@ import getUserDetail from "../utils/getUserDetail";
 import { useNavigate } from "react-router-dom";
 import registerAccount from "../utils/registerAccount";
 
+import { CSSTransition } from "react-transition-group";
+import { LoadingSpinnerFullscreen } from "./LoadingSpinner";
+
 const GUEST_USER = process.env.REACT_APP_GUEST_USER;
 const GUEST_USER_PASSWORD = process.env.REACT_APP_GUEST_USER_PASSWORD;
 
 export default function StartScreen() {
+  const { lang } = useContext(WholeAppContext);
   const [step, setStep] = useState(1);
   const changeStep = (val) => {
-    setStep(val);
+    setStep((oldVal) => {
+      if (oldVal + val <= 0) {
+        return 1;
+      } else return oldVal + val;
+    });
   };
 
   return (
     <div className={styles.startScreen}>
-      {step === 1 && <StepOne changeStep={changeStep} />}
-      {step === 2 && <StepTwo changeStep={changeStep} />}
-      {step === 3 && <StepThree changeStep={changeStep} />}
+      <CSSTransition
+        in={step >= 2}
+        timeout={400}
+        classNames="fade"
+        unmountOnExit
+      >
+        <button className={styles.backButton} onClick={() => changeStep(-1)}>
+          <img src={arrowLeftIcon} alt={lang.back} />
+        </button>
+      </CSSTransition>
+
+      {step === 1 && (
+        <CSSTransition
+          in={true}
+          appear={true}
+          timeout={1000}
+          classNames="slide"
+          unmountOnExit
+        >
+          <StepOne changeStep={changeStep} />
+        </CSSTransition>
+      )}
+
+      {step === 2 && (
+        <CSSTransition
+          in={true}
+          appear={true}
+          timeout={1000}
+          classNames="slide"
+          unmountOnExit
+        >
+          <StepTwo changeStep={changeStep} />
+        </CSSTransition>
+      )}
+
+      {step === 3 && (
+        <CSSTransition
+          in={true}
+          appear={true}
+          timeout={1000}
+          classNames="slide"
+          unmountOnExit
+        >
+          <StepThree changeStep={changeStep} />
+        </CSSTransition>
+      )}
     </div>
   );
 }
@@ -39,7 +92,7 @@ export function StepOne({ changeStep }) {
 
   return (
     <div className={styles.stepOne}>
-      <p>{lang.chooseLanguage}:</p>
+      <p>{lang.chooseLanguage}</p>
 
       <div className={styles.stepOneButtons}>
         <button
@@ -48,7 +101,7 @@ export function StepOne({ changeStep }) {
           }}
           onClick={() => {
             changeLang("en");
-            changeStep(2);
+            changeStep(1);
           }}
         >
           <img src={usFlagIcon} alt="English" />
@@ -59,7 +112,7 @@ export function StepOne({ changeStep }) {
           }}
           onClick={() => {
             changeLang("pl");
-            changeStep(2);
+            changeStep(1);
           }}
         >
           <img src={plFlagIcon} alt="Polski" />
@@ -70,163 +123,253 @@ export function StepOne({ changeStep }) {
 }
 
 export function StepTwo({ changeStep }) {
+  const [isLoading, setIsLoading] = useState(false);
   const { lang, changeUser, setIsConnectedToBackend } =
     useContext(WholeAppContext);
   const navigate = useNavigate();
 
   const loginToGuestUser = async () => {
+    setIsLoading(true);
     const data = await loginToBackend(GUEST_USER, GUEST_USER_PASSWORD);
     if (data.status === 200) {
       setIsConnectedToBackend(true);
       changeUser(await getUserDetail());
+      setIsLoading(false);
       return true;
     } else {
+      setIsLoading(false);
       return false;
     }
   };
 
   return (
-    <div className={styles.stepTwo}>
-      <div>
-        <p>{lang.startScreenText1}</p>
-        <p>{lang.startScreenText2}</p>
+    <>
+      {isLoading && <LoadingSpinnerFullscreen />}
+      <div className={styles.stepTwo}>
+        <div>
+          <p>{lang.startScreenText1}</p>
+          <p>{lang.startScreenText2}</p>
+        </div>
+
+        <button
+          onClick={async () => {
+            if (await loginToGuestUser()) navigate("/loginScreen");
+          }}
+        >
+          <img src={userIcon} alt="" />
+          <span>{lang.guestUser}</span>
+        </button>
+
+        <button
+          onClick={() => {
+            changeStep(1);
+          }}
+        >
+          <img src={plusCircleIcon} alt="" />
+          <span>{lang.userSetup}</span>
+        </button>
+
+        <button
+          onClick={async () => {
+            navigate("/loginScreen");
+          }}
+        >
+          <img src={loginIcon} alt="" />
+          <span>{lang.alreadyAccount}</span>
+        </button>
       </div>
-
-      <button
-        onClick={async () => {
-          if (await loginToGuestUser()) navigate("/loginScreen");
-        }}
-      >
-        <img src={userIcon} alt="" />
-        <span>{lang.guestUser}</span>
-      </button>
-
-      <button
-        onClick={() => {
-          changeStep(3);
-        }}
-      >
-        <img src={plusCircleIcon} alt="" />
-        <span>{lang.userSetup}</span>
-      </button>
-
-      <button
-        onClick={async () => {
-          navigate("/loginScreen");
-        }}
-      >
-        <img src={loginIcon} alt="" />
-        <span>Already have an account</span>
-      </button>
-    </div>
+    </>
   );
 }
 
-export function StepThree({ changeStep }) {
+export function StepThree() {
   const { lang } = useContext(WholeAppContext);
   const navigate = useNavigate();
-
+  const [isLoading, setIsLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [password1, setPassword1] = useState("");
   const [password2, setPassword2] = useState("");
+  const [passwordError, setPasswordError] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [pin, setPin] = useState("");
-  const [userTag, setUserTag] = useState("");
-  const [avatar, setAvatar] = useState(null);
+  const [avatar, setAvatar] = useState(defaultUserIcon);
+  const userTag =
+    firstName.slice(0, 3).toUpperCase() +
+    "_" +
+    lastName.slice(0, 3).toUpperCase();
+
+  const checkPasswordMatch = () => {
+    if (password1 !== password2) {
+      setPasswordError("Passwords do not match");
+    } else {
+      setPasswordError("");
+    }
+  };
 
   const handleFormSubmit = async () => {
-    const data = await registerAccount(
-      email,
-      password1,
-      password2,
-      firstName,
-      lastName,
-      pin,
-      userTag,
-      avatar
-    );
-    if (data.status === 204) {
-      return true;
-    } else {
+    setIsLoading(true);
+    try {
+      checkPasswordMatch();
+
+      if (password1 !== password2) {
+        return false;
+      }
+
+      const data = await registerAccount(
+        email,
+        password1,
+        password2,
+        firstName,
+        lastName,
+        pin,
+        userTag,
+        avatar
+      );
+      setIsLoading(false);
+      return data.status === 204;
+    } catch (error) {
+      setIsLoading(false);
       return false;
     }
   };
 
   return (
-    <div className={styles.stepThree}>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          if (handleFormSubmit()) navigate("/loginScreen");
-        }}
-      >
-        {/* Input fields for the form */}
-        <div>
-          <label>Email:</label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
-        <div>
-          <label>Password:</label>
-          <input
-            type="password"
-            value={password1}
-            onChange={(e) => setPassword1(e.target.value)}
-          />
-        </div>
-        <div>
-          <label>Confirm Password:</label>
-          <input
-            type="password"
-            value={password2}
-            onChange={(e) => setPassword2(e.target.value)}
-          />
-        </div>
-        <div>
-          <label>First Name:</label>
-          <input
-            type="text"
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
-          />
-        </div>
-        <div>
-          <label>Last Name:</label>
-          <input
-            type="text"
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
-          />
-        </div>
-        <div>
-          <label>Pin:</label>
-          <input
-            type="text"
-            value={pin}
-            onChange={(e) => setPin(e.target.value)}
-          />
-        </div>
-        <div>
-          <label>User Tag:</label>
-          <input
-            type="text"
-            value={userTag}
-            onChange={(e) => setUserTag(e.target.value)}
-          />
-        </div>
-        <div>
-          <label>Avatar:</label>
-          {/* Input field for file upload */}
-          <input type="file" onChange={(e) => setAvatar(e.target.files[0])} />
-        </div>
-        <div>
-          <button type="submit">Register</button>
-        </div>
-      </form>
-    </div>
+    <>
+      {isLoading && <LoadingSpinnerFullscreen />}
+      <div className={styles.stepThree}>
+        <form
+          onSubmit={async (e) => {
+            e.preventDefault();
+            const isSuccess = await handleFormSubmit();
+
+            if (isSuccess) {
+              navigate("/loginScreen");
+            }
+          }}
+        >
+          <div>
+            <div>
+              <label htmlFor="emailInput">Email</label>
+              {passwordError ? (
+                <div className={styles.error}>{passwordError}</div>
+              ) : (
+                <div className={styles.required}>Required</div>
+              )}
+            </div>
+
+            <input
+              required
+              id="emailInput"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+          <div>
+            <div>
+              <label htmlFor="passwordInput1">Password</label>
+              {passwordError ? (
+                <div className={styles.error}>{passwordError}</div>
+              ) : (
+                <div className={styles.required}>Required</div>
+              )}
+            </div>
+
+            <input
+              required
+              minLength={8}
+              id="passwordInput1"
+              type="password"
+              value={password1}
+              onChange={(e) => setPassword1(e.target.value)}
+            />
+          </div>
+          <div>
+            <div>
+              <label htmlFor="passwordInput2">Confirm Password</label>
+              {passwordError ? (
+                <div className={styles.error}>{passwordError}</div>
+              ) : (
+                <div className={styles.required}>Required</div>
+              )}
+            </div>
+            <input
+              required
+              minLength={8}
+              id="passwordInput2"
+              type="password"
+              value={password2}
+              onChange={(e) => setPassword2(e.target.value)}
+              onBlur={checkPasswordMatch}
+            />
+          </div>
+          <div>
+            <div>
+              <label htmlFor="avatarInput">Avatar</label>
+              {passwordError && (
+                <div className={styles.error}>{passwordError}</div>
+              )}
+            </div>
+
+            <input
+              id="avatarInput"
+              type="file"
+              onChange={(e) => setAvatar(e.target.files[0])}
+            />
+          </div>
+          <div>
+            <div>
+              <label htmlFor="firstNameInput">First Name</label>
+              {passwordError ? (
+                <div className={styles.error}>{passwordError}</div>
+              ) : (
+                <div className={styles.required}>Required</div>
+              )}
+            </div>
+
+            <input
+              required
+              id="firstNameInput"
+              type="text"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+            />
+          </div>
+          <div>
+            <div>
+              <label htmlFor="lastNameInput">Last Name</label>
+              {passwordError ? (
+                <div className={styles.error}>{passwordError}</div>
+              ) : (
+                <div className={styles.required}>Required</div>
+              )}
+            </div>
+
+            <input
+              required
+              id="lastNameInput"
+              type="text"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+            />
+          </div>
+          <div>
+            <label htmlFor="pinInput">Pin</label>
+            <input
+              required
+              id="pinInput"
+              type="number"
+              value={pin}
+              onChange={(e) => setPin(e.target.value)}
+            />
+          </div>
+
+          <div>
+            <button type="submit">Submit</button>
+          </div>
+        </form>
+      </div>
+    </>
   );
 }

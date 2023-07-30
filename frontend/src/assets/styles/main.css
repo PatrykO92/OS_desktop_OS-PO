@@ -11,6 +11,7 @@
   --frame: #29272b;
   --shadow: #0000004d;
   --program-container-background: #000000f1;
+  --shadow-bg: rgba(0, 0, 0, 0.7);
   --hidden: #4c4950a8;
   --showed: #a7a2b3a4;
   --personalize-border: #05634b;
@@ -95,4 +96,13 @@ body {
 
 .fade-exit-done {
   opacity: 0;
+}
+
+.slide-appear {
+  transform: translateY(100vh) scale(0);
+}
+
+.slide-appear-active {
+  transform: translateY(0) scale(1);
+  transition: all 0.9s;
 }
