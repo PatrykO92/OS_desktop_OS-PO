@@ -20,9 +20,11 @@ import registerAccount from "../utils/registerAccount";
 
 import { CSSTransition } from "react-transition-group";
 import { LoadingSpinnerFullscreen } from "./LoadingSpinner";
+import axios from "axios";
 
 const GUEST_USER = process.env.REACT_APP_GUEST_USER;
 const GUEST_USER_PASSWORD = process.env.REACT_APP_GUEST_USER_PASSWORD;
+const API_URL = process.env.REACT_APP_BACKEND_URL;
 
 export default function StartScreen() {
   const { lang } = useContext(WholeAppContext);
@@ -187,6 +189,7 @@ export function StepThree() {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [email, setEmail] = useState("");
+  const [isEmailRegistered, setIsEmailRegistered] = useState("");
   const [password1, setPassword1] = useState("");
   const [password2, setPassword2] = useState("");
   const [passwordError, setPasswordError] = useState("");
@@ -199,11 +202,52 @@ export function StepThree() {
     "_" +
     lastName.slice(0, 3).toUpperCase();
 
+  const [valid, setValid] = useState(false);
+
+  const handlePasswordChange = (event) => {
+    const newPassword = event.target.value;
+    setPassword1(newPassword);
+    setValid(validatePassword(newPassword));
+  };
+
+  const validatePassword = (password) => {
+    // At least 8 characters
+    const lengthRegex = /.{8,}/;
+    // At least one lowercase letter
+    const lowercaseRegex = /[a-z]+/;
+    // At least one uppercase letter
+    const uppercaseRegex = /[A-Z]+/;
+    // At least one digit
+    const digitRegex = /\d+/;
+    // At least one special character
+    const specialCharRegex = /[^A-Za-z0-9]+/;
+
+    return (
+      lengthRegex.test(password) &&
+      lowercaseRegex.test(password) &&
+      uppercaseRegex.test(password) &&
+      digitRegex.test(password) &&
+      specialCharRegex.test(password)
+    );
+  };
+
   const checkPasswordMatch = () => {
     if (password1 !== password2) {
       setPasswordError("Passwords do not match");
     } else {
       setPasswordError("");
+    }
+  };
+
+  const checkEmailExists = async () => {
+    try {
+      const response = await axios.post(
+        `${API_URL}/api/v1/account/check_user`,
+        { email }
+      );
+      setIsEmailRegistered(response.data.exists);
+    } catch (error) {
+      console.error("Error checking email:", error);
     }
   };
 
@@ -251,8 +295,8 @@ export function StepThree() {
           <div>
             <div>
               <label htmlFor="emailInput">Email</label>
-              {passwordError ? (
-                <div className={styles.error}>{passwordError}</div>
+              {isEmailRegistered ? (
+                <div className={styles.error}>Already registered</div>
               ) : (
                 <div className={styles.required}>Required</div>
               )}
@@ -264,15 +308,26 @@ export function StepThree() {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              onBlur={checkEmailExists}
             />
           </div>
           <div>
             <div>
               <label htmlFor="passwordInput1">Password</label>
-              {passwordError ? (
-                <div className={styles.error}>{passwordError}</div>
-              ) : (
-                <div className={styles.required}>Required</div>
+              {password1 && (
+                <div>
+                  {valid ? (
+                    <div className={styles.required} style={{ color: "green" }}>
+                      Strong password
+                    </div>
+                  ) : (
+                    <div className={styles.error}>
+                      Password must contain at least 8 characters, one lowercase
+                      letter, one uppercase letter, one digit, and one special
+                      character.
+                    </div>
+                  )}
+                </div>
               )}
             </div>
 
@@ -282,7 +337,8 @@ export function StepThree() {
               id="passwordInput1"
               type="password"
               value={password1}
-              onChange={(e) => setPassword1(e.target.value)}
+              onChange={handlePasswordChange}
+              placeholder="Enter your password"
             />
           </div>
           <div>
@@ -307,9 +363,7 @@ export function StepThree() {
           <div>
             <div>
               <label htmlFor="avatarInput">Avatar</label>
-              {passwordError && (
-                <div className={styles.error}>{passwordError}</div>
-              )}
+              <div className={styles.required}>Required</div>
             </div>
 
             <input
@@ -321,11 +375,8 @@ export function StepThree() {
           <div>
             <div>
               <label htmlFor="firstNameInput">First Name</label>
-              {passwordError ? (
-                <div className={styles.error}>{passwordError}</div>
-              ) : (
-                <div className={styles.required}>Required</div>
-              )}
+
+              <div className={styles.required}>Required</div>
             </div>
 
             <input
@@ -339,11 +390,7 @@ export function StepThree() {
           <div>
             <div>
               <label htmlFor="lastNameInput">Last Name</label>
-              {passwordError ? (
-                <div className={styles.error}>{passwordError}</div>
-              ) : (
-                <div className={styles.required}>Required</div>
-              )}
+              <div className={styles.required}>Required</div>
             </div>
 
             <input
