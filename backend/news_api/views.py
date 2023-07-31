@@ -2,6 +2,7 @@ import requests
 from environs import Env
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
 
 from .serializers import NewsSerializer
 
@@ -13,6 +14,7 @@ NEWS_API_KEY = env.str("NEWS_API_KEY")
 
 class NewsAPIEndpoint(APIView):
     serializer_class = NewsSerializer
+    permission_classes = [IsAuthenticated]
 
     def get(self, request):
         # Define default values for optional query parameters
