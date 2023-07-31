@@ -25,6 +25,7 @@ urlpatterns = [
     path("api/v1/todos/", include("todos.urls")),
     path("api/v1/news/", include("news_api.urls")),
     path("api/v1/tetris/", include("tetris.urls")),
+    path("api/v1/account/", include("accounts.urls")),
     path("api/v1/dj-rest-auth/", include("dj_rest_auth.urls")),
     path(
         "api/v1/dj-rest-auth/registration/account-confirm-email/<str:key>/",

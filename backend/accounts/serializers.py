@@ -54,3 +54,7 @@ class CustomUserDetailsSerializer(UserDetailsSerializer):
             "user_tag",
             "settings",
         )
+
+
+class CheckEmailSerializer(serializers.Serializer):
+    email = serializers.EmailField()
