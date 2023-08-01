@@ -8,7 +8,7 @@ class CustomRegisterSerializer(RegisterSerializer):
     username = None
     first_name = serializers.CharField()
     last_name = serializers.CharField()
-    pin = serializers.CharField()
+    pin = serializers.CharField(required=False)
     user_tag = serializers.CharField()
     avatar = serializers.ImageField()
     settings = serializers.JSONField()

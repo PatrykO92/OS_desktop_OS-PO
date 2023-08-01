@@ -19,6 +19,7 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from dj_rest_auth.registration.views import VerifyEmailView, ConfirmEmailView
+from dj_rest_auth.views import PasswordResetConfirmView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -38,6 +39,11 @@ urlpatterns = [
         "api/v1/dj-rest-auth/account-confirm-email/",
         VerifyEmailView.as_view(),
         name="account_email_verification_sent",
+    ),
+    path(
+        "api/v1/dj-rest-auth/password/reset/confirm/<str:uidb64>/<str:token>",
+        PasswordResetConfirmView.as_view(),
+        name="password_reset_confirm",
     ),
 ]
 
