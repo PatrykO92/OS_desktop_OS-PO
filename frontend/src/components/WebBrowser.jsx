@@ -1,7 +1,7 @@
 import "../assets/styles/webBrowser.css";
 import { menuStartIcon } from "../assets/icons";
 
-import { LoadingSpinner } from "./";
+import { LoadingSpinnerWindow } from "./LoadingSpinner";
 
 import { useState, useEffect } from "react";
 
@@ -46,7 +46,7 @@ const WebBrowser = ({ lang, passUrl }) => {
         className="web-browser_loading"
         style={{ display: loading ? "flex" : "none" }}
       >
-        <LoadingSpinner />
+        <LoadingSpinnerWindow />
       </div>
 
       <iframe

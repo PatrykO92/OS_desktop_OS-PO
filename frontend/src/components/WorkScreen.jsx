@@ -7,8 +7,9 @@ import {
   WeatherBox,
   NewsBox,
   ProgramContainer,
-  LoadingSpinner,
 } from "./";
+
+import { LoadingSpinnerWindow } from "./LoadingSpinner";
 
 import { useState, useContext, lazy, Suspense } from "react";
 
@@ -178,7 +179,7 @@ const WorkScreen = () => {
             handleProgramState={handleStateToDoApp}
             handleDefaultProgramState={handleDefaultStateToDoApp}
           >
-            <Suspense fallback={<LoadingSpinner />}>
+            <Suspense fallback={<LoadingSpinnerWindow />}>
               <ToDoApp lang={lang} user={user} />
             </Suspense>
           </ProgramContainer>
@@ -199,7 +200,7 @@ const WorkScreen = () => {
             handleProgramState={handleStateWebBrowser}
             handleDefaultProgramState={handleDefaultStateWebBrowser}
           >
-            <Suspense fallback={<LoadingSpinner />}>
+            <Suspense fallback={<LoadingSpinnerWindow />}>
               <WebBrowser lang={lang} passUrl={webBrowser.defaultUrl} />
             </Suspense>
           </ProgramContainer>
@@ -220,7 +221,7 @@ const WorkScreen = () => {
             handleProgramState={handleStateCalculator}
             handleDefaultProgramState={handleDefaultStateCalculator}
           >
-            <Suspense fallback={<LoadingSpinner />}>
+            <Suspense fallback={<LoadingSpinnerWindow />}>
               <Calculator lang={lang} />
             </Suspense>
           </ProgramContainer>
@@ -241,7 +242,7 @@ const WorkScreen = () => {
             handleProgramState={handleStateTetris}
             handleDefaultProgramState={handleDefaultStateTetris}
           >
-            <Suspense fallback={<LoadingSpinner />}>
+            <Suspense fallback={<LoadingSpinnerWindow />}>
               <TetrisApp lang={lang} user={user} />
             </Suspense>
           </ProgramContainer>
@@ -262,7 +263,7 @@ const WorkScreen = () => {
             handleProgramState={handleStatePersonalize}
             handleDefaultProgramState={handleDefaultStatePersonalize}
           >
-            <Suspense fallback={<LoadingSpinner />}>
+            <Suspense fallback={<LoadingSpinnerWindow />}>
               <Personalize lang={lang} user={user} changeUser={changeUser} />
             </Suspense>
           </ProgramContainer>
@@ -283,7 +284,7 @@ const WorkScreen = () => {
             handleProgramState={handleStatePersonalizeUser}
             handleDefaultProgramState={handleDefaultStatePersonalizeUser}
           >
-            <Suspense fallback={<LoadingSpinner />}>
+            <Suspense fallback={<LoadingSpinnerWindow />}>
               <PersonalizeUser
                 lang={lang}
                 user={user}
@@ -308,7 +309,7 @@ const WorkScreen = () => {
             handleProgramState={handleStateCalendarApp}
             handleDefaultProgramState={handleDefaultStateCalendarApp}
           >
-            <Suspense fallback={<LoadingSpinner />}>
+            <Suspense fallback={<LoadingSpinnerWindow />}>
               <CalendarApp lang={lang} user={user} />
             </Suspense>
           </ProgramContainer>

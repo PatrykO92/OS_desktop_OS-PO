@@ -1,7 +1,7 @@
 import { WholeAppContext } from "../App";
 
 import "../assets/styles/weatherBox.css";
-import { LoadingSpinner } from "./";
+import { LoadingSpinnerWindow } from "./LoadingSpinner";
 
 import { useContext, useEffect, useMemo, useState } from "react";
 
@@ -95,7 +95,7 @@ const WeatherBox = () => {
   return (
     <div id="weather-box">
       {isLoading ? (
-        <LoadingSpinner />
+        <LoadingSpinnerWindow />
       ) : (
         !error.show && (
           <div className="weather-box__current-temp">

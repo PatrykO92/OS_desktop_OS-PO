@@ -1,21 +1,25 @@
-import "../assets/styles/loadingSpinner.css";
+import styles from "../assets/styles/loadingSpinner.module.css";
 
 export function LoadingSpinner() {
-  return <div className="loading-spinner"></div>;
+  return (
+    <>
+      <div className={styles.loadingSpinner}></div>
+    </>
+  );
 }
 
-export default function LoadingSpinnerWindow() {
+export function LoadingSpinnerWindow() {
   return (
-    <div className="loading-spinner-window">
-      <div className="loading-spinner"></div>
+    <div className={styles.loadingSpinnerWindow}>
+      <LoadingSpinner />
     </div>
   );
 }
 
 export function LoadingSpinnerFullscreen() {
   return (
-    <div className="loading-spinner-fullscreen">
-      <div className="loading-spinner"></div>
+    <div className={styles.loadingSpinnerFullscreen}>
+      <LoadingSpinner />
     </div>
   );
 }

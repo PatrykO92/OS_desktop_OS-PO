@@ -2,7 +2,7 @@ import { WholeAppContext } from "../App";
 
 import "../assets/styles/newsBox.css";
 import { fetchNewsData } from "../utils";
-import { LoadingSpinner } from "./";
+import { LoadingSpinnerWindow } from "./LoadingSpinner";
 import { newsPlaceholderImage } from "../assets/images/placeholder-images";
 
 import { useState, useEffect, useContext } from "react";
@@ -56,7 +56,7 @@ const NewsBox = () => {
       <div className="news-box-wrapper">
         <div className="news-box">
           {isLoading ? (
-            <LoadingSpinner />
+            <LoadingSpinnerWindow />
           ) : fetchError ? (
             <div className="news-box-error">{lang.fetchError}</div>
           ) : (
