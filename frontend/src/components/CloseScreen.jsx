@@ -4,10 +4,11 @@ import "../assets/styles/closeScreen.css";
 import { CSSTransition } from "react-transition-group";
 import { useContext } from "react";
 import { WholeAppContext } from "../App";
+import useRemoveUser from "../hooks/useRemoveUser";
 
 const CloseScreen = () => {
   const { lang } = useContext(WholeAppContext);
-
+  const removeUser = useRemoveUser();
   const navigate = useNavigate();
 
   return (
@@ -23,6 +24,7 @@ const CloseScreen = () => {
         <p>{lang.closeScreen2}</p>
         <button
           onClick={() => {
+            removeUser();
             navigate("/startScreen");
           }}
         >

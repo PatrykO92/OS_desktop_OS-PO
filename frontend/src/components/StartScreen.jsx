@@ -21,6 +21,7 @@ import registerAccount from "../utils/registerAccount";
 import { CSSTransition } from "react-transition-group";
 import { LoadingSpinnerFullscreen } from "./LoadingSpinner";
 import axios from "axios";
+import useRemoveUser from "../hooks/useRemoveUser";
 
 const GUEST_USER = process.env.REACT_APP_GUEST_USER;
 const GUEST_USER_PASSWORD = process.env.REACT_APP_GUEST_USER_PASSWORD;
@@ -129,6 +130,7 @@ export function StepTwo({ changeStep }) {
   const { lang, changeUser, setIsConnectedToBackend } =
     useContext(WholeAppContext);
   const navigate = useNavigate();
+  const removeUser = useRemoveUser();
 
   const loginToGuestUser = async () => {
     setIsLoading(true);
@@ -164,6 +166,7 @@ export function StepTwo({ changeStep }) {
 
         <button
           onClick={() => {
+            removeUser();
             changeStep(1);
           }}
         >
@@ -173,6 +176,7 @@ export function StepTwo({ changeStep }) {
 
         <button
           onClick={async () => {
+            removeUser();
             navigate("/loginScreen");
           }}
         >
@@ -233,7 +237,7 @@ export function StepThree() {
 
   const checkPasswordMatch = () => {
     if (password1 !== password2) {
-      setPasswordError("Passwords do not match");
+      setPasswordError(lang.samePassword);
     } else {
       setPasswordError("");
     }
@@ -247,7 +251,7 @@ export function StepThree() {
       );
       setIsEmailRegistered(response.data.exists);
     } catch (error) {
-      console.error("Error checking email:", error);
+      console.error("Error checking email");
     }
   };
 
@@ -294,11 +298,11 @@ export function StepThree() {
         >
           <div>
             <div>
-              <label htmlFor="emailInput">Email</label>
+              <label htmlFor="emailInput">{lang.emailLabel}</label>
               {isEmailRegistered ? (
-                <div className={styles.error}>Already registered</div>
+                <div className={styles.error}>{lang.alreadyRegistered}</div>
               ) : (
-                <div className={styles.required}>Required</div>
+                <div className={styles.required}>*{lang.required}</div>
               )}
             </div>
 
@@ -313,19 +317,15 @@ export function StepThree() {
           </div>
           <div>
             <div>
-              <label htmlFor="passwordInput1">Password</label>
+              <label htmlFor="passwordInput1">{lang.password}</label>
               {password1 && (
                 <div>
                   {valid ? (
                     <div className={styles.required} style={{ color: "green" }}>
-                      Strong password
+                      {lang.strongPassword}
                     </div>
                   ) : (
-                    <div className={styles.error}>
-                      Password must contain at least 8 characters, one lowercase
-                      letter, one uppercase letter, one digit, and one special
-                      character.
-                    </div>
+                    <div className={styles.error}>{lang.passwordDetails}</div>
                   )}
                 </div>
               )}
@@ -338,16 +338,15 @@ export function StepThree() {
               type="password"
               value={password1}
               onChange={handlePasswordChange}
-              placeholder="Enter your password"
             />
           </div>
           <div>
             <div>
-              <label htmlFor="passwordInput2">Confirm Password</label>
+              <label htmlFor="passwordInput2">{lang.confirmPassword}</label>
               {passwordError ? (
                 <div className={styles.error}>{passwordError}</div>
               ) : (
-                <div className={styles.required}>Required</div>
+                <div className={styles.required}>*{lang.required}</div>
               )}
             </div>
             <input
@@ -362,8 +361,8 @@ export function StepThree() {
           </div>
           <div>
             <div>
-              <label htmlFor="avatarInput">Avatar</label>
-              <div className={styles.required}>Required</div>
+              <label htmlFor="avatarInput">{lang.yourAvatar}</label>
+              <div className={styles.required}>*{lang.required}</div>
             </div>
 
             <input
@@ -374,12 +373,13 @@ export function StepThree() {
           </div>
           <div>
             <div>
-              <label htmlFor="firstNameInput">First Name</label>
+              <label htmlFor="firstNameInput">{lang.firstName}</label>
 
-              <div className={styles.required}>Required</div>
+              <div className={styles.required}>*{lang.required}</div>
             </div>
 
             <input
+              minLength={3}
               required
               id="firstNameInput"
               type="text"
@@ -389,12 +389,13 @@ export function StepThree() {
           </div>
           <div>
             <div>
-              <label htmlFor="lastNameInput">Last Name</label>
-              <div className={styles.required}>Required</div>
+              <label htmlFor="lastNameInput">{lang.lastName}</label>
+              <div className={styles.required}>*{lang.required}</div>
             </div>
 
             <input
               required
+              minLength={3}
               id="lastNameInput"
               type="text"
               value={lastName}
@@ -402,9 +403,8 @@ export function StepThree() {
             />
           </div>
           <div>
-            <label htmlFor="pinInput">Pin</label>
+            <label htmlFor="pinInput">{lang.pin}</label>
             <input
-              required
               id="pinInput"
               type="number"
               value={pin}
@@ -413,7 +413,7 @@ export function StepThree() {
           </div>
 
           <div>
-            <button type="submit">Submit</button>
+            <button type="submit">{lang.submit}</button>
           </div>
         </form>
       </div>

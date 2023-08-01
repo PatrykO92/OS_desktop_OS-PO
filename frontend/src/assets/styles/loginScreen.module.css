@@ -1,4 +1,11 @@
-.login-screen {
+:root {
+  --wss-main-color1: hsl(214, 100%, 3%);
+  --wss-main-color2: hsl(212, 88%, 38%);
+  --wss-main-color3: hsl(213, 26%, 87%);
+  --wss-font-color: hsl(0, 0%, 100%);
+}
+
+.loginScreen {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -9,18 +16,12 @@
   background-size: cover;
 }
 
-.login-screen > img {
+.loginScreen > img {
   border-radius: 50%;
   width: 13rem;
 }
 
-.login-screen > div {
-  font-size: 2rem;
-  font-weight: bold;
-  color: var(--theme-font);
-}
-
-.login-screen_login-button {
+.loginButton {
   padding: 0.3rem;
   border: 2px solid var(--border-main);
   background-color: var(--theme-bg);
@@ -28,25 +29,36 @@
   transition: all 0.5s;
 }
 
-.login-screen_login-button:hover {
-  opacity: 0.7;
+.loginButton:hover,
+.tooltip > form > input:hover,
+.loginScreen > form > input:hover {
+  border: 2px solid var(--blue);
 }
 
-.login-screen_login-button > img {
+.loginButton > img {
   filter: invert(100%);
   width: 1.3rem;
   height: 1.3rem;
 }
 
-.login-screen > form {
+.loginScreen > form {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 0.3rem;
+  gap: 0.5rem;
+}
+
+.defaultLogin {
+  flex-direction: column;
+}
+
+.userFullName {
+  font-size: 2.5rem;
+  font-weight: 500;
 }
 
 .tooltip > form > input,
-.login-screen > form > input {
+.loginScreen > form > input {
   padding: 0.3rem 1rem;
   border-radius: 5px;
   width: 12rem;
@@ -54,30 +66,39 @@
   background-color: var(--theme-bg);
   text-align: center;
   color: var(--theme-font);
+  transition: all 0.5s;
 }
 
-.login-screen > p:hover {
+.loginScreen > p:hover {
   cursor: pointer;
   text-decoration: underline;
 }
 
-.login-screen_wrong-input {
+.wrongInput {
   outline: 2px solid var(--red);
 }
 
 .tooltip {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
   position: fixed;
   left: 1rem;
   bottom: 1rem;
   font-size: 1rem;
   background-color: var(--theme-bg);
-  padding: 2rem;
+  padding: 1rem;
   border-radius: 5px;
   border: 1px solid var(--border-main);
 }
 
-.login-screen_buttons {
+.tooltip > form {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.buttons {
   position: fixed;
   bottom: 1rem;
   right: 1rem;
@@ -88,7 +109,7 @@
   border-radius: 5px;
 }
 
-.login-screen_buttons button {
+.buttons button {
   padding: 0.3rem;
   background-color: transparent;
   width: 2rem;
@@ -96,22 +117,15 @@
   transition: all 0.3s;
 }
 
-.login-screen_buttons button:hover {
+.buttons button:hover {
   background-color: var(--hover-main);
 }
 
-.login-screen_buttons button > img {
+.buttons button > img {
   filter: invert(100%);
 }
 
-:root {
-  --wss-main-color1: hsl(214, 100%, 3%);
-  --wss-main-color2: hsl(212, 88%, 38%);
-  --wss-main-color3: hsl(213, 26%, 87%);
-  --wss-font-color: hsl(0, 0%, 100%);
-}
-
-.starting-screen {
+.startingScreen {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -122,8 +136,8 @@
   background-color: var(--wss-main-color1);
 }
 
-.ss-logo {
-  height: 11rem;
+.ssLogo {
+  max-width: 9rem;
   filter: invert(21%) sepia(42%) saturate(5139%) hue-rotate(205deg)
     brightness(170%) contrast(84%);
 }

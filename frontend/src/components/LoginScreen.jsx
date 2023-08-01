@@ -1,4 +1,4 @@
-import "../assets/styles/loginScreen.css";
+import styles from "../assets/styles/loginScreen.module.css";
 import { osStartIcon } from "../assets/icons";
 import { wallpaperOne } from "../assets/images/wallpapers";
 import { LoadingSpinner } from "./LoadingSpinner";
@@ -12,15 +12,17 @@ import { useNavigate } from "react-router-dom";
 import { WholeAppContext } from "../App";
 import getUserDetail from "../utils/getUserDetail";
 import loginToBackend from "../utils/loginToBackend";
+import passwordReset from "../utils/passwordReset";
 
 const LoginScreen = () => {
   const { lang, user, setIsConnectedToBackend, changeUser } =
     useContext(WholeAppContext);
   const [email, setEmail] = useState("");
+  const [isEmailSent, setIsEmailSent] = useState(false);
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
-  const pinInput = useRef(null);
+  const pinInput = useRef("");
   const [pin, setPin] = useState("");
 
   const [showPin, setShowPin] = useState(false);
@@ -51,11 +53,11 @@ const LoginScreen = () => {
     <>
       {loginStage === "start" && (
         <CSSTransition in={true} appear={true} timeout={300} classNames="fade">
-          <div className="starting-screen">
+          <div className={styles.startingScreen}>
             <img
               src={osStartIcon}
               alt="Operating System Logo"
-              className="ss-logo"
+              className={styles.ssLogo}
             />
             <LoadingSpinner />
           </div>
@@ -65,12 +67,13 @@ const LoginScreen = () => {
       {loginStage === "login" && (
         <CSSTransition in={true} appear={true} timeout={300} classNames="fade">
           <div
-            className="login-screen"
+            className={styles.loginScreen}
             style={{ backgroundImage: `url(${wallpaperOne})` }}
           >
             {user === null && (
               <>
                 <form
+                  className={styles.defaultLogin}
                   onSubmit={async (e) => {
                     e.preventDefault();
                     if (await login()) navigate("/workScreen");
@@ -92,7 +95,7 @@ const LoginScreen = () => {
                       setPassword(e.target.value);
                     }}
                   />
-                  <button className="login-screen_login-button" type="submit">
+                  <button className={styles.loginButton} type="submit">
                     <img src={arrowRightIcon} alt={lang.submit} />
                   </button>
                 </form>
@@ -104,37 +107,50 @@ const LoginScreen = () => {
                   {lang.passwordForgetMsg}
                 </p>
                 {showPassword && (
-                  <span className="tooltip">
-                    <p>Send email with password/password reset</p>
-                    <form>
-                      <input
-                        type="email"
-                        placeholder={lang.email}
-                        value={email}
-                        onChange={(e) => {
-                          setEmail(e.target.value);
-                        }}
-                      />
-                      <button
-                        className="login-screen_login-button"
-                        type="submit"
-                      >
-                        <img src={arrowRightIcon} alt={lang.submit} />
-                      </button>
-                    </form>
-                  </span>
+                  <div className={styles.tooltip}>
+                    {isEmailSent ? (
+                      <p>
+                        {lang.emailSent}: {email}
+                      </p>
+                    ) : (
+                      <>
+                        <p>{lang.emailSend}:</p>
+                        <form
+                          onSubmit={async (e) => {
+                            e.preventDefault();
+                            const response = await passwordReset(email);
+                            if (response.status === 200) {
+                              setIsEmailSent(true);
+                            }
+                          }}
+                        >
+                          <input
+                            type="email"
+                            placeholder={lang.email}
+                            value={email}
+                            onChange={(e) => {
+                              setEmail(e.target.value);
+                            }}
+                          />
+                          <button className={styles.loginButton} type="submit">
+                            <img src={arrowRightIcon} alt={lang.submit} />
+                          </button>
+                        </form>
+                      </>
+                    )}
+                  </div>
                 )}
               </>
             )}
             {user !== null && (
               <>
                 <img src={user.avatar} alt="avatar" />
-                <div>
+                <div className={styles.userFullName}>
                   {user.name} {user.lastName}{" "}
-                  {user.pin === null && (
+                  {user.pin === "" && (
                     <button
                       style={{ background: "transparent" }}
-                      className="login-screen_login-button"
+                      className={styles.loginButton}
                       onClick={() => {
                         navigate("/workScreen");
                       }}
@@ -143,16 +159,14 @@ const LoginScreen = () => {
                     </button>
                   )}
                 </div>
-                {user.pin !== null && (
+                {user.pin !== "" && (
                   <>
                     <form
                       onSubmit={(e) => {
                         e.preventDefault();
                         setPin("");
                         if (pin !== user.pin) {
-                          pinInput.current.classList.add(
-                            "login-screen_wrong-input"
-                          );
+                          pinInput.current.classList.add("wrongInput");
                         }
                         if (pin === user.pin) navigate("/workScreen");
                       }}
@@ -168,10 +182,7 @@ const LoginScreen = () => {
                           setPin(e.target.value);
                         }}
                       />
-                      <button
-                        className="login-screen_login-button"
-                        type="submit"
-                      >
+                      <button className={styles.loginButton} type="submit">
                         <img src={arrowRightIcon} alt={lang.submit} />
                       </button>
                     </form>
@@ -185,26 +196,18 @@ const LoginScreen = () => {
                   </>
                 )}
                 {showPin && (
-                  <span className="tooltip">
+                  <span className={styles.tooltip}>
                     {lang.yourPin}: {user.pin}
                   </span>
                 )}
               </>
             )}
-            <div className="login-screen_buttons">
+            <div className={styles.buttons}>
               <button onClick={() => setLoginStage("start")}>
-                <img
-                  src={restartIcon}
-                  alt={lang.restart}
-                  className="login-screen_button-img"
-                />
+                <img src={restartIcon} alt={lang.restart} />
               </button>
               <button onClick={() => navigate("/closeScreen")}>
-                <img
-                  src={powerOffIcon}
-                  alt={lang.power}
-                  className="login-screen_button-img"
-                />
+                <img src={powerOffIcon} alt={lang.power} />
               </button>
             </div>
           </div>

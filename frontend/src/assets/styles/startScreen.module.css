@@ -1,6 +1,11 @@
 .error {
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   color: var(--red);
+  max-width: 14rem;
+  background-color: var(--theme-bg);
+  padding: 0.3rem;
+  border-radius: 5px;
+  border: 1px solid var(--border-main);
 }
 
 .required {
@@ -86,6 +91,7 @@
 }
 
 .stepTwo > div {
+  max-width: 35rem;
   text-align: center;
   font-size: 1.3rem;
   font-weight: 500;
@@ -114,6 +120,7 @@
 }
 
 .stepThree {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
