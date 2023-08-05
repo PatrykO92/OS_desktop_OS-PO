@@ -1,12 +1,12 @@
-.custom-alert-prompt,
-.custom-alert-prompt__background {
+.prompt,
+.background {
   position: fixed;
   top: 0;
   left: 0;
   opacity: 0;
 }
 
-.custom-alert-prompt {
+.prompt {
   z-index: 15;
   width: 0;
   height: 0;
@@ -16,26 +16,26 @@
   transition: all 1s;
 }
 
-.custom-alert-prompt-show {
+.promptShow {
   height: 100vh;
   width: 100vw;
   opacity: 1;
 }
 
-.custom-alert-prompt__background {
-  height: 100vh;
-  width: 100vw;
-  z-index: -5;
+.background {
+  z-index: -15;
   background-color: var(--theme-bg-light);
   transition: opacity 1s, z-index 0s;
 }
 
-.custom-alert-prompt__background-show {
+.backgroundShow {
+  height: 100vh;
+  width: 100vw;
   z-index: 14;
   opacity: 1;
 }
 
-.custom-alert-prompt-show > div {
+.promptShow > div {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -48,19 +48,19 @@
   background-color: var(--theme-bg);
 }
 
-.custom-alert-prompt p {
+.prompt p {
   max-width: 20rem;
   margin-bottom: 1rem;
   text-align: center;
   font-size: 0.9rem;
 }
 
-.custom-alert-prompt-show > div > div {
+.promptShow > div > div {
   display: flex;
   gap: 0.5rem;
 }
 
-.custom-alert-prompt button {
+.prompt button {
   background-color: transparent;
   padding: 0.2rem;
   border-radius: 5px;
@@ -68,14 +68,14 @@
   transition: all 0.5s;
 }
 
-.custom-alert-prompt button:hover {
+.prompt button:hover {
   background-color: var(--hover-main);
 }
 
-.custom-alert-prompt-accept-btn {
+.accept {
   color: var(--green);
 }
 
-.custom-alert-prompt-dismiss-btn {
+.dismiss {
   color: var(--red);
 }

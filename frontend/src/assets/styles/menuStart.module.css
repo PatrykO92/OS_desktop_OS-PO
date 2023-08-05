@@ -1,4 +1,4 @@
-.menu-start {
+.menuStart {
   z-index: 13;
   position: absolute;
   bottom: 3.5rem;
@@ -11,7 +11,7 @@
   justify-content: space-between;
 }
 
-.menu-start button {
+.menuStartButton {
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -23,21 +23,16 @@
   color: var(--theme-font);
 }
 
-.menu-start button p {
+.menuStartButton p {
   color: var(--theme-font);
   font-size: smaller;
 }
 
-.menu-start button:hover {
+.menuStartButton:hover {
   background-color: var(--hover-main);
 }
 
-.menu-start-widget {
-  background-color: var(--theme-bg-light);
-  border-radius: 5px 5px 0 0;
-}
-
-.menu-start-utils {
+.utils {
   padding: 0 1rem;
   height: 3rem;
   display: flex;
@@ -47,18 +42,18 @@
   border-radius: 0 0 5px 5px;
 }
 
-.menu-start-utils > div {
+.utils > div {
   display: flex;
   align-items: center;
   gap: 0.3rem;
 }
 
-.menu-start-button-img {
+.button {
   filter: invert(88%) sepia(65%) saturate(2%) hue-rotate(252deg)
     brightness(114%) contrast(101%);
 }
 
-.menu-start-avatar {
+.avatar {
   max-height: 2rem;
   border-radius: 50%;
 }

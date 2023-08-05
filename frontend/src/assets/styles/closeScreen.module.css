@@ -1,4 +1,4 @@
-.close-screen {
+.closeScreen {
   margin: auto;
   margin-top: 2rem;
   max-width: 40rem;
@@ -7,7 +7,7 @@
   border-radius: 5px;
 }
 
-.close-screen button {
+.closeScreen button {
   margin: 2rem 2rem 2rem 0;
   background-color: transparent;
   padding: 0.3rem;
@@ -19,15 +19,15 @@
   transition: all 0.5s;
 }
 
-.close-screen button:hover {
+.closeScreen button:hover {
   background-color: var(--blue);
 }
 
-.close-screen p {
+.closeScreen p {
   margin-top: 1rem;
 }
 
-.close-screen p:nth-child(1) {
+.closeScreen p:nth-child(1) {
   font-size: 2rem;
   font-weight: 500;
 }

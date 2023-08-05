@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import "../assets/styles/closeScreen.css";
+import styles from "../assets/styles/closeScreen.module.css";
 
 import { CSSTransition } from "react-transition-group";
 import { useContext } from "react";
@@ -19,7 +19,7 @@ const CloseScreen = () => {
       classNames="fade"
       unmountOnExit
     >
-      <div className="close-screen">
+      <div className={styles.closeScreen}>
         <p>{lang.closeScreen1}</p>
         <p>{lang.closeScreen2}</p>
         <button

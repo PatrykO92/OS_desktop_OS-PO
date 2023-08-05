@@ -1,4 +1,44 @@
-.news-box_actual-news {
+.widget {
+  background-color: var(--theme-bg-light);
+  border-radius: 5px 5px 0 0;
+}
+
+.widget button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 1.5rem;
+  padding: 0.2rem;
+  background-color: transparent;
+  transition: all 0.5s;
+  border-radius: 5px;
+  color: var(--theme-font);
+}
+
+.widget button p {
+  color: var(--theme-font);
+  font-size: smaller;
+}
+
+.widget button:hover {
+  background-color: var(--hover-main);
+}
+
+.wrapper {
+  padding: 5px 10px;
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  overflow-y: scroll;
+  min-height: 5rem;
+  max-height: 25rem;
+}
+
+.choosedNews {
   position: sticky;
   bottom: 0;
   padding: 0.5rem;
@@ -14,25 +54,11 @@
   gap: 0.5rem;
 }
 
-.news-box_actual-news > button {
+.choosedNews > button {
   border: 1px solid var(--theme-font);
 }
 
-.news-box-wrapper {
-  padding: 5px 10px;
-}
-
-.news-box {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-  overflow-y: scroll;
-  min-height: 5rem;
-  max-height: 25rem;
-}
-
-.news-box-error {
+.error {
   min-height: 5rem;
   max-width: 200px;
   display: flex;
@@ -42,7 +68,7 @@
   color: var(--red);
 }
 
-.news-box-buttons {
+.buttonsBox {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
@@ -53,30 +79,30 @@
   background-color: var(--theme-bg);
 }
 
-.news-box-buttons button {
+.buttonsBox button {
   font-size: small;
   text-transform: capitalize;
 }
 
-.news-box::-webkit-scrollbar {
+.box::-webkit-scrollbar {
   width: 5px;
 }
 
-.news-box::-webkit-scrollbar-track {
+.box::-webkit-scrollbar-track {
   background: var(--theme-bg);
   border-radius: 5px;
 }
 
-.news-box::-webkit-scrollbar-thumb {
+.box::-webkit-scrollbar-thumb {
   background: var(--hover-main);
   border-radius: 5px;
 }
 
-.news-box::-webkit-scrollbar-thumb:hover {
+.box::-webkit-scrollbar-thumb:hover {
   background: var(--hover-main);
 }
 
-.news-box-article {
+.article {
   text-shadow: 3px 3px 2px black;
   font-weight: bold;
   display: flex;
@@ -88,13 +114,13 @@
   background-size: cover;
 }
 
-.news-box-article p {
+.article p {
   text-align: left;
   background-color: var(--shadow);
   padding: 0.1rem;
 }
 
-.news-box-article p:nth-child(2) {
+.article p:nth-child(2) {
   font-size: small;
   font-style: italic;
   white-space: normal;

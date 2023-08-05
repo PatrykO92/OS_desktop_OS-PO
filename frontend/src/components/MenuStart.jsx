@@ -1,10 +1,9 @@
-import "../assets/styles/customAlertPrompt.css";
-import "../assets/styles/menuStart.css";
+import styles from "../assets/styles/menuStart.module.css";
 import { powerOffIcon, restartIcon } from "../assets/icons";
-
 import { useContext, useState } from "react";
 import { WholeAppContext } from "../App";
 import { useNavigate } from "react-router-dom";
+import Prompt from "./Prompt";
 
 const MenuStart = ({ children }) => {
   const navigate = useNavigate();
@@ -36,10 +35,11 @@ const MenuStart = ({ children }) => {
 
   return (
     <>
-      <div className={`menu-start`}>
+      <div className={styles.menuStart}>
         {children}
-        <div className="menu-start-utils">
+        <div className={styles.utils}>
           <button
+            className={styles.menuStartButton}
             onClick={() => {
               hideAllPrograms();
               handleStatePersonalizeUser("programEnabled", true);
@@ -49,55 +49,38 @@ const MenuStart = ({ children }) => {
             <img
               src={user.avatar}
               alt={`${lang.name} ${lang.lastName}`}
-              className="menu-start-avatar"
+              className={styles.avatar}
             />
             <p>{`${user.name} ${user.lastName}`}</p>
           </button>
           <div>
-            <button onClick={() => handleButtonClick("loginScreen")}>
+            <button
+              className={styles.menuStartButton}
+              onClick={() => handleButtonClick("loginScreen")}
+            >
               <img
                 src={restartIcon}
                 alt={lang.restart}
-                className="menu-start-button-img"
+                className={styles.button}
               />
             </button>
-            <button onClick={() => handleButtonClick("closeScreen")}>
+            <button
+              className={styles.menuStartButton}
+              onClick={() => handleButtonClick("closeScreen")}
+            >
               <img
                 src={powerOffIcon}
                 alt={lang.power}
-                className="menu-start-button-img"
+                className={styles.button}
               />
             </button>
           </div>
         </div>
-      </div>
-      <div
-        className={`custom-alert-prompt__background ${
-          showAlert && "custom-alert-prompt__background-show"
-        }`}
-      ></div>
-      <div
-        className={`custom-alert-prompt ${
-          showAlert && "custom-alert-prompt-show"
-        }`}
-      >
-        <div>
-          <p>{lang.areYouSure}</p>
-          <div>
-            <button
-              onClick={handleAccept}
-              className="custom-alert-prompt-accept-btn"
-            >
-              {lang.accept}
-            </button>
-            <button
-              onClick={handleDismiss}
-              className="custom-alert-prompt-dismiss-btn"
-            >
-              {lang.dismiss}
-            </button>
-          </div>
-        </div>
+        <Prompt
+          showAlert={showAlert}
+          handleAccept={handleAccept}
+          handleDismiss={handleDismiss}
+        />
       </div>
     </>
   );

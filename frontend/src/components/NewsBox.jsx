@@ -1,6 +1,6 @@
 import { WholeAppContext } from "../App";
 
-import "../assets/styles/newsBox.css";
+import styles from "../assets/styles/newsBox.module.css";
 import { fetchNewsData } from "../utils";
 import { LoadingSpinnerWindow } from "./LoadingSpinner";
 import { newsPlaceholderImage } from "../assets/images/placeholder-images";
@@ -43,7 +43,7 @@ const NewsBox = () => {
           setShowActualNews(true);
         }}
       >
-        <div className="news-box-article" style={{ backgroundImage }}>
+        <div className={styles.article} style={{ backgroundImage }}>
           <p>{data?.author}</p>
           <p>{data?.title}</p>
         </div>
@@ -52,16 +52,16 @@ const NewsBox = () => {
   };
 
   return (
-    <div className="menu-start-widget">
-      <div className="news-box-wrapper">
-        <div className="news-box">
+    <div className={styles.widget}>
+      <div className={styles.wrapper}>
+        <div className={styles.box}>
           {isLoading ? (
             <LoadingSpinnerWindow />
           ) : fetchError ? (
-            <div className="news-box-error">{lang.fetchError}</div>
+            <div className={styles.error}>{lang.fetchError}</div>
           ) : (
             <>
-              <div className="news-box-buttons">
+              <div className={styles.buttonsBox}>
                 <button
                   onClick={() => {
                     setNewsCategory("sports");
@@ -95,7 +95,7 @@ const NewsBox = () => {
             </>
           )}
           {showActualNews && (
-            <div className="news-box_actual-news">
+            <div className={styles.choosedNews}>
               <p>{actualNews?.title}</p>
               <button
                 onClick={(event) => {
