@@ -1,4 +1,4 @@
-import "../assets/styles/calculator.css";
+import styles from "../assets/styles/calculator.module.css";
 
 import { useState, useEffect } from "react";
 
@@ -117,17 +117,17 @@ const Calculator = ({ lang }) => {
   }, [outputValue, calculationValue]);
 
   return (
-    <div className="calculator-window">
+    <div className={styles.window}>
       {showErrorMessage.show && (
-        <div className="calculator-error">{showErrorMessage.message}</div>
+        <div className={styles.error}>{showErrorMessage.message}</div>
       )}
 
-      <div className="calculator">
-        <div className="calculator__outputs">
+      <div className={styles.calculator}>
+        <div className={styles.outputs}>
           <p>{calculationValue}</p>
           <p>{outputValue}</p>
         </div>
-        <div className="calculator__inputs">
+        <div className={styles.inputs}>
           <div>
             <button onClick={() => performMathOperation("%")}>%</button>
             <button onClick={cleanOutputs}>C</button>

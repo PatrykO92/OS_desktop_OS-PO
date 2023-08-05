@@ -1,11 +1,11 @@
-.calculator-window {
+.window {
   display: flex;
   height: 100%;
   justify-content: center;
   align-items: center;
 }
 
-.calculator-error {
+.error {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -24,47 +24,47 @@
   border-radius: 5px;
 }
 
-.calculator__outputs {
+.outputs {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
 
-.calculator__outputs > p {
+.outputs > p {
   width: 20rem;
   text-align: end;
   font-weight: 500;
   padding-right: 0.3rem;
 }
 
-.calculator__outputs > p:nth-child(1) {
+.outputs > p:nth-child(1) {
   font-size: 0.9rem;
 }
 
-.calculator__outputs > p:nth-child(2) {
+.outputs > p:nth-child(2) {
   font-size: 1.7rem;
   overflow-x: hidden;
 }
 
-.calculator__outputs > p:nth-child(2):hover {
+.outputs > p:nth-child(2):hover {
   overflow-x: visible;
 }
 
-.calculator__inputs {
+.inputs {
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
   padding: 0.5rem;
 }
 
-.calculator__inputs > div {
+.inputs > div {
   display: flex;
   flex-direction: row;
   gap: 0.4rem;
 }
 
-.calculator__inputs > div:nth-child(1) button,
-.calculator__inputs > div > button:last-of-type {
+.inputs > div:nth-child(1) button,
+.inputs > div > button:last-of-type {
   background-color: var(--hover-main);
 }
 
