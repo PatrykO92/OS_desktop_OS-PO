@@ -26,6 +26,7 @@ import { textModel } from "./utils";
 import { useAppState } from "./hooks/useAppState";
 import LoggedInChecker from "./components/LoggedInChecker";
 import { LoadingSpinnerFullscreen } from "./components/LoadingSpinner";
+import saveUserSettingsToBackend from "./utils/saveUserSettingsToBackend";
 
 const LoginScreen = lazy(() => import("./components/LoginScreen"));
 const StartScreen = lazy(() => import("./components/StartScreen"));
@@ -33,6 +34,8 @@ const WorkScreen = lazy(() => import("./components/WorkScreen"));
 const CloseScreen = lazy(() => import("./components/CloseScreen"));
 
 export const WholeAppContext = createContext(null);
+
+const DEBOUNCE_TIME_IN_SECS = 2;
 
 function App() {
   const navigate = useNavigate();
@@ -47,7 +50,11 @@ function App() {
   };
 
   // useStateHook and function to set actually used user, default you get user from localStorage, null if not found
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
+  const [user, setUser] = useState(
+    JSON.parse(localStorage.getItem("user")) !== null
+      ? JSON.parse(localStorage.getItem("user"))
+      : null
+  );
   const changeUser = (user) => {
     setUser(user);
   };
@@ -128,6 +135,13 @@ function App() {
   // Apply settings, if user is changed.
   useEffect(() => {
     const root = document.documentElement;
+    if (user === null) {
+      root.style.removeProperty("--theme-bg");
+      root.style.removeProperty("--theme-bg-light");
+      root.style.removeProperty("--theme-font");
+      root.style.removeProperty("--icon-size");
+    }
+
     if (user !== null) {
       root.style.setProperty("--theme-bg", user.settings.themeBg);
       root.style.setProperty("--theme-bg-light", user.settings.themeBgLight);
@@ -139,6 +153,26 @@ function App() {
   // Save user settings to localStorage, on every user object change
   useEffect(() => {
     if (user !== null) localStorage.setItem("user", JSON.stringify(user));
+  }, [user]);
+
+  // // Save user settings to backend, on every user object change
+  useEffect(() => {
+    let debounceTimeout;
+
+    if (user !== null) {
+      // Clear previous debounce timeout
+      clearTimeout(debounceTimeout);
+
+      // Set up a new debounce timeout
+      debounceTimeout = setTimeout(() => {
+        saveUserSettingsToBackend(user.settings);
+      }, DEBOUNCE_TIME_IN_SECS * 1000); // 500ms debounce delay
+    }
+
+    // Clean up the timeout on unmount
+    return () => {
+      clearTimeout(debounceTimeout);
+    };
   }, [user]);
 
   useEffect(

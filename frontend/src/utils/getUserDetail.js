@@ -4,6 +4,7 @@ import { defaultUserIcon } from "../assets/icons";
 const apiUrl = process.env.REACT_APP_BACKEND_URL;
 
 const getUserDetail = async () => {
+  console.log("Get User details");
   try {
     const authToken = localStorage.getItem("authToken");
     const response = await axios.get(`${apiUrl}api/v1/dj-rest-auth/user/`, {
@@ -11,9 +12,25 @@ const getUserDetail = async () => {
         Authorization: `Token ${authToken}`,
       },
     });
-    const { email, first_name, last_name, pin, user_tag, settings, avatar } =
-      response.data;
+
+    console.log("Response data:", response.data);
+
+    // Check if the settings field is a valid JSON string
+    console.log("Settings:", response.data.settings);
+
+    const {
+      pk,
+      email,
+      first_name,
+      last_name,
+      pin,
+      user_tag,
+      avatar,
+      settings,
+    } = response.data;
+
     return {
+      pk,
       email,
       name: first_name,
       lastName: last_name,

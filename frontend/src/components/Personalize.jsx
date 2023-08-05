@@ -1,4 +1,4 @@
-import "../assets/styles/personalizeMenu.css";
+import styles from "../assets/styles/personalizeMenu.module.css";
 import {
   wallpaperOne,
   wallpaperTwo,
@@ -41,11 +41,11 @@ const Personalize = ({ lang, user, changeUser }) => {
   };
 
   return (
-    <div className="personalize-menu">
-      <div className="personalize-window__wallpaper">
+    <div className={styles.personalize}>
+      <div className={styles.wallpaperSection}>
         <p>{lang.wallpaper}</p>
         <img src={user.settings.wallpaper} alt={`${lang.wallpaper}`} />
-        <div className="personalize-window__wallpaper__list">
+        <div className={styles.wallpaperList}>
           <img
             src={wallpaperOne}
             alt={`${lang.wallpaper} 1`}
@@ -89,9 +89,9 @@ const Personalize = ({ lang, user, changeUser }) => {
         </div>
       </div>
 
-      <div className="personalize-window__main-color">
+      <div className={styles.mainColorSection}>
         <p>{lang.mainColor}</p>
-        <div className="personalize-window__main-color__list">
+        <div className={styles.mainColorList}>
           <button
             style={{ backgroundColor: "#1c2326" }}
             onClick={handleThemeBgColorChange}
@@ -127,10 +127,10 @@ const Personalize = ({ lang, user, changeUser }) => {
         </div>
       </div>
 
-      <div className="personalize-window__font-color">
+      <div className={styles.fontColorSection}>
         <p>{lang.fontColor}</p>
 
-        <div className="personalize-window__font-color__list">
+        <div className={styles.fontColorList}>
           <button
             style={{ color: "#ffffff" }}
             onClick={handleThemeFontColorChange}
@@ -181,7 +181,7 @@ const Personalize = ({ lang, user, changeUser }) => {
           </button>
         </div>
       </div>
-      <div className="personalize-window__buttons">
+      <div className={styles.buttons}>
         <button
           onClick={() => {
             changeUser((oldVal) => ({

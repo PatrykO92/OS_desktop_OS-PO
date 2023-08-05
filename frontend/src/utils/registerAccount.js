@@ -14,6 +14,7 @@ const registerAccount = async (
   userTag,
   avatarFile
 ) => {
+  console.log("Register account");
   const formData = new FormData();
   formData.append("email", email);
   formData.append("password1", password1);
@@ -26,6 +27,7 @@ const registerAccount = async (
   formData.append("settings", JSON.stringify(defaultSettings));
 
   try {
+    console.log(formData);
     const response = await axios.post(
       `${apiUrl}api/v1/dj-rest-auth/registration/`,
       formData
