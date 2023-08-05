@@ -58,3 +58,14 @@ class CustomUserDetailsSerializer(UserDetailsSerializer):
 
 class CheckEmailSerializer(serializers.Serializer):
     email = serializers.EmailField()
+
+
+class CustomUserSettingsUpdateSerializer(serializers.Serializer):
+    settings = serializers.JSONField()
+
+    def update(self, instance, validated_data):
+        print("Received data:", validated_data)
+        instance.settings = validated_data.get("settings", instance.settings)
+        instance.save()
+        print("Instance settings after update:", instance.settings)
+        return instance
