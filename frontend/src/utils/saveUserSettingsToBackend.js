@@ -3,8 +3,7 @@ import axios from "axios";
 const apiUrl = process.env.REACT_APP_BACKEND_URL;
 
 const saveUserSettingsToBackend = async (userSettings) => {
-  console.log("Save user to backend");
-  console.log(userSettings);
+  console.log("Save user settings to backend");
   try {
     const authToken = localStorage.getItem("authToken");
     await axios.patch(

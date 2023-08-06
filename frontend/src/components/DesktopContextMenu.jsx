@@ -1,4 +1,4 @@
-import "../assets/styles/desktopContextMenu.css";
+import styles from "../assets/styles/desktopContextMenu.module.css";
 import {
   brushIcon,
   desktopIcon,
@@ -46,7 +46,7 @@ const DesktopContextMenu = ({
       unmountOnExit
     >
       <div
-        id="desktop-context-menu"
+        className={styles.contextMenu}
         style={{
           top: position.y,
           left: position.x,
@@ -73,11 +73,11 @@ const DesktopContextMenu = ({
 
         <CSSTransition
           in={showView}
-          timeout={300}
+          timeout={200}
           classNames="desktop-context"
           unmountOnExit
         >
-          <div className="desktop-contex-menu__view">
+          <div className={styles.menuView}>
             <button onClick={() => updateIconSize("5rem")}>
               <p>{lang.iconsSmall}</p>
             </button>
@@ -103,9 +103,9 @@ const DesktopContextMenu = ({
         </button>
         <button
           onClick={() => {
-            wholeScreenRef.current.classList.add("refresh-screen");
+            wholeScreenRef.current.classList.add(styles.refreshScreen);
             setTimeout(() => {
-              wholeScreenRef.current.classList.remove("refresh-screen");
+              wholeScreenRef.current.classList.remove(styles.refreshScreen);
             }, 50);
           }}
         >

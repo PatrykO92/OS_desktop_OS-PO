@@ -13,11 +13,6 @@ const getUserDetail = async () => {
       },
     });
 
-    console.log("Response data:", response.data);
-
-    // Check if the settings field is a valid JSON string
-    console.log("Settings:", response.data.settings);
-
     const {
       pk,
       email,

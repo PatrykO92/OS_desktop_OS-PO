@@ -1,4 +1,4 @@
-#desktop-context-menu {
+.contextMenu {
   z-index: 2;
   position: absolute;
   width: 10rem;
@@ -13,7 +13,7 @@
   border: 1px solid var(--hover-main);
 }
 
-#desktop-context-menu button {
+.contextMenu button {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -25,50 +25,25 @@
   padding: 0.3rem;
 }
 
-#desktop-context-menu button:hover {
+.contextMenu button:hover {
   background-color: var(--hover-main);
 }
 
-#desktop-context-menu button img {
+.contextMenu button img {
   width: 0.9rem;
   filter: invert(100%);
 }
 
-.desktop-contex-menu__view {
+.menuView {
   display: flex;
   flex-direction: column;
   margin-left: 1rem;
 }
 
-.desktop-contex-menu__view > button > p {
+.menuView > button > p {
   font-size: 0.7rem;
 }
 
-.desktop-context-appear {
+.refreshScreen {
   opacity: 0;
-  transform: scale(0);
-}
-
-.desktop-context-appear-active {
-  opacity: 1;
-  transform: scale(1);
-  transition: 1s all;
-}
-
-.desktop-context-enter {
-  transform: scale(0);
-}
-
-.desktop-context-enter-active {
-  transform: scale(1);
-  transition: transform 0.3s;
-}
-
-.desktop-context-exit {
-  transform: scale(1);
-}
-
-.desktop-context-exit-active {
-  transform: scale(0);
-  transition: transform 0.3s;
 }

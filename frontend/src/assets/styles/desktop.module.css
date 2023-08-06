@@ -10,7 +10,7 @@
   background-size: cover;
 }
 
-.desktop_icon {
+.icon {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -25,16 +25,16 @@
   color: var(--theme-font);
 }
 
-.desktop_icon img {
+.icon img {
   filter: invert(100%);
   max-height: 50%;
 }
 
-.desktop_icon p {
+.icon p {
   font-size: 0.8rem;
   text-shadow: 2px 2px 3px black;
 }
 
-.desktop_icon:hover {
+.icon:hover {
   background-color: var(--hover-main);
 }

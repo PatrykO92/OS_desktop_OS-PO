@@ -95,7 +95,7 @@ const WorkScreen = () => {
 
   const handleDesktopContextMenu = (e, setDesktopContextMenuPosition) => {
     e.preventDefault();
-    if (e.target.className !== "desktop") return;
+    if (e.target.id !== "desktop") return;
     // #desktop-context-menu width value in rem
     const remValueX = 10;
     // #desktop-context-menu height value in rem

@@ -1,0 +1,76 @@
+.fade-appear {
+  opacity: 0;
+}
+
+.fade-appear-active {
+  opacity: 1;
+  transition: opacity 1s;
+}
+
+.fade-enter {
+  opacity: 0;
+}
+
+.fade-enter-active {
+  opacity: 1;
+  transition: opacity 1s;
+}
+
+.fade-exit {
+  opacity: 1;
+}
+
+.fade-exit-active {
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+.fade-enter-done {
+  opacity: 1;
+}
+
+.fade-exit-done {
+  opacity: 0;
+}
+
+.slide-appear {
+  transform: translateY(100vh) scale(0);
+}
+
+.slide-appear-active {
+  transform: translateY(0) scale(1);
+  transition: all 0.9s;
+}
+
+.desktop-context-appear {
+  opacity: 0;
+  transform: scale(0);
+}
+
+.desktop-context-appear-active {
+  opacity: 1;
+  transform: scale(1);
+  transition: 0.2s all;
+}
+
+.personalize-user-enter {
+  opacity: 0;
+  transform: scale(0);
+}
+
+.personalize-user-enter-active {
+  opacity: 1;
+  transform: scale(1);
+  transition: all 0.2s;
+}
+
+.personalize-user-exit {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.personalize-user-exit-active {
+  opacity: 0;
+  transform: scale(0);
+  transition: all 0.2s;
+}

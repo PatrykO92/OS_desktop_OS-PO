@@ -1,4 +1,4 @@
-import "../assets/styles/desktop.css";
+import styles from "../assets/styles/desktop.module.css";
 
 import "intro.js/introjs.css";
 import "../assets/styles/introjsMyStyling.css";
@@ -26,9 +26,10 @@ const Desktop = () => {
 
   const [stepsEnabled, setStepsEnabled] = useState(true);
 
+  // TODO - REFACTOR
   const steps = [
     {
-      element: ".desktop_icon",
+      element: ".desktop",
       intro: lang.step1,
     },
     {
@@ -46,7 +47,8 @@ const Desktop = () => {
 
   return (
     <div
-      className="desktop"
+      id="desktop"
+      className={styles.desktop}
       style={{ backgroundImage: `url(${user?.settings.wallpaper})` }}
     >
       <Steps
@@ -68,7 +70,7 @@ const Desktop = () => {
           handleStateToDoApp("hidden", false);
           handleStateToDoApp("programEnabled", true);
         }}
-        className="desktop_icon"
+        className={styles.icon}
       >
         <img src={toDoApp.icon} alt={toDoApp.name} />
         <p>{toDoApp.name}</p>
@@ -79,7 +81,7 @@ const Desktop = () => {
           handleStateWebBrowser("hidden", false);
           handleStateWebBrowser("programEnabled", true);
         }}
-        className="desktop_icon"
+        className={styles.icon}
       >
         <img src={webBrowser.icon} alt={webBrowser.name} />
         <p>{webBrowser.name}</p>
@@ -90,7 +92,7 @@ const Desktop = () => {
           handleStateCalculator("hidden", false);
           handleStateCalculator("programEnabled", true);
         }}
-        className="desktop_icon"
+        className={styles.icon}
       >
         <img src={calculator.icon} alt={calculator.name} />
         <p>{calculator.name}</p>
@@ -101,7 +103,7 @@ const Desktop = () => {
           handleStateTetris("hidden", false);
           handleStateTetris("programEnabled", true);
         }}
-        className="desktop_icon"
+        className={styles.icon}
       >
         <img src={tetris.icon} alt={tetris.name} />
         <p>{tetris.name}</p>
@@ -111,7 +113,7 @@ const Desktop = () => {
           handleStateCalendarApp("hidden", false);
           handleStateCalendarApp("programEnabled", true);
         }}
-        className="desktop_icon"
+        className={styles.icon}
       >
         <img src={calendarApp.icon} alt={calendarApp.name} />
         <p>{calendarApp.name}</p>

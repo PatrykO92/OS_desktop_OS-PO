@@ -1,4 +1,4 @@
-import "../assets/styles/programContainer.css";
+import styles from "../assets/styles/programContainer.module.css";
 import { windowMinimizeIcon, xmarkIcon } from "../assets/icons";
 
 import { CSSTransition } from "react-transition-group";
@@ -15,18 +15,16 @@ const ProgramContainer = ({
   return (
     <CSSTransition in={true} appear={true} timeout={500} classNames="fade">
       <div
-        className={
-          programHidden
-            ? "program-container program-container_hidden"
-            : "program-container"
-        }
+        className={`${styles.container}
+          ${programHidden && styles.hidden}
+        `}
       >
-        <div className="program-container_title-bar">
-          <div className="program-container_title-bar_program-name">
-            <img src={programIcon} alt="placeholder to remove" />
+        <div className={styles.titleBar}>
+          <div className={styles.programName}>
+            <img src={programIcon} alt={programName} />
             <p>{programName}</p>
           </div>
-          <div className="program-container_title-bar_buttons">
+          <div className={styles.barButtons}>
             <button
               onClick={() => {
                 handleProgramState("hidden", true);
@@ -43,7 +41,7 @@ const ProgramContainer = ({
             </button>
           </div>
         </div>
-        <div className="program-container_main-window">{children}</div>
+        <div className={styles.mainWindow}>{children}</div>
       </div>
     </CSSTransition>
   );

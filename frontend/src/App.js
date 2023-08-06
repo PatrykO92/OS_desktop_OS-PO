@@ -9,8 +9,12 @@ import {
 } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 
+// Assets for CSSTransition package
+import "./assets/styles/cssTransitions.css";
+
 // Assets
 import "./assets/styles/main.css";
+
 import {
   toDoAppIcon,
   webBrowserIcon,

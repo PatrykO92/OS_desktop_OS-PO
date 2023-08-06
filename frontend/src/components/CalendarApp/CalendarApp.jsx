@@ -3,7 +3,7 @@ import { useContext, useState } from "react";
 import ColorRadioButton from "./components/ColorRadioButton";
 import IconRadioButton from "./components/IconRadioButton";
 
-import "../../assets/styles/calendarApp.css";
+import styles from "../../assets/styles/calendarApp.module.css";
 
 import { WholeAppContext } from "../../App";
 
@@ -121,7 +121,7 @@ const CalendarApp = () => {
         return (
           <div
             key={dayData.key}
-            className="calendar--app--main__day empty"
+            className={`${styles.day} ${styles.empty}`}
           ></div>
         );
       } else {
@@ -131,12 +131,13 @@ const CalendarApp = () => {
         return (
           <div
             key={dayData.key}
-            className={`calendar--app--main__day ${
-              dayData.isActive ? "active--day" : ""
+            className={`${styles.day} ${
+              dayData.isActive ? styles.activeDay : ""
             }`}
             onClick={(e) => {
               // guard, to prevent event propagation
-              if (e.target.closest("div")?.className === "list--item") return;
+              if (e.target.closest("div")?.className === styles.listItem)
+                return;
 
               setCurrentTask(null);
               setShowAddTask(true);
@@ -152,11 +153,11 @@ const CalendarApp = () => {
             }}
           >
             <p>{dayData.day}</p>
-            <div className="calendar--app--main__day__tasks--list">
+            <div className={styles.taskList}>
               {/* Render Task List */}
               {dayData.list?.map((item, index) => (
                 <div
-                  className="list--item"
+                  className={styles.listItem}
                   onClick={() => {
                     setShowAddTask(false);
                     setCurrentTask(item);
@@ -176,7 +177,7 @@ const CalendarApp = () => {
   };
 
   return (
-    <div className="calendar--app">
+    <div className={styles.app}>
       <header>
         <p>Today: {today.toLocaleDateString(lang.lng)}</p>
       </header>
@@ -200,7 +201,7 @@ const CalendarApp = () => {
         {showAddTask && (
           <form
             style={{ borderColor: formColor }}
-            className="calendar--app--task"
+            className={styles.task}
             onSubmit={(e) => {
               e.preventDefault();
 
@@ -238,7 +239,7 @@ const CalendarApp = () => {
               onChange={(e) => setEndInputValue(e.target.value)}
             />
 
-            <div className="calendar--app--task__icons">
+            <div className={styles.taskIcons}>
               {listOfIcons.map((iconUrl) => (
                 <IconRadioButton
                   onClick={setFormIcon}
@@ -249,7 +250,7 @@ const CalendarApp = () => {
               ))}
             </div>
 
-            <div className="calendar--app--task__color">
+            <div className={styles.taskColors}>
               {listOfColors.map((color, index) => (
                 <ColorRadioButton
                   color={color}
@@ -281,10 +282,10 @@ const CalendarApp = () => {
 
         {currentTask ? (
           <div
-            className="calendar--app--current"
+            className={styles.current}
             style={{ borderColor: currentTask?.color }}
           >
-            <p className="calendar--app--current__date">
+            <p className={styles.currentDate}>
               <span>
                 {currentTask.startTaskDate.toLocaleDateString(lang.lng)}
               </span>
@@ -299,11 +300,11 @@ const CalendarApp = () => {
                 ""
               )}
             </p>
-            <p className="calendar--app--current__title">
+            <p className={styles.currentTitle}>
               <img src={currentTask.icon} alt="icon" />
               {currentTask?.title}
             </p>
-            <p className="calendar--app--current__description">
+            <p className={styles.currentDescription}>
               {currentTask?.description}
             </p>
             <button
@@ -321,7 +322,7 @@ const CalendarApp = () => {
       </aside>
 
       <main>
-        <div className="calendar--app--main__header">
+        <div className={styles.mainHeader}>
           <p>
             {date.toLocaleDateString(lang.lng, {
               year: "numeric",
@@ -336,12 +337,9 @@ const CalendarApp = () => {
           <button onClick={() => modifyDate("month", 1)}>Next Month</button>
           <button onClick={() => modifyDate("year", 1)}>Next Year</button>
         </div>
-        <div className="calendar--app--main__body">
+        <div className={styles.mainBody}>
           {weekdays.map((day, index) => (
-            <div
-              key={`weekdays${day}+${index}`}
-              className="calendar--app--main__day--name"
-            >
+            <div key={`weekdays${day}+${index}`} className={styles.dayName}>
               {day}
             </div>
           ))}

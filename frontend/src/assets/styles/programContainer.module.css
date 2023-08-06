@@ -1,4 +1,4 @@
-.program-container {
+.container {
   z-index: 5;
   position: fixed;
   bottom: 3rem;
@@ -13,13 +13,13 @@
   transition: all 0.5s;
 }
 
-.program-container_hidden {
+.hidden {
   transform: scale(0);
   width: 0;
   height: 0;
 }
 
-.program-container_title-bar {
+.titleBar {
   height: 2rem;
   display: flex;
   flex-wrap: wrap;
@@ -30,30 +30,30 @@
   border-bottom: 1px solid var(--border-main);
 }
 
-.program-container_title-bar_program-name {
+.programName {
   display: flex;
   align-items: center;
   gap: 0.5rem;
 }
 
-.program-container_title-bar_program-name p {
+.programName p {
   font-size: 0.9rem;
   white-space: nowrap;
 }
 
-.program-container_title-bar_program-name img {
+.programName img {
   max-width: 1rem;
   filter: invert(100%);
 }
 
-.program-container_title-bar_buttons {
+.barButtons {
   display: flex;
   justify-content: flex-end;
   align-items: center;
   gap: 0.5rem;
 }
 
-.program-container_title-bar_buttons button {
+.barButtons button {
   width: 1.3rem;
   background-color: transparent;
   transition: all 0.3s;
@@ -61,15 +61,15 @@
   border-radius: 5px;
 }
 
-.program-container_title-bar_buttons button > img {
+.barButtons button > img {
   filter: invert(100%);
 }
 
-.program-container_title-bar_buttons button:hover {
+.barButtons button:hover {
   background-color: var(--hover-main);
 }
 
-.program-container_main-window {
+.mainWindow {
   height: calc(100vh - 3rem - 2rem);
   background-color: var(--program-container-background);
 }

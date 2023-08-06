@@ -1,5 +1,5 @@
-.calendar--app {
-  height: 100%;
+.app {
+  min-height: 100%;
   display: grid;
   grid-template-columns: 18rem 1fr;
   grid-template-rows: 3rem 1fr;
@@ -9,36 +9,36 @@
   overflow-y: scroll;
 }
 
-.calendar--app::-webkit-scrollbar,
-.calendar--app *::-webkit-scrollbar {
+.app::-webkit-scrollbar,
+.app *::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 
-.calendar--app::-webkit-scrollbar-track,
-.calendar--app *::-webkit-scrollbar-track {
+.app::-webkit-scrollbar-track,
+.app *::-webkit-scrollbar-track {
   background: var(--hover-main);
   border-radius: 5px;
 }
 
-.calendar--app::-webkit-scrollbar-thumb,
-.calendar--app *::-webkit-scrollbar-thumb {
+.app::-webkit-scrollbar-thumb,
+.app *::-webkit-scrollbar-thumb {
   background: var(--hover-main);
   border-radius: 5px;
 }
 
-.calendar--app::-webkit-scrollbar-thumb:hover,
-.calendar--app *::-webkit-scrollbar-thumb:hover {
+.app::-webkit-scrollbar-thumb:hover,
+.app *::-webkit-scrollbar-thumb:hover {
   background: var(--blue);
 }
 
-.calendar--app img {
+.app img {
   width: 1.2rem;
   height: 1.2rem;
   filter: invert(100%);
 }
 
-.calendar--app button {
+.app button {
   font-size: 0.8rem;
   font-weight: 500;
   padding: 0.3rem 0.4rem 0.4rem;
@@ -50,12 +50,12 @@
   transition: all 0.5s;
 }
 
-.calendar--app button:hover {
+.app button:hover {
   background-color: var(--hover-main);
 }
 
-.calendar--app input,
-.calendar--app textarea {
+.app input,
+.app textarea {
   max-width: 100%;
   padding: 0.3rem 0.4rem 0.4rem;
   background-color: transparent;
@@ -66,34 +66,34 @@
   border-radius: 5px;
 }
 
-.calendar--app input::-webkit-calendar-picker-indicator {
+.app input::-webkit-calendar-picker-indicator {
   filter: invert(1);
 }
 
-.calendar--app header {
+.app header {
   display: flex;
   align-items: center;
 }
 
-.calendar--app header > p {
+.app header > p {
   font-size: 1.5rem;
   font-weight: 700;
 }
 
-.calendar--app aside {
+.app aside {
   grid-row: 2;
   display: flex;
   flex-direction: column;
   gap: 2rem;
 }
 
-.calendar--app aside > ul {
+.app aside > ul {
   display: flex;
   flex-wrap: wrap;
   list-style: none;
 }
 
-.calendar--app main {
+.app main {
   background-color: var(--theme-bg);
   border-radius: 5px;
   min-height: 50rem;
@@ -102,7 +102,7 @@
   flex-direction: column;
 }
 
-.calendar--app--main__header {
+.mainHeader {
   display: flex;
   flex-wrap: wrap;
   gap: 2rem;
@@ -111,18 +111,18 @@
   padding: 10px;
 }
 
-.calendar--app--main__header button {
+.mainHeader button {
   min-width: 6rem;
 }
 
-.calendar--app--main__header p {
+.mainHeader p {
   text-align: center;
   width: 100%;
   font-size: 1.8rem;
   font-weight: 700;
 }
 
-.calendar--app--main__body {
+.mainBody {
   flex: 1;
   display: grid;
   grid-template-columns: repeat(7, 1fr);
@@ -130,7 +130,7 @@
   gap: 2px;
 }
 
-.calendar--app--main__day--name {
+.dayName {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -139,7 +139,7 @@
   background-color: var(--hover-main);
 }
 
-.calendar--app--main__day {
+.day {
   max-height: 100%;
   display: flex;
   flex-direction: column;
@@ -148,48 +148,48 @@
   border: 1px solid var(--border-main);
 }
 
-.calendar--app--main__day > p {
+.day > p {
   text-align: center;
   font-size: 0.8rem;
   font-weight: 500;
   background-color: var(--hover-main);
 }
 
-.calendar--app--main__day.active--day {
+.day.activeDay {
   border: 1px solid var(--blue);
   outline: 2px solid var(--blue);
 }
 
-.calendar--app--main__day:hover {
+.day:hover {
   border: 1px solid var(--blue);
   outline: 2px solid var(--blue);
 }
 
-.calendar--app--main__day.empty {
+.day.empty {
   border: none;
 }
 
-.calendar--app--main__day.empty:hover {
+.day.empty:hover {
   border: none;
   outline: none;
 }
 
-.calendar--app--main__day__tasks--list {
+.taskList {
   display: flex;
   gap: 0.2rem;
   flex-direction: column;
   overflow-y: scroll;
 }
 
-.calendar--app--main__day__tasks--list .list--item:hover {
+.taskList .listItem:hover {
   background-color: var(--hover-main);
 }
 
-.calendar--app--main__day__tasks--list::-webkit-scrollbar {
+.taskList::-webkit-scrollbar {
   display: none;
 }
 
-.calendar--app--main__day__tasks--list > div {
+.taskList > div {
   border: 1px solid;
   padding: 2px 4px 4px;
   border-radius: 5px;
@@ -198,8 +198,8 @@
   gap: 1rem;
 }
 
-.calendar--app--task,
-.calendar--app--current {
+.task,
+.current {
   padding: 0.9rem;
   border-radius: 5px;
   display: flex;
@@ -208,24 +208,24 @@
   border: 2px solid;
 }
 
-.calendar--app--task input {
+.task input {
   margin-bottom: 1rem;
 }
 
-.calendar--app--task > textarea {
+.task > textarea {
   resize: none;
   min-height: 10rem;
 }
 
-.calendar--app--task__icons,
-.calendar--app--task__color {
+.taskIcons,
+.taskColors {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 }
 
-.calendar--app--task__icons > label,
-.calendar--app--task__color > label {
+.taskIcons > label,
+.taskColors > label {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -234,16 +234,16 @@
   border-radius: 5px;
 }
 
-.calendar--app--task__color > button:hover {
+.taskColors > button:hover {
   outline: 1px solid var(--blue);
 }
 
-.calendar--app--current__date {
+.currentDate {
   font-size: 1.2rem;
   font-weight: 500;
 }
 
-.calendar--app--current__title {
+.currentTitle {
   font-size: 1.5rem;
   font-weight: 500;
   display: flex;
@@ -251,7 +251,7 @@
   gap: 0.5rem;
 }
 
-.calendar--app--current__description {
+.currentDescription {
   border: 1px solid var(--border-main);
   border-radius: 5px;
   padding: 0.2rem;

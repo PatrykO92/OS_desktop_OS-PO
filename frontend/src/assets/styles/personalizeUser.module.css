@@ -1,0 +1,114 @@
+.window {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.window button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--theme-bg);
+  padding: 0.5rem;
+  border-radius: 5px;
+  font-weight: 600;
+  color: var(--theme-font);
+}
+
+.window button:hover {
+  outline: 1px solid var(--blue);
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--theme-bg);
+  border-radius: 5px;
+  border: 2px solid var(--border-main);
+  color: var(--red);
+  font-weight: 600;
+  font-size: 1.4rem;
+  padding: 1rem;
+}
+
+.window > .avatar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.avatar > img {
+  margin-top: 1rem;
+  border-radius: 50%;
+  height: 12rem;
+  width: 12rem;
+}
+
+.avatar > p {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.avatar > span {
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+.menu {
+  display: flex;
+  gap: 1rem;
+}
+
+.avatarList {
+  max-width: 38rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.avatarList input {
+  display: none;
+}
+
+.avatarList img {
+  max-width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+}
+
+.avatarList label:hover {
+  border-radius: 50%;
+  outline: 2px solid var(--blue);
+}
+
+.pin,
+.name > form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.name > form > button {
+  margin-top: 1rem;
+}
+
+.name p > input,
+.pin input {
+  margin: 0.4rem 0 0 0;
+  min-width: 100%;
+  padding: 0.3rem;
+  border-radius: 5px;
+  background-color: var(--theme-bg);
+  color: var(--theme-font);
+}
+
+.name p > label,
+.pin label {
+  font-weight: 600;
+}

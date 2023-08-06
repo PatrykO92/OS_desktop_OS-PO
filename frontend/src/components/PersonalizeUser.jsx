@@ -1,4 +1,4 @@
-import "../assets/styles/personalizeUser.css";
+import styles from "../assets/styles/personalizeUser.module.css";
 
 import { defaultUserIcon } from "../assets/icons";
 
@@ -34,13 +34,13 @@ const PersonalizeUser = ({ user, changeUser, lang }) => {
   };
 
   return (
-    <div id="personalize-user">
+    <div id="personalize-user" className={styles.window}>
       {showModal.modal && (
-        <div className="personalize-user__modal">
+        <div className={styles.modal}>
           <span style={{ color: modalColorFont }}>{showModal.msg}</span>
         </div>
       )}
-      <div className="personalize-user__avatar">
+      <div className={styles.avatar}>
         <img src={user.avatar} alt={lang.yourAvatar} />
         <p>
           <span>{user.name} </span>
@@ -49,7 +49,7 @@ const PersonalizeUser = ({ user, changeUser, lang }) => {
         <span>({user.userTag})</span>
       </div>
 
-      <div className="personalize-user__buttons">
+      <div className={styles.menu}>
         <button
           onClick={() => {
             setShowAvatarList(false);
@@ -93,7 +93,8 @@ const PersonalizeUser = ({ user, changeUser, lang }) => {
         timeout={200}
         unmountOnExit
       >
-        <div className="personalize-user__avatar-list">
+        <div className={styles.avatarList}>
+          <img src={defaultUserIcon} alt="default" />
           <input
             type="radio"
             id="avatar1"
@@ -111,7 +112,7 @@ const PersonalizeUser = ({ user, changeUser, lang }) => {
         unmountOnExit
       >
         <form
-          className="personalize-user__pin"
+          className={styles.pin}
           onSubmit={(e) => {
             e.preventDefault();
 
@@ -191,7 +192,7 @@ const PersonalizeUser = ({ user, changeUser, lang }) => {
         timeout={200}
         unmountOnExit
       >
-        <div className="personalize-user__name">
+        <div className={styles.name}>
           <form
             onSubmit={(e) => {
               e.preventDefault();
@@ -224,7 +225,7 @@ const PersonalizeUser = ({ user, changeUser, lang }) => {
             </p>
 
             <p>
-              <label htmlFor="ser_last_name">{lang.lastName}:</label>
+              <label htmlFor="user_last_name">{lang.lastName}:</label>
               <input
                 id="user_last_name"
                 type="text"
