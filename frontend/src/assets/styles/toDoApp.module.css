@@ -1,4 +1,4 @@
-.todo-app {
+.todoApp {
   padding: 1rem;
   display: flex;
   flex-direction: column;
@@ -9,23 +9,23 @@
   font-weight: 500;
 }
 
-.todo-app button {
+.todoApp button {
   border-radius: 5px;
   padding: 0.2rem;
   background-color: transparent;
   transition: all 0.3s;
 }
 
-.todo-app button:hover {
+.todoApp button:hover {
   background-color: var(--hover-main);
 }
 
-.todo-app img {
+.todoApp img {
   height: 1.5rem;
   filter: invert(100%);
 }
 
-.todo-app__navigation form {
+.navigation form {
   padding: 0.5rem;
   display: flex;
   gap: 0.5rem;
@@ -33,12 +33,12 @@
   background-color: var(--theme-bg);
 }
 
-.todo-app__navigation form > input {
+.navigation form > input {
   padding: 0.4rem;
   border-radius: 5px;
 }
 
-.todo-app__item-added {
+.itemAdded {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -49,7 +49,7 @@
   background-color: var(--theme-bg);
 }
 
-.todo-app__list-container {
+.listContainer {
   border-radius: 5px;
   background-color: var(--theme-bg);
   padding: 1rem;
@@ -57,7 +57,7 @@
   max-height: 40rem;
 }
 
-.todo-app__list {
+.list {
   max-height: 100%;
   overflow-y: scroll;
   min-width: 25rem;
@@ -66,21 +66,21 @@
   gap: 0.7rem;
 }
 
-.todo-app__list::-webkit-scrollbar {
+.list::-webkit-scrollbar {
   width: 5px;
 }
 
-.todo-app__list::-webkit-scrollbar-track {
+.list::-webkit-scrollbar-track {
   background: var(--border-main);
   border-radius: 5px;
 }
 
-.todo-app__list::-webkit-scrollbar-thumb {
+.list::-webkit-scrollbar-thumb {
   background: var(--theme-font);
   border-radius: 5px;
 }
 
-.todo-app__one-todo {
+.oneItem {
   margin: 0 1rem;
   padding: 0.2rem;
   display: flex;
@@ -90,7 +90,7 @@
   border-bottom: 1px solid var(--hover-main);
 }
 
-.todo-app__one-todo > div {
+.oneItem > div {
   display: flex;
   align-items: center;
   gap: 1rem;

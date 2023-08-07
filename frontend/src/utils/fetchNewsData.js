@@ -1,26 +1,13 @@
-import axios from "axios";
-
-const apiUrl = process.env.REACT_APP_BACKEND_URL;
+import axiosInstance from "./axiosInstance";
 
 const fetchNewsData = async (country, category) => {
-  const token = localStorage.getItem("authToken");
-  const config = {
-    headers: {
-      Authorization: `Token ${token}`,
-    },
-  };
-
   try {
     const requestData = {
       country,
       category,
     };
 
-    const response = await axios.post(
-      `${apiUrl}api/v1/news/`,
-      requestData,
-      config
-    );
+    const response = await axiosInstance.post("/api/v1/news/", requestData);
     return response;
   } catch (err) {
     throw new Error(err);

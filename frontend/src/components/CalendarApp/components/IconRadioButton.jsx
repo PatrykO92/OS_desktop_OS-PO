@@ -1,4 +1,9 @@
-export default function IconRadioButton({ onClick, iconUrl, activeIcon }) {
+export default function IconRadioButton({
+  onChange,
+  iconUrl,
+  activeIcon,
+  defaultChecked,
+}) {
   return (
     <>
       <label
@@ -12,12 +17,13 @@ export default function IconRadioButton({ onClick, iconUrl, activeIcon }) {
       </label>
       <input
         hidden
+        defaultChecked={defaultChecked}
         id={iconUrl}
         type="radio"
         name="icon"
         value={iconUrl}
-        onClick={() => {
-          onClick(iconUrl);
+        onChange={() => {
+          onChange(iconUrl);
         }}
       />
     </>

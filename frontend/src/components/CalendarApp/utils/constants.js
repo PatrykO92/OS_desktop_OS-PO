@@ -19,13 +19,13 @@ export const listOfIcons = [
 ];
 
 export const listOfColors = [
+  "white",
   "red",
   "blue",
   "green",
   "yellow",
   "pink",
   "orange",
-  "white",
 ];
 
 export const weekdays = [

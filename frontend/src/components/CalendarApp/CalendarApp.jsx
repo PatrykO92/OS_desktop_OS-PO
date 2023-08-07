@@ -9,6 +9,8 @@ import { WholeAppContext } from "../../App";
 
 import { weekdays, listOfColors, listOfIcons } from "./utils/constants";
 
+import { commentsIcon } from "../../assets/icons/calendarAppFormIcons";
+
 //for testing
 const tasksToDo = [];
 
@@ -29,8 +31,8 @@ const CalendarApp = () => {
 
   const [startInputValue, setStartInputValue] = useState("");
   const [endInputValue, setEndInputValue] = useState("");
-  const [formIcon, setFormIcon] = useState("");
-  const [formColor, setFormColor] = useState("");
+  const [formIcon, setFormIcon] = useState(commentsIcon);
+  const [formColor, setFormColor] = useState("white");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
@@ -240,9 +242,10 @@ const CalendarApp = () => {
             />
 
             <div className={styles.taskIcons}>
-              {listOfIcons.map((iconUrl) => (
+              {listOfIcons.map((iconUrl, index) => (
                 <IconRadioButton
-                  onClick={setFormIcon}
+                  defaultChecked={index === 0}
+                  onChange={setFormIcon}
                   activeIcon={formIcon}
                   iconUrl={iconUrl}
                   key={iconUrl}
@@ -253,8 +256,9 @@ const CalendarApp = () => {
             <div className={styles.taskColors}>
               {listOfColors.map((color, index) => (
                 <ColorRadioButton
+                  defaultChecked={index === 0}
                   color={color}
-                  onClick={setFormColor}
+                  onChange={setFormColor}
                   activeColor={formColor}
                   key={`${index}-${color}`}
                 />

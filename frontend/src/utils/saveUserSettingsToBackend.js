@@ -1,19 +1,11 @@
-import axios from "axios";
-
-const apiUrl = process.env.REACT_APP_BACKEND_URL;
+import axiosInstance from "./axiosInstance";
 
 const saveUserSettingsToBackend = async (userSettings) => {
   console.log("Save user settings to backend");
   try {
-    const authToken = localStorage.getItem("authToken");
-    await axios.patch(
-      `${apiUrl}api/v1/account/update_settings`,
-      { settings: userSettings }, // Pass the settings object as the second argument
-      {
-        headers: {
-          Authorization: `Token ${authToken}`,
-        },
-      }
+    await axiosInstance.patch(
+      `/api/v1/account/update_settings`,
+      { settings: userSettings } // Pass the settings object as the second argument
     );
   } catch (error) {
     throw new Error(error.message);

@@ -2,6 +2,7 @@ const textModel = {
   en: {
     accept: "Accept",
     add: "Add",
+    added: "Added",
     alreadyAccount: "Already have an account",
     alreadyRegistered: "Account with that email, already exists",
     areYouSure: "Are you sure?",
@@ -128,6 +129,7 @@ const textModel = {
   pl: {
     accept: "Akceptuj",
     add: "Dodaj",
+    added: "Dodano",
     areYouSure: "Jesteś pewny?",
     alreadyAccount: "Mam już konto",
     alreadyRegistered: "Konto z tym emailem, już istnieje",

@@ -1,4 +1,9 @@
-export default function ColorRadioButton({ onClick, color, activeColor }) {
+export default function ColorRadioButton({
+  onChange,
+  color,
+  activeColor,
+  defaultChecked,
+}) {
   return (
     <>
       <label
@@ -10,13 +15,14 @@ export default function ColorRadioButton({ onClick, color, activeColor }) {
         }}
       ></label>
       <input
+        defaultChecked={defaultChecked}
         id={`${color}RadioButton`}
         hidden
         type="radio"
         name="color"
-        value={"color"}
-        onClick={() => {
-          onClick(color);
+        value={color}
+        onChange={() => {
+          onChange(color);
         }}
       />
     </>

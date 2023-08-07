@@ -1,6 +1,4 @@
-// TODO: change all handlers to event delegation
-
-import "../assets/styles/toDoApp.css";
+import styles from "../assets/styles/toDoApp.module.css";
 import {
   checkIcon,
   uncheckIcon,
@@ -76,7 +74,7 @@ const ToDoApp = ({ lang, user }) => {
   // function to render one item from toDoList
   const renderOneToDo = (item) => {
     return (
-      <div className="todo-app__one-todo" key={item.toDoID} id={item.toDoID}>
+      <div className={styles.oneItem} key={item.toDoID} id={item.toDoID}>
         <p
           style={{
             textDecoration: `${item.toDoStatus ? "line-through" : ""}`,
@@ -102,8 +100,8 @@ const ToDoApp = ({ lang, user }) => {
   };
 
   return (
-    <div className="todo-app">
-      <div className="todo-app__navigation">
+    <div className={styles.todoApp}>
+      <div className={styles.navigation}>
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -126,8 +124,8 @@ const ToDoApp = ({ lang, user }) => {
         </form>
       </div>
       {toDoList.length >= 1 ? (
-        <div className="todo-app__list-container">
-          <div className="todo-app__list">
+        <div className={styles.listContainer}>
+          <div className={styles.list}>
             {toDoList.map((item) => renderOneToDo(item))}
           </div>
         </div>
@@ -135,7 +133,7 @@ const ToDoApp = ({ lang, user }) => {
         <div></div>
       )}
 
-      {showMsg && <div className="todo-app__item-added">Item added</div>}
+      {showMsg && <div className={styles.itemAdded}>{lang.added}</div>}
     </div>
   );
 };

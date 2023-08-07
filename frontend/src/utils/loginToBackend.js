@@ -4,7 +4,7 @@ const apiUrl = process.env.REACT_APP_BACKEND_URL;
 
 const loginToBackend = async (email, password) =>
   axios
-    .post(`${apiUrl}api/v1/dj-rest-auth/login/`, {
+    .post(`${apiUrl}/api/v1/dj-rest-auth/login/`, {
       email,
       password,
     })

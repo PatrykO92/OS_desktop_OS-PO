@@ -1,20 +1,12 @@
-import axios from "axios";
-
-const apiUrl = process.env.REACT_APP_BACKEND_URL;
+import axiosInstance from "./axiosInstance";
 
 const addTetrisScore = async (userTag, score) => {
-  const token = localStorage.getItem("authToken");
-  const config = {
-    headers: {
-      Authorization: `Token ${token}`,
-    },
-  };
   const data = {
     game_tag: userTag,
     score: score,
   };
   try {
-    await axios.post(`${apiUrl}api/v1/tetris/`, data, config);
+    await axiosInstance.post(`/api/v1/tetris/`, data);
   } catch (error) {
     console.error("Problem with server");
   }

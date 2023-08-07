@@ -1,8 +1,6 @@
-import axios from "axios";
+import axiosInstance from "./axiosInstance";
 
 import { defaultSettings } from ".";
-
-const apiUrl = process.env.REACT_APP_BACKEND_URL;
 
 const registerAccount = async (
   email,
@@ -27,9 +25,8 @@ const registerAccount = async (
   formData.append("settings", JSON.stringify(defaultSettings));
 
   try {
-    console.log(formData);
-    const response = await axios.post(
-      `${apiUrl}api/v1/dj-rest-auth/registration/`,
+    const response = await axiosInstance.post(
+      `/api/v1/dj-rest-auth/registration/`,
       formData
     );
     return response;

@@ -1,17 +1,10 @@
-import axios from "axios";
+import axiosInstance from "./axiosInstance";
 import { defaultUserIcon } from "../assets/icons";
-
-const apiUrl = process.env.REACT_APP_BACKEND_URL;
 
 const getUserDetail = async () => {
   console.log("Get User details");
   try {
-    const authToken = localStorage.getItem("authToken");
-    const response = await axios.get(`${apiUrl}api/v1/dj-rest-auth/user/`, {
-      headers: {
-        Authorization: `Token ${authToken}`,
-      },
-    });
+    const response = await axiosInstance.get(`/api/v1/dj-rest-auth/user/`);
 
     const {
       pk,
