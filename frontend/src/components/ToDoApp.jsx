@@ -1,4 +1,6 @@
 import styles from "../assets/styles/toDoApp.module.css";
+import axiosIntance from "../utils/axiosInstance";
+
 import {
   checkIcon,
   uncheckIcon,
@@ -6,92 +8,102 @@ import {
   plusCircleIcon,
 } from "../assets/icons";
 
-import { useState, useEffect } from "react";
-import { v4 as uuidv4 } from "uuid";
+import { WholeAppContext } from "../App";
+import { useState, useEffect, useContext } from "react";
 
-const ToDoApp = ({ lang, user }) => {
+const ToDoApp = () => {
+  const { user, lang } = useContext(WholeAppContext);
+
   // input value
   const [inputValue, setInputValue] = useState("");
 
   // show/hide item added
   const [showMsg, setShowMsg] = useState(false);
-
-  //list of things "to do"
   const [toDoList, setToDoList] = useState([]);
 
-  // import toDoList from local storage, if available, at start of the component
   useEffect(() => {
-    const savedToDoList = localStorage.getItem(`toDoList${user.userTag}`);
-    if (savedToDoList) {
-      setToDoList(JSON.parse(savedToDoList));
+    const fetchToDoList = async () => {
+      try {
+        const response = await axiosIntance.get("/api/v1/todos/");
+        console.log(response.data);
+        setToDoList(response.data);
+      } catch (error) {
+        console.error("Error fetching to-do list:", error);
+      }
+    };
+    fetchToDoList();
+  }, []);
+
+  const addToDoList = async (text) => {
+    try {
+      const response = await axiosIntance.post("/api/v1/todos/", {
+        task: text,
+        done: false,
+        user: user.pk,
+      });
+      setToDoList([response.data, ...toDoList]);
+      setShowMsg(true);
+      setInputValue("");
+
+      setTimeout(() => {
+        setShowMsg(false);
+      }, 700);
+    } catch (error) {
+      console.log(error);
+      console.error("Error adding to-do item:", error);
     }
-  }, [user]);
-
-  // save toDoList to local storage, each time new item is added to toDoList
-  useEffect(() => {
-    localStorage.setItem(`toDoList${user.userTag}`, JSON.stringify(toDoList));
-  }, [user, toDoList]);
-
-  // add things to toDoList, using uuid library to generate a random ID for each toDo task
-  // toDoStatus describes if things are already finished or still to do
-  // set input value to "", when the thing is added to list
-  const addToDoList = (text) => {
-    setToDoList([
-      {
-        toDoID: uuidv4(),
-        toDoDescription: text,
-        toDoStatus: false,
-      },
-      ...toDoList,
-    ]);
-    setShowMsg(true);
-    setInputValue("");
-
-    setTimeout(() => {
-      setShowMsg(false);
-    }, [700]);
   };
 
   // REMOVE item from toDoList
-  const removeFromToDoList = (id) => {
-    const updatedToDoList = toDoList.filter((item) => item.toDoID !== id);
-    setToDoList(updatedToDoList);
+  const deleteToDoItem = async (id) => {
+    try {
+      await axiosIntance.delete(`/api/v1/todos/${id}/`);
+      const updatedToDoList = toDoList.filter((item) => item.id !== id);
+      setToDoList(updatedToDoList);
+    } catch (error) {
+      console.error(`Error deleting to-do item with ID ${id}:`, error);
+    }
   };
 
-  const changeItemToDoStatus = (id) => {
-    const updatedToDoList = toDoList.map((item) => {
-      if (item.toDoID === id) {
-        return {
-          ...item,
-          toDoStatus: !item.toDoStatus,
-        };
-      }
-      return item;
-    });
-    setToDoList(updatedToDoList);
+  const toggleToDoStatus = async (id, currentStatus) => {
+    try {
+      const updatedStatus = !currentStatus;
+      await axiosIntance.patch(`/api/v1/todos/${id}/`, {
+        done: updatedStatus,
+      });
+      const updatedToDoList = toDoList.map((item) =>
+        item.id === id ? { ...item, done: updatedStatus } : item
+      );
+      setToDoList(updatedToDoList);
+    } catch (error) {
+      console.error(
+        `Error toggling status for to-do item with ID ${id}:`,
+        error
+      );
+    }
   };
 
   // function to render one item from toDoList
   const renderOneToDo = (item) => {
     return (
-      <div className={styles.oneItem} key={item.toDoID} id={item.toDoID}>
+      <div className={styles.oneItem} key={item.id} id={item.toDoID}>
         <p
           style={{
-            textDecoration: `${item.toDoStatus ? "line-through" : ""}`,
-            color: `${item.toDoStatus ? "var(--red)" : ""}`,
+            textDecoration: `${item.done ? "line-through" : ""}`,
+            color: `${item.done ? "var(--red)" : ""}`,
           }}
         >
-          {item.toDoDescription}
+          {item.task}
         </p>
         <div>
-          <button onClick={() => changeItemToDoStatus(item.toDoID)}>
-            {item.toDoStatus ? (
+          <button onClick={() => toggleToDoStatus(item.id, item.done)}>
+            {item.done ? (
               <img src={checkIcon} alt={lang.check} />
             ) : (
               <img src={uncheckIcon} alt={lang.uncheck} />
             )}
           </button>
-          <button onClick={() => removeFromToDoList(item.toDoID)}>
+          <button onClick={() => deleteToDoItem(item.id)}>
             <img src={trashCanIcon} alt={lang.remove} />
           </button>
         </div>
