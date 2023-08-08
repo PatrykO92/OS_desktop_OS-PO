@@ -12,7 +12,7 @@ import { WholeAppContext } from "../App";
 import { useState, useEffect, useContext } from "react";
 
 const ToDoApp = () => {
-  const { user, lang } = useContext(WholeAppContext);
+  const { lang } = useContext(WholeAppContext);
 
   // input value
   const [inputValue, setInputValue] = useState("");
@@ -25,7 +25,6 @@ const ToDoApp = () => {
     const fetchToDoList = async () => {
       try {
         const response = await axiosIntance.get("/api/v1/todos/");
-        console.log(response.data);
         setToDoList(response.data);
       } catch (error) {
         console.error("Error fetching to-do list:", error);
@@ -39,7 +38,6 @@ const ToDoApp = () => {
       const response = await axiosIntance.post("/api/v1/todos/", {
         task: text,
         done: false,
-        user: user.pk,
       });
       setToDoList([response.data, ...toDoList]);
       setShowMsg(true);
