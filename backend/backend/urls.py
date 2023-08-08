@@ -23,6 +23,7 @@ from dj_rest_auth.views import PasswordResetConfirmView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("api/v1/calendar-api/", include("calendar_api.urls")),
     path("api/v1/todos/", include("todos.urls")),
     path("api/v1/news/", include("news_api.urls")),
     path("api/v1/tetris/", include("tetris.urls")),

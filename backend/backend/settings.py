@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     "todos.apps.TodosConfig",
     "news_api.apps.NewsApiConfig",
     "tetris.apps.TetrisConfig",
+    "calendar_api.apps.CalendarApiConfig",
 ]
 
 MIDDLEWARE = [
@@ -167,6 +168,7 @@ REST_FRAMEWORK = {
     ],
     "DEFAULT_AUTHENTICATION_CLASSES": [
         "rest_framework.authentication.TokenAuthentication",
+        "rest_framework.authentication.SessionAuthentication",
     ],
 }
 
