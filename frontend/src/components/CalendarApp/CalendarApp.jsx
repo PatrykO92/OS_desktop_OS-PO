@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 
 import ColorRadioButton from "./components/ColorRadioButton";
 import IconRadioButton from "./components/IconRadioButton";
@@ -10,9 +10,7 @@ import { WholeAppContext } from "../../App";
 import { weekdays, listOfColors, listOfIcons } from "./utils/constants";
 
 import { commentsIcon } from "../../assets/icons/calendarAppFormIcons";
-
-//for testing
-const tasksToDo = [];
+import axiosInstance from "../../utils/axiosInstance.js";
 
 const CalendarApp = () => {
   // get today date to show current day
@@ -22,7 +20,7 @@ const CalendarApp = () => {
   const { lang } = useContext(WholeAppContext);
 
   // get all task from backend, to implement later
-  const [allTasks, setAllTasks] = useState(tasksToDo);
+  const [allTasks, setAllTasks] = useState([]);
 
   const [currentTask, setCurrentTask] = useState(null);
 
@@ -36,25 +34,78 @@ const CalendarApp = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
-  const addNewTask = (color, icon) => {
-    const id = Math.floor(Math.random() * 100000000);
+  useEffect(() => {
+    const getTasks = async () => {
+      try {
+        const response = await axiosInstance.get("/api/v1/calendar-api/");
+        const transformedTasks = response.data.map((task) => ({
+          id: task.id,
+          startTaskDate: new Date(task.start_task_date).setHours(0),
+          endTaskDate: new Date(task.end_task_date).setHours(0),
+          color: task.color,
+          icon: task.icon,
+          title: task.title,
+          description: task.description,
+        }));
+        setAllTasks(transformedTasks);
+      } catch (error) {
+        // Handle error
+        console.error("Error fetching tasks:", error);
+      }
+    };
+    getTasks();
+  }, []);
 
-    const startTaskDate = new Date(startInputValue);
-    startTaskDate.setHours(0);
-    const endTaskDate = new Date(endInputValue);
-    endTaskDate.setHours(0);
+  const addNewTask = async () => {
+    try {
+      console.log(
+        title,
+        description,
+        formColor,
+        formIcon,
+        startInputValue,
+        endInputValue
+      );
+      const response = await axiosInstance.post("/api/v1/calendar-api/", {
+        title,
+        description,
+        color: formColor,
+        icon: formIcon,
+        start_task_date: startInputValue,
+        end_task_date: endInputValue,
+      });
 
-    setAllTasks((oldVal) => [
-      ...oldVal,
-      { id, startTaskDate, endTaskDate, color, icon, title, description },
-    ]);
-    // after adding task, move Calendar to start day of the task
-    setDate(startTaskDate);
+      const newTask = {
+        id: response.data.id,
+        startTaskDate: new Date(startInputValue).setHours(0),
+        endTaskDate: new Date(endInputValue).setHours(0),
+        color: formColor,
+        icon: formIcon,
+        title,
+        description,
+      };
+
+      setAllTasks((oldVal) => [...oldVal, newTask]);
+      // After adding the task, move Calendar to the start day of the task
+      setDate(new Date(startInputValue).setHours(0));
+    } catch (error) {
+      // Handle error
+      console.error("Error adding new task:", error);
+    }
   };
 
-  const removeTask = (id) => {
-    const updatedTasks = allTasks.filter((task) => task.id !== id);
-    setAllTasks(updatedTasks);
+  const removeTask = async (id) => {
+    try {
+      // Make a DELETE request to remove the task by its id
+      await axiosInstance.delete(`/api/v1/calendar-api/${id}`);
+
+      // Update the local state to remove the deleted task
+      const updatedTasks = allTasks.filter((task) => task.id !== id);
+      setAllTasks(updatedTasks);
+    } catch (error) {
+      // Handle error
+      console.error("Error removing task:", error);
+    }
   };
 
   const modifyDate = (type, amount) => {
@@ -75,8 +126,8 @@ const CalendarApp = () => {
 
   // Function to generate calendar data
   const generateCalendarData = () => {
-    const year = date.getFullYear();
-    const month = date.getMonth();
+    const year = new Date(date).getFullYear();
+    const month = new Date(date).getMonth();
     const daysInMonth = new Date(year, month + 1, 0).getDate();
     let firstDayOfWeek = new Date(year, month, 1).getDay();
 
@@ -107,7 +158,7 @@ const CalendarApp = () => {
         type: "day",
         key: `day-${day}`,
         day,
-        isActive: day === date.getDate(),
+        isActive: day === new Date(date).getDate(),
         list,
       });
     }
@@ -127,8 +178,8 @@ const CalendarApp = () => {
           ></div>
         );
       } else {
-        const year = date.getFullYear();
-        const month = date.getMonth();
+        const year = new Date(date).getFullYear();
+        const month = new Date(date).getMonth();
 
         return (
           <div
@@ -197,6 +248,13 @@ const CalendarApp = () => {
             >
               {showAddTask ? "Hide" : "Add new task"}
             </button>
+            <button
+              onClick={() => {
+                console.log(allTasks);
+              }}
+            >
+              Test
+            </button>
           </li>
         </ul>
 
@@ -211,7 +269,7 @@ const CalendarApp = () => {
                 (new Date(startInputValue) <= new Date(endInputValue)) &
                 (new Date(endInputValue) >= new Date(startInputValue))
               ) {
-                addNewTask(formColor, formIcon);
+                addNewTask();
                 setTitle("");
                 setDescription("");
                 setStartInputValue();
@@ -291,14 +349,18 @@ const CalendarApp = () => {
           >
             <p className={styles.currentDate}>
               <span>
-                {currentTask.startTaskDate.toLocaleDateString(lang.lng)}
+                {new Date(currentTask.startTaskDate).toLocaleDateString(
+                  lang.lng
+                )}
               </span>
 
-              {currentTask.startTaskDate.toLocaleDateString() !==
-              currentTask.endTaskDate.toLocaleDateString() ? (
+              {new Date(currentTask.startTaskDate).toLocaleDateString() !==
+              new Date(currentTask.endTaskDate).toLocaleDateString() ? (
                 <span>
                   {" - "}
-                  {currentTask.endTaskDate.toLocaleDateString(lang.lng)}
+                  {new Date(currentTask.endTaskDate).toLocaleDateString(
+                    lang.lng
+                  )}
                 </span>
               ) : (
                 ""
@@ -328,7 +390,7 @@ const CalendarApp = () => {
       <main>
         <div className={styles.mainHeader}>
           <p>
-            {date.toLocaleDateString(lang.lng, {
+            {new Date(date).toLocaleDateString(lang.lng, {
               year: "numeric",
               month: "long",
             })}
