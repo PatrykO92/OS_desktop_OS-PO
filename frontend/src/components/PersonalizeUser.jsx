@@ -6,6 +6,9 @@ import { useState } from "react";
 
 import { CSSTransition } from "react-transition-group";
 
+import axiosInstance from "../utils/axiosInstance";
+import getUserDetail from "../utils/getUserDetail";
+
 const PersonalizeUser = ({ user, changeUser, lang }) => {
   const [showModal, setShowModal] = useState({ modal: false, msg: "" });
   const [modalColorFont, setModalColorFont] = useState("");
@@ -19,18 +22,69 @@ const PersonalizeUser = ({ user, changeUser, lang }) => {
 
   const [showUserForm, setShowUserForm] = useState(false);
   const [userForm, setUserForm] = useState({
-    name: "",
+    firstName: "",
     lastName: "",
-    userTag: "",
   });
+  const [avatarFile, setAvatarFile] = useState("");
 
-  const [showAvatarList, setShowAvatarList] = useState(false);
+  const userTag =
+    userForm.firstName.slice(0, 3).toUpperCase() +
+    "_" +
+    userForm.lastName.slice(0, 3).toUpperCase();
+
+  const [showAvatarChange, setShowAvatarChange] = useState(false);
 
   const [pin, setPIN] = useState({ pin1: "", pin2: "", currentPIN: "" });
   const [showPINChange, setShowPINChange] = useState(false);
 
-  const handleAvatarChangeImage = (e) => {
-    changeUser((oldVal) => ({ ...oldVal, avatar: e.target.value }));
+  const changeUserName = async () => {
+    const updatedData = {
+      first_name: userForm.firstName,
+      last_name: userForm.lastName,
+      user_tag: userTag,
+    };
+
+    try {
+      const response = await axiosInstance.patch(
+        "/api/v1/dj-rest-auth/user/",
+        updatedData
+      );
+      console.log("Updated data:", response.data);
+    } catch (error) {
+      console.error("Error updating data:", error);
+    }
+  };
+
+  const changeUserPin = async () => {
+    const updatedData = {
+      pin: pin.pin2,
+    };
+
+    try {
+      const response = await axiosInstance.patch(
+        "/api/v1/dj-rest-auth/user/",
+        updatedData
+      );
+      console.log("Updated data:", response.data);
+    } catch (error) {
+      console.error("Error updating data:", error);
+    }
+  };
+
+  const changeUserAvatar = async () => {
+    const formData = new FormData();
+    formData.append("avatar", avatarFile);
+
+    try {
+      const response = await axiosInstance.patch(
+        "/api/v1/dj-rest-auth/user/",
+        formData
+      );
+      console.log("Updated data:", response);
+      return true;
+    } catch (error) {
+      console.error("Error updating data:", error);
+    }
   };
 
   return (
@@ -43,7 +97,7 @@ const PersonalizeUser = ({ user, changeUser, lang }) => {
       <div className={styles.avatar}>
         <img src={user.avatar} alt={lang.yourAvatar} />
         <p>
-          <span>{user.name} </span>
+          <span>{user.firstName} </span>
           <span>{user.lastName}</span>
         </p>
         <span>({user.userTag})</span>
@@ -52,7 +106,7 @@ const PersonalizeUser = ({ user, changeUser, lang }) => {
       <div className={styles.menu}>
         <button
           onClick={() => {
-            setShowAvatarList(false);
+            setShowAvatarChange(false);
             setShowPINChange(false);
             setTimeout(() => {
               setShowUserForm((oldVal) => !oldVal);
@@ -67,7 +121,7 @@ const PersonalizeUser = ({ user, changeUser, lang }) => {
             setShowUserForm(false);
             setShowPINChange(false);
             setTimeout(() => {
-              setShowAvatarList((oldVal) => !oldVal);
+              setShowAvatarChange((oldVal) => !oldVal);
             }, 200);
           }}
         >
@@ -77,7 +131,7 @@ const PersonalizeUser = ({ user, changeUser, lang }) => {
         <button
           onClick={() => {
             setShowUserForm(false);
-            setShowAvatarList(false);
+            setShowAvatarChange(false);
             setTimeout(() => {
               setShowPINChange((oldVal) => !oldVal);
             }, 200);
@@ -88,21 +142,29 @@ const PersonalizeUser = ({ user, changeUser, lang }) => {
       </div>
 
       <CSSTransition
-        in={showAvatarList}
+        in={showAvatarChange}
         classNames="personalize-user"
         timeout={200}
         unmountOnExit
       >
-        <div className={styles.avatarList}>
-          <img src={defaultUserIcon} alt="default" />
+        <form
+          className={styles.avatarChange}
+          onSubmit={async (e) => {
+            e.preventDefault();
+            if (await changeUserAvatar()) changeUser(await getUserDetail());
+            modalHandler(true, false, lang.success);
+          }}
+        >
+          <label htmlFor="avatar_change">Change Avatar</label>
           <input
-            type="radio"
-            id="avatar1"
+            required
+            type="file"
+            id="avatar_change"
             name="avatar"
-            value={defaultUserIcon}
-            onChange={(e) => handleAvatarChangeImage(e)}
+            onChange={(e) => setAvatarFile(e.target.files[0])}
           />
-        </div>
+          <button type="submit">{lang.submit}</button>
+        </form>
       </CSSTransition>
 
       <CSSTransition
@@ -125,7 +187,7 @@ const PersonalizeUser = ({ user, changeUser, lang }) => {
               modalHandler(true, true, lang.samePIN);
               return;
             }
-
+            changeUserPin();
             changeUser((oldVal) => ({ ...oldVal, pin: pin.pin2 }));
             setPIN({ pin1: "", pin2: "", currentPIN: "" });
             modalHandler(true, false, "PIN changed");
@@ -196,11 +258,11 @@ const PersonalizeUser = ({ user, changeUser, lang }) => {
           <form
             onSubmit={(e) => {
               e.preventDefault();
-              changeUser((oldVal) => ({ ...oldVal, ...userForm }));
+              changeUserName();
+              changeUser((oldVal) => ({ ...oldVal, ...userForm, userTag }));
               setUserForm({
-                name: "",
+                firstName: "",
                 lastName: "",
-                userTag: "",
               });
               modalHandler(true, false, lang.success);
               setShowUserForm(false);
@@ -211,13 +273,13 @@ const PersonalizeUser = ({ user, changeUser, lang }) => {
               <input
                 id="user_name"
                 type="text"
-                minLength={1}
+                minLength={3}
                 maxLength={15}
-                value={userForm.name}
+                value={userForm.firstName}
                 onChange={(e) => {
                   setUserForm((oldVal) => ({
                     ...oldVal,
-                    name: e.target.value,
+                    firstName: e.target.value,
                   }));
                 }}
                 required
@@ -229,30 +291,13 @@ const PersonalizeUser = ({ user, changeUser, lang }) => {
               <input
                 id="user_last_name"
                 type="text"
-                minLength={1}
+                minLength={3}
                 maxLength={15}
                 value={userForm.lastName}
                 onChange={(e) => {
                   setUserForm((oldVal) => ({
                     ...oldVal,
                     lastName: e.target.value,
-                  }));
-                }}
-                required
-              />
-            </p>
-            <p>
-              <label htmlFor="user_tag">{lang.userTag}:</label>
-              <input
-                id="user_tag"
-                type="text"
-                minLength={3}
-                maxLength={6}
-                value={userForm.userTag}
-                onChange={(e) => {
-                  setUserForm((oldVal) => ({
-                    ...oldVal,
-                    userTag: e.target.value,
                   }));
                 }}
                 required
