@@ -133,15 +133,35 @@ export function StepTwo({ changeStep }) {
   const removeUser = useRemoveUser();
 
   const loginToGuestUser = async () => {
-    setIsLoading(true);
-    const data = await loginToBackend(GUEST_USER, GUEST_USER_PASSWORD);
-    if (data.status === 200) {
+    try {
+      setIsLoading(true);
+
+      // Step 1: Login to backend
+      const loginResponse = await loginToBackend(
+        GUEST_USER,
+        GUEST_USER_PASSWORD
+      );
+      if (loginResponse.status !== 200) {
+        setIsLoading(false);
+        return false;
+      }
+
+      // Step 2: Get user details
+      const userDetail = await getUserDetail();
+      if (!userDetail) {
+        setIsLoading(false);
+        return false;
+      }
+
+      // Step 3: Update connection status and user
       setIsConnectedToBackend(true);
-      changeUser(await getUserDetail());
+      changeUser(userDetail);
+
       setIsLoading(false);
       return true;
-    } else {
+    } catch (error) {
       setIsLoading(false);
+      console.error("Error during login:", error);
       return false;
     }
   };
