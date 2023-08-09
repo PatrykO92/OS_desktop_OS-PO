@@ -136,34 +136,34 @@ function App() {
     [systemLanguage]
   );
 
-  // Apply settings, if user is changed.
+  // Apply settings, if user.settings are changed.
   useEffect(() => {
     const root = document.documentElement;
-    if (user === null) {
+    if (user?.settings === null) {
       root.style.removeProperty("--theme-bg");
       root.style.removeProperty("--theme-bg-light");
       root.style.removeProperty("--theme-font");
       root.style.removeProperty("--icon-size");
     }
 
-    if (user !== null) {
+    if (user?.settings) {
       root.style.setProperty("--theme-bg", user.settings.themeBg);
       root.style.setProperty("--theme-bg-light", user.settings.themeBgLight);
       root.style.setProperty("--theme-font", user.settings.themeFont);
       root.style.setProperty("--icon-size", user.settings.iconSize);
     }
-  }, [user]);
+  }, [user?.settings]);
 
   // Save user settings to localStorage, on every user object change
   useEffect(() => {
     if (user !== null) localStorage.setItem("user", JSON.stringify(user));
   }, [user]);
 
-  // // Save user settings to backend, on every user object change
+  // // Save user.settings to backend, on every user.settings object change
   useEffect(() => {
     let debounceTimeout;
 
-    if (user !== null) {
+    if (user?.settings) {
       // Clear previous debounce timeout
       clearTimeout(debounceTimeout);
 
@@ -177,8 +177,9 @@ function App() {
     return () => {
       clearTimeout(debounceTimeout);
     };
-  }, [user]);
+  }, [user?.settings]);
 
+  // Check at app start if user is already logged in.
   useEffect(
     () => {
       const authToken = localStorage.getItem("authToken");

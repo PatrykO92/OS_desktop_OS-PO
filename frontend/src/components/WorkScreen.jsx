@@ -146,10 +146,7 @@ const WorkScreen = () => {
           )
             closeDesktopContextMenu();
 
-          if (
-            e.target.className === "task-bar" ||
-            e.target.className === "desktop"
-          ) {
+          if (e.target.id === "task-bar" || e.target.id === "desktop") {
             closeAll();
           }
         }}

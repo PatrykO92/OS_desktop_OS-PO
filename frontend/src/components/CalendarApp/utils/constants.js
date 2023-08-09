@@ -19,12 +19,12 @@ export const listOfIcons = [
 ];
 
 export const listOfColors = [
-  "white",
+  "black",
   "red",
   "blue",
   "green",
   "yellow",
-  "pink",
+  "tomato",
   "orange",
 ];
 

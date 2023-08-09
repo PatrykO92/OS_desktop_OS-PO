@@ -30,7 +30,7 @@ const CalendarApp = () => {
   const [startInputValue, setStartInputValue] = useState("");
   const [endInputValue, setEndInputValue] = useState("");
   const [formIcon, setFormIcon] = useState(commentsIcon);
-  const [formColor, setFormColor] = useState("white");
+  const [formColor, setFormColor] = useState(listOfColors[0]);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 

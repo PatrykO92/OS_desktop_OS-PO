@@ -3,7 +3,32 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 2rem;
   gap: 2rem;
+  overflow-y: scroll;
+}
+
+.window::-webkit-scrollbar,
+.window *::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.window::-webkit-scrollbar-track,
+.window *::-webkit-scrollbar-track {
+  background: var(--hover-main);
+  border-radius: 5px;
+}
+
+.window::-webkit-scrollbar-thumb,
+.window *::-webkit-scrollbar-thumb {
+  background: var(--hover-main);
+  border-radius: 5px;
+}
+
+.window::-webkit-scrollbar-thumb:hover,
+.window *::-webkit-scrollbar-thumb:hover {
+  background: var(--blue);
 }
 
 .window button {
@@ -45,17 +70,17 @@
 .avatar > img {
   margin-top: 1rem;
   border-radius: 50%;
-  height: 12rem;
-  width: 12rem;
+  height: 8rem;
+  width: 8rem;
 }
 
 .avatar > p {
-  font-size: 2.5rem;
+  font-size: 2.2rem;
   font-weight: 700;
 }
 
 .avatar > span {
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 500;
 }
 
@@ -64,27 +89,16 @@
   gap: 1rem;
 }
 
-.avatarList {
+.avatarChange {
   max-width: 38rem;
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
-  justify-content: space-between;
+  align-items: center;
   gap: 1rem;
 }
 
-.avatarList input {
-  display: none;
-}
-
-.avatarList img {
-  max-width: 4rem;
-  height: 4rem;
-  border-radius: 50%;
-}
-
-.avatarList label:hover {
-  border-radius: 50%;
-  outline: 2px solid var(--blue);
+.avatarChange input {
 }
 
 .pin,
@@ -98,6 +112,7 @@
   margin-top: 1rem;
 }
 
+.avatarChange input,
 .name p > input,
 .pin input {
   margin: 0.4rem 0 0 0;

@@ -42,7 +42,7 @@ const TaskBar = ({
   const [showBackendInfo, setShowBackendInfo] = useState(false);
 
   return (
-    <div className="task-bar">
+    <div className="task-bar" id="task-bar">
       <div className="programs">
         <button className="menu-start-btn">
           <img
