@@ -11,8 +11,10 @@ import { weekdays, listOfColors, listOfIcons } from "./utils/constants";
 
 import { commentsIcon } from "../../assets/icons/calendarAppFormIcons";
 import axiosInstance from "../../utils/axiosInstance.js";
+import { LoadingSpinnerFullscreen } from "../LoadingSpinner";
 
 const CalendarApp = () => {
+  const [isLoading, setIsLoading] = useState(false);
   // get today date to show current day
   const today = new Date();
 
@@ -37,6 +39,7 @@ const CalendarApp = () => {
   useEffect(() => {
     const getTasks = async () => {
       try {
+        setIsLoading(true);
         const response = await axiosInstance.get("/api/v1/calendar-api/");
         const transformedTasks = response.data.map((task) => ({
           id: task.id,
@@ -51,6 +54,8 @@ const CalendarApp = () => {
       } catch (error) {
         // Handle error
         console.error("Error fetching tasks:", error);
+      } finally {
+        setIsLoading(false);
       }
     };
     getTasks();
@@ -58,14 +63,7 @@ const CalendarApp = () => {
 
   const addNewTask = async () => {
     try {
-      console.log(
-        title,
-        description,
-        formColor,
-        formIcon,
-        startInputValue,
-        endInputValue
-      );
+      setIsLoading(true);
       const response = await axiosInstance.post("/api/v1/calendar-api/", {
         title,
         description,
@@ -91,11 +89,14 @@ const CalendarApp = () => {
     } catch (error) {
       // Handle error
       console.error("Error adding new task:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
   const removeTask = async (id) => {
     try {
+      setIsLoading(true);
       // Make a DELETE request to remove the task by its id
       await axiosInstance.delete(`/api/v1/calendar-api/${id}`);
 
@@ -105,6 +106,8 @@ const CalendarApp = () => {
     } catch (error) {
       // Handle error
       console.error("Error removing task:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -216,7 +219,7 @@ const CalendarApp = () => {
                     setCurrentTask(item);
                   }}
                   key={`${index}${item.id}`}
-                  style={{ borderColor: item.color }}
+                  style={{ backgroundColor: item.color }}
                 >
                   <img src={item.icon} alt="icon" />
                   <p>{item.title}</p>
@@ -230,189 +233,188 @@ const CalendarApp = () => {
   };
 
   return (
-    <div className={styles.app}>
-      <header>
-        <p>Today: {today.toLocaleDateString(lang.lng)}</p>
-      </header>
+    <>
+      {isLoading && <LoadingSpinnerFullscreen />}
+      <div className={styles.app}>
+        <header>
+          <p>Today: {today.toLocaleDateString(lang.lng)}</p>
+        </header>
 
-      <aside>
-        <ul>
-          <li>
-            <button
-              onClick={() => {
-                setCurrentTask(null);
-                setShowAddTask((oldVal) => !oldVal);
-                setStartInputValue();
-                setEndInputValue();
+        <aside>
+          <ul>
+            <li>
+              <button
+                onClick={() => {
+                  setCurrentTask(null);
+                  setShowAddTask((oldVal) => !oldVal);
+                  setStartInputValue();
+                  setEndInputValue();
+                }}
+              >
+                {showAddTask ? "Hide" : "Add new task"}
+              </button>
+            </li>
+          </ul>
+
+          {showAddTask && (
+            <form
+              style={{ borderColor: formColor }}
+              className={styles.task}
+              onSubmit={(e) => {
+                e.preventDefault();
+
+                if (
+                  (new Date(startInputValue) <= new Date(endInputValue)) &
+                  (new Date(endInputValue) >= new Date(startInputValue))
+                ) {
+                  addNewTask();
+                  setTitle("");
+                  setDescription("");
+                  setStartInputValue();
+                  setEndInputValue();
+                  setShowAddTask(false);
+                }
               }}
             >
-              {showAddTask ? "Hide" : "Add new task"}
-            </button>
-            <button
-              onClick={() => {
-                console.log(allTasks);
-              }}
+              <label htmlFor="startDate">Start:</label>
+              <input
+                required
+                id="startDate"
+                type="date"
+                value={startInputValue}
+                onChange={(e) => {
+                  setStartInputValue(e.target.value);
+                  // set end date also, for better user experience
+                  setEndInputValue(e.target.value);
+                }}
+              />
+              <label htmlFor="endDate">End:</label>
+              <input
+                required
+                id="endDate"
+                type="date"
+                value={endInputValue}
+                onChange={(e) => setEndInputValue(e.target.value)}
+              />
+
+              <div className={styles.taskIcons}>
+                {listOfIcons.map((iconUrl, index) => (
+                  <IconRadioButton
+                    defaultChecked={index === 0}
+                    onChange={setFormIcon}
+                    activeIcon={formIcon}
+                    iconUrl={iconUrl}
+                    key={iconUrl}
+                  />
+                ))}
+              </div>
+
+              <div className={styles.taskColors}>
+                {listOfColors.map((color, index) => (
+                  <ColorRadioButton
+                    defaultChecked={index === 0}
+                    color={color}
+                    onChange={setFormColor}
+                    activeColor={formColor}
+                    key={`${index}-${color}`}
+                  />
+                ))}
+              </div>
+
+              <label htmlFor="title">Title:</label>
+              <input
+                maxLength={30}
+                id="title"
+                type="text"
+                required
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+              />
+              <label htmlFor="description">Description:</label>
+              <textarea
+                required
+                id="description"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+              ></textarea>
+              <button type="submit">Add</button>
+            </form>
+          )}
+
+          {currentTask ? (
+            <div
+              className={styles.current}
+              style={{ borderColor: currentTask?.color }}
             >
-              Test
-            </button>
-          </li>
-        </ul>
-
-        {showAddTask && (
-          <form
-            style={{ borderColor: formColor }}
-            className={styles.task}
-            onSubmit={(e) => {
-              e.preventDefault();
-
-              if (
-                (new Date(startInputValue) <= new Date(endInputValue)) &
-                (new Date(endInputValue) >= new Date(startInputValue))
-              ) {
-                addNewTask();
-                setTitle("");
-                setDescription("");
-                setStartInputValue();
-                setEndInputValue();
-                setShowAddTask(false);
-              }
-            }}
-          >
-            <label htmlFor="startDate">Start:</label>
-            <input
-              required
-              id="startDate"
-              type="date"
-              value={startInputValue}
-              onChange={(e) => {
-                setStartInputValue(e.target.value);
-                // set end date also, for better user experience
-                setEndInputValue(e.target.value);
-              }}
-            />
-            <label htmlFor="endDate">End:</label>
-            <input
-              required
-              id="endDate"
-              type="date"
-              value={endInputValue}
-              onChange={(e) => setEndInputValue(e.target.value)}
-            />
-
-            <div className={styles.taskIcons}>
-              {listOfIcons.map((iconUrl, index) => (
-                <IconRadioButton
-                  defaultChecked={index === 0}
-                  onChange={setFormIcon}
-                  activeIcon={formIcon}
-                  iconUrl={iconUrl}
-                  key={iconUrl}
-                />
-              ))}
-            </div>
-
-            <div className={styles.taskColors}>
-              {listOfColors.map((color, index) => (
-                <ColorRadioButton
-                  defaultChecked={index === 0}
-                  color={color}
-                  onChange={setFormColor}
-                  activeColor={formColor}
-                  key={`${index}-${color}`}
-                />
-              ))}
-            </div>
-
-            <label htmlFor="title">Title:</label>
-            <input
-              maxLength={18}
-              id="title"
-              type="text"
-              required
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-            />
-            <label htmlFor="description">Description:</label>
-            <textarea
-              id="description"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-            ></textarea>
-            <button type="submit">Add</button>
-          </form>
-        )}
-
-        {currentTask ? (
-          <div
-            className={styles.current}
-            style={{ borderColor: currentTask?.color }}
-          >
-            <p className={styles.currentDate}>
-              <span>
-                {new Date(currentTask.startTaskDate).toLocaleDateString(
-                  lang.lng
-                )}
-              </span>
-
-              {new Date(currentTask.startTaskDate).toLocaleDateString() !==
-              new Date(currentTask.endTaskDate).toLocaleDateString() ? (
+              <p className={styles.currentDate}>
                 <span>
-                  {" - "}
-                  {new Date(currentTask.endTaskDate).toLocaleDateString(
+                  {new Date(currentTask.startTaskDate).toLocaleDateString(
                     lang.lng
                   )}
                 </span>
-              ) : (
-                ""
-              )}
-            </p>
-            <p className={styles.currentTitle}>
-              <img src={currentTask.icon} alt="icon" />
-              {currentTask?.title}
-            </p>
-            <p className={styles.currentDescription}>
-              {currentTask?.description}
-            </p>
-            <button
-              onClick={() => {
-                removeTask(currentTask.id);
-                setCurrentTask(null);
-              }}
-            >
-              Remove task
-            </button>
-          </div>
-        ) : (
-          <></>
-        )}
-      </aside>
 
-      <main>
-        <div className={styles.mainHeader}>
-          <p>
-            {new Date(date).toLocaleDateString(lang.lng, {
-              year: "numeric",
-              month: "long",
-            })}
-          </p>
-          <button onClick={() => modifyDate("year", -1)}>Previous Year</button>
-          <button onClick={() => modifyDate("month", -1)}>
-            Previous Month
-          </button>
-          <button onClick={() => modifyDate("month", 0)}>Actual Month</button>
-          <button onClick={() => modifyDate("month", 1)}>Next Month</button>
-          <button onClick={() => modifyDate("year", 1)}>Next Year</button>
-        </div>
-        <div className={styles.mainBody}>
-          {weekdays.map((day, index) => (
-            <div key={`weekdays${day}+${index}`} className={styles.dayName}>
-              {day}
+                {new Date(currentTask.startTaskDate).toLocaleDateString() !==
+                new Date(currentTask.endTaskDate).toLocaleDateString() ? (
+                  <span>
+                    {" - "}
+                    {new Date(currentTask.endTaskDate).toLocaleDateString(
+                      lang.lng
+                    )}
+                  </span>
+                ) : (
+                  ""
+                )}
+              </p>
+              <p className={styles.currentTitle}>
+                <img src={currentTask.icon} alt="icon" />
+                {currentTask?.title}
+              </p>
+              <p className={styles.currentDescription}>
+                {currentTask?.description}
+              </p>
+              <button
+                onClick={() => {
+                  removeTask(currentTask.id);
+                  setCurrentTask(null);
+                }}
+              >
+                Remove task
+              </button>
             </div>
-          ))}
-          {renderCalendar()}
-        </div>
-      </main>
-    </div>
+          ) : (
+            <></>
+          )}
+        </aside>
+
+        <main>
+          <div className={styles.mainHeader}>
+            <p>
+              {new Date(date).toLocaleDateString(lang.lng, {
+                year: "numeric",
+                month: "long",
+              })}
+            </p>
+            <button onClick={() => modifyDate("year", -1)}>
+              Previous Year
+            </button>
+            <button onClick={() => modifyDate("month", -1)}>
+              Previous Month
+            </button>
+            <button onClick={() => modifyDate("month", 0)}>Actual Month</button>
+            <button onClick={() => modifyDate("month", 1)}>Next Month</button>
+            <button onClick={() => modifyDate("year", 1)}>Next Year</button>
+          </div>
+          <div className={styles.mainBody}>
+            {weekdays.map((day, index) => (
+              <div key={`weekdays${day}+${index}`} className={styles.dayName}>
+                {day}
+              </div>
+            ))}
+            {renderCalendar()}
+          </div>
+        </main>
+      </div>
+    </>
   );
 };
 
