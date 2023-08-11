@@ -138,10 +138,10 @@ function App() {
     [systemLanguage]
   );
 
-  // Apply settings, if user.settings are changed.
+  // Apply settings, if user.settings are changed. Reset settings to default values, if user is not logged in
   useEffect(() => {
     const root = document.documentElement;
-    if (user?.settings === null) {
+    if (user?.settings === null || user?.settings === undefined) {
       root.style.removeProperty("--theme-bg");
       root.style.removeProperty("--theme-bg-light");
       root.style.removeProperty("--theme-font");

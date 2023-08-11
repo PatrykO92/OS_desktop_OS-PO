@@ -1,6 +1,7 @@
 import axiosInstance from "./axiosInstance";
 
 const addTetrisScore = async (userTag, score) => {
+  if (score === 0) return;
   const data = {
     game_tag: userTag,
     score: score,

@@ -397,7 +397,9 @@ const TetrisApp = ({ lang, user }) => {
                   <p>{score}</p>
                   <p>{lang.tetrisHighscore}</p>
                   <p>
-                    {highscores[0][0]} - {highscores[0][1]}
+                    {highscores && highscores.length > 0
+                      ? `${highscores[0][0]} - ${highscores[0][1]}`
+                      : lang.firstPlayer}
                   </p>
                 </div>
               ) : (
