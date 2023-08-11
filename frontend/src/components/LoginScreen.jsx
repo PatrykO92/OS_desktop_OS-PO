@@ -1,7 +1,7 @@
 import styles from "../assets/styles/loginScreen.module.css";
 import { osStartIcon } from "../assets/icons";
 import { wallpaperOne } from "../assets/images/wallpapers";
-import { LoadingSpinner } from "./LoadingSpinner";
+import { LoadingSpinner, LoadingSpinnerFullscreen } from "./LoadingSpinner";
 import { powerOffIcon, restartIcon, arrowRightIcon } from "../assets/icons";
 
 import { useState, useEffect, useRef, useContext } from "react";
@@ -15,6 +15,7 @@ import loginToBackend from "../utils/loginToBackend";
 import passwordReset from "../utils/passwordReset";
 
 const LoginScreen = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const { lang, user, setIsConnectedToBackend, changeUser } =
     useContext(WholeAppContext);
   const [email, setEmail] = useState("");
@@ -30,12 +31,15 @@ const LoginScreen = () => {
   const [loginStage, setLoginStage] = useState("start");
 
   const login = async () => {
+    setIsLoading(true);
     const data = await loginToBackend(email, password);
     if (data.status === 200) {
       setIsConnectedToBackend(true);
       changeUser(await getUserDetail());
+      setIsLoading(false);
       return true;
     } else {
+      setIsLoading(false);
       return false;
     }
   };
@@ -70,6 +74,7 @@ const LoginScreen = () => {
             className={styles.loginScreen}
             style={{ backgroundImage: `url(${wallpaperOne})` }}
           >
+            {isLoading && <LoadingSpinnerFullscreen />}
             {user === null && (
               <>
                 <form
