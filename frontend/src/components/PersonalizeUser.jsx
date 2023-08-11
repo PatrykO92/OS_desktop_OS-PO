@@ -1,15 +1,15 @@
 import styles from "../assets/styles/personalizeUser.module.css";
 
-import { defaultUserIcon } from "../assets/icons";
-
 import { useState } from "react";
 
 import { CSSTransition } from "react-transition-group";
 
 import axiosInstance from "../utils/axiosInstance";
 import getUserDetail from "../utils/getUserDetail";
+import { LoadingSpinnerFullscreen } from "./LoadingSpinner";
 
 const PersonalizeUser = ({ user, changeUser, lang }) => {
+  const [isLoading, setIsLoading] = useState(false);
   const [showModal, setShowModal] = useState({ modal: false, msg: "" });
   const [modalColorFont, setModalColorFont] = useState("");
 
@@ -22,13 +22,13 @@ const PersonalizeUser = ({ user, changeUser, lang }) => {
 
   const [showUserForm, setShowUserForm] = useState(false);
   const [userForm, setUserForm] = useState({
-    firstName: "",
+    name: "",
     lastName: "",
   });
   const [avatarFile, setAvatarFile] = useState("");
 
   const userTag =
-    userForm.firstName.slice(0, 3).toUpperCase() +
+    userForm.name.slice(0, 3).toUpperCase() +
     "_" +
     userForm.lastName.slice(0, 3).toUpperCase();
 
@@ -38,8 +38,9 @@ const PersonalizeUser = ({ user, changeUser, lang }) => {
   const [showPINChange, setShowPINChange] = useState(false);
 
   const changeUserName = async () => {
+    setIsLoading(true);
     const updatedData = {
-      first_name: userForm.firstName,
+      first_name: userForm.name,
       last_name: userForm.lastName,
       user_tag: userTag,
     };
@@ -52,10 +53,13 @@ const PersonalizeUser = ({ user, changeUser, lang }) => {
       console.log("Updated data:", response.data);
     } catch (error) {
       console.error("Error updating data:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
   const changeUserPin = async () => {
+    setIsLoading(true);
     const updatedData = {
       pin: pin.pin2,
     };
@@ -68,10 +72,13 @@ const PersonalizeUser = ({ user, changeUser, lang }) => {
       console.log("Updated data:", response.data);
     } catch (error) {
       console.error("Error updating data:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
   const changeUserAvatar = async () => {
+    setIsLoading(true);
     const formData = new FormData();
     formData.append("avatar", avatarFile);
 
@@ -84,11 +91,14 @@ const PersonalizeUser = ({ user, changeUser, lang }) => {
       return true;
     } catch (error) {
       console.error("Error updating data:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
     <div id="personalize-user" className={styles.window}>
+      {isLoading && <LoadingSpinnerFullscreen />}
       {showModal.modal && (
         <div className={styles.modal}>
           <span style={{ color: modalColorFont }}>{showModal.msg}</span>
@@ -97,7 +107,7 @@ const PersonalizeUser = ({ user, changeUser, lang }) => {
       <div className={styles.avatar}>
         <img src={user.avatar} alt={lang.yourAvatar} />
         <p>
-          <span>{user.firstName} </span>
+          <span>{user.name} </span>
           <span>{user.lastName}</span>
         </p>
         <span>({user.userTag})</span>
@@ -152,6 +162,7 @@ const PersonalizeUser = ({ user, changeUser, lang }) => {
           onSubmit={async (e) => {
             e.preventDefault();
             if (await changeUserAvatar()) changeUser(await getUserDetail());
+            setShowAvatarChange(false);
             modalHandler(true, false, lang.success);
           }}
         >
@@ -261,7 +272,7 @@ const PersonalizeUser = ({ user, changeUser, lang }) => {
               changeUserName();
               changeUser((oldVal) => ({ ...oldVal, ...userForm, userTag }));
               setUserForm({
-                firstName: "",
+                name: "",
                 lastName: "",
               });
               modalHandler(true, false, lang.success);
@@ -275,11 +286,11 @@ const PersonalizeUser = ({ user, changeUser, lang }) => {
                 type="text"
                 minLength={3}
                 maxLength={15}
-                value={userForm.firstName}
+                value={userForm.name}
                 onChange={(e) => {
                   setUserForm((oldVal) => ({
                     ...oldVal,
-                    firstName: e.target.value,
+                    name: e.target.value,
                   }));
                 }}
                 required

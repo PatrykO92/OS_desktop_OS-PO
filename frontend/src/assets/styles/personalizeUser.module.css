@@ -58,6 +58,7 @@
   font-weight: 600;
   font-size: 1.4rem;
   padding: 1rem;
+  z-index: 125;
 }
 
 .window > .avatar {
