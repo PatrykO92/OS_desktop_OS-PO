@@ -4,6 +4,31 @@
   gap: 2rem;
   flex-direction: column;
   align-items: center;
+  overflow-y: scroll;
+  padding: 1rem;
+}
+
+.personalize::-webkit-scrollbar,
+.personalize *::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.personalize::-webkit-scrollbar-track,
+.personalize *::-webkit-scrollbar-track {
+  background: var(--hover-main);
+  border-radius: 5px;
+}
+
+.personalize::-webkit-scrollbar-thumb,
+.personalize *::-webkit-scrollbar-thumb {
+  background: var(--hover-main);
+  border-radius: 5px;
+}
+
+.personalize::-webkit-scrollbar-thumb:hover,
+.personalize *::-webkit-scrollbar-thumb:hover {
+  background: var(--blue);
 }
 
 .wallpaperSection,

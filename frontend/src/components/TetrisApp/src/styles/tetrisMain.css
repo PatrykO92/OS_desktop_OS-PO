@@ -30,6 +30,30 @@
   justify-content: center;
   align-items: center;
   color: var(--tetris-color10);
+  overflow-y: scroll;
+}
+
+.tetris::-webkit-scrollbar,
+.tetris *::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.tetris::-webkit-scrollbar-track,
+.tetris *::-webkit-scrollbar-track {
+  background: var(--hover-main);
+  border-radius: 5px;
+}
+
+.tetris::-webkit-scrollbar-thumb,
+.tetris *::-webkit-scrollbar-thumb {
+  background: var(--hover-main);
+  border-radius: 5px;
+}
+
+.tetris::-webkit-scrollbar-thumb:hover,
+.tetris *::-webkit-scrollbar-thumb:hover {
+  background: var(--blue);
 }
 
 .tetris * {

@@ -3,6 +3,30 @@
   height: 100%;
   justify-content: center;
   align-items: center;
+  overflow-y: scroll;
+}
+
+.window::-webkit-scrollbar,
+.window *::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.window::-webkit-scrollbar-track,
+.window *::-webkit-scrollbar-track {
+  background: var(--hover-main);
+  border-radius: 5px;
+}
+
+.window::-webkit-scrollbar-thumb,
+.window *::-webkit-scrollbar-thumb {
+  background: var(--hover-main);
+  border-radius: 5px;
+}
+
+.window::-webkit-scrollbar-thumb:hover,
+.window *::-webkit-scrollbar-thumb:hover {
+  background: var(--blue);
 }
 
 .error {
