@@ -27,13 +27,3 @@ export const listOfColors = [
   "tomato",
   "#F3AA60",
 ];
-
-export const weekdays = [
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-  "Sunday",
-];

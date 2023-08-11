@@ -72,7 +72,7 @@ function App() {
 
   // App 2: Web Browser
   const [webBrowser, handleStateWebBrowser, handleDefaultStateWebBrowser] =
-    useAppState({ defaultUrl: false }, "Chrome Fox", webBrowserIcon);
+    useAppState({ defaultUrl: false }, "Chro-OX", webBrowserIcon);
 
   // App 3: Calculator
   const [calculator, handleStateCalculator, handleDefaultStateCalculator] =
@@ -125,6 +125,8 @@ function App() {
   useEffect(
     () => {
       document.documentElement.lang = systemLanguage;
+      handleStateWebBrowser("name", textModel[systemLanguage].webBrowser);
+      handleStateCalendarApp("name", textModel[systemLanguage].calendar);
       handleStateCalculator("name", textModel[systemLanguage].calculatorName);
       handleStatePersonalize("name", textModel[systemLanguage].personalize);
       handleStatePersonalizeUser(

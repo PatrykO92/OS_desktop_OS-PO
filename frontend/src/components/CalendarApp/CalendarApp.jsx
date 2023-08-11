@@ -7,7 +7,7 @@ import styles from "../../assets/styles/calendarApp.module.css";
 
 import { WholeAppContext } from "../../App";
 
-import { weekdays, listOfColors, listOfIcons } from "./utils/constants";
+import { listOfColors, listOfIcons } from "./utils/constants";
 
 import { commentsIcon } from "../../assets/icons/calendarAppFormIcons";
 import axiosInstance from "../../utils/axiosInstance.js";
@@ -237,7 +237,9 @@ const CalendarApp = () => {
       {isLoading && <LoadingSpinnerFullscreen />}
       <div className={styles.app}>
         <header>
-          <p>Today: {today.toLocaleDateString(lang.lng)}</p>
+          <p>
+            {lang.today}: {today.toLocaleDateString(lang.lng)}
+          </p>
         </header>
 
         <aside>
@@ -251,7 +253,7 @@ const CalendarApp = () => {
                   setEndInputValue();
                 }}
               >
-                {showAddTask ? "Hide" : "Add new task"}
+                {showAddTask ? lang.hide : lang.addNewTask}
               </button>
             </li>
           </ul>
@@ -276,7 +278,7 @@ const CalendarApp = () => {
                 }
               }}
             >
-              <label htmlFor="startDate">Start:</label>
+              <label htmlFor="startDate">{lang.start}:</label>
               <input
                 required
                 id="startDate"
@@ -288,7 +290,7 @@ const CalendarApp = () => {
                   setEndInputValue(e.target.value);
                 }}
               />
-              <label htmlFor="endDate">End:</label>
+              <label htmlFor="endDate">{lang.end}:</label>
               <input
                 required
                 id="endDate"
@@ -321,7 +323,7 @@ const CalendarApp = () => {
                 ))}
               </div>
 
-              <label htmlFor="title">Title:</label>
+              <label htmlFor="title">{lang.title}:</label>
               <input
                 maxLength={30}
                 id="title"
@@ -330,14 +332,14 @@ const CalendarApp = () => {
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
               />
-              <label htmlFor="description">Description:</label>
+              <label htmlFor="description">{lang.description}:</label>
               <textarea
                 required
                 id="description"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
               ></textarea>
-              <button type="submit">Add</button>
+              <button type="submit">{lang.add}</button>
             </form>
           )}
 
@@ -378,7 +380,7 @@ const CalendarApp = () => {
                   setCurrentTask(null);
                 }}
               >
-                Remove task
+                {lang.removeTask}
               </button>
             </div>
           ) : (
@@ -395,17 +397,23 @@ const CalendarApp = () => {
               })}
             </p>
             <button onClick={() => modifyDate("year", -1)}>
-              Previous Year
+              {lang.previous} {lang.year}
             </button>
             <button onClick={() => modifyDate("month", -1)}>
-              Previous Month
+              {lang.previous} {lang.month}
             </button>
-            <button onClick={() => modifyDate("month", 0)}>Actual Month</button>
-            <button onClick={() => modifyDate("month", 1)}>Next Month</button>
-            <button onClick={() => modifyDate("year", 1)}>Next Year</button>
+            <button onClick={() => modifyDate("month", 0)}>
+              {lang.current} {lang.month}
+            </button>
+            <button onClick={() => modifyDate("month", 1)}>
+              {lang.next2} {lang.month}
+            </button>
+            <button onClick={() => modifyDate("year", 1)}>
+              {lang.next2} {lang.year}
+            </button>
           </div>
           <div className={styles.mainBody}>
-            {weekdays.map((day, index) => (
+            {lang.weekdays.map((day, index) => (
               <div key={`weekdays${day}+${index}`} className={styles.dayName}>
                 {day}
               </div>
