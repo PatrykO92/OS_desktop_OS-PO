@@ -178,11 +178,15 @@ AUTHENTICATION_BACKENDS = (
 )
 
 CORS_ORIGIN_WHITELIST = (
+    "https://operating-system-po.netlify.app",
     "http://localhost:3000",
     "http://localhost:8000",
 )
 
-CSRF_TRUSTED_ORIGINS = ["http://localhost:3000"]
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost:3000",
+    "https://operating-system-po.netlify.app",
+]
 
 SITE_ID = 1
 
