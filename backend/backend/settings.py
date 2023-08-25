@@ -179,6 +179,7 @@ AUTHENTICATION_BACKENDS = (
 
 CORS_ORIGIN_WHITELIST = (
     "https://operating-system-po.netlify.app",
+    "https://operating-system-po.netlify.app",
     "http://localhost:3000",
     "http://localhost:8000",
 )
