@@ -15,7 +15,7 @@ class CustomRegisterSerializer(RegisterSerializer):
 
     def get_cleaned_data(self):
         cleaned_data = super().get_cleaned_data()
-        cleaned_data["username"] = self.validated_data.get("username", "")
+        # cleaned_data["username"] = self.validated_data.get("username", "")
         cleaned_data["email"] = self.validated_data.get("email", "")
         cleaned_data["first_name"] = self.validated_data.get("first_name", "")
         cleaned_data["last_name"] = self.validated_data.get("last_name", "")

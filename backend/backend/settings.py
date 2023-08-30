@@ -14,6 +14,7 @@ from pathlib import Path
 
 from environs import Env
 
+
 env = Env()
 env.read_env()
 
@@ -45,6 +46,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django.contrib.sites",
     # 3rd-party apps
+    "storages",
     "corsheaders",
     "rest_framework",
     "rest_framework.authtoken",
@@ -117,6 +119,11 @@ DATABASES = {
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
+DEFAULT_FILE_STORAGE = "storages.backends.dropbox.DropBoxStorage"
+DROPBOX_OAUTH2_TOKEN = env.str("DROPBOX_ACCESS_TOKEN")
+DROPBOX_APP_KEY = env.str("DROPBOX_APP_KEY")
+DROPBOX_APP_SECRET = env.str("DROPBOX_APP_SECRET")
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
