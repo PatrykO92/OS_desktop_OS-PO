@@ -109,18 +109,18 @@ DATABASES = {
     }
 }
 
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.sqlite3",
-#         "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
-#     }
-# }
-
-
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
-DEFAULT_FILE_STORAGE = "storages.backends.dropbox.DropBoxStorage"
+STORAGES = {
+    "default": {
+        "BACKEND": "backend.backend_storage.BackendStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+    },
+}
+
 DROPBOX_OAUTH2_TOKEN = env.str("DROPBOX_ACCESS_TOKEN")
 DROPBOX_APP_KEY = env.str("DROPBOX_APP_KEY")
 DROPBOX_APP_SECRET = env.str("DROPBOX_APP_SECRET")
