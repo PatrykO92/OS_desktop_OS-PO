@@ -152,7 +152,7 @@ const LoginScreen = () => {
                 <img src={user.avatar} alt="avatar" />
                 <div className={styles.userFullName}>
                   {user.name} {user.lastName}{" "}
-                  {user.pin === "" && (
+                  {user.pin === "" || user.pin === null ? (
                     <button
                       style={{ background: "transparent" }}
                       className={styles.loginButton}
@@ -162,9 +162,11 @@ const LoginScreen = () => {
                     >
                       <img src={arrowRightIcon} alt={lang.submit} />
                     </button>
+                  ) : (
+                    <></>
                   )}
                 </div>
-                {user.pin !== "" && (
+                {(user.pin !== "") & (user.pin !== null) ? (
                   <>
                     <form
                       onSubmit={(e) => {
@@ -199,6 +201,8 @@ const LoginScreen = () => {
                       {lang.pinForgetMsg}
                     </p>
                   </>
+                ) : (
+                  <></>
                 )}
                 {showPin && (
                   <span className={styles.tooltip}>

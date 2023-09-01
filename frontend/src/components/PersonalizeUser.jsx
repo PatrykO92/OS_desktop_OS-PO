@@ -147,7 +147,9 @@ const PersonalizeUser = ({ user, changeUser, lang }) => {
             }, 200);
           }}
         >
-          {user.pin === "" ? lang.setUpPIN : lang.changePIN}
+          {user.pin === "" || user.pin === null
+            ? lang.setUpPIN
+            : lang.changePIN}
         </button>
       </div>
 
@@ -189,10 +191,11 @@ const PersonalizeUser = ({ user, changeUser, lang }) => {
           onSubmit={(e) => {
             e.preventDefault();
 
-            if (pin.currentPIN !== user.pin) {
-              modalHandler(true, true, lang.wrongOldPIN);
-              return;
-            }
+            if ((user.pin !== null) & (user.pin !== ""))
+              if (pin.currentPIN !== user.pin) {
+                modalHandler(true, true, lang.wrongOldPIN);
+                return;
+              }
 
             if (pin.pin1 !== pin.pin2) {
               modalHandler(true, true, lang.samePIN);
@@ -205,7 +208,7 @@ const PersonalizeUser = ({ user, changeUser, lang }) => {
             setShowPINChange(false);
           }}
         >
-          {user.pin === "" ? (
+          {user.pin === "" || user.pin === null ? (
             <></>
           ) : (
             <>
