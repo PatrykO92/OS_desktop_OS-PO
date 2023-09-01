@@ -1,8 +1,12 @@
 import os
+from django.utils._os import safe_join
 from storages.backends.dropbox import DropBoxStorage
 
 
 class BackendStorage(DropBoxStorage):
+    def __init__(self):
+        super().__init__()
+
     def _full_path(self, name):
         if name == "/":
             name = ""
@@ -13,7 +17,7 @@ class BackendStorage(DropBoxStorage):
             final_path = os.path.join(self.root_path, name).replace("\\", "/")
 
             # Separator on linux system
-            sep = "//"
+            sep = "/"
             base_path = self.root_path
 
             if (

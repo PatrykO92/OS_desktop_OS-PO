@@ -34,7 +34,6 @@ class CustomRegisterSerializer(RegisterSerializer):
         user.avatar = self.validated_data.get("avatar", None)
         user.settings = self.validated_data.get("settings", None)
         user.save()
-        print(usercl)
         return user
 
 
