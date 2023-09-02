@@ -121,9 +121,9 @@ STORAGES = {
     },
 }
 
-DROPBOX_OAUTH2_TOKEN = env.str("DROPBOX_ACCESS_TOKEN")
 DROPBOX_APP_KEY = env.str("DROPBOX_APP_KEY")
 DROPBOX_APP_SECRET = env.str("DROPBOX_APP_SECRET")
+DROPBOX_OAUTH2_REFRESH_TOKEN = env.str("DROPBOX_APP_REFRESH_TOKEN")
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
