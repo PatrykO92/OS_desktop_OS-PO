@@ -72,7 +72,11 @@ function App() {
 
   // App 2: Web Browser
   const [webBrowser, handleStateWebBrowser, handleDefaultStateWebBrowser] =
-    useAppState({ defaultUrl: false }, "Chro-OX", webBrowserIcon);
+    useAppState(
+      { defaultUrl: false },
+      textModel[systemLanguage].webBrowser,
+      webBrowserIcon
+    );
 
   // App 3: Calculator
   const [calculator, handleStateCalculator, handleDefaultStateCalculator] =
