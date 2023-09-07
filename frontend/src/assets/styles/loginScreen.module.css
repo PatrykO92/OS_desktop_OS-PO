@@ -141,3 +141,9 @@
   filter: invert(21%) sepia(42%) saturate(5139%) hue-rotate(205deg)
     brightness(170%) contrast(84%);
 }
+
+@media screen and (max-width: 380px) {
+  .userFullName {
+    font-size: 1.9rem;
+  }
+}

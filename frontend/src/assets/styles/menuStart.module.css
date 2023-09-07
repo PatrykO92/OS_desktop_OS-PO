@@ -1,6 +1,6 @@
 .menuStart {
   z-index: 13;
-  position: absolute;
+  position: fixed;
   bottom: 3.5rem;
   left: 0.5rem;
   width: 25rem;
@@ -56,4 +56,10 @@
 .avatar {
   max-height: 2rem;
   border-radius: 50%;
+}
+
+@media screen and (max-width: 290px) {
+  .menuStart {
+    width: 22rem;
+  }
 }

@@ -291,3 +291,44 @@
     color: var(--tetris-color3);
   }
 }
+
+@media screen and (max-width: 380px) {
+  .tetris__game-board__menu {
+    min-height: calc(20rem + 21px);
+    min-width: calc(10rem + 13px);
+  }
+
+  .tetris__game-board-container {
+    grid-template-columns: repeat(10, 1rem);
+    grid-template-rows: repeat(20, 1rem);
+  }
+
+  .tetris button {
+    font-size: 1rem;
+  }
+
+  .tetris__game-board__menu__buttons,
+  .tetris__game-board__menu__highscores,
+  .tetris__game-board__menu__help,
+  .tetris__game-board__game-over {
+    gap: 0.4rem;
+  }
+
+  .tetris__game-board__game-over p {
+    font-size: 0.7rem;
+  }
+
+  .tetris__game-board__game-over p:nth-child(1) {
+    font-size: 0.8rem;
+  }
+
+  .tetris__game-board__menu__title {
+    font-size: 1.5rem;
+  }
+
+  .tetris__game-board__menu__highscores > div:nth-child(2) {
+    overflow-y: scroll;
+    max-height: 9rem;
+    font-size: 0.7rem;
+  }
+}
