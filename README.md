@@ -47,8 +47,8 @@ This app is not currently licensed.
 
 ## Reporting Issues
 
-If you encounter any issues or bugs with the app, please feel free to reach out to me via email at patryk-orlowski1992@gmail.com. I appreciate your feedback and will work on resolving the problems as soon as possible.
+If you encounter any issues or bugs with the app, please feel free to reach out to me via email at patryk.orlowski1992@gmail.com. I appreciate your feedback and will work on resolving the problems as soon as possible.
 
 ## Greetings
 
-Thank you for checking out OS PO® Operating System - Patryk Orlowski! Feel free to explore the project and customize your desktop environment with ease. If you have any questions or need further assistance, don't hesitate to contact me. Happy coding!
+Thank you for checking out OS PO® Operating System! Feel free to explore the project and customize your desktop environment with ease. If you have any questions or need further assistance, don't hesitate to contact me. Happy coding!
