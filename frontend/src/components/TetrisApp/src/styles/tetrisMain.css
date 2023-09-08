@@ -24,11 +24,10 @@
 }
 
 .tetris {
-  height: 100%;
-  background-color: var(--tetris-main-color);
-  display: flex;
+  padding: 1rem 0;
+  display: grid;
   justify-content: center;
-  align-items: center;
+  height: 100%;
   color: var(--tetris-color10);
   overflow-y: scroll;
 }
@@ -86,7 +85,7 @@
 .tetris__game-window {
   display: flex;
   gap: 2rem;
-  align-items: flex-end;
+  align-items: center;
 }
 
 .tetris__game-board__menu {
@@ -292,7 +291,7 @@
   }
 }
 
-@media screen and (max-width: 380px) {
+@media screen and (max-width: 450px) {
   .tetris__game-board__menu {
     min-height: calc(20rem + 21px);
     min-width: calc(10rem + 13px);
@@ -330,5 +329,13 @@
     overflow-y: scroll;
     max-height: 9rem;
     font-size: 0.7rem;
+  }
+
+  .tetris__score-board {
+    font-size: 0.7rem;
+  }
+
+  .tetris__game-window {
+    gap: 1rem;
   }
 }
