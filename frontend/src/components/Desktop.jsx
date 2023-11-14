@@ -29,15 +29,18 @@ const Desktop = () => {
   // TODO - REFACTOR
   const steps = [
     {
-      element: ".desktop",
+      element: ".icon1",
+      title: lang.stepTitle,
       intro: lang.step1,
     },
     {
       element: ".menu-start-btn",
+      title: lang.stepTitle,
       intro: lang.step2,
     },
     {
       element: ".task-bar__language-button",
+      title: lang.stepTitle,
       intro: lang.step3,
     },
     {
@@ -70,7 +73,7 @@ const Desktop = () => {
           handleStateToDoApp("hidden", false);
           handleStateToDoApp("programEnabled", true);
         }}
-        className={styles.icon}
+        className={`${styles.icon} icon1`}
       >
         <img src={toDoApp.icon} alt={toDoApp.name} />
         <p>{toDoApp.name}</p>

@@ -109,6 +109,7 @@ const textModel = {
     step3: "You can change the language here.",
     step4:
       "Click the right mouse button on the desktop to open a context menu. Have fun!",
+    stepTitle: "Short intro",
     submit: "Submit",
     success: "Success.",
     technology: "technology",
@@ -261,6 +262,7 @@ const textModel = {
     step3: "Tutaj możesz zmienić język.",
     step4:
       "Kliknij prawym przyciskiem myszy na pulpicie, aby otworzyć menu kontekstowe. Baw się dobrze!",
+    stepTitle: "Krótkie wprowadzenie",
     submit: "Wyślij",
     success: "Sukces.",
     technology: "technologia",
