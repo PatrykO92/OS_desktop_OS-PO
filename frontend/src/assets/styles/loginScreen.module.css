@@ -1,9 +1,3 @@
-:root {
-  --wss-main-color1: hsl(214, 100%, 3%);
-  --wss-main-color2: hsl(212, 88%, 38%);
-  --wss-main-color3: hsl(213, 26%, 87%);
-  --wss-font-color: hsl(0, 0%, 100%);
-}
 
 .loginScreen {
   display: flex;

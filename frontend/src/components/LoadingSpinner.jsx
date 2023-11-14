@@ -19,6 +19,7 @@ export function LoadingSpinnerWindow() {
 export function LoadingSpinnerFullscreen() {
   return (
     <div className={styles.loadingSpinnerFullscreen}>
+      <p>Loading ...</p>
       <LoadingSpinner />
     </div>
   );
