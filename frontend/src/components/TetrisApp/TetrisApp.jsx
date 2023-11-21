@@ -241,7 +241,15 @@ const TetrisApp = ({ lang, user }) => {
         rotateTetromino();
         break;
 
+      case "ARROWUP":
+        rotateTetromino();
+        break;
+
       case "A":
+        moveTetrominoLeft();
+        break;
+
+      case "ARROWLEFT":
         moveTetrominoLeft();
         break;
 
@@ -249,7 +257,15 @@ const TetrisApp = ({ lang, user }) => {
         moveTetrominoRight();
         break;
 
+      case "ARROWRIGHT":
+        moveTetrominoRight();
+        break;
+
       case "S":
+        moveTetrominoDown();
+        break;
+
+      case "ARROWDOWN":
         moveTetrominoDown();
         break;
 
