@@ -96,9 +96,9 @@ const ToDoApp = () => {
         <div>
           <button onClick={() => toggleToDoStatus(item.id, item.done)}>
             {item.done ? (
-              <img src={checkIcon} alt={lang.check} />
-            ) : (
               <img src={uncheckIcon} alt={lang.uncheck} />
+            ) : (
+              <img src={checkIcon} alt={lang.check} />
             )}
           </button>
           <button onClick={() => deleteToDoItem(item.id)}>
