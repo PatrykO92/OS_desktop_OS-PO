@@ -31,6 +31,7 @@ import { useAppState } from "./hooks/useAppState";
 import LoggedInChecker from "./components/LoggedInChecker";
 import { LoadingSpinnerFullscreen } from "./components/LoadingSpinner";
 import saveUserSettingsToBackend from "./utils/saveUserSettingsToBackend";
+import getUserDetail from "./utils/getUserDetail";
 
 const LoginScreen = lazy(() => import("./components/LoginScreen"));
 const StartScreen = lazy(() => import("./components/StartScreen"));
@@ -54,11 +55,7 @@ function App() {
   };
 
   // useStateHook and function to set actually used user, default you get user from localStorage, null if not found
-  const [user, setUser] = useState(
-    JSON.parse(localStorage.getItem("user")) !== null
-      ? JSON.parse(localStorage.getItem("user"))
-      : null
-  );
+  const [user, setUser] = useState(null);
   const changeUser = (user) => {
     setUser(user);
   };
@@ -186,19 +183,30 @@ function App() {
   }, [user?.settings]);
 
   // Check at app start if user is already logged in.
+  useEffect(() => {
+    const authToken = localStorage.getItem("authToken");
+    if (authToken !== null) {
+      async function LogIn() {
+        changeUser(await getUserDetail());
+        setIsConnectedToBackend(true);
+      }
+      LogIn();
+    }
+  }, []);
+
   useEffect(
     () => {
       const authToken = localStorage.getItem("authToken");
-      const userLocalStorage = localStorage.getItem("user");
-      if (authToken !== null && userLocalStorage !== null) {
-        setIsConnectedToBackend(true);
+      if (user !== null && isConnectedToBackend) {
         navigate("/loginScreen");
-      } else {
+      }
+
+      if (authToken === null) {
         navigate("/startScreen");
       }
     },
     // eslint-disable-next-line
-    []
+    [isConnectedToBackend]
   );
 
   return (
@@ -242,13 +250,11 @@ function App() {
           <Routes>
             <Route index exact path="/" element={<StartScreen />} />
             <Route exact path="/startScreen" element={<StartScreen />} />
-
             <Route exact path="/loginScreen" element={<LoginScreen />} />
             <Route path="/" element={<LoggedInChecker />}>
               <Route exact path="/workScreen" element={<WorkScreen />} />
               <Route exact path="/closeScreen" element={<CloseScreen />} />
             </Route>
-
             <Route exact path="*" element={<StartScreen />} />
           </Routes>
         </Suspense>
