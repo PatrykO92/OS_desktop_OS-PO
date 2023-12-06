@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const apiUrl = process.env.REACT_APP_BACKEND_URL;
+const apiUrl = import.meta.env.VITE_APP_BACKEND_URL;
 
 const loginToBackend = async (email, password) => {
   try {
