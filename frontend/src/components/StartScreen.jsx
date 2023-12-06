@@ -23,9 +23,9 @@ import { LoadingSpinnerFullscreen } from "./LoadingSpinner";
 import axios from "axios";
 import useRemoveUser from "../hooks/useRemoveUser";
 
-const GUEST_USER = process.env.REACT_APP_GUEST_USER;
-const GUEST_USER_PASSWORD = process.env.REACT_APP_GUEST_USER_PASSWORD;
-const API_URL = process.env.REACT_APP_BACKEND_URL;
+const GUEST_USER = import.meta.env.VITE_APP_GUEST_USER;
+const GUEST_USER_PASSWORD = import.meta.env.VITE_APP_GUEST_USER_PASSWORD;
+const API_URL = import.meta.env.VITE_APP_BACKEND_URL;
 
 export default function StartScreen() {
   const { lang } = useContext(WholeAppContext);
