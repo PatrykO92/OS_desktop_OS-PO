@@ -1,4 +1,3 @@
-// External libraries
 import {
   useState,
   useRef,
@@ -7,6 +6,7 @@ import {
   lazy,
   Suspense,
 } from "react";
+
 import { Routes, Route, useNavigate } from "react-router-dom";
 
 // Assets for CSSTransition package

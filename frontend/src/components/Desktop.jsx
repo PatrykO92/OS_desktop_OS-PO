@@ -44,6 +44,7 @@ const Desktop = () => {
       intro: lang.step3,
     },
     {
+      title: lang.stepTitle,
       intro: lang.step4,
     },
   ];
