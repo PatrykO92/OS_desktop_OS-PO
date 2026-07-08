@@ -4,8 +4,7 @@ Welcome to the OS PO® Operating System repository! This project is a full-stack
 
 ## Live Version
 
-**Please note that the live version is currently experiencing some issues due to extensive code refactoring.**
-You can still check it out [here](https://operating-system-po.netlify.app/).
+Currently doesn't work.
 
 ## Screenshots
 
